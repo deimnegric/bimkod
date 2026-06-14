@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arama Motoru</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
 </head>
 <body>
     <input type="file" id="file" accept="image/*">
-    <button onclick="ara()">Afişi Bul ve Kırp</button>
-    <div id="cikti"></div>
+    <button onclick="analizEt()">Ürünü Kırp ve Bul</button>
+    <div id="sonuc"></div>
 
     <script>
-        async function ara() {
-            // 1. Kullanıcının resmini al
-            // 2. CLIP modeli ile vektörünü çıkar
-            // 3. Firebase'deki binlerce vektörle (Cosine Similarity) kıyasla
-            // 4. En yüksek benzerlikli (min %85) olanı ve ürün kodunu ekrana bas
-            document.getElementById('cikti').innerHTML = "Eşleşen ürünler bulunuyor...";
+        async function analizEt() {
+            const img = document.getElementById('file').files[0];
+            const model = await cocoSsd.load(); // Nesne algılama modeli
+            // Burada görseli parçalayıp Firebase'deki verilerle kıyaslayacağız
+            document.getElementById('sonuc').innerText = "Analiz ediliyor...";
         }
     </script>
 </body>
