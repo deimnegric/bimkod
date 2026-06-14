@@ -1,92 +1,22 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ürün Arama</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; background: #f2f2f7; display: flex; justify-content: center; padding: 20px; }
-        .card { background: white; padding: 25px; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-        .btn { border: none; padding: 15px; border-radius: 12px; margin: 8px 0; width: 100%; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .primary { background: #007AFF; color: white; }
-        .secondary { background: #E5E5EA; color: #333; }
-        #preview { width: 100%; border-radius: 12px; margin: 15px 0; display: none; }
-    </style>
+    <title>Arama Motoru</title>
 </head>
 <body>
+    <input type="file" id="file" accept="image/*">
+    <button onclick="ara()">Afişi Bul ve Kırp</button>
+    <div id="cikti"></div>
 
-<div class="card">
-    <h3>Ürün Arama</h3>
-    <input type="file" id="fileInput" accept="image/*" hidden onchange="showPreview(this)">
-    
-    <button class="btn secondary" onclick="document.getElementById('fileInput').click()">📷 Görsel Yükle / Kamera</button>
-    <img id="preview">
-    <button class="btn primary" onclick="ara()">🔍 Afişi Bul</button>
-    
-    <div id="sonuc" style="margin-top:20px;"></div>
-</div>
-
-<script>
-    function showPreview(input) {
-        if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                document.getElementById('preview').src = e.target.result;
-                document.getElementById('preview').style.display = 'block';
-            };
-            reader.readAsDataURL(input.files[0]);
+    <script>
+        async function ara() {
+            // 1. Kullanıcının resmini al
+            // 2. CLIP modeli ile vektörünü çıkar
+            // 3. Firebase'deki binlerce vektörle (Cosine Similarity) kıyasla
+            // 4. En yüksek benzerlikli (min %85) olanı ve ürün kodunu ekrana bas
+            document.getElementById('cikti').innerHTML = "Eşleşen ürünler bulunuyor...";
         }
-    }
-    function ara() {
-        document.getElementById('sonuc').innerText = "Taranıyor...";
-        // Buraya Hugging Face bağlantı kodun gelecek
-    }
-</script>
-</body>
-</html>
-        const video = document.getElementById('webcam');
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-            .then(stream => { video.srcObject = stream; video.classList.remove('hidden'); });
-    }
-    
-    function previewFile() {
-        const file = document.getElementById('upload').files[0];
-        const reader = new FileReader();
-        reader.onload = e => { 
-            document.getElementById('preview').src = e.target.result;
-            document.getElementById('preview').style.display = 'block';
-            document.getElementById('webcam').classList.add('hidden');
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function ara() {
-        alert("Hugging Face API'sine bağlanılıyor ve ürünler eşleştiriliyor...");
-    }
-</script>
-</body>
-</html>
-<body>
-<div class="container">
-<h1>Ürün Arama Asistanı</h1>
-<div class="button-group">
-<button id="start-camera-btn" class="btn camera-btn">📷 Kamera</button>
-<label for="gallery-upload" class="btn gallery-btn" style="text-align: center; line-height: normal; display: flex; align-items: center; justify-content: center;">🖼️ Galeri</label>
-<input type="file" id="gallery-upload" accept="image/*" hidden>
-</div>
-<div id="camera-container" class="hidden">
-<video id="webcam" autoplay playsinline></video>
-<button id="capture-btn" class="btn" style="background-color: #5bc0de; margin-top: 10px;">📸 Çek</button>
-</div>
-<div id="preview-container">
-<img id="image-preview" src="#" alt="Önizleme" class="hidden">
-</div>
-<canvas id="canvas" class="hidden"></canvas>
-<button id="search-btn" class="btn action-btn" disabled>Afişi Bul</button>
-<div id="result-section"></div>
-</div>
-<script>
-// Arayüz mantığı buraya gelecek
-</script>
+    </script>
 </body>
 </html>
