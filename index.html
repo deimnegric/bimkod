@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurumsal Ürün Arama</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border-top: 5px solid #d9534f;
+            margin-top: 20px;
+        }
+        header h1 {
+            color: #333333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .upload-btn, .trigger-btn {
+            flex: 1;
+            display: inline-block;
+            color: white;
+            padding: 12px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .camera-btn { background-color: #0275d8; }
+        .camera-btn:hover { background-color: #025aa5; }
+        .gallery-btn { background-color: #d9534f; }
+        .gallery-btn:hover { background-color: #c9302c; }
+
+        /* Canlı Kamera Alanı (Google Lens Tarzı) */
+        #camera-container {
+            margin-top: 15px;
+            position: relative;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        #webcam {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: scaleX(1); /* Arka kamera için normal yön */
+        }
+        .capture-action-btn {
+            background-color: #5bc0de;
+            color: white;
+            margin: 10px 0;
+        }
+
+        #preview-container {
+            margin-top: 10px;
+        }
+        #preview-container img {
+            max-width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border: 2px dashed #cccccc;
+            padding: 5px;
+            border-radius: 8px;
+        }
+        .preview-hidden { display: none; }
+        
+        .action-btn, .reset-btn {
+            margin-top: 15px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .action-btn { background-color: #5cb85c; color: white; }
+        .action-btn:hover:not(:disabled) { background-color: #4cae4c; }
+        .action-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+        .reset-btn { background-color: #333333; color: white; }
+        .reset-btn:hover { background-color: #222222; }
+        
+        #loading-message { margin-top: 20px; font-style: italic; color: #666666; }
+        .hidden { display: none; }
+        
+        #result-section { margin-top: 30px; border-top: 2px solid #eeeeee; padding-top: 20px; }
+        .gallery-title { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px; }
+        .gallery { display: flex; flex-direction: column; gap: 20px; }
+        .gallery img { width: 100%; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Ürün Arama Asistanı</h1>
+    </header>
+    <main>
+        
+        <div class="button-group">
+            <button id="start-camera-btn" class="trigger-btn camera-btn">📷 Kamerayı Aç</button>
+            
+            <label for="gallery-upload" class="upload-btn gallery-btn" style="text-align: center;">🖼️ Galeriden Seç</label>
+            <input type="file" id="gallery-upload" accept="image/*" hidden>
+        </div>
+
+        <div id="camera-container" class="hidden">
+            <video id="webcam" autoplay playsinline></video>
+            <button id="capture-btn" class="trigger-btn capture-action-btn">📸 Fotoğrafı Çek</button>
+        </div>
+        
+        <div id="preview-container" class="preview-hidden">
+            <img id="image-preview" src="#" alt="Aranacak Ürün">
+        </div>
+        
+        <canvas id="canvas" class="hidden"></canvas>
+        
+        <button id="search-btn" class="action-btn" disabled>Benzer Afişleri Bul</button>
+        
+        <div id="loading-message" class="hidden">Arşiv taranıyor, lütfen bekleyiniz...</div>
+        
+        <div id="result-section" class="hidden">
+            <div class="gallery-title">Eşleşen Afişler (Kodları görsel üzerinden okuyabilirsiniz)</div>
+            <div id="gallery-container" class="gallery"></div>
+        </div>
+        
+        <button id="reset-btn" class="reset-btn">Yeni Arama Yap</button>
+    </main>
+</div>
+
+<script>
+    let stream = null;
+    const video = document.getElementById('webcam');
+    const canvas = document.getElementById('canvas');
+    const previewImg = document.getElementById('image-preview');
+    const previewContainer = document.getElementById('preview-container');
+    const cameraContainer = document.getElementById('camera-container');
+    const searchBtn = document.getElementById('search-btn');
+
+    // 1. GERÇEK KAMERA AÇMA FONKSİYONU
+    document.getElementById('start-camera-btn').addEventListener('click', async function() {
+        // Eski seçimleri temizle
+        previewContainer.classList.add('preview-hidden');
+        searchBtn.disabled = true;
+        
+        try {
+            // "environment" seçeneği arka kamerayı açmaya zorlar
+            stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "environment" }, 
+                audio: false 
+            });
+            video.srcObject = stream;
+            cameraContainer.classList.remove('hidden'); // Kamera ekranını göster
+        } catch (err) {
+            alert("Kamera açılamadı! Lütfen HTTPS protokolünde çalıştığınızdan veya kamera izni verdiğinizden emin olun. Yerel dosyalarda (file://) kamera çalışmaz.");
+            console.error(err);
+        }
+    });
+
+    // 2. CANLI YAYINDAN FOTOĞRAF YAKALAMA (ÇEKME)
+    document.getElementById('capture-btn').addEventListener('click', function() {
+        if (stream) {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            // Videodaki o anki kareyi canvas'a çiziyoruz
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Canvas'ı resim verisine (base64) çevirip önizlemeye basıyoruz
+            const dataUrl = canvas.toDataURL('image/jpeg');
+            previewImg.src = dataUrl;
+            
+            // Kamerayı kapat
+            stream.getTracks().forEach(track => track.stop());
+            cameraContainer.classList.add('hidden');
+            
+            // Önizlemeyi göster ve butonu aktif et
+            previewContainer.classList.remove('preview-hidden');
+            searchBtn.disabled = false;
+        }
+    });
+
+    // 3. GALERİDEN SEÇİM YAPMA
+    document.getElementById('gallery-upload').addEventListener('change', function(event) {
+        // Eğer açık bir kamera yayını varsa kapat
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            cameraContainer.classList.add('hidden');
+        }
+
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                previewContainer.classList.remove('preview-hidden');
+                searchBtn.disabled = false;
+                
+                document.getElementById('result-section').classList.add('hidden');
+                document.getElementById('gallery-container').innerHTML = '';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // ARAMA SİMÜLASYONU
+    searchBtn.addEventListener('click', function() {
+        document.getElementById('loading-message').classList.remove('hidden');
+        searchBtn.disabled = true;
+
+        setTimeout(function() {
+            document.getElementById('loading-message').classList.add('hidden');
+            const galleryContainer = document.getElementById('gallery-container');
+            galleryContainer.innerHTML = ''; 
+            
+            for(let i = 1; i <= 3; i++) {
+                const imgElement = document.createElement('img');
+                imgElement.src = previewImg.src;
+                imgElement.alt = 'Eşleşen Afiş ' + i;
+                galleryContainer.appendChild(imgElement);
+            }
+            
+            document.getElementById('result-section').classList.remove('hidden');
+            searchBtn.disabled = false;
+        }, 2000);
+    });
+
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        location.reload();
+    });
+</script>
+
+</body>
+</html>
 
