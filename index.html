@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurumsal Ürün Arama</title>
+    <title>Bimkod</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -56,7 +56,6 @@
         .gallery-btn { background-color: #d9534f; }
         .gallery-btn:hover { background-color: #c9302c; }
 
-        /* Canlı Kamera Alanı (Google Lens Tarzı) */
         #camera-container {
             margin-top: 15px;
             position: relative;
@@ -68,7 +67,6 @@
             width: 100%;
             height: auto;
             display: block;
-            transform: scaleX(1); /* Arka kamera için normal yön */
         }
         .capture-action-btn {
             background-color: #5bc0de;
@@ -111,7 +109,27 @@
         #result-section { margin-top: 30px; border-top: 2px solid #eeeeee; padding-top: 20px; }
         .gallery-title { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px; }
         .gallery { display: flex; flex-direction: column; gap: 20px; }
-        .gallery img { width: 100%; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        /* Yeni Kart Yapısı (Resim + Güven Skoru) */
+        .result-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+        .result-card img {
+            width: 100%;
+            display: block;
+        }
+        .result-info {
+            padding: 10px 15px;
+            font-weight: bold;
+            color: #333;
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -124,7 +142,6 @@
         
         <div class="button-group">
             <button id="start-camera-btn" class="trigger-btn camera-btn">📷 Kamerayı Aç</button>
-            
             <label for="gallery-upload" class="upload-btn gallery-btn" style="text-align: center;">🖼️ Galeriden Seç</label>
             <input type="file" id="gallery-upload" accept="image/*" hidden>
         </div>
@@ -142,10 +159,10 @@
         
         <button id="search-btn" class="action-btn" disabled>Benzer Afişleri Bul</button>
         
-        <div id="loading-message" class="hidden">Arşiv taranıyor, lütfen bekleyiniz...</div>
+        <div id="loading-message" class="hidden">Yapay zeka görseli analiz ediyor, lütfen bekleyiniz...</div>
         
         <div id="result-section" class="hidden">
-            <div class="gallery-title">Eşleşen Afişler (Kodları görsel üzerinden okuyabilirsiniz)</div>
+            <div class="gallery-title">En Yakın 5 Eşleşme:</div>
             <div id="gallery-container" class="gallery"></div>
         </div>
         
@@ -154,7 +171,11 @@
 </div>
 
 <script>
+    // 🌍 BURAYA HUGGING FACE'TEN ALACAĞIMIZ URL'Yİ YAPIŞTIRACAĞIZ
+    const API_URL = "BURAYA_HUGGING_FACE_DIRECT_URL_GELECEK"; 
+
     let stream = null;
+    let selectedFile = null; // Dosya verisini saklamak için
     const video = document.getElementById('webcam');
     const canvas = document.getElementById('canvas');
     const previewImg = document.getElementById('image-preview');
@@ -162,51 +183,47 @@
     const cameraContainer = document.getElementById('camera-container');
     const searchBtn = document.getElementById('search-btn');
 
-    // 1. GERÇEK KAMERA AÇMA FONKSİYONU
     document.getElementById('start-camera-btn').addEventListener('click', async function() {
-        // Eski seçimleri temizle
         previewContainer.classList.add('preview-hidden');
         searchBtn.disabled = true;
+        selectedFile = null;
         
         try {
-            // "environment" seçeneği arka kamerayı açmaya zorlar
             stream = await navigator.mediaDevices.getUserMedia({ 
                 video: { facingMode: "environment" }, 
                 audio: false 
             });
             video.srcObject = stream;
-            cameraContainer.classList.remove('hidden'); // Kamera ekranını göster
+            cameraContainer.classList.remove('hidden');
         } catch (err) {
-            alert("Kamera açılamadı! Lütfen HTTPS protokolünde çalıştığınızdan veya kamera izni verdiğinizden emin olun. Yerel dosyalarda (file://) kamera çalışmaz.");
+            alert("Kamera izni alınamadı!");
             console.error(err);
         }
     });
 
-    // 2. CANLI YAYINDAN FOTOĞRAF YAKALAMA (ÇEKME)
     document.getElementById('capture-btn').addEventListener('click', function() {
         if (stream) {
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
-            // Videodaki o anki kareyi canvas'a çiziyoruz
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
             
-            // Canvas'ı resim verisine (base64) çevirip önizlemeye basıyoruz
+            // Canlı çekilen resmi Blob (dosya) formatına çeviriyoruz ki API'ye yollayabilelim
+            canvas.toBlob(function(blob) {
+                selectedFile = blob;
+            }, 'image/jpeg');
+
             const dataUrl = canvas.toDataURL('image/jpeg');
             previewImg.src = dataUrl;
             
-            // Kamerayı kapat
             stream.getTracks().forEach(track => track.stop());
             cameraContainer.classList.add('hidden');
             
-            // Önizlemeyi göster ve butonu aktif et
             previewContainer.classList.remove('preview-hidden');
             searchBtn.disabled = false;
         }
     });
 
-    // 3. GALERİDEN SEÇİM YAPMA
     document.getElementById('gallery-upload').addEventListener('change', function(event) {
-        // Eğer açık bir kamera yayını varsa kapat
         if (stream) {
             stream.getTracks().forEach(track => track.stop());
             cameraContainer.classList.add('hidden');
@@ -214,6 +231,7 @@
 
         const file = event.target.files[0];
         if (file) {
+            selectedFile = file; // Galeriden seçilen dosyayı kaydet
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
@@ -227,26 +245,66 @@
         }
     });
 
-    // ARAMA SİMÜLASYONU
-    searchBtn.addEventListener('click', function() {
+    // 🚀 GERÇEK YAPAY ZEKA BAĞLANTI NOKTASI
+    searchBtn.addEventListener('click', async function() {
+        if (!selectedFile) return;
+
         document.getElementById('loading-message').classList.remove('hidden');
         searchBtn.disabled = true;
 
-        setTimeout(function() {
+        // Form verisi hazırlıyoruz (Resmi Python backend'e göndermek için)
+        const formData = new FormData();
+        formData.append("file", selectedFile, "urun.jpg");
+
+        try {
+            // Hugging Face sunucumuza resmi post ediyoruz
+            const response = await fetch(`${API_URL}/vektor-uret`, {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
             document.getElementById('loading-message').classList.add('hidden');
-            const galleryContainer = document.getElementById('gallery-container');
-            galleryContainer.innerHTML = ''; 
-            
-            for(let i = 1; i <= 3; i++) {
-                const imgElement = document.createElement('img');
-                imgElement.src = previewImg.src;
-                imgElement.alt = 'Eşleşen Afiş ' + i;
-                galleryContainer.appendChild(imgElement);
+
+            if (data.status === "success") {
+                // Yapay zeka resmin imzasını (vektörünü) başarıyla üretti!
+                console.log("Yapay Zeka Vektör İmzası Başarıyla Alındı kanki:", data.vector);
+                alert("Yapay zeka resmi analiz etti ve 512 boyutlu imzasını çıkardı! Detaylar tarayıcı konsolunda.");
+
+                // 🛠️ BİR SONRAKİ ADIMDA BURAYA FIREBASE BAĞLANIP EN YAKIN 5 AFİŞİ ÇEKECEĞİZ
+                // Şimdilik simüle edilmiş 5 afişi güven skorlarıyla ekrana basalım
+                const galleryContainer = document.getElementById('gallery-container');
+                galleryContainer.innerHTML = ''; 
+
+                const sahteSkorlar = ["🎯 %96 Eşleşme", "🤔 %84 Eşleşme", "🔍 %79 Eşleşme", "📉 %61 Eşleşme", "❌ %44 Eşleşme"];
+                
+                for(let i = 0; i < 5; i++) {
+                    const card = document.createElement('div');
+                    card.className = 'result-card';
+                    
+                    const imgElement = document.createElement('img');
+                    imgElement.src = previewImg.src; // Şimdilik test amaçlı aynı resim
+                    
+                    const infoElement = document.createElement('div');
+                    infoElement.className = 'result-info';
+                    infoElement.innerText = sahteSkorlar[i];
+                    
+                    card.appendChild(imgElement);
+                    card.appendChild(infoElement);
+                    galleryContainer.appendChild(card);
+                }
+                document.getElementById('result-section').classList.remove('hidden');
+
+            } else {
+                alert("Yapay zeka motorunda bir hata oluştu: " + data.message);
             }
-            
-            document.getElementById('result-section').classList.remove('hidden');
-            searchBtn.disabled = false;
-        }, 2000);
+        } catch (error) {
+            document.getElementById('loading-message').classList.add('hidden');
+            alert("Sunucuya bağlanılamadı kanki! API_URL'nin doğru olduğundan ve Hugging Face sunucunun 'Running' olduğundan emin ol.");
+            console.error(error);
+        }
+
+        searchBtn.disabled = false;
     });
 
     document.getElementById('reset-btn').addEventListener('click', function() {
@@ -256,4 +314,3 @@
 
 </body>
 </html>
-
