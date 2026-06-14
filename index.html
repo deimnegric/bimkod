@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bimkod</title>
+    <title>Kurumsal Ürün Arama</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -103,14 +103,22 @@
         .reset-btn { background-color: #333333; color: white; }
         .reset-btn:hover { background-color: #222222; }
         
-        #loading-message { margin-top: 20px; font-style: italic; color: #666666; }
+        /* Yapay zeka durum mesajı alanları */
+        #ai-status-message { 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 15px;
+        }
+        .status-loading { color: #f0ad4e; font-style: italic; }
+        .status-success { color: #5cb85c; }
+        .status-error { color: #d9534f; }
+
         .hidden { display: none; }
         
         #result-section { margin-top: 30px; border-top: 2px solid #eeeeee; padding-top: 20px; }
         .gallery-title { font-size: 16px; font-weight: bold; color: #333; margin-bottom: 15px; }
         .gallery { display: flex; flex-direction: column; gap: 20px; }
         
-        /* Yeni Kart Yapısı (Resim + Güven Skoru) */
         .result-card {
             background: #fff;
             border: 1px solid #ddd;
@@ -157,9 +165,9 @@
         
         <canvas id="canvas" class="hidden"></canvas>
         
-        <button id="search-btn" class="action-btn" disabled>Benzer Afişleri Bul</button>
+        <div id="ai-status-message" class="hidden"></div>
         
-        <div id="loading-message" class="hidden">Yapay zeka görseli analiz ediyor, lütfen bekleyiniz...</div>
+        <button id="search-btn" class="action-btn" disabled>Benzer Afişleri Bul</button>
         
         <div id="result-section" class="hidden">
             <div class="gallery-title">En Yakın 5 Eşleşme:</div>
@@ -171,22 +179,34 @@
 </div>
 
 <script>
-    // 🌍 BURAYA HUGGING FACE'TEN ALACAĞIMIZ URL'Yİ YAPIŞTIRACAĞIZ
+    // 🌍 Yeni Hugging Face Canlı API URL'niz entegre edildi
     const API_URL = "https://deimnegric-bimkod.hf.space"; 
 
     let stream = null;
-    let selectedFile = null; // Dosya verisini saklamak için
+    let selectedFile = null; 
+    let currentVector = null; // Yapay zekanın ürettiği imzayı burada saklayacağız
+
     const video = document.getElementById('webcam');
     const canvas = document.getElementById('canvas');
     const previewImg = document.getElementById('image-preview');
     const previewContainer = document.getElementById('preview-container');
     const cameraContainer = document.getElementById('camera-container');
     const searchBtn = document.getElementById('search-btn');
+    const aiStatus = document.getElementById('ai-status-message');
+
+    // Durum mesajı gösterme fonksiyonu
+    function setStatus(text, className) {
+        aiStatus.innerText = text;
+        aiStatus.className = " " + className;
+        aiStatus.classList.remove('hidden');
+    }
 
     document.getElementById('start-camera-btn').addEventListener('click', async function() {
         previewContainer.classList.add('preview-hidden');
         searchBtn.disabled = true;
         selectedFile = null;
+        currentVector = null;
+        aiStatus.classList.add('hidden');
         
         try {
             stream = await navigator.mediaDevices.getUserMedia({ 
@@ -196,7 +216,7 @@
             video.srcObject = stream;
             cameraContainer.classList.remove('hidden');
         } catch (err) {
-            alert("Kamera izni alınamadı!");
+            setStatus("❌ Kamera izni alınamadı!", "status-error");
             console.error(err);
         }
     });
@@ -207,9 +227,10 @@
             canvas.height = video.videoHeight;
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
             
-            // Canlı çekilen resmi Blob (dosya) formatına çeviriyoruz ki API'ye yollayabilelim
             canvas.toBlob(function(blob) {
                 selectedFile = blob;
+                // Resim hazır olduğunda hemen arka planda yapay zekaya gönderiyoruz
+                analizEtVeVektörUret();
             }, 'image/jpeg');
 
             const dataUrl = canvas.toDataURL('image/jpeg');
@@ -217,9 +238,7 @@
             
             stream.getTracks().forEach(track => track.stop());
             cameraContainer.classList.add('hidden');
-            
             previewContainer.classList.remove('preview-hidden');
-            searchBtn.disabled = false;
         }
     });
 
@@ -231,80 +250,85 @@
 
         const file = event.target.files[0];
         if (file) {
-            selectedFile = file; // Galeriden seçilen dosyayı kaydet
+            selectedFile = file;
+            currentVector = null;
+            
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImg.src = e.target.result;
                 previewContainer.classList.remove('preview-hidden');
-                searchBtn.disabled = false;
                 
                 document.getElementById('result-section').classList.add('hidden');
                 document.getElementById('gallery-container').innerHTML = '';
+                
+                // Resim seçildiği an arka planda yapay zekaya gönderiyoruz
+                analizEtVeVektörUret();
             };
             reader.readAsDataURL(file);
         }
     });
 
-    // 🚀 GERÇEK YAPAY ZEKA BAĞLANTI NOKTASI
-    searchBtn.addEventListener('click', async function() {
+    // 🚀 Resim çekildiği veya seçildiği an sessizce çalışan yapay zeka fonksiyonu
+    async function analizEtVeVektörUret() {
         if (!selectedFile) return;
 
-        document.getElementById('loading-message').classList.remove('hidden');
+        setStatus("⏳ Görsel taranıyor ve kimlik oluşturuluyor...", "status-loading");
         searchBtn.disabled = true;
 
-        // Form verisi hazırlıyoruz (Resmi Python backend'e göndermek için)
         const formData = new FormData();
         formData.append("file", selectedFile, "urun.jpg");
 
         try {
-            // Hugging Face sunucumuza resmi post ediyoruz
             const response = await fetch(`${API_URL}/vektor-uret`, {
                 method: "POST",
                 body: formData
             });
 
             const data = await response.json();
-            document.getElementById('loading-message').classList.add('hidden');
 
             if (data.status === "success") {
-                // Yapay zeka resmin imzasını (vektörünü) başarıyla üretti!
-                console.log("Yapay Zeka Vektör İmzası Başarıyla Alındı kanki:", data.vector);
-                alert("Yapay zeka resmi analiz etti ve 512 boyutlu imzasını çıkardı! Detaylar tarayıcı konsolunda.");
-
-                // 🛠️ BİR SONRAKİ ADIMDA BURAYA FIREBASE BAĞLANIP EN YAKIN 5 AFİŞİ ÇEKECEĞİZ
-                // Şimdilik simüle edilmiş 5 afişi güven skorlarıyla ekrana basalım
-                const galleryContainer = document.getElementById('gallery-container');
-                galleryContainer.innerHTML = ''; 
-
-                const sahteSkorlar = ["🎯 %96 Eşleşme", "🤔 %84 Eşleşme", "🔍 %79 Eşleşme", "📉 %61 Eşleşme", "❌ %44 Eşleşme"];
+                currentVector = data.vector; // Kimlik başarıyla oluşturuldu
+                console.log("Görsel Kimliği (Vektör):", currentVector);
                 
-                for(let i = 0; i < 5; i++) {
-                    const card = document.createElement('div');
-                    card.className = 'result-card';
-                    
-                    const imgElement = document.createElement('img');
-                    imgElement.src = previewImg.src; // Şimdilik test amaçlı aynı resim
-                    
-                    const infoElement = document.createElement('div');
-                    infoElement.className = 'result-info';
-                    infoElement.innerText = sahteSkorlar[i];
-                    
-                    card.appendChild(imgElement);
-                    card.appendChild(infoElement);
-                    galleryContainer.appendChild(card);
-                }
-                document.getElementById('result-section').classList.remove('hidden');
-
+                // Pop-up yerine ekranda kibar bildirim
+                setStatus("✓ Görsel başarıyla tarandı ve kimlik oluşturuldu!", "status-success");
+                searchBtn.disabled = false; // "Benzer Afişleri Bul" butonunu aktifleştiriyoruz
             } else {
-                alert("Yapay zeka motorunda bir hata oluştu: " + data.message);
+                setStatus("❌ Görsel taranırken yapay zeka hatası oluştu: " + data.message, "status-error");
             }
         } catch (error) {
-            document.getElementById('loading-message').classList.add('hidden');
-            alert("Sunucuya bağlanılamadı kanki! API_URL'nin doğru olduğundan ve Hugging Face sunucunun 'Running' olduğundan emin ol.");
+            setStatus("❌ Yapay zeka sunucusuna bağlanılamadı!", "status-error");
             console.error(error);
         }
+    }
 
-        searchBtn.disabled = false;
+    // 🔍 "Benzer Afişleri Bul" Butonuna Basıldığında Çalışacak Kısım
+    searchBtn.addEventListener('click', function() {
+        if (!currentVector) return;
+
+        // Buraya bir sonraki adımda Telegram botundan beslenen Firebase entegrasyonu gelecek
+        // Şimdilik 5'li listeleme tasarımını simüle ediyoruz
+        const galleryContainer = document.getElementById('gallery-container');
+        galleryContainer.innerHTML = ''; 
+
+        const sahteSkorlar = ["🎯 %96 Eşleşme", "🤔 %84 Eşleşme", "🔍 %79 Eşleşme", "📉 %61 Eşleşme", "❌ %44 Eşleşme"];
+        
+        for(let i = 0; i < 5; i++) {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            
+            const imgElement = document.createElement('img');
+            imgElement.src = previewImg.src; // İleride buraya Firebase'den gelen gerçek afiş linkleri basılacak
+            
+            const infoElement = document.createElement('div');
+            infoElement.className = 'result-info';
+            infoElement.innerText = sahteSkorlar[i];
+            
+            card.appendChild(imgElement);
+            card.appendChild(infoElement);
+            galleryContainer.appendChild(card);
+        }
+        document.getElementById('result-section').classList.remove('hidden');
     });
 
     document.getElementById('reset-btn').addEventListener('click', function() {
