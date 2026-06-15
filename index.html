@@ -3,194 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akıllı Ürün Bulucu</title>
+    <title>Ürün Arama Asistanı</title>
     <style>
-        :root { --primary: #2563eb; --primary-hover: #1d4ed8; --bg: #f8fafc; --card-bg: #ffffff; --text: #1e293b; --border: #e2e8f0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: var(--card-bg); padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
-        h2 { margin-top: 0; font-size: 1.5rem; }
-        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
-        .btn { padding: 12px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
-        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
-        .btn-outline:hover { background: #f1f5f9; }
-        .btn-main { background: var(--primary); color: white; width: 100%; font-size: 1rem; padding: 15px; margin-top: 10px; display: none; }
-        .btn-main:hover { background: var(--primary-hover); }
-        
-        /* Kamera ve Önizleme Alanı */
-        #kameraAlan { width: 100%; border-radius: 12px; background: #000; display: none; transform: scaleX(-1); } /* Ön kamera için scaleX, arka kamera için kaldırılabilir */
-        #preview { width: 100%; border-radius: 12px; display: none; object-fit: contain; max-height: 300px; border: 1px solid var(--border); margin-top: 10px; }
-        #canvas { display: none; }
-        #results { margin-top: 20px; text-align: left; }
-        .result-box { background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 10px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
+        h2 { color: #1e293b; margin-bottom: 25px; }
+        .btn-group { display: flex; gap: 15px; margin-bottom: 20px; }
+        button, label { flex: 1; padding: 12px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; color: #334155; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+        button:hover, label:hover { background: #f8fafc; border-color: #cbd5e1; }
+        input[type="file"] { display: none; }
+        #preview-container { margin-top: 15px; border-radius: 15px; overflow: hidden; display: none; position: relative; border: 1px solid #e2e8f0; }
+        img, video { width: 100%; height: auto; display: block; }
+        #capture-btn { display: none; margin-top: 15px; background: #2563eb; color: #fff; width: 100%; border: none; }
+        #capture-btn:hover { background: #1d4ed8; }
+        #status { margin-top: 15px; font-weight: 600; font-size: 14px; }
+        .success { color: #16a34a; }
+        .error { color: #dc2626; }
+        .loading { color: #2563eb; }
+        #result-container { margin-top: 20px; text-align: left; display: none; }
+        .telegram-widget { border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; background: #f8fafc; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div class="card">
+<div class="container">
     <h2>Ürün Arama Asistanı</h2>
     
     <div class="btn-group">
-        <button class="btn btn-outline" id="btnKamera" onclick="kameraBaslat()">📷 Canlı Kamera</button>
-        <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">🖼️ Galeriden Seç</button>
+        <button id="camera-btn">📷 Canlı Kamera</button>
+        <label for="file-input">🖼️ Galeriden Seç</label>
+        <input type="file" id="file-input" accept="image/*">
     </div>
-    
-    <input type="file" id="fileInput" accept="image/*" hidden onchange="galeridenSec(event)">
-    
-    <video id="kameraAlan" autoplay playsinline></video>
-    <canvas id="canvas"></canvas>
-    
-    <img id="preview" alt="Önizleme">
-    
-    <button class="btn btn-main" id="btnCek" onclick="resimCekVeAra()">📸 Çek ve Ara</button>
-    <button class="btn btn-main" id="btnAraGaleri" onclick="ara()">🔍 Seçileni Ara</button>
-    
-    <div id="results"></div>
+
+    <div id="preview-container">
+        <video id="video" autoplay playsinline></video>
+        <img id="img-preview" alt="Önizleme">
+    </div>
+
+    <button id="capture-btn">🎯 Çek ve Ara</button>
+
+    <div id="status"></div>
+
+    <div id="result-container">
+        <h4 style="margin: 0; color: #1e293b;">Eşleşen Sonuç:</h4>
+        <div id="cropped-preview-title" style="font-size: 12px; color: #64748b; margin-top: 10px; display:none;">Aranan Ürün Bölgesi:</div>
+        <img id="cropped-product-img" style="max-width: 120px; border-radius: 8px; margin-top: 5px; display:none; border: 2px solid #2563eb;">
+        <div id="telegram-result" class="telegram-widget"></div>
+    </div>
 </div>
 
 <script>
-    // Kendi HF Space linkini buraya koy!
-    const HF_API_URL = "https://deimnegric-bimkodyeni.hf.space/vektor-uret"; 
+    // Yeni Güncel Adresin Kanki:
+    const HF_API_URL = "https://deimnegric-bimkodyeni.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.firebaseio.com/vektorler.json";
-    
-    let selectedFile = null;
-    let videoStream = null;
-    const video = document.getElementById('kameraAlan');
-    const btnCek = document.getElementById('btnCek');
-    const btnAraGaleri = document.getElementById('btnAraGaleri');
-    const preview = document.getElementById('preview');
 
-    // 1. Canlı Kamerayı Başlat
-    async function kameraBaslat() {
-        preview.style.display = 'none';
-        btnAraGaleri.style.display = 'none';
+    const cameraBtn = document.getElementById('camera-btn');
+    const fileInput = document.getElementById('file-input');
+    const video = document.getElementById('video');
+    const imgPreview = document.getElementById('img-preview');
+    const previewContainer = document.getElementById('preview-container');
+    const captureBtn = document.getElementById('capture-btn');
+    const statusDiv = document.getElementById('status');
+    const resultContainer = document.getElementById('result-container');
+    const telegramResult = document.getElementById('telegram-result');
+    const croppedProductImg = document.getElementById('cropped-product-img');
+    const croppedPreviewTitle = document.getElementById('cropped-preview-title');
+
+    let stream = null;
+
+    cameraBtn.addEventListener('click', async () => {
+        imgPreview.style.display = 'none';
+        video.style.display = 'block';
+        previewContainer.style.display = 'block';
+        captureBtn.style.display = 'block';
+        resultContainer.style.display = 'none';
+        statusDiv.innerHTML = '';
+        
+        if(stream) { stream.getTracks().forEach(track => track.stop()); }
         
         try {
-            // Arka kamerayı açmaya zorluyoruz (facingMode: environment)
-            videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            video.srcObject = videoStream;
-            video.style.display = 'block';
-            video.style.transform = 'scaleX(1)'; // Arka kamera olduğu için ters çevirmeyi iptal ediyoruz
-            btnCek.style.display = 'block';
+            stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
+            video.srcObject = stream;
         } catch (err) {
-            alert("Kamera başlatılamadı: Lütfen tarayıcı izinlerini kontrol et.");
+            showStatus("Kameraya erişilemedi kanki!", "error");
         }
-    }
+    });
 
-    // 2. Kameradan Fotoğraf Çek
-    function resimCekVeAra() {
-        const canvas = document.getElementById('canvas');
+    fileInput.addEventListener('change', (e) => {
+        if(stream) { stream.getTracks().forEach(track => track.stop()); captureBtn.style.display = 'none'; }
+        const file = e.target.files[0];
+        if (file) {
+            video.style.display = 'none';
+            imgPreview.style.display = 'block';
+            previewContainer.style.display = 'block';
+            imgPreview.src = URL.createObjectURL(file);
+            resultContainer.style.display = 'none';
+            sendToPipeline(file);
+        }
+    });
+
+    captureBtn.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
         
-        // Görüntüyü Blob (dosya) formatına çevir
-        canvas.toBlob(blob => {
-            selectedFile = blob;
-            
-            // Önizlemeyi göster, kamerayı kapat
-            preview.src = URL.createObjectURL(blob);
-            preview.style.display = 'block';
+        canvas.toBlob((blob) => {
             video.style.display = 'none';
-            btnCek.style.display = 'none';
+            imgPreview.style.display = 'block';
+            imgPreview.src = URL.createObjectURL(blob);
+            captureBtn.style.display = 'none';
+            if(stream) { stream.getTracks().forEach(track => track.stop()); }
             
-            // Kamerayı durdur
-            videoStream.getTracks().forEach(track => track.stop());
-            
-            ara(); // Otomatik aramayı başlat
+            const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
+            sendToPipeline(file);
         }, 'image/jpeg');
+    });
+
+    function showStatus(msg, type) {
+        statusDiv.className = type;
+        statusDiv.innerHTML = msg;
     }
 
-    // 3. Galeriden Dosya Seçme
-    function galeridenSec(event) {
-        selectedFile = event.target.files[0];
-        if (selectedFile) {
-            // Eğer kamera açıksa kapat
-            if (videoStream) {
-                videoStream.getTracks().forEach(track => track.stop());
-                video.style.display = 'none';
-                btnCek.style.display = 'none';
-            }
-            preview.src = URL.createObjectURL(selectedFile);
-            preview.style.display = 'block';
-            btnAraGaleri.style.display = 'block';
-        }
-    }
-
-    // Matematiksel Benzerlik Fonksiyonu
+    // Cosine Similarity (Vektör Karşılaştırma Motoru)
     function cosineSimilarity(vecA, vecB) {
-        let dotProduct = 0, normA = 0, normB = 0;
+        let dotProduct = 0.0;
+        let normA = 0.0;
+        let normB = 0.0;
         for (let i = 0; i < vecA.length; i++) {
             dotProduct += vecA[i] * vecB[i];
-            normA += vecA[i] ** 2;
-            normB += vecB[i] ** 2;
+            normA += vecA[i] * vecA[i];
+            normB += vecB[i] * vecB[i];
         }
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
-    // 4. Arama Motoru
-    async function ara() {
-        if (!selectedFile) return;
+    async function sendToPipeline(file) {
+        showStatus("🔄 Ürün ayıklanıyor ve vektör üretiliyor...", "loading");
         
-        const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = "<p>⏳ Görsel yapay zekaya gönderiliyor, bekleyin...</p>";
-        btnAraGaleri.style.display = 'none';
+        const formData = new FormData();
+        formData.append("file", file);
 
         try {
-            const formData = new FormData();
-            formData.append("file", selectedFile, "image.jpg");
-            
-            const hfResponse = await fetch(HF_API_URL, { method: "POST", body: formData });
-            const hfData = await hfResponse.json();
-            
-            if (hfData.status !== "success" || !hfData.vectors || hfData.vectors.length === 0) {
-                throw new Error("Yapay zeka görseli tanımlayamadı.");
+            const response = await fetch(HF_API_URL, { method: "POST", body: formData });
+            const data = await response.json();
+
+            if (data.status === "success" && data.vectors.length > 0) {
+                showStatus("⚡ Vektör alındı, arşiv taranıyor...", "loading");
+                searchInFirebase(data.vectors[0], file);
+            } else {
+                showStatus("❌ Görsel işlenemedi veya ürün tespit edilemedi.", "error");
             }
-            
-            const myVector = hfData.vectors[0]; 
-            
-            resultsDiv.innerHTML = "<p>⏳ Arşivde eşleştirme yapılıyor...</p>";
-            const fbResponse = await fetch(FIREBASE_URL);
-            const fbData = await fbResponse.json();
-            
-            if (!fbData) throw new Error("Firebase'de henüz vektör arşivi yok.");
+        } catch (err) {
+            showStatus("Hata: " + err.message, "error");
+        }
+    }
 
-            let bestMatchId = null;
-            let highestScore = 0;
+    async function searchInFirebase(targetVector, originalFile) {
+        try {
+            const response = await fetch(FIREBASE_URL);
+            const dbData = await response.json();
 
-            for (const key in fbData) {
-                const item = fbData[key];
-                if (item.vectors && item.vectors.length > 0) {
-                    for (const dbVector of item.vectors) {
-                        const score = cosineSimilarity(myVector, dbVector);
+            if (!dbData) {
+                showStatus("📭 Veritabanında kayıtlı afiş bulunamadı kanki.", "error");
+                return;
+            }
+
+            let bestMatch = null;
+            let highestScore = -1;
+
+            for (const key in dbData) {
+                const item = dbData[key];
+                if (item.vektorler && Array.isArray(item.vektorler)) {
+                    for (const vec of item.vektorler) {
+                        const score = cosineSimilarity(targetVector, vec);
                         if (score > highestScore) {
                             highestScore = score;
-                            bestMatchId = item.message_id;
+                            bestMatch = item;
                         }
                     }
                 }
             }
 
-            if (highestScore > 0.80) {
-                resultsDiv.innerHTML = `
-                    <div class="result-box">
-                        <h3 style="margin-top:0; color:#16a34a;">✅ Ürün Bulundu! (Benzerlik: %${(highestScore*100).toFixed(1)})</h3>
-                        <p>Orijinal afiş yükleniyor...</p>
-                    </div>
+            // Güven eşiği %65
+            if (highestScore > 0.65 && bestMatch) {
+                showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
+                
+                // Yakalanan ürünü kırpılmış göstermek için canvas mantığı
+                croppedPreviewTitle.style.display = 'block';
+                croppedProductImg.style.display = 'block';
+                croppedProductImg.src = imgPreview.src; 
+
+                resultContainer.style.display = 'block';
+                telegramResult.innerHTML = `
+                    <strong>Afiş Kodu:</strong> ${bestMatch.afis_id}<br>
+                    <small style="color:#64748b;">Veritabanı Kayıt No: ${bestMatch.tarih || 'Belirtilmemiş'}</small><br><br>
+                    <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="color: #2563eb; font-weight: bold; text-decoration: none;">
+                    👉 Telegram'da Orijinal Afişi Gör
+                    </a>
                 `;
-                const script = document.createElement('script');
-                script.src = "https://telegram.org/js/telegram-widget.js?22";
-                script.setAttribute('data-telegram-post', `kisakod/${bestMatchId}`);
-                script.setAttribute('data-width', '100%');
-                resultsDiv.querySelector('.result-box').appendChild(script);
             } else {
-                resultsDiv.innerHTML = `<p style="color:red;">❌ Bu görsel arşivdeki hiçbir afişle %80 oranında eşleşmedi. (En yüksek: %${(highestScore*100).toFixed(1)})</p>`;
+                showStatus(`🔍 Yakın eşleşme bulunamadı. (En yüksek ihtimal: %${(highestScore * 100).toFixed(1)})`, "error");
             }
 
-        } catch (error) {
-            resultsDiv.innerHTML = `<p style="color:red;">Hata: ${error.message}</p>`;
+        } catch (err) {
+            showStatus("Veritabanı hatası: " + err.message, "error");
         }
     }
 </script>
+
 </body>
 </html>
-
