@@ -12,10 +12,15 @@
         button, label { flex: 1; padding: 12px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; color: #334155; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
         button:hover, label:hover { background: #f8fafc; border-color: #cbd5e1; }
         input[type="file"] { display: none; }
+        
         #preview-container { margin-top: 15px; border-radius: 15px; overflow: hidden; display: none; position: relative; border: 1px solid #e2e8f0; }
         img, video { width: 100%; height: auto; display: block; }
+        
+        /* Yeni TARA Butonu Tasarımı */
+        #scan-btn { display: none; margin-top: 20px; background: #10b981; color: #fff; width: 100%; border: none; font-size: 16px; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); }
+        #scan-btn:hover { background: #059669; transform: translateY(-2px); }
+        
         #capture-btn { display: none; margin-top: 15px; background: #2563eb; color: #fff; width: 100%; border: none; }
-        #capture-btn:hover { background: #1d4ed8; }
         #status { margin-top: 15px; font-weight: 600; font-size: 14px; }
         .success { color: #16a34a; }
         .error { color: #dc2626; }
@@ -40,7 +45,9 @@
         <img id="img-preview" alt="Önizleme">
     </div>
 
-    <button id="capture-btn">🎯 Çek ve Ara</button>
+    <button id="capture-btn">📸 Çek</button>
+    
+    <button id="scan-btn">🔍 TARA VE BUL</button>
 
     <div id="status"></div>
 
@@ -62,45 +69,43 @@
     const imgPreview = document.getElementById('img-preview');
     const previewContainer = document.getElementById('preview-container');
     const captureBtn = document.getElementById('capture-btn');
+    const scanBtn = document.getElementById('scan-btn');
     const statusDiv = document.getElementById('status');
     const resultContainer = document.getElementById('result-container');
     const telegramResult = document.getElementById('telegram-result');
-    const croppedProductImg = document.getElementById('cropped-product-img');
-    const croppedPreviewTitle = document.getElementById('cropped-preview-title');
 
     let stream = null;
+    let selectedFile = null; // Taranacak dosyayı hafızada tutmak için
 
+    // Kamera Açma
     cameraBtn.addEventListener('click', async () => {
-        imgPreview.style.display = 'none';
+        resetUI();
         video.style.display = 'block';
         previewContainer.style.display = 'block';
         captureBtn.style.display = 'block';
-        resultContainer.style.display = 'none';
-        statusDiv.innerHTML = '';
-        
-        if(stream) { stream.getTracks().forEach(track => track.stop()); }
         
         try {
             stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
             video.srcObject = stream;
         } catch (err) {
-            showStatus("Kameraya erişilemedi kanki!", "error");
+            showStatus("Kameraya erişilemedi!", "error");
         }
     });
 
+    // Galeriden Seçme
     fileInput.addEventListener('change', (e) => {
-        if(stream) { stream.getTracks().forEach(track => track.stop()); captureBtn.style.display = 'none'; }
+        resetUI();
         const file = e.target.files[0];
         if (file) {
-            video.style.display = 'none';
+            selectedFile = file;
             imgPreview.style.display = 'block';
             previewContainer.style.display = 'block';
             imgPreview.src = URL.createObjectURL(file);
-            resultContainer.style.display = 'none';
-            sendToPipeline(file);
+            scanBtn.style.display = 'block'; // Sadece Tara butonunu göster
         }
     });
 
+    // Kameradan Çekme
     captureBtn.addEventListener('click', () => {
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
@@ -108,16 +113,35 @@
         canvas.getContext('2d').drawImage(video, 0, 0);
         
         canvas.toBlob((blob) => {
+            selectedFile = new File([blob], "capture.jpg", { type: "image/jpeg" });
             video.style.display = 'none';
             imgPreview.style.display = 'block';
             imgPreview.src = URL.createObjectURL(blob);
             captureBtn.style.display = 'none';
-            if(stream) { stream.getTracks().forEach(track => track.stop()); }
+            scanBtn.style.display = 'block'; // Resmi çektikten sonra TARA butonunu göster
             
-            const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
-            sendToPipeline(file);
+            if(stream) { stream.getTracks().forEach(track => track.stop()); }
         }, 'image/jpeg');
     });
+
+    // TARA VE BUL BUTONUNA TIKLANDIĞINDA
+    scanBtn.addEventListener('click', () => {
+        if(selectedFile) {
+            scanBtn.style.display = 'none'; // Tarama başlarken butonu gizle
+            sendToPipeline(selectedFile);
+        }
+    });
+
+    function resetUI() {
+        if(stream) { stream.getTracks().forEach(track => track.stop()); }
+        imgPreview.style.display = 'none';
+        video.style.display = 'none';
+        captureBtn.style.display = 'none';
+        scanBtn.style.display = 'none';
+        resultContainer.style.display = 'none';
+        statusDiv.innerHTML = '';
+        selectedFile = null;
+    }
 
     function showStatus(msg, type) {
         statusDiv.className = type;
@@ -125,45 +149,49 @@
     }
 
     function cosineSimilarity(vecA, vecB) {
-        let dotProduct = 0.0;
-        let normA = 0.0;
-        let normB = 0.0;
+        let dotProduct = 0.0, normA = 0.0, normB = 0.0;
         for (let i = 0; i < vecA.length; i++) {
-            dotProduct += vecA[i] * vecB[i];
-            normA += vecA[i] * vecA[i];
-            normB += vecB[i] * vecB[i];
+            dotProduct += vecA[i] * vecB[i]; normA += vecA[i] * vecA[i]; normB += vecB[i] * vecB[i];
         }
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
+    // YENİ GÜVENLİ İSTEK YAPISI
     async function sendToPipeline(file) {
-        showStatus("🔄 Ürün ayıklanıyor ve vektör üretiliyor...", "loading");
-        
+        showStatus("🔄 Ürün ayıklanıyor ve yapay zekaya gönderiliyor...", "loading");
         const formData = new FormData();
         formData.append("file", file);
 
         try {
             const response = await fetch(HF_API_URL, { method: "POST", body: formData });
+            
+            // Eğer sunucu kapalıysa veya HTML Hata sayfası dönerse yakala:
+            if (!response.ok) {
+                throw new Error("Yapay Zeka Sunucusu yanıt vermiyor. Lütfen sunucunun 'Running' olduğundan emin olun.");
+            }
+
             const data = await response.json();
 
             if (data.status === "success" && data.vectors.length > 0) {
-                showStatus("⚡ Vektör alındı, arşiv taranıyor...", "loading");
-                searchInFirebase(data.vectors[0], file);
+                showStatus("⚡ Vektör alındı, veritabanında taranıyor...", "loading");
+                searchInFirebase(data.vectors[0]);
             } else {
-                showStatus("❌ Görsel işlenemedi veya ürün tespit edilemedi.", "error");
+                showStatus("❌ Görsel işlenemedi: " + (data.message || "Bilinmeyen hata."), "error");
+                scanBtn.style.display = 'block'; // Hata olursa butonu geri getir
             }
         } catch (err) {
-            showStatus("Hata: " + err.message, "error");
+            showStatus("Bağlantı Hatası: " + err.message, "error");
+            scanBtn.style.display = 'block';
         }
     }
 
-    async function searchInFirebase(targetVector, originalFile) {
+    async function searchInFirebase(targetVector) {
         try {
             const response = await fetch(FIREBASE_URL);
             const dbData = await response.json();
 
             if (!dbData) {
-                showStatus("📭 Veritabanında kayıtlı afiş bulunamadı kanki.", "error");
+                showStatus("📭 Veritabanı boş, afiş bulunamadı.", "error");
                 return;
             }
 
@@ -176,8 +204,7 @@
                     for (const vec of item.vektorler) {
                         const score = cosineSimilarity(targetVector, vec);
                         if (score > highestScore) {
-                            highestScore = score;
-                            bestMatch = item;
+                            highestScore = score; bestMatch = item;
                         }
                     }
                 }
@@ -185,23 +212,23 @@
 
             if (highestScore > 0.65 && bestMatch) {
                 showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
-                
-                croppedPreviewTitle.style.display = 'block';
-                croppedProductImg.style.display = 'block';
-                croppedProductImg.src = imgPreview.src; 
-
                 resultContainer.style.display = 'block';
+                document.getElementById('cropped-preview-title').style.display = 'block';
+                const croppedImg = document.getElementById('cropped-product-img');
+                croppedImg.style.display = 'block';
+                croppedImg.src = imgPreview.src;
+
                 telegramResult.innerHTML = `
                     <strong>Afiş Kodu:</strong> ${bestMatch.afis_id}<br>
-                    <small style="color:#64748b;">Veritabanı Kayıt No: ${bestMatch.tarih || 'Belirtilmemiş'}</small><br><br>
+                    <small style="color:#64748b;">Tarih: ${bestMatch.tarih || 'Belirtilmemiş'}</small><br><br>
                     <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="color: #2563eb; font-weight: bold; text-decoration: none;">
                     👉 Telegram'da Orijinal Afişi Gör
                     </a>
                 `;
             } else {
-                showStatus(`🔍 Yakın eşleşme bulunamadı. (En yüksek ihtimal: %${(highestScore * 100).toFixed(1)})`, "error");
+                showStatus(`🔍 Yakın eşleşme bulunamadı. (İhtimal: %${(highestScore * 100).toFixed(1)})`, "error");
+                scanBtn.style.display = 'block';
             }
-
         } catch (err) {
             showStatus("Veritabanı hatası: " + err.message, "error");
         }
@@ -210,4 +237,5 @@
 
 </body>
 </html>
+
 
