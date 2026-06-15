@@ -1,21 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akıllı Ürün Bulucu</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .card { background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
+        h2 { margin-top: 0; font-size: 1.5rem; color: var(--text); }
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .btn { padding: 12px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
+        .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
+        .btn-outline:hover { background: #f1f5f9; }
+        .btn-main { background: var(--primary); color: white; width: 100%; font-size: 1rem; padding: 15px; }
+        .btn-main:hover { background: var(--primary-hover); }
+        #preview { width: 100%; border-radius: 10px; margin-bottom: 15px; display: none; object-fit: contain; max-height: 250px; border: 1px solid var(--border); }
+        #results { margin-top: 20px; text-align: left; }
+        .result-box { background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 10px; }
+    </style>
 </head>
 <body>
-    <input type="file" id="file" accept="image/*">
-    <button onclick="analizEt()">Ürünü Kırp ve Bul</button>
-    <div id="sonuc"></div>
 
-    <script>
-        async function analizEt() {
-            const img = document.getElementById('file').files[0];
-            const model = await cocoSsd.load(); // Nesne algılama modeli
-            // Burada görseli parçalayıp Firebase'deki verilerle kıyaslayacağız
-            document.getElementById('sonuc').innerText = "Analiz ediliyor...";
+<div class="card">
+    <h2>Ürün Arama Asistanı</h2>
+    
+    <div class="btn-group">
+        <button class="btn btn-outline" onclick="document.getElementById('cameraInput').click()">📸 Kamera</button>
+        <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">🖼️ Galeri</button>
+    </div>
+    
+    <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden onchange="previewImage(event)">
+    <input type="file" id="fileInput" accept="image/*" hidden onchange="previewImage(event)">
+    
+    <img id="preview" alt="Önizleme">
+    
+    <button class="btn btn-main" onclick="ara()">🔍 Afişi Bul</button>
+    
+    <div id="results"></div>
+</div>
+
+<script>
+    // Kendi Hugging Face Space URL'ni buraya yaz (örnek formattır)
+    const HF_API_URL = "https://SENIN_SPACE_ADIN.hf.space/vektor-uret"; 
+    const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.firebaseio.com/vektorler.json";
+    
+    let selectedFile = null;
+
+    function previewImage(event) {
+        selectedFile = event.target.files[0];
+        if (selectedFile) {
+            const preview = document.getElementById('preview');
+            preview.src = URL.createObjectURL(selectedFile);
+            preview.style.display = 'block';
         }
-    </script>
+    }
+
+    // Matematiksel Benzerlik Hesaplama (Kosinüs Benzerliği)
+    function cosineSimilarity(vecA, vecB) {
+        let dotProduct = 0, normA = 0, normB = 0;
+        for (let i = 0; i < vecA.length; i++) {
+            dotProduct += vecA[i] * vecB[i];
+            normA += vecA[i] ** 2;
+            normB += vecB[i] ** 2;
+        }
+        return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    }
+
+    async function ara() {
+        if (!selectedFile) return alert("Lütfen önce bir görsel seçin!");
+        
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = "<p>⏳ Görsel yapay zekaya gönderiliyor...</p>";
+
+        try {
+            // 1. Resmi Hugging Face'e Gönder
+            const formData = new FormData();
+            formData.append("file", selectedFile);
+            
+            const hfResponse = await fetch(HF_API_URL, { method: "POST", body: formData });
+            const hfData = await hfResponse.json();
+            
+            if (hfData.status !== "success" || !hfData.vectors || hfData.vectors.length === 0) {
+                throw new Error("Yapay zeka vektör üretemedi.");
+            }
+            
+            const myVector = hfData.vectors[0]; // İlk vektörü alıyoruz
+            
+            // 2. Firebase'den Tüm Arşivi Çek
+            resultsDiv.innerHTML = "<p>⏳ Arşivde eşleştirme yapılıyor...</p>";
+            const fbResponse = await fetch(FIREBASE_URL);
+            const fbData = await fbResponse.json();
+            
+            if (!fbData) throw new Error("Firebase'de hiç arşiv bulunamadı.");
+
+            let bestMatchId = null;
+            let highestScore = 0;
+
+            // 3. Karşılaştırma Yap
+            for (const key in fbData) {
+                const item = fbData[key];
+                if (item.vectors && item.vectors.length > 0) {
+                    for (const dbVector of item.vectors) {
+                        const score = cosineSimilarity(myVector, dbVector);
+                        if (score > highestScore) {
+                            highestScore = score;
+                            bestMatchId = item.message_id;
+                        }
+                    }
+                }
+            }
+
+            // 4. Sonucu Ekrana Bas
+            if (highestScore > 0.80) { // %80 üzeri benzerlik
+                resultsDiv.innerHTML = `
+                    <div class="result-box">
+                        <h3 style="margin-top:0; color:#16a34a;">✅ Eşleşme Bulundu! (%${(highestScore*100).toFixed(1)})</h3>
+                        <p>Afiş yükleniyor...</p>
+                        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="kisakod/${bestMatchId}" data-width="100%"><\/script>
+                    </div>
+                `;
+                // Script tag'inin çalışması için DOM'u zorla yenile
+                const script = document.createElement('script');
+                script.src = "https://telegram.org/js/telegram-widget.js?22";
+                script.setAttribute('data-telegram-post', `kisakod/${bestMatchId}`);
+                script.setAttribute('data-width', '100%');
+                resultsDiv.querySelector('.result-box').appendChild(script);
+                
+            } else {
+                resultsDiv.innerHTML = `<p style="color:red;">❌ Yeterli benzerlikte afiş bulunamadı. (En yüksek: %${(highestScore*100).toFixed(1)})</p>`;
+            }
+
+        } catch (error) {
+            resultsDiv.innerHTML = `<p style="color:red;">Hata: ${error.message}</p>`;
+        }
+    }
+</script>
 </body>
 </html>
