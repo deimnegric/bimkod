@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akıllı Ürün Bulucu</title>
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --border: #e2e8f0;
-        }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .card { background: var(--card-bg); padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
-        h2 { margin-top: 0; font-size: 1.5rem; color: var(--text); }
+        :root { --primary: #2563eb; --primary-hover: #1d4ed8; --bg: #f8fafc; --card-bg: #ffffff; --text: #1e293b; --border: #e2e8f0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; margin: 0; }
+        .card { background: var(--card-bg); padding: 25px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
+        h2 { margin-top: 0; font-size: 1.5rem; }
         .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
         .btn { padding: 12px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; font-size: 0.9rem; }
         .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
         .btn-outline:hover { background: #f1f5f9; }
-        .btn-main { background: var(--primary); color: white; width: 100%; font-size: 1rem; padding: 15px; }
+        .btn-main { background: var(--primary); color: white; width: 100%; font-size: 1rem; padding: 15px; margin-top: 10px; display: none; }
         .btn-main:hover { background: var(--primary-hover); }
-        #preview { width: 100%; border-radius: 10px; margin-bottom: 15px; display: none; object-fit: contain; max-height: 250px; border: 1px solid var(--border); }
+        
+        /* Kamera ve Önizleme Alanı */
+        #kameraAlan { width: 100%; border-radius: 12px; background: #000; display: none; transform: scaleX(-1); } /* Ön kamera için scaleX, arka kamera için kaldırılabilir */
+        #preview { width: 100%; border-radius: 12px; display: none; object-fit: contain; max-height: 300px; border: 1px solid var(--border); margin-top: 10px; }
+        #canvas { display: none; }
         #results { margin-top: 20px; text-align: left; }
         .result-box { background: var(--bg); padding: 15px; border-radius: 10px; border: 1px solid var(--border); margin-top: 10px; }
     </style>
@@ -33,37 +30,93 @@
     <h2>Ürün Arama Asistanı</h2>
     
     <div class="btn-group">
-        <button class="btn btn-outline" onclick="document.getElementById('cameraInput').click()">📸 Kamera</button>
-        <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">🖼️ Galeri</button>
+        <button class="btn btn-outline" id="btnKamera" onclick="kameraBaslat()">📷 Canlı Kamera</button>
+        <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">🖼️ Galeriden Seç</button>
     </div>
     
-    <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden onchange="previewImage(event)">
-    <input type="file" id="fileInput" accept="image/*" hidden onchange="previewImage(event)">
+    <input type="file" id="fileInput" accept="image/*" hidden onchange="galeridenSec(event)">
+    
+    <video id="kameraAlan" autoplay playsinline></video>
+    <canvas id="canvas"></canvas>
     
     <img id="preview" alt="Önizleme">
     
-    <button class="btn btn-main" onclick="ara()">🔍 Afişi Bul</button>
+    <button class="btn btn-main" id="btnCek" onclick="resimCekVeAra()">📸 Çek ve Ara</button>
+    <button class="btn btn-main" id="btnAraGaleri" onclick="ara()">🔍 Seçileni Ara</button>
     
     <div id="results"></div>
 </div>
 
 <script>
-    // Kendi Hugging Face Space URL'ni buraya yaz (örnek formattır)
+    // Kendi HF Space linkini buraya koy!
     const HF_API_URL = "https://SENIN_SPACE_ADIN.hf.space/vektor-uret"; 
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.firebaseio.com/vektorler.json";
     
     let selectedFile = null;
+    let videoStream = null;
+    const video = document.getElementById('kameraAlan');
+    const btnCek = document.getElementById('btnCek');
+    const btnAraGaleri = document.getElementById('btnAraGaleri');
+    const preview = document.getElementById('preview');
 
-    function previewImage(event) {
-        selectedFile = event.target.files[0];
-        if (selectedFile) {
-            const preview = document.getElementById('preview');
-            preview.src = URL.createObjectURL(selectedFile);
-            preview.style.display = 'block';
+    // 1. Canlı Kamerayı Başlat
+    async function kameraBaslat() {
+        preview.style.display = 'none';
+        btnAraGaleri.style.display = 'none';
+        
+        try {
+            // Arka kamerayı açmaya zorluyoruz (facingMode: environment)
+            videoStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+            video.srcObject = videoStream;
+            video.style.display = 'block';
+            video.style.transform = 'scaleX(1)'; // Arka kamera olduğu için ters çevirmeyi iptal ediyoruz
+            btnCek.style.display = 'block';
+        } catch (err) {
+            alert("Kamera başlatılamadı: Lütfen tarayıcı izinlerini kontrol et.");
         }
     }
 
-    // Matematiksel Benzerlik Hesaplama (Kosinüs Benzerliği)
+    // 2. Kameradan Fotoğraf Çek
+    function resimCekVeAra() {
+        const canvas = document.getElementById('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        
+        // Görüntüyü Blob (dosya) formatına çevir
+        canvas.toBlob(blob => {
+            selectedFile = blob;
+            
+            // Önizlemeyi göster, kamerayı kapat
+            preview.src = URL.createObjectURL(blob);
+            preview.style.display = 'block';
+            video.style.display = 'none';
+            btnCek.style.display = 'none';
+            
+            // Kamerayı durdur
+            videoStream.getTracks().forEach(track => track.stop());
+            
+            ara(); // Otomatik aramayı başlat
+        }, 'image/jpeg');
+    }
+
+    // 3. Galeriden Dosya Seçme
+    function galeridenSec(event) {
+        selectedFile = event.target.files[0];
+        if (selectedFile) {
+            // Eğer kamera açıksa kapat
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                video.style.display = 'none';
+                btnCek.style.display = 'none';
+            }
+            preview.src = URL.createObjectURL(selectedFile);
+            preview.style.display = 'block';
+            btnAraGaleri.style.display = 'block';
+        }
+    }
+
+    // Matematiksel Benzerlik Fonksiyonu
     function cosineSimilarity(vecA, vecB) {
         let dotProduct = 0, normA = 0, normB = 0;
         for (let i = 0; i < vecA.length; i++) {
@@ -74,37 +127,36 @@
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
+    // 4. Arama Motoru
     async function ara() {
-        if (!selectedFile) return alert("Lütfen önce bir görsel seçin!");
+        if (!selectedFile) return;
         
         const resultsDiv = document.getElementById('results');
-        resultsDiv.innerHTML = "<p>⏳ Görsel yapay zekaya gönderiliyor...</p>";
+        resultsDiv.innerHTML = "<p>⏳ Görsel yapay zekaya gönderiliyor, bekleyin...</p>";
+        btnAraGaleri.style.display = 'none';
 
         try {
-            // 1. Resmi Hugging Face'e Gönder
             const formData = new FormData();
-            formData.append("file", selectedFile);
+            formData.append("file", selectedFile, "image.jpg");
             
             const hfResponse = await fetch(HF_API_URL, { method: "POST", body: formData });
             const hfData = await hfResponse.json();
             
             if (hfData.status !== "success" || !hfData.vectors || hfData.vectors.length === 0) {
-                throw new Error("Yapay zeka vektör üretemedi.");
+                throw new Error("Yapay zeka görseli tanımlayamadı.");
             }
             
-            const myVector = hfData.vectors[0]; // İlk vektörü alıyoruz
+            const myVector = hfData.vectors[0]; 
             
-            // 2. Firebase'den Tüm Arşivi Çek
             resultsDiv.innerHTML = "<p>⏳ Arşivde eşleştirme yapılıyor...</p>";
             const fbResponse = await fetch(FIREBASE_URL);
             const fbData = await fbResponse.json();
             
-            if (!fbData) throw new Error("Firebase'de hiç arşiv bulunamadı.");
+            if (!fbData) throw new Error("Firebase'de henüz vektör arşivi yok.");
 
             let bestMatchId = null;
             let highestScore = 0;
 
-            // 3. Karşılaştırma Yap
             for (const key in fbData) {
                 const item = fbData[key];
                 if (item.vectors && item.vectors.length > 0) {
@@ -118,24 +170,20 @@
                 }
             }
 
-            // 4. Sonucu Ekrana Bas
-            if (highestScore > 0.80) { // %80 üzeri benzerlik
+            if (highestScore > 0.80) {
                 resultsDiv.innerHTML = `
                     <div class="result-box">
-                        <h3 style="margin-top:0; color:#16a34a;">✅ Eşleşme Bulundu! (%${(highestScore*100).toFixed(1)})</h3>
-                        <p>Afiş yükleniyor...</p>
-                        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="kisakod/${bestMatchId}" data-width="100%"><\/script>
+                        <h3 style="margin-top:0; color:#16a34a;">✅ Ürün Bulundu! (Benzerlik: %${(highestScore*100).toFixed(1)})</h3>
+                        <p>Orijinal afiş yükleniyor...</p>
                     </div>
                 `;
-                // Script tag'inin çalışması için DOM'u zorla yenile
                 const script = document.createElement('script');
                 script.src = "https://telegram.org/js/telegram-widget.js?22";
                 script.setAttribute('data-telegram-post', `kisakod/${bestMatchId}`);
                 script.setAttribute('data-width', '100%');
                 resultsDiv.querySelector('.result-box').appendChild(script);
-                
             } else {
-                resultsDiv.innerHTML = `<p style="color:red;">❌ Yeterli benzerlikte afiş bulunamadı. (En yüksek: %${(highestScore*100).toFixed(1)})</p>`;
+                resultsDiv.innerHTML = `<p style="color:red;">❌ Bu görsel arşivdeki hiçbir afişle %80 oranında eşleşmedi. (En yüksek: %${(highestScore*100).toFixed(1)})</p>`;
             }
 
         } catch (error) {
@@ -145,3 +193,4 @@
 </script>
 </body>
 </html>
+
