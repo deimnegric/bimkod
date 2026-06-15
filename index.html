@@ -53,7 +53,6 @@
 </div>
 
 <script>
-    // Yeni Güncel Adresin Kanki:
     const HF_API_URL = "https://deimnegric-bimkodyeni.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
@@ -125,7 +124,6 @@
         statusDiv.innerHTML = msg;
     }
 
-    // Cosine Similarity (Vektör Karşılaştırma Motoru)
     function cosineSimilarity(vecA, vecB) {
         let dotProduct = 0.0;
         let normA = 0.0;
@@ -185,11 +183,9 @@
                 }
             }
 
-            // Güven eşiği %65
             if (highestScore > 0.65 && bestMatch) {
                 showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
                 
-                // Yakalanan ürünü kırpılmış göstermek için canvas mantığı
                 croppedPreviewTitle.style.display = 'block';
                 croppedProductImg.style.display = 'block';
                 croppedProductImg.src = imgPreview.src; 
@@ -214,3 +210,4 @@
 
 </body>
 </html>
+
