@@ -1,149 +1,83 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <script src="config.js"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ürün Arama Asistanı</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
-        h2 { color: #1e293b; margin-bottom: 25px; }
-        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-        button, label { width: 100%; padding: 15px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; color: #334155; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
-        button:hover, label:hover { background: #f8fafc; border-color: #cbd5e1; }
-        input[type="file"] { display: none; }
-        #preview-container { margin-top: 15px; border-radius: 15px; overflow: hidden; display: none; position: relative; border: 1px solid #e2e8f0; }
-        img, video { width: 100%; height: auto; display: block; }
-        #scan-btn, #capture-btn { display: none; margin-top: 15px; background: #10b981; color: #fff; width: 100%; border: none; font-size: 16px; padding: 15px; border-radius: 12px; }
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
+        .container { background: #fff; padding: 20px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button, label { padding: 15px; border-radius: 12px; border: 1px solid #ddd; cursor: pointer; background: #fff; }
+        #preview-container { margin-top: 15px; display: none; }
+        video, img { width: 100%; border-radius: 10px; }
+        #scan-btn, #capture-btn { display: none; margin-top: 15px; padding: 15px; width: 100%; border: none; border-radius: 10px; color: #fff; background: #10b981; }
         #capture-btn { background: #2563eb; }
-        #status { margin-top: 15px; font-weight: 600; font-size: 14px; }
-        .success { color: #16a34a; }
-        .error { color: #dc2626; }
-        .loading { color: #2563eb; }
-        #result-container { margin-top: 20px; text-align: left; display: none; }
     </style>
-    <script src="config.js"></script> 
-<script>
-    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
-    const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
-
-    const cameraBtn = document.getElementById('camera-btn');
-    const fileInput = document.getElementById('file-input');
-    const video = document.getElementById('video');
-    const imgPreview = document.getElementById('img-preview');
-    const previewContainer = document.getElementById('preview-container');
-    const captureBtn = document.getElementById('capture-btn');
-    const scanBtn = document.getElementById('scan-btn');
-    const statusDiv = document.getElementById('status');
-    const telegramResult = document.getElementById('telegram-result');
-
-    let stream = null;
-    let selectedFile = null;
-
-    // 1. Kamera Butonu (Canlı Kamera)
-    cameraBtn.addEventListener('click', async () => {
-        previewContainer.style.display = 'block';
-        video.style.display = 'block';
-        imgPreview.style.display = 'none';
-        captureBtn.style.display = 'block'; // Çek butonu görünecek
-        scanBtn.style.display = 'none';
-        try {
-            stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            video.srcObject = stream;
-        } catch (err) { alert("Kamera izni gerekli!"); }
-    });
-
-    // 2. Fotoğraf Çek Butonu
-    captureBtn.addEventListener('click', () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        canvas.toBlob((blob) => {
-            selectedFile = new File([blob], "photo.jpg", { type: "image/jpeg" });
-            imgPreview.src = URL.createObjectURL(blob);
-            imgPreview.style.display = 'block';
-            video.style.display = 'none';
-            captureBtn.style.display = 'none';
-            scanBtn.style.display = 'block'; // TARA BUTONU ARTIK GÖRÜNÜYOR
-            if(stream) stream.getTracks().forEach(t => t.stop());
-        }, 'image/jpeg');
-    });
-
-    // 3. Dosya Seçme
-    fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if(file) {
-            selectedFile = file;
-            imgPreview.src = URL.createObjectURL(file);
-            imgPreview.style.display = 'block';
-            video.style.display = 'none';
-            captureBtn.style.display = 'none';
-            scanBtn.style.display = 'block'; // TARA BUTONU ARTIK GÖRÜNÜYOR
-            previewContainer.style.display = 'block';
-        }
-    });
-
-    // 4. Tara Butonu
-    scanBtn.addEventListener('click', async () => {
-        scanBtn.style.display = 'none';
-        statusDiv.innerHTML = "Analiz ediliyor...";
-        const formData = new FormData(); formData.append("file", selectedFile);
-        const res = await fetch(HF_API_URL, { method: "POST", body: formData });
-        const data = await res.json();
-        
-        // Firebase arama kısmı buraya gelecek...
-        // searchInFirebase(data.vectors[0]);
-    });
-</script>
-
 </head>
 <body>
 
 <div class="container">
     <h2>Ürün Arama Asistanı</h2>
-    
     <div class="btn-group">
         <button id="camera-btn">Fotoğraf Çek<br>📸</button>
         <label for="file-input">Galeriden Seç<br>🖼️</label>
         <input type="file" id="file-input" accept="image/*">
     </div>
-
     <div id="preview-container">
         <video id="video" autoplay playsinline></video>
-        <img id="img-preview" alt="Önizleme">
+        <img id="img-preview" style="display:none;">
     </div>
-
     <button id="capture-btn">📸 Çek</button>
     <button id="scan-btn">🔍 TARA VE BUL</button>
-
     <div id="status"></div>
-    <div id="result-container">
+    <div id="result-container" style="display:none;">
         <div id="telegram-result"></div>
     </div>
 </div>
 
-<script src="config.js"></script> 
+<script src="config.js"></script>
 <script>
-    // Config.js içindeki TOKEN değişkenini kullanacağız
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
-    // ... (Kalan script aynı, sadece aşağıda belirtilen kısmı değiştir)
-    
-    async function searchInFirebase(targetVector) {
-        // ... (kısaltıldı)
-        if (highestScore > 0.60 && bestMatch) {
-            showStatus(`✅ Ürün Bulundu!`, "success");
-            resultContainer.style.display = 'block';
-            
-            // config.js'den gelen TOKEN değişkenini kullanıyoruz
-            telegramResult.innerHTML = `
-               <img src="https://api.telegram.org/file/bot${TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:12px;">
-               <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="display:block; background:#2563eb; color:#fff; padding:12px; text-decoration:none; border-radius:8px; margin-top:10px;">👉 Afişi Telegram'da Aç</a>
-            `;
-        } else { showStatus("❌ Eşleşme bulunamadı.", "error"); }
-    }
+    const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
+    const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
+    let selectedFile = null;
+
+    document.getElementById('camera-btn').onclick = async () => {
+        document.getElementById('preview-container').style.display = 'block';
+        video.style.display = 'block'; imgPrev.style.display = 'none';
+        captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.srcObject = stream;
+    };
+
+    captureBtn.onclick = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        canvas.toBlob(blob => {
+            selectedFile = new File([blob], "c.jpg");
+            imgPrev.src = URL.createObjectURL(blob);
+            imgPrev.style.display = 'block'; video.style.display = 'none';
+            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
+            video.srcObject.getTracks().forEach(t => t.stop());
+        }, 'image/jpeg');
+    };
+
+    scanBtn.onclick = async () => {
+        document.getElementById('status').innerHTML = "Analiz ediliyor...";
+        const fd = new FormData(); fd.append("file", selectedFile);
+        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+        const data = await res.json();
+        
+        // Eşleşme sonucunu göster (Telegram resmini config.js'den gelen window.TOKEN ile çeker)
+        document.getElementById('result-container').style.display = 'block';
+        document.getElementById('telegram-result').innerHTML = `
+           <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id || 'default'}" style="width:100%">
+           <a href="https://t.me/c/2458145229/${data.afis_id}" target="_blank" style="display:block; padding:10px; background:#2563eb; color:#fff; text-decoration:none; margin-top:10px;">Afişi Aç</a>
+        `;
+    };
 </script>
 </body>
 </html>
