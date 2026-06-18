@@ -108,9 +108,24 @@
         const result = await res.json();
         const targetVector = result.vectors; // API'den gelen vektör dizisi
 
-        // 2. Firebase'den tüm ürünleri çek
-        const dbRes = await fetch(FIREBASE_URL); // .json burada olmalı
-        const dbData = await dbRes.json();
+        // ... (Önceki kodlar aynı)
+
+// 2. Firebase'den tüm ürünleri çek
+const dbRes = await fetch(FIREBASE_URL);
+const dbData = await dbRes.json();
+
+if (!dbData) {
+    statusDiv.innerHTML = "❌ Veritabanı boş!";
+    return;
+}
+
+// ... (Kıyaslama kısmı)
+if (bestMatch && minDistance < 50) { // 0.5 yerine 50 yaparak esnettik (deneyerek düşürebilirsin)
+    // ... (resmi gösterme kısmı)
+} else {
+    statusDiv.innerHTML = `❌ Eşleşme sağlanamadı (Skor: ${minDistance.toFixed(2)})`;
+}
+
         
         // 3. Basit Benzerlik (Cosine Similarity yerine en yakın olanı bulma)
         let bestMatch = null;
