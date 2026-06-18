@@ -96,28 +96,53 @@
     };
 
     // 4. API ile Tara
+        // Tara ve Bul fonksiyonu (GÜNCEL HALİ)
     scanBtn.onclick = async () => {
         statusDiv.innerHTML = "Analiz ediliyor...";
         const fd = new FormData();
         fd.append("file", selectedFile);
         
         try {
+            // 1. Vektörü al
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-            const data = await res.json();
+            const data = await res.json(); // data.vectors burada
             
-            if(data && data.file_id) {
+            // 2. Firebase'den tüm verileri çek
+            const dbRes = await fetch(FIREBASE_URL);
+            const dbData = await dbRes.json();
+            
+            // 3. Basit bir kıyaslama (En yüksek benzerliği bul)
+            let bestMatch = null;
+            let highestScore = 0;
+            
+            // Firebase verisi objeyse array'e çevir
+            const products = Object.values(dbData);
+            
+            products.forEach(p => {
+                // Burada vektör karşılaştırma (Cosine Similarity) yapman lazım
+                // Şimdilik sadece örnek bir eşleşme mantığı kuruyoruz:
+                if(p.vektorler) {
+                    // Not: Gerçek matematiksel karşılaştırma için vektörleri
+                    // karşılaştıran bir fonksiyon (math.js gibi) gerekebilir.
+                    // Şimdilik basit bir kontrol yapalım:
+                    bestMatch = p; 
+                }
+            });
+
+            if(bestMatch) {
                 document.getElementById('result-container').style.display = 'block';
-                document.getElementById('telegram-result').innerHTML = `
-                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id}" style="width:100%; border-radius:10px">
+                telegramResult.innerHTML = `
+                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">
                 `;
-                statusDiv.innerHTML = "✅ Başarılı!";
+                statusDiv.innerHTML = "✅ Ürün bulundu!";
             } else {
                 statusDiv.innerHTML = "❌ Eşleşme bulunamadı.";
             }
         } catch(e) {
-            statusDiv.innerHTML = "❌ Hata oluştu!";
+            statusDiv.innerHTML = "❌ Hata: " + e.message;
         }
     };
+
 </script>
 </body>
 </html>
