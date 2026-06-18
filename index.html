@@ -41,46 +41,68 @@
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
     
-    const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
-    const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
-    let selectedFile = null;
+    let selectedFile = null; // BU EKSİKTİ!
 
+    // 1. Kamera Butonu
     document.getElementById('camera-btn').onclick = async () => {
         document.getElementById('preview-container').style.display = 'block';
-        video.style.display = 'block'; imgPrev.style.display = 'none';
+        video.style.display = 'block'; imgPreview.style.display = 'none';
         captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
         const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         video.srcObject = stream;
     };
 
+    // 2. Galeri Seçimi
+    fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if(!file) return;
+        selectedFile = file;
+        imgPreview.src = URL.createObjectURL(file);
+        imgPreview.style.display = 'block';
+        video.style.display = 'none';
+        captureBtn.style.display = 'none';
+        scanBtn.style.display = 'block';
+    };
+
+    // 3. Kamera Çekimi
     captureBtn.onclick = () => {
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth; canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
         canvas.toBlob(blob => {
             selectedFile = new File([blob], "c.jpg");
-            imgPrev.src = URL.createObjectURL(blob);
-            imgPrev.style.display = 'block'; video.style.display = 'none';
-            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
+            imgPreview.src = URL.createObjectURL(blob);
+            imgPreview.style.display = 'block';
+            video.style.display = 'none';
+            captureBtn.style.display = 'none';
+            scanBtn.style.display = 'block';
             video.srcObject.getTracks().forEach(t => t.stop());
         }, 'image/jpeg');
     };
 
+    // 4. Tara ve Bul (API Bağlantısı)
     scanBtn.onclick = async () => {
         document.getElementById('status').innerHTML = "Analiz ediliyor...";
         const fd = new FormData(); fd.append("file", selectedFile);
-        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-        const data = await res.json();
         
-        // Telegram resmini bot tokenı ile burada doğrudan çekiyoruz
-        document.getElementById('result-container').style.display = 'block';
-        document.getElementById('telegram-result').innerHTML = `
-           <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id}" style="width:100%; border-radius:10px">
-           <p>Eşleşme sağlandı.</p>
-        `;
-        document.getElementById('status').innerHTML = "";
+        try {
+            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+            const data = await res.json();
+            
+            if(data.file_id) {
+                document.getElementById('result-container').style.display = 'block';
+                document.getElementById('telegram-result').innerHTML = `
+                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id}" style="width:100%; border-radius:10px">
+                `;
+                document.getElementById('status').innerHTML = "✅ Başarılı!";
+            }
+        } catch(e) {
+            document.getElementById('status').innerHTML = "❌ Hata oluştu!";
+        }
     };
 </script>
+
+
 </body>
 </html>
 
