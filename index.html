@@ -43,8 +43,6 @@
 
 <script src="config.js"></script>
 <script>
-    <script>
-    // HATAYI GİDERMEK İÇİN SABİTLERİ BURAYA EKLE
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
     let selectedFile = null;
@@ -54,8 +52,8 @@
     const captureBtn = document.getElementById('capture-btn');
     const scanBtn = document.getElementById('scan-btn');
     const statusDiv = document.getElementById('status');
+    const telegramResult = document.getElementById('telegram-result');
 
-    // 1. Kamera Başlatma
     document.getElementById('camera-btn').onclick = async () => {
         document.getElementById('preview-container').style.display = 'block';
         video.style.display = 'block';
@@ -68,7 +66,6 @@
         } catch (e) { alert("Kamera izni alınamadı!"); }
     };
 
-    // 2. Galeri Seçimi
     document.getElementById('file-input').onchange = (e) => {
         const file = e.target.files[0];
         if(!file) return;
@@ -81,7 +78,6 @@
         document.getElementById('preview-container').style.display = 'block';
     };
 
-    // 3. Fotoğraf Çekme
     captureBtn.onclick = () => {
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth;
@@ -98,72 +94,47 @@
         }, 'image/jpeg');
     };
 
-    // 4. API ile Tara
-        // Tara ve Bul fonksiyonu (GÜNCEL HALİ)
     scanBtn.onclick = async () => {
-    statusDiv.innerHTML = "Analiz ediliyor...";
-    const fd = new FormData();
-    fd.append("file", selectedFile);
-    
-    try {
-        // 1. Hugging Face'den gelen vektörü al
-        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-        const result = await res.json();
-        const targetVector = result.vectors; // API'den gelen vektör dizisi
-
-        // ... (Önceki kodlar aynı)
-
-// 2. Firebase'den tüm ürünleri çek
-const dbRes = await fetch(FIREBASE_URL);
-const dbData = await dbRes.json();
-
-if (!dbData) {
-    statusDiv.innerHTML = "❌ Veritabanı boş!";
-    return;
-}
-
-// ... (Kıyaslama kısmı)
-if (bestMatch && minDistance < 50) { // 0.5 yerine 50 yaparak esnettik (deneyerek düşürebilirsin)
-    // ... (resmi gösterme kısmı)
-} else {
-    statusDiv.innerHTML = `❌ Eşleşme sağlanamadı (Skor: ${minDistance.toFixed(2)})`;
-}
-
+        statusDiv.innerHTML = "Analiz ediliyor...";
+        const fd = new FormData();
+        fd.append("file", selectedFile);
         
-        // 3. Basit Benzerlik (Cosine Similarity yerine en yakın olanı bulma)
-        let bestMatch = null;
-        let minDistance = Infinity;
+        try {
+            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+            const result = await res.json();
+            const targetVector = result.vectors;
 
-        Object.values(dbData).forEach(item => {
-            if (item.vektorler) {
-                // Vektörlerin farkını hesapla (Öklid mesafesi)
-                let dist = 0;
-                for(let i=0; i<targetVector.length; i++) {
-                    dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
+            const dbRes = await fetch(FIREBASE_URL);
+            const dbData = await dbRes.json();
+            
+            let bestMatch = null;
+            let minDistance = Infinity;
+
+            Object.values(dbData).forEach(item => {
+                if (item.vektorler) {
+                    let dist = 0;
+                    for(let i=0; i<targetVector.length; i++) {
+                        dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
+                    }
+                    if (dist < minDistance) {
+                        minDistance = dist;
+                        bestMatch = item;
+                    }
                 }
-                if (dist < minDistance) {
-                    minDistance = dist;
-                    bestMatch = item;
-                }
+            });
+
+            if (bestMatch && minDistance < 50) {
+                document.getElementById('result-container').style.display = 'block';
+                telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
+                statusDiv.innerHTML = "✅ Ürün bulundu!";
+            } else {
+                statusDiv.innerHTML = "❌ Eşleşme sağlanamadı.";
             }
-        });
-
-        // 4. Ekrana bas
-        if (bestMatch && minDistance < 0.5) { // 0.5 eşik değerin
-            document.getElementById('result-container').style.display = 'block';
-            telegramResult.innerHTML = `
-               <img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">
-            `;
-            statusDiv.innerHTML = "✅ Ürün bulundu!";
-        } else {
-            statusDiv.innerHTML = "❌ Eşleşme sağlanamadı.";
+        } catch(e) {
+            statusDiv.innerHTML = "❌ Hata: " + e.message;
         }
-    } catch(e) {
-        statusDiv.innerHTML = "❌ Hata: " + e.message;
-    }
-};
-
-
+    };
 </script>
 </body>
 </html>
+
