@@ -174,28 +174,27 @@
             }
 
             // Arama sonucunu şu şekilde değiştiriyoruz:
+// searchInFirebase fonksiyonunun içindeki "if (highestScore > 0.60 && bestMatch)" bloğu:
 if (highestScore > 0.60 && bestMatch) {
     showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
     resultContainer.style.display = 'block';
     
-    // 1. Orijinal Afişi Göster
-    const mainAfiş = document.getElementById('cropped-product-img');
-    mainAfiş.style.display = 'block';
-    mainAfiş.src = imgPreview.src; // Kullanıcının arattığı fotoğraf
+    // Telegram'dan görseli çekecek olan link (BURAYA BOT TOKENINI YAZMALISIN)
+    const TELEGRAM_TOKEN = "BURAYA_BOT_TOKENINI_YAZ"; 
     
-    // 2. Telegram'daki Afişi Doğrudan Göster (iframe ile)
-    // Telegram linkini embed edilebilir formata getiriyoruz
     telegramResult.innerHTML = `
-        <strong>Sonuç:</strong> Afiş bulundu!<br><br>
-        <div style="background:#fff; padding:10px; border-radius:10px;">
-           <img src="https://api.telegram.org/file/botTELEGRAM_BOT_TOKEN/dosya_yolu" onerror="this.style.display='none'" style="width:100%; border-radius:8px;">
-           <p>Eşleşen afişteki ürün görseli aşağıdadır:</p>
-           <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="display:block; background:#2563eb; color:#fff; padding:10px; text-decoration:none; border-radius:8px; margin-top:10px;">
+        <strong>Afiş Kodu:</strong> ${bestMatch.afis_id}<br>
+        <div style="margin-top:15px;">
+           <img src="https://api.telegram.org/file/bot${TELEGRAM_TOKEN}/${bestMatch.file_id}" 
+                style="width:100%; border-radius:12px; border: 2px solid #e2e8f0;">
+           <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" 
+              style="display:block; background:#2563eb; color:#fff; padding:12px; text-decoration:none; border-radius:8px; margin-top:10px;">
            👉 Afişi Telegram'da Aç
            </a>
         </div>
     `;
 }
+
 
 </script>
 </body>
