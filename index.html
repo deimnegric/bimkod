@@ -125,11 +125,12 @@ console.log("Bulunan en düşük mesafe:", minDistance);
                 }
             });
 
-            if (bestMatch && minDistance < 50) {
-                document.getElementById('result-container').style.display = 'block';
-                telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
-                statusDiv.innerHTML = "✅ Ürün bulundu!";
-            } else {
+            // Eşik değerini kaldır veya çok daha yüksek tut (örneğin 500)
+if (bestMatch && minDistance < 500) { 
+    document.getElementById('result-container').style.display = 'block';
+    // ...
+}
+ else {
                 statusDiv.innerHTML = "❌ Eşleşme sağlanamadı.";
             }
         } catch(e) {
