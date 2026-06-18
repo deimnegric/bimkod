@@ -38,13 +38,12 @@
 
 <script src="config.js"></script>
 <script>
+    // Sabitleri buraya, en tepeye koyuyoruz
+    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    
+    // Değişkenleri tanımlıyoruz
     const fileInput = document.getElementById('file-input');
     const scanBtn = document.getElementById('scan-btn');
-    const imgPreview = document.getElementById('img-preview');
-    const captureBtn = document.getElementById('capture-btn');
-    const video = document.getElementById('video');
-    const telegramResult = document.getElementById('telegram-result');
-    const statusDiv = document.getElementById('status');
     let selectedFile = null;
 
     // Galeri seçimi sonrası butonu göster
@@ -52,55 +51,40 @@
         const file = e.target.files[0];
         if(!file) return;
         selectedFile = file;
-        imgPreview.src = URL.createObjectURL(file);
-        imgPreview.style.display = 'block';
-        video.style.display = 'none';
-        captureBtn.style.display = 'none';
-        scanBtn.style.display = 'block'; // BUTON GÖRÜNÜR OLDU
-    };
-
-    // Kamera çekimi sonrası butonu göster
-    captureBtn.onclick = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth; 
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        canvas.toBlob(blob => {
-            selectedFile = new File([blob], "c.jpg");
-            imgPreview.src = URL.createObjectURL(blob);
-            imgPreview.style.display = 'block';
-            video.style.display = 'none';
-            captureBtn.style.display = 'none';
-            scanBtn.style.display = 'block'; // BUTON GÖRÜNÜR OLDU
-            if(video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
-        }, 'image/jpeg');
+        // ... (önizleme kodların aynı kalabilir)
+        scanBtn.style.display = 'block'; 
     };
 
     // Tara ve Bul fonksiyonu
     scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "Analiz ediliyor...";
+        document.getElementById('status').innerHTML = "Analiz ediliyor...";
         const fd = new FormData(); 
         fd.append("file", selectedFile);
         
         try {
+            // HF_API_URL artık burada tanımlı olduğu için hata vermeyecek
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
             const data = await res.json();
             
-            // Veri geldiğinde afişi göster
             if(data.file_id) {
+                // TOKEN kontrolü
+                const botToken = window.TOKEN; 
+                if (!botToken) {
+                    throw new Error("Token bulunamadı!");
+                }
+                
                 document.getElementById('result-container').style.display = 'block';
-                telegramResult.innerHTML = `
-                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id}" style="width:100%; border-radius:10px">
+                document.getElementById('telegram-result').innerHTML = `
+                   <img src="https://api.telegram.org/file/bot${botToken}/${data.file_id}" style="width:100%; border-radius:10px">
                 `;
-                statusDiv.innerHTML = "✅ Eşleşme bulundu!";
-            } else {
-                statusDiv.innerHTML = "❌ Eşleşme bulunamadı.";
+                document.getElementById('status').innerHTML = "✅ Başarılı!";
             }
         } catch(e) {
-            statusDiv.innerHTML = "❌ Hata oluştu: " + e.message;
+            document.getElementById('status').innerHTML = "❌ Hata: " + e.message;
         }
     };
 </script>
+
 
 
 
