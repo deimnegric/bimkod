@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -100,29 +101,53 @@
         fd.append("file", selectedFile);
         
         try {
+            // 1. Hugging Face'den vektörü al
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
             const result = await res.json();
-            const targetVector = result.vectors;
+            
+            // İç içe geçmiş verileri (örneğin {0: -0.06, 1: 0.03} veya [[...]]) her halükarda düz bir listeye çeviren fonksiyon
+            const toFlatArray = (data) => {
+                if (!data) return [];
+                if (Array.isArray(data) && typeof data[0] === 'number') return data;
+                if (Array.isArray(data) && Array.isArray(data[0])) return data[0];
+                if (typeof data === 'object') {
+                    let vals = Object.values(data);
+                    if (typeof vals[0] === 'number') return vals;
+                    if (typeof vals[0] === 'object' || Array.isArray(vals[0])) return Object.values(vals[0]);
+                }
+                return [];
+            };
 
+            const tVec = toFlatArray(result.vectors || result);
+
+            // 2. Firebase'den verileri al
             const dbRes = await fetch(FIREBASE_URL);
             const dbData = await dbRes.json();
             
-                        let bestMatch = null;
+            let bestMatch = null;
             let maxSimilarity = -1; 
+            let debugText = ""; 
 
-            // 1. Hugging Face'den gelen vektörü iç içe diziden kurtar
-            let tVec = Array.isArray(targetVector[0]) ? targetVector[0] : targetVector;
+            if (!dbData) {
+                statusDiv.innerHTML = "❌ Firebase'den veri çekilemedi (Veritabanı boş olabilir).";
+                return;
+            }
 
+            // 3. Kıyaslama Döngüsü
             Object.values(dbData).forEach(item => {
                 if (item && item.vektorler) {
-                    // 2. Firebase'den gelen vektörü iç içe diziden kurtar
-                    let dbVec = Array.isArray(item.vektorler[0]) ? item.vektorler[0] : item.vektorler;
+                    let dbVec = toFlatArray(item.vektorler);
+                    
+                    // Eğer vektörler düzgün okunamadıysa, ekranda bilgi vermek için kaydet
+                    if (tVec.length === 0 || dbVec.length === 0) {
+                        debugText = `<br><span style="font-size:13px; color:#6b7280;">Hata detayı: KameraVektörü=${tVec.length}, FirebaseVektörü=${dbVec.length}</span>`;
+                        return; // Bu ürünü atla
+                    }
 
                     let dotProduct = 0;
                     let normA = 0;
                     let normB = 0;
                     
-                    // Artık tVec ve dbVec direkt olarak sayıları barındırıyor
                     let len = Math.min(tVec.length, dbVec.length);
                     for(let i=0; i<len; i++) {
                         dotProduct += tVec[i] * dbVec[i];
@@ -130,25 +155,30 @@
                         normB += Math.pow(dbVec[i], 2);
                     }
                     
-                    // Kosinüs Benzerliği
                     let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
                     
-                    if (similarity > maxSimilarity) { 
+                    // isNaN kontrolü (Sayısal hata varsa atla)
+                    if (similarity > maxSimilarity && !isNaN(similarity)) { 
                         maxSimilarity = similarity;
                         bestMatch = item;
                     }
                 }
             });
 
-            // 3. Ekrana Basma Kısmı
+            // 4. Sonucu Ekrana Bas
             if (bestMatch && maxSimilarity > 0.50) { 
                 document.getElementById('result-container').style.display = 'block';
                 telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
                 statusDiv.innerHTML = "✅ Ürün bulundu! (Skor: " + maxSimilarity.toFixed(4) + ")";
             } else {
-                statusDiv.innerHTML = "❌ Eşleşme bulunamadı. En iyi skor: " + (maxSimilarity !== -1 ? maxSimilarity.toFixed(4) : "0");
+                let finalScore = maxSimilarity !== -1 ? maxSimilarity.toFixed(4) : "0";
+                statusDiv.innerHTML = `❌ Eşleşme bulunamadı. En iyi skor: ${finalScore} ${debugText}`;
             }
 
+        } catch(e) {
+            statusDiv.innerHTML = "❌ Hata: " + e.message;
+        }
+    };
 </script>
 </body>
 </html>
