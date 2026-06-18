@@ -9,12 +9,13 @@
         body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 10px; display: flex; justify-content: center; }
         .container { background: #fff; padding: 15px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
-        button, label { padding: 12px; border-radius: 12px; border: none; background: #eef2ff; color: #4338ca; font-weight: bold; cursor: pointer; }
+        button, label { padding: 12px; border-radius: 12px; border: none; background: #eef2ff; color: #4338ca; font-weight: bold; cursor: pointer; text-align: center; display: block; }
         #preview-container { margin: 15px 0; border-radius: 15px; overflow: hidden; background: #000; min-height: 200px; display: none; }
         video, img { width: 100%; display: block; }
-        #scan-btn, #capture-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; color: #fff; font-weight: bold; margin-top: 10px; }
-        #capture-btn { background: #4f46e5; display: none; }
-        #scan-btn { background: #059669; display: none; }
+        #scan-btn, #capture-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; color: #fff; font-weight: bold; margin-top: 10px; display: none; }
+        #capture-btn { background: #4f46e5; }
+        #scan-btn { background: #059669; }
+        #status { margin-top: 15px; font-weight: bold; color: #374151; min-height: 20px; font-size:14px;}
         #result-container { margin-top: 20px; border-top: 2px solid #eee; padding-top: 15px; display: none; }
     </style>
 </head>
@@ -22,6 +23,9 @@
 
 <div class="container">
     <h2>Ürün Asistanı</h2>
+    
+    <div id="error-box" style="display:none; background:#fee2e2; color:#b91c1c; padding:10px; border-radius:10px; margin-bottom:15px; text-align:left; font-size:14px; font-weight:bold; border:1px solid #fca5a5;"></div>
+
     <div class="btn-group">
         <button id="camera-btn">📸 Fotoğraf Çek</button>
         <label for="file-input">🖼️ Galeriden Seç</label>
@@ -35,14 +39,28 @@
 
     <button id="capture-btn">Çek</button>
     <button id="scan-btn">🔍 TARA VE BUL</button>
+    
     <div id="status"></div>
+    
     <div id="result-container">
         <h4>Eşleşen Afiş:</h4>
         <div id="telegram-result"></div>
     </div>
 </div>
 
+<script>
+    window.onerror = function(msg, url, line) {
+        const errBox = document.getElementById('error-box');
+        if(errBox) {
+            errBox.style.display = 'block';
+            errBox.innerHTML = `⚠️ Kod Yükleme Hatası: ${msg}<br>Satır: ${line}`;
+        }
+        return false;
+    };
+</script>
+
 <script src="config.js"></script>
+
 <script>
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
@@ -54,63 +72,93 @@
     const scanBtn = document.getElementById('scan-btn');
     const statusDiv = document.getElementById('status');
     const telegramResult = document.getElementById('telegram-result');
+    const previewContainer = document.getElementById('preview-container');
 
     document.getElementById('camera-btn').onclick = async () => {
-        document.getElementById('preview-container').style.display = 'block';
+        previewContainer.style.display = 'block';
         video.style.display = 'block';
         imgPreview.style.display = 'none';
         captureBtn.style.display = 'block';
         scanBtn.style.display = 'none';
+        statusDiv.innerHTML = "";
+        
         try {
+            if (video.srcObject) {
+                video.srcObject.getTracks().forEach(track => track.stop());
+            }
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
             video.srcObject = stream;
-        } catch (e) { alert("Kamera izni alınamadı!"); }
+        } catch (e) { 
+            alert("Kamera açılamadı! İzin verdiğinizden emin olun. Hata: " + e.message); 
+        }
     };
 
     document.getElementById('file-input').onchange = (e) => {
         const file = e.target.files[0];
         if(!file) return;
         selectedFile = file;
+        
         imgPreview.src = URL.createObjectURL(file);
+        previewContainer.style.display = 'block';
         imgPreview.style.display = 'block';
         video.style.display = 'none';
         captureBtn.style.display = 'none';
         scanBtn.style.display = 'block';
-        document.getElementById('preview-container').style.display = 'block';
+        statusDiv.innerHTML = "";
+        
+        if(video.srcObject) {
+            video.srcObject.getTracks().forEach(t => t.stop());
+        }
     };
 
     captureBtn.onclick = () => {
         const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
         canvas.toBlob(blob => {
-            selectedFile = new File([blob], "c.jpg");
+            if(!blob) {
+                alert("Görüntü alınamadı!");
+                return;
+            }
+            selectedFile = new File([blob], "capture.jpg", { type: "image/jpeg" });
             imgPreview.src = URL.createObjectURL(blob);
             imgPreview.style.display = 'block';
             video.style.display = 'none';
             captureBtn.style.display = 'none';
             scanBtn.style.display = 'block';
-            if(video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
+            
+            if(video.srcObject) {
+                video.srcObject.getTracks().forEach(t => t.stop());
+            }
         }, 'image/jpeg');
     };
 
     scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "Analiz ediliyor, lütfen bekleyin...";
+        if(!selectedFile) {
+            statusDiv.innerHTML = "❌ Lütfen önce bir görsel yükleyin veya çekin.";
+            return;
+        }
+        
+        statusDiv.innerHTML = "🔄 Analiz ediliyor, lütfen bekleyin...";
         const fd = new FormData();
         fd.append("file", selectedFile);
         
         try {
-            // 1. Hugging Face'den vektörü al
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+            if(!res.ok) throw new Error("Hugging Face API hata döndürdü: " + res.status);
             const result = await res.json();
             
-            // İç içe geçmiş verileri (örneğin {0: -0.06, 1: 0.03} veya [[...]]) her halükarda düz bir listeye çeviren fonksiyon
             const toFlatArray = (data) => {
                 if (!data) return [];
-                if (Array.isArray(data) && typeof data[0] === 'number') return data;
-                if (Array.isArray(data) && Array.isArray(data[0])) return data[0];
-                if (typeof data === 'object') {
+                if (Array.isArray(data)) {
+                    if (typeof data[0] === 'number') return data;
+                    if (Array.isArray(data[0])) return data[0];
+                    if (typeof data[0] === 'object' && data[0] !== null) return Object.values(data[0]);
+                }
+                if (typeof data === 'object' && data !== null) {
                     let vals = Object.values(data);
                     if (typeof vals[0] === 'number') return vals;
                     if (typeof vals[0] === 'object' || Array.isArray(vals[0])) return Object.values(vals[0]);
@@ -120,28 +168,26 @@
 
             const tVec = toFlatArray(result.vectors || result);
 
-            // 2. Firebase'den verileri al
             const dbRes = await fetch(FIREBASE_URL);
+            if(!dbRes.ok) throw new Error("Firebase verisi çekilemedi: " + dbRes.status);
             const dbData = await dbRes.json();
             
+            if (!dbData) {
+                statusDiv.innerHTML = "❌ Firebase veritabanı boş.";
+                return;
+            }
+
             let bestMatch = null;
             let maxSimilarity = -1; 
             let debugText = ""; 
 
-            if (!dbData) {
-                statusDiv.innerHTML = "❌ Firebase'den veri çekilemedi (Veritabanı boş olabilir).";
-                return;
-            }
-
-            // 3. Kıyaslama Döngüsü
             Object.values(dbData).forEach(item => {
                 if (item && item.vektorler) {
                     let dbVec = toFlatArray(item.vektorler);
                     
-                    // Eğer vektörler düzgün okunamadıysa, ekranda bilgi vermek için kaydet
                     if (tVec.length === 0 || dbVec.length === 0) {
-                        debugText = `<br><span style="font-size:13px; color:#6b7280;">Hata detayı: KameraVektörü=${tVec.length}, FirebaseVektörü=${dbVec.length}</span>`;
-                        return; // Bu ürünü atla
+                        debugText = `<br><span style="font-size:12px; color:#6b7280;">Hata Detayı: KameraVek=${tVec.length}, DBVek=${dbVec.length}</span>`;
+                        return;
                     }
 
                     let dotProduct = 0;
@@ -157,7 +203,6 @@
                     
                     let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
                     
-                    // isNaN kontrolü (Sayısal hata varsa atla)
                     if (similarity > maxSimilarity && !isNaN(similarity)) { 
                         maxSimilarity = similarity;
                         bestMatch = item;
@@ -165,18 +210,45 @@
                 }
             });
 
-            // 4. Sonucu Ekrana Bas
+            // GÖRSELİ GÖSTERME KISMI (YENİLENEN YER)
             if (bestMatch && maxSimilarity > 0.50) { 
                 document.getElementById('result-container').style.display = 'block';
-                telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
-                statusDiv.innerHTML = "✅ Ürün bulundu! (Skor: " + maxSimilarity.toFixed(4) + ")";
+                const token = window.TOKEN || "";
+                
+                // Hemen "Afiş yükleniyor" yazalım, kırık resim görmeyelim
+                telegramResult.innerHTML = `<span style='font-size:13px; color:#6b7280;'>Afiş yükleniyor...</span>`;
+                statusDiv.innerHTML = "🔄 Ürün Bulundu! Afiş yükleniyor... (Skor: " + maxSimilarity.toFixed(4) + ")";
+
+                try {
+                    // Adım 1: file_id ile Telegram'dan gerçek indirme yolunu isteyelim
+                    const getFileRes = await fetch(`https://api.telegram.org/bot${token}/getFile?file_id=${bestMatch.file_id}`);
+                    const getFileData = await getFileRes.json();
+
+                    if (!getFileData.ok) {
+                        throw new Error("Telegramdosya yolunu alamadı: " + getFileData.description);
+                    }
+
+                    // Adım 2: Gerçek indirme yolunu kur
+                    // Not: Bu link, Telegram sunucularından web tarayıcısına görseli verir.
+                    const finalDownloadUrl = `https://api.telegram.org/file/bot${token}/${getFileData.result.file_path}`;
+
+                    // Görüntüyü ekranda göster
+                    telegramResult.innerHTML = `<img src="${finalDownloadUrl}" style="width:100%; border-radius:10px" alt="Eşleşen Ürün Afişi">`;
+                    statusDiv.innerHTML = "✅ Ürün bulundu ve afiş yüklendi! (Skor: " + maxSimilarity.toFixed(4) + ")";
+
+                } catch (e_img) {
+                    telegramResult.innerHTML = `<span style='color:red; font-size:13px;'>❌ Afiş yükleme hatası: ${e_img.message}</span>`;
+                    console.error("Afiş yükleme hatası:", e_img);
+                    statusDiv.innerHTML = "✅ Ürün bulundu ama afiş yüklenemedi! (Skor: " + maxSimilarity.toFixed(4) + ")";
+                }
+
             } else {
                 let finalScore = maxSimilarity !== -1 ? maxSimilarity.toFixed(4) : "0";
                 statusDiv.innerHTML = `❌ Eşleşme bulunamadı. En iyi skor: ${finalScore} ${debugText}`;
             }
 
         } catch(e) {
-            statusDiv.innerHTML = "❌ Hata: " + e.message;
+            statusDiv.innerHTML = "<span style='color:red;'>❌ Çalışma Hatası: " + e.message + "</span>";
         }
     };
 </script>
