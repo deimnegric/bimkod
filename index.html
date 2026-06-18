@@ -180,7 +180,7 @@ if (highestScore > 0.60 && bestMatch) {
     resultContainer.style.display = 'block';
     
     // Telegram'dan görseli çekecek olan link (BURAYA BOT TOKENINI YAZMALISIN)
-    const TELEGRAM_TOKEN = ""; // Burayı boş bırak
+    const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN; // Burayı boş bırak
 
     
     telegramResult.innerHTML = `
