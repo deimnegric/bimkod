@@ -9,7 +9,7 @@
         .container { background: #fff; padding: 15px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
         button, label { padding: 12px; border-radius: 12px; border: none; background: #eef2ff; color: #4338ca; font-weight: bold; cursor: pointer; }
-        #preview-container { margin: 15px 0; border-radius: 15px; overflow: hidden; background: #000; min-height: 200px; }
+        #preview-container { margin: 15px 0; border-radius: 15px; overflow: hidden; background: #000; min-height: 200px; display: none; }
         video, img { width: 100%; display: block; }
         #scan-btn, #capture-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; color: #fff; font-weight: bold; margin-top: 10px; }
         #capture-btn { background: #4f46e5; display: none; }
@@ -26,7 +26,12 @@
         <label for="file-input">🖼️ Galeriden Seç</label>
         <input type="file" id="file-input" accept="image/*" style="display:none">
     </div>
-    <div id="preview-container"><video id="video" autoplay playsinline></video><img id="img-preview" style="display:none"></div>
+    
+    <div id="preview-container">
+        <video id="video" autoplay playsinline></video>
+        <img id="img-preview" style="display:none">
+    </div>
+
     <button id="capture-btn">Çek</button>
     <button id="scan-btn">🔍 TARA VE BUL</button>
     <div id="status"></div>
@@ -38,56 +43,81 @@
 
 <script src="config.js"></script>
 <script>
-    // Sabitleri buraya, en tepeye koyuyoruz
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
-    
-    // Değişkenleri tanımlıyoruz
-    const fileInput = document.getElementById('file-input');
-    const scanBtn = document.getElementById('scan-btn');
     let selectedFile = null;
 
-    // Galeri seçimi sonrası butonu göster
-    fileInput.onchange = (e) => {
+    const video = document.getElementById('video');
+    const imgPreview = document.getElementById('img-preview');
+    const captureBtn = document.getElementById('capture-btn');
+    const scanBtn = document.getElementById('scan-btn');
+    const statusDiv = document.getElementById('status');
+
+    // 1. Kamera Başlatma
+    document.getElementById('camera-btn').onclick = async () => {
+        document.getElementById('preview-container').style.display = 'block';
+        video.style.display = 'block';
+        imgPreview.style.display = 'none';
+        captureBtn.style.display = 'block';
+        scanBtn.style.display = 'none';
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+            video.srcObject = stream;
+        } catch (e) { alert("Kamera izni alınamadı!"); }
+    };
+
+    // 2. Galeri Seçimi
+    document.getElementById('file-input').onchange = (e) => {
         const file = e.target.files[0];
         if(!file) return;
         selectedFile = file;
-        // ... (önizleme kodların aynı kalabilir)
-        scanBtn.style.display = 'block'; 
+        imgPreview.src = URL.createObjectURL(file);
+        imgPreview.style.display = 'block';
+        video.style.display = 'none';
+        captureBtn.style.display = 'none';
+        scanBtn.style.display = 'block';
+        document.getElementById('preview-container').style.display = 'block';
     };
 
-    // Tara ve Bul fonksiyonu
+    // 3. Fotoğraf Çekme
+    captureBtn.onclick = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        canvas.toBlob(blob => {
+            selectedFile = new File([blob], "c.jpg");
+            imgPreview.src = URL.createObjectURL(blob);
+            imgPreview.style.display = 'block';
+            video.style.display = 'none';
+            captureBtn.style.display = 'none';
+            scanBtn.style.display = 'block';
+            video.srcObject.getTracks().forEach(t => t.stop());
+        }, 'image/jpeg');
+    };
+
+    // 4. API ile Tara
     scanBtn.onclick = async () => {
-        document.getElementById('status').innerHTML = "Analiz ediliyor...";
-        const fd = new FormData(); 
+        statusDiv.innerHTML = "Analiz ediliyor...";
+        const fd = new FormData();
         fd.append("file", selectedFile);
         
         try {
-            // HF_API_URL artık burada tanımlı olduğu için hata vermeyecek
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
             const data = await res.json();
             
-            if(data.file_id) {
-                // TOKEN kontrolü
-                const botToken = window.TOKEN; 
-                if (!botToken) {
-                    throw new Error("Token bulunamadı!");
-                }
-                
+            if(data && data.file_id) {
                 document.getElementById('result-container').style.display = 'block';
                 document.getElementById('telegram-result').innerHTML = `
-                   <img src="https://api.telegram.org/file/bot${botToken}/${data.file_id}" style="width:100%; border-radius:10px">
+                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id}" style="width:100%; border-radius:10px">
                 `;
-                document.getElementById('status').innerHTML = "✅ Başarılı!";
+                statusDiv.innerHTML = "✅ Başarılı!";
+            } else {
+                statusDiv.innerHTML = "❌ Eşleşme bulunamadı.";
             }
         } catch(e) {
-            document.getElementById('status').innerHTML = "❌ Hata: " + e.message;
+            statusDiv.innerHTML = "❌ Hata oluştu!";
         }
     };
 </script>
-
-
-
-
 </body>
 </html>
-
