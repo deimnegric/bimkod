@@ -95,7 +95,7 @@
     };
 
     scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "Analiz ediliyor...";
+        statusDiv.innerHTML = "Analiz ediliyor, lütfen bekleyin...";
         const fd = new FormData();
         fd.append("file", selectedFile);
         
@@ -108,51 +108,44 @@
             const dbData = await dbRes.json();
             
             let bestMatch = null;
-            let minDistance = Infinity;
+            // DÜZELTME 1: Infinity değil, en düşük skor olan -1'den başlatıyoruz.
+            let maxSimilarity = -1; 
 
-            // ... (Önceki kodlar aynı)
-Object.values(dbData).forEach(item => {
-    if (item && item.vektorler) {
-        let dotProduct = 0;
-        let normA = 0;
-        let normB = 0;
-        
-        for(let i=0; i<targetVector.length; i++) {
-            dotProduct += targetVector[i] * item.vektorler[i];
-            normA += Math.pow(targetVector[i], 2);
-            normB += Math.pow(item.vektorler[i], 2);
-        }
-        
-        // Kosinüs Benzerliği: (A . B) / (||A|| * ||B||)
-        let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-        
-        // Sayı 1'e ne kadar yakınsa o kadar benzerdir
-        if (similarity > minDistance) { // minDistance artık en yüksek benzerlik skorunu tutuyor
-            minDistance = similarity;
-            bestMatch = item;
-        }
-    }
-});
+            Object.values(dbData).forEach(item => {
+                if (item && item.vektorler) {
+                    let dotProduct = 0;
+                    let normA = 0;
+                    let normB = 0;
+                    
+                    // Dizilerin uzunluğuna göre güvenli döngü
+                    let len = Math.min(targetVector.length, item.vektorler.length);
+                    for(let i=0; i<len; i++) {
+                        dotProduct += targetVector[i] * item.vektorler[i];
+                        normA += Math.pow(targetVector[i], 2);
+                        normB += Math.pow(item.vektorler[i], 2);
+                    }
+                    
+                    // Kosinüs Benzerliği: (A . B) / (||A|| * ||B||)
+                    let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+                    
+                    // Skoru en yüksek olanı (en benzer olanı) bul
+                    if (similarity > maxSimilarity) { 
+                        maxSimilarity = similarity;
+                        bestMatch = item;
+                    }
+                }
+            });
 
-// Eğer benzerlik skoru 0.85'in üzerindeyse eşleşme kabul et (bu eşiği değiştirebilirsin)
-if (bestMatch && minDistance > 0.85) { 
-    document.getElementById('result-container').style.display = 'block';
-    telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
-    statusDiv.innerHTML = "✅ Ürün bulundu! (Skor: " + minDistance.toFixed(4) + ")";
-} else {
-    statusDiv.innerHTML = "❌ Eşleşme bulunamadı. Skor: " + (minDistance ? minDistance.toFixed(4) : "0");
-}
-
-
-            console.log("En düşük mesafe:", minDistance);
-
-            if (bestMatch) { 
+            // DÜZELTME 2: Çakışan if blokları temizlendi.
+            // Puan 0.50'nin üzerindeyse başarılı sayıyoruz. Gerekirse bunu 0.80 falan yaparsın.
+            if (bestMatch && maxSimilarity > 0.50) { 
                 document.getElementById('result-container').style.display = 'block';
                 telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
-                statusDiv.innerHTML = "✅ Ürün bulundu! (Mesafe: " + minDistance.toFixed(2) + ")";
+                statusDiv.innerHTML = "✅ Ürün bulundu! (Skor: " + maxSimilarity.toFixed(4) + ")";
             } else {
-                statusDiv.innerHTML = "❌ Hiçbir eşleşme bulunamadı.";
+                statusDiv.innerHTML = "❌ Eşleşme bulunamadı. En iyi skor: " + (maxSimilarity !== -1 ? maxSimilarity.toFixed(4) : "0");
             }
+
         } catch(e) {
             statusDiv.innerHTML = "❌ Hata: " + e.message;
         }
@@ -160,5 +153,6 @@ if (bestMatch && minDistance > 0.85) {
 </script>
 </body>
 </html>
+
 
 
