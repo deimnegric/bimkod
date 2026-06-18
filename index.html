@@ -98,50 +98,53 @@
     // 4. API ile Tara
         // Tara ve Bul fonksiyonu (GÜNCEL HALİ)
     scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "Analiz ediliyor...";
-        const fd = new FormData();
-        fd.append("file", selectedFile);
-        
-        try {
-            // 1. Vektörü al
-            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-            const data = await res.json(); // data.vectors burada
-            
-            // 2. Firebase'den tüm verileri çek
-            const dbRes = await fetch(FIREBASE_URL);
-            const dbData = await dbRes.json();
-            
-            // 3. Basit bir kıyaslama (En yüksek benzerliği bul)
-            let bestMatch = null;
-            let highestScore = 0;
-            
-            // Firebase verisi objeyse array'e çevir
-            const products = Object.values(dbData);
-            
-            products.forEach(p => {
-                // Burada vektör karşılaştırma (Cosine Similarity) yapman lazım
-                // Şimdilik sadece örnek bir eşleşme mantığı kuruyoruz:
-                if(p.vektorler) {
-                    // Not: Gerçek matematiksel karşılaştırma için vektörleri
-                    // karşılaştıran bir fonksiyon (math.js gibi) gerekebilir.
-                    // Şimdilik basit bir kontrol yapalım:
-                    bestMatch = p; 
-                }
-            });
+    statusDiv.innerHTML = "Analiz ediliyor...";
+    const fd = new FormData();
+    fd.append("file", selectedFile);
+    
+    try {
+        // 1. Hugging Face'den gelen vektörü al
+        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+        const result = await res.json();
+        const targetVector = result.vectors; // API'den gelen vektör dizisi
 
-            if(bestMatch) {
-                document.getElementById('result-container').style.display = 'block';
-                telegramResult.innerHTML = `
-                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">
-                `;
-                statusDiv.innerHTML = "✅ Ürün bulundu!";
-            } else {
-                statusDiv.innerHTML = "❌ Eşleşme bulunamadı.";
+        // 2. Firebase'den tüm ürünleri çek
+        const dbRes = await fetch(FIREBASE_URL); // .json burada olmalı
+        const dbData = await dbRes.json();
+        
+        // 3. Basit Benzerlik (Cosine Similarity yerine en yakın olanı bulma)
+        let bestMatch = null;
+        let minDistance = Infinity;
+
+        Object.values(dbData).forEach(item => {
+            if (item.vektorler) {
+                // Vektörlerin farkını hesapla (Öklid mesafesi)
+                let dist = 0;
+                for(let i=0; i<targetVector.length; i++) {
+                    dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
+                }
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    bestMatch = item;
+                }
             }
-        } catch(e) {
-            statusDiv.innerHTML = "❌ Hata: " + e.message;
+        });
+
+        // 4. Ekrana bas
+        if (bestMatch && minDistance < 0.5) { // 0.5 eşik değerin
+            document.getElementById('result-container').style.display = 'block';
+            telegramResult.innerHTML = `
+               <img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">
+            `;
+            statusDiv.innerHTML = "✅ Ürün bulundu!";
+        } else {
+            statusDiv.innerHTML = "❌ Eşleşme sağlanamadı.";
         }
-    };
+    } catch(e) {
+        statusDiv.innerHTML = "❌ Hata: " + e.message;
+    }
+};
+
 
 </script>
 </body>
