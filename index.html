@@ -98,6 +98,8 @@
         statusDiv.innerHTML = "Analiz ediliyor...";
         const fd = new FormData();
         fd.append("file", selectedFile);
+       // Kıyaslama döngüsünün altına ekle:
+console.log("Bulunan en düşük mesafe:", minDistance);
         
         try {
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
