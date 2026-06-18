@@ -22,6 +22,80 @@
         .loading { color: #2563eb; }
         #result-container { margin-top: 20px; text-align: left; display: none; }
     </style>
+    <script src="config.js"></script> 
+<script>
+    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
+
+    const cameraBtn = document.getElementById('camera-btn');
+    const fileInput = document.getElementById('file-input');
+    const video = document.getElementById('video');
+    const imgPreview = document.getElementById('img-preview');
+    const previewContainer = document.getElementById('preview-container');
+    const captureBtn = document.getElementById('capture-btn');
+    const scanBtn = document.getElementById('scan-btn');
+    const statusDiv = document.getElementById('status');
+    const telegramResult = document.getElementById('telegram-result');
+
+    let stream = null;
+    let selectedFile = null;
+
+    // 1. Kamera Butonu (Canlı Kamera)
+    cameraBtn.addEventListener('click', async () => {
+        previewContainer.style.display = 'block';
+        video.style.display = 'block';
+        imgPreview.style.display = 'none';
+        captureBtn.style.display = 'block'; // Çek butonu görünecek
+        scanBtn.style.display = 'none';
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+            video.srcObject = stream;
+        } catch (err) { alert("Kamera izni gerekli!"); }
+    });
+
+    // 2. Fotoğraf Çek Butonu
+    captureBtn.addEventListener('click', () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        canvas.toBlob((blob) => {
+            selectedFile = new File([blob], "photo.jpg", { type: "image/jpeg" });
+            imgPreview.src = URL.createObjectURL(blob);
+            imgPreview.style.display = 'block';
+            video.style.display = 'none';
+            captureBtn.style.display = 'none';
+            scanBtn.style.display = 'block'; // TARA BUTONU ARTIK GÖRÜNÜYOR
+            if(stream) stream.getTracks().forEach(t => t.stop());
+        }, 'image/jpeg');
+    });
+
+    // 3. Dosya Seçme
+    fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if(file) {
+            selectedFile = file;
+            imgPreview.src = URL.createObjectURL(file);
+            imgPreview.style.display = 'block';
+            video.style.display = 'none';
+            captureBtn.style.display = 'none';
+            scanBtn.style.display = 'block'; // TARA BUTONU ARTIK GÖRÜNÜYOR
+            previewContainer.style.display = 'block';
+        }
+    });
+
+    // 4. Tara Butonu
+    scanBtn.addEventListener('click', async () => {
+        scanBtn.style.display = 'none';
+        statusDiv.innerHTML = "Analiz ediliyor...";
+        const formData = new FormData(); formData.append("file", selectedFile);
+        const res = await fetch(HF_API_URL, { method: "POST", body: formData });
+        const data = await res.json();
+        
+        // Firebase arama kısmı buraya gelecek...
+        // searchInFirebase(data.vectors[0]);
+    });
+</script>
+
 </head>
 <body>
 
