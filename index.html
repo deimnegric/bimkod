@@ -110,18 +110,39 @@
             let bestMatch = null;
             let minDistance = Infinity;
 
-            Object.values(dbData).forEach(item => {
-                if (item.vektorler) {
-                    let dist = 0;
-                    for(let i=0; i<targetVector.length; i++) {
-                        dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
-                    }
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        bestMatch = item;
-                    }
-                }
-            });
+            // ... (Önceki kodlar aynı)
+Object.values(dbData).forEach(item => {
+    if (item && item.vektorler) {
+        let dotProduct = 0;
+        let normA = 0;
+        let normB = 0;
+        
+        for(let i=0; i<targetVector.length; i++) {
+            dotProduct += targetVector[i] * item.vektorler[i];
+            normA += Math.pow(targetVector[i], 2);
+            normB += Math.pow(item.vektorler[i], 2);
+        }
+        
+        // Kosinüs Benzerliği: (A . B) / (||A|| * ||B||)
+        let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+        
+        // Sayı 1'e ne kadar yakınsa o kadar benzerdir
+        if (similarity > minDistance) { // minDistance artık en yüksek benzerlik skorunu tutuyor
+            minDistance = similarity;
+            bestMatch = item;
+        }
+    }
+});
+
+// Eğer benzerlik skoru 0.85'in üzerindeyse eşleşme kabul et (bu eşiği değiştirebilirsin)
+if (bestMatch && minDistance > 0.85) { 
+    document.getElementById('result-container').style.display = 'block';
+    telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
+    statusDiv.innerHTML = "✅ Ürün bulundu! (Skor: " + minDistance.toFixed(4) + ")";
+} else {
+    statusDiv.innerHTML = "❌ Eşleşme bulunamadı. Skor: " + (minDistance ? minDistance.toFixed(4) : "0");
+}
+
 
             console.log("En düşük mesafe:", minDistance);
 
