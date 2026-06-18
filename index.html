@@ -173,22 +173,30 @@
                 }
             }
 
-            if (highestScore > 0.60 && bestMatch) {
-                showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
-                resultContainer.style.display = 'block';
-                document.getElementById('cropped-product-img').style.display = 'block';
-                document.getElementById('cropped-product-img').src = imgPreview.src;
-                telegramResult.innerHTML = `
-                    <strong>Afiş Kodu:</strong> ${bestMatch.afis_id}<br>
-                    <small>Tarih: ${bestMatch.tarih || 'Belirtilmemiş'}</small><br><br>
-                    <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="color: #2563eb; font-weight: bold; text-decoration: none;">
-                    👉 Telegram'da Orijinal Afişi Gör</a>`;
-            } else {
-                showStatus(`🔍 Yakın eşleşme bulunamadı. (En iyi skor: %${(highestScore * 100).toFixed(1)})`, "error");
-                scanBtn.style.display = 'block';
-            }
-        } catch (err) { showStatus("Veritabanı hatası: " + err.message, "error"); }
-    }
+            // Arama sonucunu şu şekilde değiştiriyoruz:
+if (highestScore > 0.60 && bestMatch) {
+    showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
+    resultContainer.style.display = 'block';
+    
+    // 1. Orijinal Afişi Göster
+    const mainAfiş = document.getElementById('cropped-product-img');
+    mainAfiş.style.display = 'block';
+    mainAfiş.src = imgPreview.src; // Kullanıcının arattığı fotoğraf
+    
+    // 2. Telegram'daki Afişi Doğrudan Göster (iframe ile)
+    // Telegram linkini embed edilebilir formata getiriyoruz
+    telegramResult.innerHTML = `
+        <strong>Sonuç:</strong> Afiş bulundu!<br><br>
+        <div style="background:#fff; padding:10px; border-radius:10px;">
+           <img src="https://api.telegram.org/file/botTELEGRAM_BOT_TOKEN/dosya_yolu" onerror="this.style.display='none'" style="width:100%; border-radius:8px;">
+           <p>Eşleşen afişteki ürün görseli aşağıdadır:</p>
+           <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="display:block; background:#2563eb; color:#fff; padding:10px; text-decoration:none; border-radius:8px; margin-top:10px;">
+           👉 Afişi Telegram'da Aç
+           </a>
+        </div>
+    `;
+}
+
 </script>
 </body>
 </html>
