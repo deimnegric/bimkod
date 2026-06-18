@@ -107,28 +107,32 @@
             const dbRes = await fetch(FIREBASE_URL);
             const dbData = await dbRes.json();
             
-            let bestMatch = null;
-            // DÜZELTME 1: Infinity değil, en düşük skor olan -1'den başlatıyoruz.
+                        let bestMatch = null;
             let maxSimilarity = -1; 
+
+            // 1. Hugging Face'den gelen vektörü iç içe diziden kurtar
+            let tVec = Array.isArray(targetVector[0]) ? targetVector[0] : targetVector;
 
             Object.values(dbData).forEach(item => {
                 if (item && item.vektorler) {
+                    // 2. Firebase'den gelen vektörü iç içe diziden kurtar
+                    let dbVec = Array.isArray(item.vektorler[0]) ? item.vektorler[0] : item.vektorler;
+
                     let dotProduct = 0;
                     let normA = 0;
                     let normB = 0;
                     
-                    // Dizilerin uzunluğuna göre güvenli döngü
-                    let len = Math.min(targetVector.length, item.vektorler.length);
+                    // Artık tVec ve dbVec direkt olarak sayıları barındırıyor
+                    let len = Math.min(tVec.length, dbVec.length);
                     for(let i=0; i<len; i++) {
-                        dotProduct += targetVector[i] * item.vektorler[i];
-                        normA += Math.pow(targetVector[i], 2);
-                        normB += Math.pow(item.vektorler[i], 2);
+                        dotProduct += tVec[i] * dbVec[i];
+                        normA += Math.pow(tVec[i], 2);
+                        normB += Math.pow(dbVec[i], 2);
                     }
                     
-                    // Kosinüs Benzerliği: (A . B) / (||A|| * ||B||)
+                    // Kosinüs Benzerliği
                     let similarity = dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
                     
-                    // Skoru en yüksek olanı (en benzer olanı) bul
                     if (similarity > maxSimilarity) { 
                         maxSimilarity = similarity;
                         bestMatch = item;
@@ -136,8 +140,7 @@
                 }
             });
 
-            // DÜZELTME 2: Çakışan if blokları temizlendi.
-            // Puan 0.50'nin üzerindeyse başarılı sayıyoruz. Gerekirse bunu 0.80 falan yaparsın.
+            // 3. Ekrana Basma Kısmı
             if (bestMatch && maxSimilarity > 0.50) { 
                 document.getElementById('result-container').style.display = 'block';
                 telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
@@ -146,10 +149,6 @@
                 statusDiv.innerHTML = "❌ Eşleşme bulunamadı. En iyi skor: " + (maxSimilarity !== -1 ? maxSimilarity.toFixed(4) : "0");
             }
 
-        } catch(e) {
-            statusDiv.innerHTML = "❌ Hata: " + e.message;
-        }
-    };
 </script>
 </body>
 </html>
