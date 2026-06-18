@@ -8,24 +8,19 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .container { background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 100%; max-width: 450px; text-align: center; }
         h2 { color: #1e293b; margin-bottom: 25px; }
-        .btn-group { display: flex; gap: 15px; margin-bottom: 20px; }
-        button, label { flex: 1; padding: 12px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; color: #334155; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+        button, label { width: 100%; padding: 15px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; color: #334155; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s; box-sizing: border-box; }
         button:hover, label:hover { background: #f8fafc; border-color: #cbd5e1; }
         input[type="file"] { display: none; }
-        
         #preview-container { margin-top: 15px; border-radius: 15px; overflow: hidden; display: none; position: relative; border: 1px solid #e2e8f0; }
         img, video { width: 100%; height: auto; display: block; }
-        
-        #scan-btn { display: none; margin-top: 20px; background: #10b981; color: #fff; width: 100%; border: none; font-size: 16px; padding: 15px; border-radius: 12px; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2); }
-        #scan-btn:hover { background: #059669; transform: translateY(-2px); }
-        
-        #capture-btn { display: none; margin-top: 15px; background: #2563eb; color: #fff; width: 100%; border: none; padding: 12px; border-radius: 12px; }
+        #scan-btn, #capture-btn { display: none; margin-top: 15px; background: #10b981; color: #fff; width: 100%; border: none; font-size: 16px; padding: 15px; border-radius: 12px; }
+        #capture-btn { background: #2563eb; }
         #status { margin-top: 15px; font-weight: 600; font-size: 14px; }
         .success { color: #16a34a; }
         .error { color: #dc2626; }
         .loading { color: #2563eb; }
         #result-container { margin-top: 20px; text-align: left; display: none; }
-        .telegram-widget { border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; background: #f8fafc; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -34,8 +29,8 @@
     <h2>Ürün Arama Asistanı</h2>
     
     <div class="btn-group">
-        <button id="camera-btn">📷 Canlı Kamera</button>
-        <label for="file-input">🖼️ Galeriden Seç</label>
+        <button id="camera-btn">Fotoğraf Çek<br>📸</button>
+        <label for="file-input">Galeriden Seç<br>🖼️</label>
         <input type="file" id="file-input" accept="image/*">
     </div>
 
@@ -48,158 +43,36 @@
     <button id="scan-btn">🔍 TARA VE BUL</button>
 
     <div id="status"></div>
-
     <div id="result-container">
-        <h4 style="margin: 0; color: #1e293b;">Eşleşen Sonuç:</h4>
-        <img id="cropped-product-img" style="max-width: 120px; border-radius: 8px; margin-top: 10px; display:none; border: 2px solid #2563eb;">
-        <div id="telegram-result" class="telegram-widget"></div>
+        <div id="telegram-result"></div>
     </div>
 </div>
 
+<script src="config.js"></script> 
 <script>
-    // Buradaki URL'i bimkod isimli Space adresinle kontrol et
+    // Config.js içindeki TOKEN değişkenini kullanacağız
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
-    const cameraBtn = document.getElementById('camera-btn');
-    const fileInput = document.getElementById('file-input');
-    const video = document.getElementById('video');
-    const imgPreview = document.getElementById('img-preview');
-    const previewContainer = document.getElementById('preview-container');
-    const captureBtn = document.getElementById('capture-btn');
-    const scanBtn = document.getElementById('scan-btn');
-    const statusDiv = document.getElementById('status');
-    const resultContainer = document.getElementById('result-container');
-    const telegramResult = document.getElementById('telegram-result');
-
-    let stream = null;
-    let selectedFile = null;
-
-    cameraBtn.addEventListener('click', async () => {
-        resetUI();
-        video.style.display = 'block';
-        previewContainer.style.display = 'block';
-        captureBtn.style.display = 'block';
-        try {
-            stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" }, audio: false });
-            video.srcObject = stream;
-        } catch (err) { showStatus("Kameraya erişilemedi!", "error"); }
-    });
-
-    fileInput.addEventListener('change', (e) => {
-        resetUI();
-        const file = e.target.files[0];
-        if (file) {
-            selectedFile = file;
-            imgPreview.style.display = 'block';
-            previewContainer.style.display = 'block';
-            imgPreview.src = URL.createObjectURL(file);
-            scanBtn.style.display = 'block';
-        }
-    });
-
-    captureBtn.addEventListener('click', () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        canvas.toBlob((blob) => {
-            selectedFile = new File([blob], "capture.jpg", { type: "image/jpeg" });
-            video.style.display = 'none';
-            imgPreview.style.display = 'block';
-            imgPreview.src = URL.createObjectURL(blob);
-            captureBtn.style.display = 'none';
-            scanBtn.style.display = 'block';
-            if(stream) { stream.getTracks().forEach(track => track.stop()); }
-        }, 'image/jpeg');
-    });
-
-    scanBtn.addEventListener('click', () => {
-        if(selectedFile) {
-            scanBtn.style.display = 'none';
-            sendToPipeline(selectedFile);
-        }
-    });
-
-    function resetUI() {
-        if(stream) { stream.getTracks().forEach(track => track.stop()); }
-        imgPreview.style.display = 'none'; video.style.display = 'none';
-        captureBtn.style.display = 'none'; scanBtn.style.display = 'none';
-        resultContainer.style.display = 'none'; statusDiv.innerHTML = '';
-        selectedFile = null;
-    }
-
-    function showStatus(msg, type) {
-        statusDiv.className = type;
-        statusDiv.innerHTML = msg;
-    }
-
-    function cosineSimilarity(vecA, vecB) {
-        let dotProduct = 0.0, normA = 0.0, normB = 0.0;
-        for (let i = 0; i < vecA.length; i++) {
-            dotProduct += vecA[i] * vecB[i]; normA += vecA[i] * vecA[i]; normB += vecB[i] * vecB[i];
-        }
-        return (normA === 0 || normB === 0) ? 0 : dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
-    }
-
-    async function sendToPipeline(file) {
-        showStatus("🔄 Ürün yapay zeka tarafından analiz ediliyor...", "loading");
-        const formData = new FormData();
-        formData.append("file", file);
-        try {
-            const response = await fetch(HF_API_URL, { method: "POST", body: formData });
-            if (!response.ok) throw new Error("Yapay Zeka Sunucusu yanıt vermiyor.");
-            const data = await response.json();
-            if (data.status === "success") {
-                showStatus("⚡ Veritabanında eşleşme aranıyor...", "loading");
-                searchInFirebase(data.vectors[0]);
-            } else { showStatus("❌ Hata: " + data.message, "error"); scanBtn.style.display = 'block'; }
-        } catch (err) { showStatus("Bağlantı Hatası: " + err.message, "error"); scanBtn.style.display = 'block'; }
-    }
-
+    // ... (Kalan script aynı, sadece aşağıda belirtilen kısmı değiştir)
+    
     async function searchInFirebase(targetVector) {
-        try {
-            const response = await fetch(FIREBASE_URL);
-            const dbData = await response.json();
-            let bestMatch = null, highestScore = -1;
-
-            for (const key in dbData) {
-                const item = dbData[key];
-                if (item.vektorler) {
-                    for (const vec of item.vektorler) {
-                        const score = cosineSimilarity(targetVector, vec);
-                        if (score > highestScore) { highestScore = score; bestMatch = item; }
-                    }
-                }
-            }
-
-            // Arama sonucunu şu şekilde değiştiriyoruz:
-// searchInFirebase fonksiyonunun içindeki "if (highestScore > 0.60 && bestMatch)" bloğu:
-if (highestScore > 0.60 && bestMatch) {
-    showStatus(`✅ Ürün Bulundu! (Eşleşme: %${(highestScore * 100).toFixed(1)})`, "success");
-    resultContainer.style.display = 'block';
-    
-    // Telegram'dan görseli çekecek olan link (BURAYA BOT TOKENINI YAZMALISIN)
-    const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN; // Burayı boş bırak
-
-    
-    telegramResult.innerHTML = `
-        <strong>Afiş Kodu:</strong> ${bestMatch.afis_id}<br>
-        <div style="margin-top:15px;">
-           <img src="https://api.telegram.org/file/bot${TELEGRAM_TOKEN}/${bestMatch.file_id}" 
-                style="width:100%; border-radius:12px; border: 2px solid #e2e8f0;">
-           <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" 
-              style="display:block; background:#2563eb; color:#fff; padding:12px; text-decoration:none; border-radius:8px; margin-top:10px;">
-           👉 Afişi Telegram'da Aç
-           </a>
-        </div>
-    `;
-}
-
-
+        // ... (kısaltıldı)
+        if (highestScore > 0.60 && bestMatch) {
+            showStatus(`✅ Ürün Bulundu!`, "success");
+            resultContainer.style.display = 'block';
+            
+            // config.js'den gelen TOKEN değişkenini kullanıyoruz
+            telegramResult.innerHTML = `
+               <img src="https://api.telegram.org/file/bot${TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:12px;">
+               <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="display:block; background:#2563eb; color:#fff; padding:12px; text-decoration:none; border-radius:8px; margin-top:10px;">👉 Afişi Telegram'da Aç</a>
+            `;
+        } else { showStatus("❌ Eşleşme bulunamadı.", "error"); }
+    }
 </script>
 </body>
 </html>
+
 
 
 
