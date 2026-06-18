@@ -109,34 +109,32 @@ console.log("Bulunan en düşük mesafe:", minDistance);
             const dbRes = await fetch(FIREBASE_URL);
             const dbData = await dbRes.json();
             
-            let bestMatch = null;
-            let minDistance = Infinity;
+            // ... (API'den veriyi çektikten sonra)
+let bestMatch = null;
+let minDistance = Infinity;
 
-            Object.values(dbData).forEach(item => {
-                if (item.vektorler) {
-                    let dist = 0;
-                    for(let i=0; i<targetVector.length; i++) {
-                        dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
-                    }
-                    if (dist < minDistance) {
-                        minDistance = dist;
-                        bestMatch = item;
-                    }
-                }
-            });
-
-            // Eşik değerini kaldır veya çok daha yüksek tut (örneğin 500)
-if (bestMatch && minDistance < 500) { 
-    document.getElementById('result-container').style.display = 'block';
-    // ...
-}
- else {
-                statusDiv.innerHTML = "❌ Eşleşme sağlanamadı.";
-            }
-        } catch(e) {
-            statusDiv.innerHTML = "❌ Hata: " + e.message;
+Object.values(dbData).forEach(item => {
+    if (item.vektorler) {
+        let dist = 0;
+        for(let i=0; i<targetVector.length; i++) {
+            dist += Math.pow(targetVector[i] - item.vektorler[i], 2);
         }
-    };
+        if (dist < minDistance) {
+            minDistance = dist;
+            bestMatch = item;
+        }
+    }
+});
+
+// EŞİK DEĞERİ (0.5) KALDIRILDI, EN YAKIN OLANI GETİRMESİ SAĞLANDI
+if (bestMatch) { 
+    document.getElementById('result-container').style.display = 'block';
+    telegramResult.innerHTML = `<img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px">`;
+    statusDiv.innerHTML = "✅ Ürün bulundu! (Mesafe: " + minDistance.toFixed(2) + ")";
+} else {
+    statusDiv.innerHTML = "❌ Hiçbir eşleşme bulunamadı.";
+}
+
 </script>
 </body>
 </html>
