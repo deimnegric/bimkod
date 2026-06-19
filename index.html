@@ -2,55 +2,82 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>BimKod Afiş Sistemi</title>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
-
-        const firebaseConfig = {
-            databaseURL: "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // Veriyi çek ve butonlara bağla
-        const verilerRef = ref(db, 'vektorler');
-        onValue(verilerRef, (snapshot) => {
-            const data = snapshot.val();
-            const container = document.getElementById('afis-listesi');
-            container.innerHTML = ""; // Önce temizle
-
-            for (let id in data) {
-                let item = data[id];
-                // Telegram fotoğraf gösterme URL'si (Bot API formatı)
-                let fotoUrl = `https://api.telegram.org/bot<TOKENIN>/getFile?file_id=${item.file_id}`;
-                
-                let div = document.createElement('div');
-                div.innerHTML = `
-                    <div class="afis-kart">
-                        <img src="https://api.telegram.org/file/bot<TOKENIN>/${item.file_id}" alt="Afiş">
-                        <p>ID: ${item.afis_id} | Tarih: ${item.tarih}</p>
-                        <button onclick="kameraAc('${item.file_id}')">📷 Kamera</button>
-                        <button onclick="galeriAc('${item.file_id}')">🖼 Galeri</button>
-                    </div>
-                `;
-                container.appendChild(div);
-            }
-        });
-    </script>
+    <title>Ürün Arama Asistanı</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
+        .container { background: #fff; padding: 20px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button, label { padding: 15px; border-radius: 12px; border: 1px solid #ddd; cursor: pointer; background: #fff; }
+        #preview-container { margin-top: 15px; display: none; }
+        video, img { width: 100%; border-radius: 10px; }
+        #scan-btn, #capture-btn { display: none; margin-top: 15px; padding: 15px; width: 100%; border: none; border-radius: 10px; color: #fff; background: #10b981; }
+        #capture-btn { background: #2563eb; }
+    </style>
 </head>
 <body>
-    <div id="afis-listesi"></div>
 
-    <script>
-        function kameraAc(fileId) {
-            alert("Kamera açılıyor... Bağlı Afiş: " + fileId);
-            // Burada kamera tetikleme kodların çalışacak
-        }
-        function galeriAc(fileId) {
-            alert("Galeri açılıyor... Bağlı Afiş: " + fileId);
-            // Burada galeri seçimi kodların çalışacak
-        }
-    </script>
+<div class="container">
+    <h2>Ürün Arama Asistanı</h2>
+    <div class="btn-group">
+        <button id="camera-btn">Fotoğraf Çek<br>📸</button>
+        <label for="file-input">Galeriden Seç<br>🖼️</label>
+        <input type="file" id="file-input" accept="image/*">
+    </div>
+    <div id="preview-container">
+        <video id="video" autoplay playsinline></video>
+        <img id="img-preview" style="display:none;">
+    </div>
+    <button id="capture-btn">📸 Çek</button>
+    <button id="scan-btn">🔍 TARA VE BUL</button>
+    <div id="status"></div>
+    <div id="result-container" style="display:none;">
+        <div id="telegram-result"></div>
+    </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
+
+    const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
+    const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
+    let selectedFile = null;
+
+    document.getElementById('camera-btn').onclick = async () => {
+        document.getElementById('preview-container').style.display = 'block';
+        video.style.display = 'block'; imgPrev.style.display = 'none';
+        captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.srcObject = stream;
+    };
+
+    captureBtn.onclick = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        canvas.toBlob(blob => {
+            selectedFile = new File([blob], "c.jpg");
+            imgPrev.src = URL.createObjectURL(blob);
+            imgPrev.style.display = 'block'; video.style.display = 'none';
+            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
+            video.srcObject.getTracks().forEach(t => t.stop());
+        }, 'image/jpeg');
+    };
+
+    scanBtn.onclick = async () => {
+        document.getElementById('status').innerHTML = "Analiz ediliyor...";
+        const fd = new FormData(); fd.append("file", selectedFile);
+        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+        const data = await res.json();
+        
+        // Eşleşme sonucunu göster (Telegram resmini config.js'den gelen window.TOKEN ile çeker)
+        document.getElementById('result-container').style.display = 'block';
+        document.getElementById('telegram-result').innerHTML = `
+           <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id || 'default'}" style="width:100%">
+           <a href="https://t.me/c/2458145229/${data.afis_id}" target="_blank" style="display:block; padding:10px; background:#2563eb; color:#fff; text-decoration:none; margin-top:10px;">Afişi Aç</a>
+        `;
+    };
+</script>
 </body>
 </html>
