@@ -1,157 +1,148 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ürün Arama</title>
-
-<style>
-body { font-family: sans-serif; background:#f0f2f5; margin:0; padding:10px; display:flex; justify-content:center; }
-.container { background:#fff; padding:15px; border-radius:15px; width:100%; max-width:420px; text-align:center; }
-button { padding:12px; margin-top:10px; width:100%; border:none; border-radius:10px; background:#4f46e5; color:#fff; font-weight:bold; }
-#result { margin-top:15px; }
-video, img { width:100%; margin-top:10px; border-radius:10px; }
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Arama</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .container { background: #fff; padding: 15px; border-radius: 15px; width: 100%; max-width: 420px; text-align: center; }
+        button { padding: 12px; margin-top: 10px; width: 100%; border: none; border-radius: 10px; background: #4f46e5; color: #fff; font-weight: bold; }
+        #result { margin-top: 15px; }
+        video, img { width: 100%; margin-top: 10px; border-radius: 10px; }
+    </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
+        <h2>🔍 Ürün Asistanı</h2>
+        <button id="camera-btn">Kamera Aç</button>
+        <input type="file" id="file-input" accept="image/*">
+        <div id="preview"></div>
+        <button id="scan-btn">TARA</button>
+        <div id="status"></div>
+        <div id="result"></div>
+    </div>
 
-<h2>🔍 Ürün Asistanı</h2>
+    <script>
+        const HF_API = "https://deimnegric-bimkod.hf.space/vektor-uret";
+        const DB_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
-<button id="camera-btn">Kamera Aç</button>
-<input type="file" id="file-input" accept="image/*">
+        let selectedFile = null;
+        const cameraBtn = document.getElementById("camera-btn");
+        const fileInput = document.getElementById("file-input");
+        const preview = document.getElementById("preview");
+        const statusDiv = document.getElementById("status");
+        const resultDiv = document.getElementById("result");
+        const scanBtn = document.getElementById("scan-btn");
 
-<div id="preview"></div>
-
-<button id="scan-btn">TARA</button>
-
-<div id="status"></div>
-<div id="result"></div>
-
-</div>
-
-<script>
-
-const HF_API = "https://deimnegric-bimkod.hf.space/vektor-uret";
-const DB_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
-
-let selectedFile = null;
-
-const cameraBtn = document.getElementById("camera-btn");
-const fileInput = document.getElementById("file-input");
-const preview = document.getElementById("preview");
-const statusDiv = document.getElementById("status");
-const resultDiv = document.getElementById("result");
-const scanBtn = document.getElementById("scan-btn");
-
-/* cosine similarity */
-function cosine(a,b){
-    let dot=0,na=0,nb=0;
-    for(let i=0;i<a.length;i++){
-        dot+=a[i]*b[i];
-        na+=a[i]*a[i];
-        nb+=b[i]*b[i];
-    }
-    return dot/(Math.sqrt(na)*Math.sqrt(nb));
-}
-
-/* file select */
-fileInput.onchange = (e)=>{
-    selectedFile = e.target.files[0];
-    preview.innerHTML = `<img src="${URL.createObjectURL(selectedFile)}">`;
-};
-
-/* CAMERA (FIXED BACK CAMERA) */
-cameraBtn.onclick = async ()=>{
-    const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-            facingMode: { ideal: "environment" }
-        }
-    });
-
-    const video = document.createElement("video");
-    video.autoplay = true;
-    video.srcObject = stream;
-
-    preview.innerHTML = "";
-    preview.appendChild(video);
-
-    const capBtn = document.createElement("button");
-    capBtn.innerText = "Foto Çek";
-    preview.appendChild(capBtn);
-
-    capBtn.onclick = ()=>{
-        const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        canvas.getContext("2d").drawImage(video,0,0);
-
-        canvas.toBlob(blob=>{
-            selectedFile = new File([blob],"cap.jpg",{type:"image/jpeg"});
-            preview.innerHTML = `<img src="${URL.createObjectURL(blob)}">`;
-            stream.getTracks().forEach(t=>t.stop());
-        },"image/jpeg");
-    };
-};
-
-/* MAIN SEARCH */
-scanBtn.onclick = async ()=>{
-
-    if(!selectedFile){
-        statusDiv.innerHTML = "❌ Foto yok";
-        return;
-    }
-
-    statusDiv.innerHTML = "Analiz ediliyor...";
-
-    try{
-        const fd = new FormData();
-        fd.append("file", selectedFile);
-
-        const r = await fetch(HF_API,{method:"POST",body:fd});
-        const qVec = (await r.json()).vector;
-
-        const db = await (await fetch(DB_URL)).json();
-
-        let best=null;
-        let score=-1;
-
-        for(let id in db){
-            const item = db[id];
-            if(!item.vector) continue;
-
-            const s = cosine(qVec,item.vector);
-
-            if(s>score){
-                score=s;
-                best=item;
+        // Cosine similarity fonksiyonu
+        function cosine(a, b) {
+            let dot = 0, na = 0, nb = 0;
+            for (let i = 0; i < a.length; i++) {
+                dot += a[i] * b[i];
+                na += a[i] * a[i];
+                nb += b[i] * b[i];
             }
+            return dot / (Math.sqrt(na) * Math.sqrt(nb));
         }
 
-        if(score < 0.45){
-            statusDiv.innerHTML = "❌ Eşleşme yok";
-            return;
-        }
+        // Dosya seçimi
+        fileInput.onchange = (e) => {
+            selectedFile = e.target.files[0];
+            preview.innerHTML = `<img src="${URL.createObjectURL(selectedFile)}">`;
+        };
 
-        statusDiv.innerHTML = "✅ Bulundu skor: " + score.toFixed(3);
+        // Kamera açma (arka kamera)
+        cameraBtn.onclick = async () => {
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: { ideal: "environment" } }
+            });
 
-        resultDiv.innerHTML = `
-            <div style="margin-top:10px;padding:10px;border:1px solid #ddd;border-radius:10px;">
-                <b>ID:</b> ${best.id}<br>
-                <b>Skor:</b> ${score.toFixed(3)}<br>
-                <b>Text:</b> ${best.text || ""}
-            </div>
-        `;
+            const video = document.createElement("video");
+            video.autoplay = true;
+            video.srcObject = stream;
 
-    }catch(e){
-        statusDiv.innerHTML = "❌ Hata: " + e.message;
-    }
-};
+            preview.innerHTML = "";
+            preview.appendChild(video);
 
-</script>
+            const capBtn = document.createElement("button");
+            capBtn.innerText = "Foto Çek";
+            preview.appendChild(capBtn);
 
-</body>
-</html>
+            capBtn.onclick = () => {
+                const canvas = document.createElement("canvas");
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+
+                canvas.getContext("2d").drawImage(video, 0, 0);
+
+                canvas.toBlob(blob => {
+                    selectedFile = new File([blob], "cap.jpg", { type: "image/jpeg" });
+                    preview.innerHTML = `<img src="${URL.createObjectURL(blob)}">`;
+                    stream.getTracks().forEach(t => t.stop());
+                }, "image/jpeg");
+            };
+        };
+
+        // Ana tarama (search) işlemi
+        scanBtn.onclick = async () => {
+            if (!selectedFile) {
+                statusDiv.innerHTML = "❌ Foto yok";
+                return;
+            }
+
+            statusDiv.innerHTML = "Analiz ediliyor...";
+
+            try {
+                // 1. CLIP vektör üretimi
+                const fd = new FormData();
+                fd.append("file", selectedFile);
+
+                const r = await fetch(HF_API, { method: "POST", body: fd });
+                const qVec = (await r.json()).vector;
+
+                // 2. Firebase'den veritabanı çek
+                const db = await (await fetch(DB_URL)).json();
+
+                let best = null;
+                let score = -1;
+
+                for (let id in db) {
+                    const item = db[id];
+                    if (!item.vector) continue;
+
+                    const s = cosine(qVec, item.vector);
+
+                    if (s > score) {
+                        score = s;
+                        best = item;
+                    }
+                }
+
+                if (score < 0.45) {
+                    statusDiv.innerHTML = "❌ Eşleşme yok";
+                    return;
+                }
+
+                statusDiv.innerHTML = "✅ Bulundu skor: " + score.toFixed(3);
+
+                // Telegram'dan file_id ile görseli çek
+                const token = "BOT_TOKEN"; // Bot token'ını buraya ekle
+                const fileId = best.file_id; // Firebase'de file_id saklıyoruz
+                const fileResponse = await fetch(`https://api.telegram.org/bot${token}/getFile?file_id=${fileId}`);
+                const fileData = await fileResponse.json();
+
+                if (!fileData.ok) {
+                    throw new Error("Telegram'dan dosya yolu alınamadı: " + fileData.description);
+                }
+
+                const filePath = fileData.result.file_path;
+                const imageUrl = `https://api.telegram.org/file/bot${token}/${filePath}`;
+
+                resultDiv.innerHTML = `
+                    <div style="margin-top:10px;padding:10px;border:1px solid #ddd;border-radius:10px;">
+                        <img src="${imageUrl}" style="width:100%;border-radius:10px;">
+                        <div style="margin-top:8px;font-weight:bold;">
+                            ID: ${best.id}<br>
+                            Skor: ${score.toFixed(3
