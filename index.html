@@ -39,7 +39,6 @@ const DB_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.
 
 let selectedFile = null;
 
-/* ---------------- CAMERA ---------------- */
 const cameraBtn = document.getElementById("camera-btn");
 const fileInput = document.getElementById("file-input");
 const preview = document.getElementById("preview");
@@ -64,12 +63,18 @@ fileInput.onchange = (e)=>{
     preview.innerHTML = `<img src="${URL.createObjectURL(selectedFile)}">`;
 };
 
-/* CAMERA SIMPLE */
+/* CAMERA (FIXED BACK CAMERA) */
 cameraBtn.onclick = async ()=>{
-    const stream = await navigator.mediaDevices.getUserMedia({video:true});
+    const stream = await navigator.mediaDevices.getUserMedia({
+        video: {
+            facingMode: { ideal: "environment" }
+        }
+    });
+
     const video = document.createElement("video");
     video.autoplay = true;
     video.srcObject = stream;
+
     preview.innerHTML = "";
     preview.appendChild(video);
 
@@ -81,6 +86,7 @@ cameraBtn.onclick = async ()=>{
         const canvas = document.createElement("canvas");
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
+
         canvas.getContext("2d").drawImage(video,0,0);
 
         canvas.toBlob(blob=>{
@@ -102,14 +108,12 @@ scanBtn.onclick = async ()=>{
     statusDiv.innerHTML = "Analiz ediliyor...";
 
     try{
-        /* 1. VECTOR */
         const fd = new FormData();
         fd.append("file", selectedFile);
 
         const r = await fetch(HF_API,{method:"POST",body:fd});
         const qVec = (await r.json()).vector;
 
-        /* 2. DB */
         const db = await (await fetch(DB_URL)).json();
 
         let best=null;
