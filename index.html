@@ -1,136 +1,56 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-<meta charset="UTF-8">
-<title>AI Ürün Bulucu</title>
-<style>
-body { font-family:sans-serif; text-align:center; padding:10px; }
-button { padding:12px; width:100%; margin:5px 0; }
-img { width:100%; margin-top:10px; border-radius:10px; }
-video { width:100%; }
-</style>
-</head>
+    <meta charset="UTF-8">
+    <title>BimKod Afiş Sistemi</title>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
 
-<body>
+        const firebaseConfig = {
+            databaseURL: "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-<h2>🔍 Ürün Bulucu</h2>
+        // Veriyi çek ve butonlara bağla
+        const verilerRef = ref(db, 'vektorler');
+        onValue(verilerRef, (snapshot) => {
+            const data = snapshot.val();
+            const container = document.getElementById('afis-listesi');
+            container.innerHTML = ""; // Önce temizle
 
-<button id="cam">Kamera Aç</button>
-<input type="file" id="file">
-
-<div id="view"></div>
-
-<button id="scan">TARA</button>
-
-<div id="status"></div>
-<div id="result"></div>
-
-<script>
-
-const HF_API = "https://deimnegric-bimkod.hf.space/vektor-uret";
-const DB_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
-
-let fileData = null;
-
-function cosine(a,b){
-    let dot=0,na=0,nb=0;
-    for(let i=0;i<a.length;i++){
-        dot+=a[i]*b[i];
-        na+=a[i]*a[i];
-        nb+=b[i]*b[i];
-    }
-    return dot/(Math.sqrt(na)*Math.sqrt(nb));
-}
-
-/* FILE */
-document.getElementById("file").onchange=(e)=>{
-    fileData = e.target.files[0];
-    document.getElementById("view").innerHTML =
-        `<img src="${URL.createObjectURL(fileData)}">`;
-};
-
-/* CAMERA */
-document.getElementById("cam").onclick=async()=>{
-    const stream = await navigator.mediaDevices.getUserMedia({
-        video:{facingMode:"environment"}
-    });
-
-    const video = document.createElement("video");
-    video.autoplay=true;
-    video.srcObject=stream;
-
-    const view = document.getElementById("view");
-    view.innerHTML="";
-    view.appendChild(video);
-
-    const btn = document.createElement("button");
-    btn.innerText="ÇEK";
-    view.appendChild(btn);
-
-    btn.onclick=()=>{
-        const c=document.createElement("canvas");
-        c.width=video.videoWidth;
-        c.height=video.videoHeight;
-        c.getContext("2d").drawImage(video,0,0);
-
-        c.toBlob(b=>{
-            fileData=new File([b],"x.jpg",{type:"image/jpeg"});
-            view.innerHTML=`<img src="${URL.createObjectURL(b)}">`;
-            stream.getTracks().forEach(t=>t.stop());
+            for (let id in data) {
+                let item = data[id];
+                // Telegram fotoğraf gösterme URL'si (Bot API formatı)
+                let fotoUrl = `https://api.telegram.org/bot<TOKENIN>/getFile?file_id=${item.file_id}`;
+                
+                let div = document.createElement('div');
+                div.innerHTML = `
+                    <div class="afis-kart">
+                        <img src="https://api.telegram.org/file/bot<TOKENIN>/${item.file_id}" alt="Afiş">
+                        <p>ID: ${item.afis_id} | Tarih: ${item.tarih}</p>
+                        <button onclick="kameraAc('${item.file_id}')">📷 Kamera</button>
+                        <button onclick="galeriAc('${item.file_id}')">🖼 Galeri</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            }
         });
-    };
-};
+    </script>
+</head>
+<body>
+    <div id="afis-listesi"></div>
 
-/* SCAN */
-document.getElementById("scan").onclick=async()=>{
-
-    if(!fileData){
-        alert("foto yok");
-        return;
-    }
-
-    document.getElementById("status").innerText="Analiz...";
-
-    // vector
-    const fd=new FormData();
-    fd.append("file",fileData);
-
-    const r=await fetch(HF_API,{method:"POST",body:fd});
-    const q=(await r.json()).vectors[0];
-
-    // db
-    const db=await (await fetch(DB_URL)).json();
-
-    let best=null;
-    let score=-1;
-
-    for(let id in db){
-        const item=db[id];
-        if(!item.vector) continue;
-
-        const s=cosine(q,item.vector);
-
-        if(s>score){
-            score=s;
-            best=item;
+    <script>
+        function kameraAc(fileId) {
+            alert("Kamera açılıyor... Bağlı Afiş: " + fileId);
+            // Burada kamera tetikleme kodların çalışacak
         }
-    }
-
-    if(score<0.45){
-        document.getElementById("status").innerText="bulunamadı";
-        return;
-    }
-
-    document.getElementById("status").innerText="OK "+score.toFixed(3);
-
-    // 🔥 TELEGRAM GÖRSEL
-    document.getElementById("result").innerHTML =
-        `<img src="https://t.me/kisakod/${best.id}">`;
-
-};
-
-</script>
-
+        function galeriAc(fileId) {
+            alert("Galeri açılıyor... Bağlı Afiş: " + fileId);
+            // Burada galeri seçimi kodların çalışacak
+        }
+    </script>
 </body>
 </html>
