@@ -1,148 +1,70 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ürün Arama Asistanı</title>
+    <title>Pro Ürün Arama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', sans-serif; }
-        body { background-color: #f7f9fc; display: flex; justify-content: center; padding: 16px; min-height: 100vh; }
-        .app-container { background: #ffffff; width: 100%; max-width: 440px; border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px; }
-        h2 { font-size: 20px; text-align: center; margin-bottom: 20px; }
-        
-        .action-group { display: flex; gap: 10px; margin-bottom: 16px; }
-        .btn-action { flex: 1; background: #edf2f7; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; font-size: 13px; cursor: pointer; text-align: center; }
-        #file-input { display: none; }
-
-        #preview-container { width: 100%; aspect-ratio: 4/3; background: #000; border-radius: 16px; margin-bottom: 16px; overflow: hidden; display: none; }
-        video, #img-preview { width: 100%; height: 100%; object-fit: cover; }
-
-        .btn-trigger { width: 100%; padding: 14px; border-radius: 12px; font-weight: 600; border: none; cursor: pointer; display: none; margin-bottom: 10px; color: #fff; }
-        #capture-btn { background: #3182ce; }
-        #scan-btn { background: #38a169; }
-
-        #status { font-size: 14px; text-align: center; color: #4a5568; margin-top: 10px; padding: 10px; }
-        #result-container { display: none; margin-top: 20px; border-top: 2px solid #edf2f7; padding-top: 15px; }
-        .clickable-poster { width: 100%; border-radius: 12px; }
-        .btn-redirect { display: block; padding: 12px; background: #2b6cb0; color: white; text-align: center; text-decoration: none; border-radius: 10px; margin-top: 10px; }
+        /* Modern tasarım */
+        body { background: #f0f2f5; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { background: #fff; width: 100%; max-width: 400px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        #image-to-crop { max-width: 100%; display: none; }
+        .btn { width: 100%; padding: 15px; margin-top: 10px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; }
+        #scan-btn { background: #28a745; display: none; }
+        #camera-btn { background: #007bff; }
     </style>
 </head>
 <body>
 
 <div class="app-container">
-    <h2>Ürün Arama Asistanı</h2>
-    <div class="action-group">
-        <button id="camera-btn" class="btn-action">📸 Fotoğraf Çek</button>
-        <label for="file-input" class="btn-action">🖼️ Galeriden Seç</label>
-        <input type="file" id="file-input" accept="image/*">
+    <h2>Pro Arama Asistanı</h2>
+    <button id="camera-btn" class="btn">📸 Fotoğraf Çek</button>
+    <input type="file" id="file-input" accept="image/*" style="display:none">
+    
+    <div id="preview-area" style="margin-top:20px;">
+        <img id="image-to-crop" alt="Ürün">
     </div>
 
-    <div id="preview-container">
-        <video id="video" autoplay playsinline></video>
-        <img id="img-preview">
-    </div>
-
-    <button id="capture-btn" class="btn-trigger">📸 Görüntüyü Yakala</button>
-    <button id="scan-btn" class="btn-trigger">🔍 TARA VE ÜRÜNÜ BUL</button>
-
-    <div id="status">Hazır. Bir görsel yükleyin.</div>
-    <div id="result-container"></div>
+    <button id="scan-btn" class="btn">🔍 Kırp ve Tara</button>
+    <div id="status"></div>
 </div>
 
 <script>
-    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
-    const FIREBASE_VECTORS = "https://bimkodyeni-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
-    const FIREBASE_IMAGES_BASE = "https://bimkodyeni-default-rtdb.europe-west1.firebasedatabase.app/resimler";
-    
-    // 🔥 KRİTİK AYAR: Bu değeri artırırsan sistem "daha seçici" olur.
-    // 0.72 altındaki benzerlikleri reddedecek. Yanlış eşleşmeleri kesmek için bu şart.
-    const TARGET_THRESHOLD = 0.72; 
+    const image = document.getElementById('image-to-crop');
+    let cropper;
 
-    const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
-    const previewContainer = document.getElementById('preview-container');
-    const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
-    const statusDiv = document.getElementById('status'), resultDiv = document.getElementById('result-container');
-    let selectedFile = null;
-
-    // Kamera ve Dosya Seçme işlemleri aynı
-    document.getElementById('camera-btn').onclick = async () => {
-        try {
-            previewContainer.style.display = 'block'; video.style.display = 'block'; imgPrev.style.display = 'none';
-            captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            video.srcObject = stream;
-        } catch (err) { statusDiv.innerText = "Kamera izni gerekli."; }
-    };
-
+    document.getElementById('camera-btn').onclick = () => document.getElementById('file-input').click();
     document.getElementById('file-input').onchange = (e) => {
-        if(e.target.files[0]) {
-            selectedFile = e.target.files[0];
-            imgPrev.src = URL.createObjectURL(selectedFile);
-            previewContainer.style.display = 'block'; imgPrev.style.display = 'block'; video.style.display = 'none';
-            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-        }
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            image.src = e.target.result;
+            image.style.display = 'block';
+            if (cropper) cropper.destroy();
+            cropper = new Cropper(image, { aspectRatio: NaN, viewMode: 1 });
+            document.getElementById('scan-btn').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
     };
 
-    captureBtn.onclick = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-        canvas.getContext('2d').drawImage(video, 0, 0);
-        canvas.toBlob(blob => {
-            selectedFile = new File([blob], "c.jpg", { type: "image/jpeg" });
-            imgPrev.src = URL.createObjectURL(blob);
-            imgPrev.style.display = 'block'; video.style.display = 'none';
-            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            if (video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
-        }, 'image/jpeg');
-    };
-
-    function cosineSimilarity(vecA, vecB) {
-        let dot = 0, nA = 0, nB = 0;
-        for (let i = 0; i < vecA.length; i++) {
-            dot += vecA[i] * vecB[i];
-            nA += vecA[i] * vecA[i];
-            nB += vecB[i] * vecB[i];
-        }
-        return dot / (Math.sqrt(nA) * Math.sqrt(nB));
-    }
-
-    scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "⏳ Analiz ediliyor...";
-        try {
-            const fd = new FormData(); fd.append("file", selectedFile);
-            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+    document.getElementById('scan-btn').onclick = () => {
+        cropper.getCroppedCanvas().toBlob(async (blob) => {
+            document.getElementById('status').innerText = "🚀 Analiz ediliyor...";
+            const formData = new FormData();
+            formData.append('file', blob);
+            
+            // Hugging Face Backend'e gönder
+            const res = await fetch("https://deimnegric-bimkod.hf.space/vektor-uret", {
+                method: "POST",
+                body: formData
+            });
             const data = await res.json();
-            const queryVec = data.vector;
-
-            const db = await (await fetch(FIREBASE_VECTORS)).json();
-            let best = null, maxScore = -1;
-
-            // En iyi eşleşmeyi bul
-            for (let key in db) {
-                let score = cosineSimilarity(queryVec, db[key].vektor);
-                if (score > maxScore) { maxScore = score; best = db[key]; }
-            }
-
-            // 🔥 MANTIK GÜNCELLEMESİ: threshold'un altındaysa reddet
-            if (best && maxScore >= TARGET_THRESHOLD) {
-                const imgRes = await (await fetch(`${FIREBASE_IMAGES_BASE}/${best.afis_id}.json`)).json();
-                statusDiv.innerHTML = `✅ Eşleşti! (Skor: %${(maxScore*100).toFixed(1)})`;
-                resultDiv.style.display = 'block';
-                resultDiv.innerHTML = `
-                    <img src="data:image/jpeg;base64,${imgRes.base64}" class="clickable-poster">
-                    <a href="https://t.me/c/2458145229/${best.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Gör</a>
-                `;
-            } else {
-                statusDiv.innerHTML = `⚠️ <b>Ürün bulunamadı.</b><br>En benzer sonuç %${(maxScore*100).toFixed(1)} benzerlikte.<br>Lütfen ürünü daha net çekin.`;
-                resultDiv.style.display = 'none';
-            }
-        } catch (e) { statusDiv.innerText = "Hata: " + e.message; }
+            document.getElementById('status').innerText = "✅ Vektör üretildi: " + data.vector.slice(0,5) + "...";
+            // Burada önceki arama mantığını (Firebase eşleşmesi) çağıracaksın
+        });
     };
 </script>
 </body>
 </html>
-
-
-
-
