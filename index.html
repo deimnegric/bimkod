@@ -27,10 +27,19 @@
         #status { font-size: 13px; text-align: center; color: #718096; margin: 12px 0; font-weight: 500; line-height: 1.4; }
         
         #result-container { display: none; margin-top: 16px; border-top: 2px dashed #edf2f7; padding-top: 16px; }
-        .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 12px; overflow: hidden; }
-        .result-card img { width: 100%; border-radius: 12px; display: block; background: #e2e8f0; }
+        .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 12px; text-align: center; }
+        
+        /* Afişin tıklandığını belli eden stil */
+        .clickable-poster { width: 100%; border-radius: 12px; display: block; background: #e2e8f0; cursor: zoom-in; transition: transform 0.2s; }
+        .clickable-poster:active { transform: scale(0.98); }
+        .zoom-tip { font-size: 11px; color: #718096; margin-top: 6px; display: block; font-weight: 500; }
+
         .btn-redirect { display: block; width: 100%; text-align: center; padding: 14px; background: #2b6cb0; color: #fff; text-decoration: none; border-radius: 12px; margin-top: 12px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
-        .btn-redirect:active { background: #2c5282; }
+
+        /* TAM EKRAN DIŞ MODAL (BÜYÜTME EKRANI) */
+        .fullscreen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; touch-action: pinch-zoom; }
+        .fullscreen-modal img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .close-modal { position: absolute; top: 20px; right: 20px; background: #fff; color: #000; border: none; padding: 10px 16px; border-radius: 50%; font-weight: bold; font-size: 16px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -61,6 +70,11 @@
     </div>
 </div>
 
+<div id="imageModal" class="fullscreen-modal" onclick="closeZoom()">
+    <button class="close-modal">X</button>
+    <img id="modalImg" src="">
+</div>
+
 <script>
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_VECTORS = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
@@ -72,6 +86,7 @@
     const statusDiv = document.getElementById('status');
     let selectedFile = null;
 
+    // Kamera ve Galeri Tetikleyicileri
     document.getElementById('camera-btn').onclick = async () => {
         try {
             previewContainer.style.display = 'block';
@@ -122,6 +137,15 @@
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
+    // Yakınlaştırma Fonksiyonları
+    function openZoom(src) {
+        document.getElementById('imageModal').style.display = 'flex';
+        document.getElementById('modalImg').src = src;
+    }
+    function closeZoom() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+
     scanBtn.onclick = async () => {
         statusDiv.innerHTML = "⏳ Yapay zeka görüntüyü işliyor...";
         document.getElementById('result-container').style.display = 'none';
@@ -159,26 +183,29 @@
                 }
             }
 
-            if (bestMatch && highestScore > 0.75) {
+            if (bestMatch && highestScore > 0.62) {
                 const percentage = (highestScore * 100).toFixed(1);
                 statusDiv.innerHTML = `⏳ Ürün bulundu (%${percentage}), görsel yükleniyor...`;
                 
-                // Eşleşen resmi Firebase'den dinamik olarak çekiyoruz
                 const imgRes = await fetch(`${FIREBASE_IMAGES_BASE}/${bestMatch.afis_id}.json`);
                 const imgData = await imgRes.json();
                 
                 if(imgData && imgData.base64) {
                     statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
+                    const base64Src = `data:image/jpeg;base64,${imgData.base64}`;
+                    
                     document.getElementById('telegram-result').innerHTML = `
-                       <img src="data:image/jpeg;base64,${imgData.base64}" alt="Eşleşen Afiş">
-                       <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Göster</a>
+                       <img src="${base64Src}" class="clickable-poster" onclick="openZoom('${base64Src}')" alt="Eşleşen Afiş">
+                       <span class="zoom-tip">🔍 Tam ekran görmek ve büyütmek için resme tıkla</span>
+                       <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Telegram Mesajı</a>
                     `;
                     document.getElementById('result-container').style.display = 'block';
                 } else {
                     statusDiv.innerHTML = "⚠️ Ürün eşleşti fakat görseli Firebase'den alınamadı.";
                 }
             } else {
-                statusDiv.innerHTML = "❌ Benzer bir ürün afişi bulunamadı.";
+                const yakalananSkor = (highestScore * 100).toFixed(1);
+                statusDiv.innerHTML = `❌ Benzer bir ürün afişi bulunamadı.<br><small>(En yakın tahmin oranı: %${yakalananSkor} - Sınır: %62)</small>`;
             }
 
         } catch (error) {
@@ -188,4 +215,5 @@
 </script>
 </body>
 </html>
+
 
