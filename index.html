@@ -5,44 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ürün Arama Asistanı</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: #f7f9fc; color: #2d3748; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 16px; }
-        .app-container { background: #ffffff; width: 100%; max-width: 440px; border-radius: 24px; box-shadow: 0 8px 24px rgba(149, 157, 165, 0.15); padding: 24px; margin-top: 8px; }
-        h2 { font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 20px; color: #1a202c; letter-spacing: -0.5px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', sans-serif; }
+        body { background-color: #f7f9fc; display: flex; justify-content: center; padding: 16px; min-height: 100vh; }
+        .app-container { background: #ffffff; width: 100%; max-width: 440px; border-radius: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 20px; }
+        h2 { font-size: 20px; text-align: center; margin-bottom: 20px; }
         
-        .action-group { display: flex; gap: 12px; margin-bottom: 16px; }
-        .btn-action { flex: 1; background: #edf2f7; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px 8px; font-size: 14px; font-weight: 600; color: #4a5568; cursor: pointer; text-align: center; transition: all 0.2s; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .btn-action:active { background: #e2e8f0; transform: scale(0.98); }
-        .btn-action span { font-size: 22px; }
+        .action-group { display: flex; gap: 10px; margin-bottom: 16px; }
+        .btn-action { flex: 1; background: #edf2f7; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; font-size: 13px; cursor: pointer; text-align: center; }
         #file-input { display: none; }
 
-        #preview-container { width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 16px; background: #000; display: none; position: relative; aspect-ratio: 4/3; }
-        video, #img-preview { width: 100%; height: 100%; object-fit: cover; display: block; }
+        #preview-container { width: 100%; aspect-ratio: 4/3; background: #000; border-radius: 16px; margin-bottom: 16px; overflow: hidden; display: none; }
+        video, #img-preview { width: 100%; height: 100%; object-fit: cover; }
 
-        .btn-trigger { width: 100%; padding: 16px; border-radius: 16px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; display: none; transition: all 0.2s; text-align: center; }
-        #capture-btn { background: #3182ce; color: #fff; }
-        #scan-btn { background: #38a169; color: #fff; }
+        .btn-trigger { width: 100%; padding: 14px; border-radius: 12px; font-weight: 600; border: none; cursor: pointer; display: none; margin-bottom: 10px; color: #fff; }
+        #capture-btn { background: #3182ce; }
+        #scan-btn { background: #38a169; }
 
-        #status { font-size: 13px; text-align: center; color: #718096; margin: 12px 0; font-weight: 500; }
-        #result-container { display: none; margin-top: 16px; border-top: 2px dashed #edf2f7; padding-top: 16px; }
-        .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 12px; text-align: center; }
-        
-        .clickable-poster { width: 100%; border-radius: 12px; display: block; background: #e2e8f0; cursor: zoom-in; }
-        .zoom-tip { font-size: 12px; color: #3182ce; margin-top: 8px; display: block; font-weight: 600; }
-        .btn-redirect { display: block; width: 100%; text-align: center; padding: 14px; background: #2b6cb0; color: #fff; text-decoration: none; border-radius: 12px; margin-top: 12px; font-size: 14px; font-weight: 600; }
-
-        /* GELİŞMİŞ TAM EKRAN ZOOM MODAL */
-        .fullscreen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; flex-direction: column; }
-        .modal-header { display: flex; justify-content: space-between; padding: 16px; background: rgba(0,0,0,0.5); z-index: 10001; }
-        .close-modal { background: #e53e3e; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        
-        /* İçeriğin taşması ve kaydırılabilmesi için alan */
-        .modal-body { flex: 1; overflow: auto; display: flex; justify-content: center; align-items: center; pading: 20px; }
-        #modalImg { max-width: 95%; max-height: 95%; transition: transform 0.2s; transform-origin: center center; }
-        
-        /* Zoom Kontrol Butonları */
-        .zoom-controls { display: flex; gap: 10px; }
-        .zoom-btn { background: #fff; color: #000; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
+        #status { font-size: 14px; text-align: center; color: #4a5568; margin-top: 10px; padding: 10px; }
+        #result-container { display: none; margin-top: 20px; border-top: 2px solid #edf2f7; padding-top: 15px; }
+        .clickable-poster { width: 100%; border-radius: 12px; }
+        .btn-redirect { display: block; padding: 12px; background: #2b6cb0; color: white; text-align: center; text-decoration: none; border-radius: 10px; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -50,8 +32,8 @@
 <div class="app-container">
     <h2>Ürün Arama Asistanı</h2>
     <div class="action-group">
-        <button id="camera-btn" class="btn-action"><span>📸</span>Fotoğraf Çek</button>
-        <label for="file-input" class="btn-action"><span>🖼️</span>Galeriden Seç</label>
+        <button id="camera-btn" class="btn-action">📸 Fotoğraf Çek</button>
+        <label for="file-input" class="btn-action">🖼️ Galeriden Seç</label>
         <input type="file" id="file-input" accept="image/*">
     </div>
 
@@ -63,59 +45,41 @@
     <button id="capture-btn" class="btn-trigger">📸 Görüntüyü Yakala</button>
     <button id="scan-btn" class="btn-trigger">🔍 TARA VE ÜRÜNÜ BUL</button>
 
-    <div id="status">Hazır. Bir görsel yükleyin veya çekin.</div>
-
-    <div id="result-container">
-        <div class="result-card">
-            <div id="telegram-result"></div>
-        </div>
-    </div>
-</div>
-
-<div id="imageModal" class="fullscreen-modal">
-    <div class="modal-header">
-        <div class="zoom-controls">
-            <button class="zoom-btn" onclick="zoomIn(event)">🔍+ Büyüt</button>
-            <button class="zoom-btn" onclick="zoomOut(event)">🔍- Küçült</button>
-        </div>
-        <button class="close-modal" onclick="closeZoom()">❌ Kapat</button>
-    </div>
-    <div class="modal-body" onclick="closeZoomOutside(event)">
-        <img id="modalImg" src="" alt="Afiş">
-    </div>
+    <div id="status">Hazır. Bir görsel yükleyin.</div>
+    <div id="result-container"></div>
 </div>
 
 <script>
-        const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
-    
-    // 🚀 YENİ VERİTABANI ADRESLERİ
+    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
     const FIREBASE_VECTORS = "https://bimkodyeni-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
     const FIREBASE_IMAGES_BASE = "https://bimkodyeni-default-rtdb.europe-west1.firebasedatabase.app/resimler";
+    
+    // 🔥 KRİTİK AYAR: Bu değeri artırırsan sistem "daha seçici" olur.
+    // 0.72 altındaki benzerlikleri reddedecek. Yanlış eşleşmeleri kesmek için bu şart.
+    const TARGET_THRESHOLD = 0.72; 
 
     const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
     const previewContainer = document.getElementById('preview-container');
     const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
-    const statusDiv = document.getElementById('status');
+    const statusDiv = document.getElementById('status'), resultDiv = document.getElementById('result-container');
     let selectedFile = null;
-    let currentScale = 1;
 
-    // Kamera/Dosya tetikleyicileri
+    // Kamera ve Dosya Seçme işlemleri aynı
     document.getElementById('camera-btn').onclick = async () => {
         try {
             previewContainer.style.display = 'block'; video.style.display = 'block'; imgPrev.style.display = 'none';
             captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
             video.srcObject = stream;
-        } catch (err) { statusDiv.innerHTML = "❌ Kamera hatası: " + err.message; }
+        } catch (err) { statusDiv.innerText = "Kamera izni gerekli."; }
     };
 
     document.getElementById('file-input').onchange = (e) => {
-        if(e.target.files.length > 0) {
+        if(e.target.files[0]) {
             selectedFile = e.target.files[0];
             imgPrev.src = URL.createObjectURL(selectedFile);
             previewContainer.style.display = 'block'; imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            statusDiv.innerHTML = "Görsel seçildi.";
         }
     };
 
@@ -124,7 +88,7 @@
         canvas.width = video.videoWidth; canvas.height = video.videoHeight;
         canvas.getContext('2d').drawImage(video, 0, 0);
         canvas.toBlob(blob => {
-            selectedFile = new File([blob], "capture.jpg", { type: "image/jpeg" });
+            selectedFile = new File([blob], "c.jpg", { type: "image/jpeg" });
             imgPrev.src = URL.createObjectURL(blob);
             imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
@@ -133,114 +97,51 @@
     };
 
     function cosineSimilarity(vecA, vecB) {
-        let dotProduct = 0, normA = 0, normB = 0;
+        let dot = 0, nA = 0, nB = 0;
         for (let i = 0; i < vecA.length; i++) {
-            dotProduct += vecA[i] * vecB[i];
-            normA += vecA[i] * vecA[i];
-            normB += vecB[i] * vecB[i];
+            dot += vecA[i] * vecB[i];
+            nA += vecA[i] * vecA[i];
+            nB += vecB[i] * vecB[i];
         }
-        return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+        return dot / (Math.sqrt(nA) * Math.sqrt(nB));
     }
 
-    // ZOOM KONTROLLERİ
-    function openZoom(src) {
-        document.getElementById('imageModal').style.display = 'flex';
-        document.getElementById('modalImg').src = src;
-        currentScale = 1;
-        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
-    }
-    function closeZoom() {
-        document.getElementById('imageModal').style.display = 'none';
-    }
-    function closeZoomOutside(e) {
-        if(e.target.id === 'modalImg') return;
-        closeZoom();
-    }
-    function zoomIn(e) {
-        e.stopPropagation();
-        if(currentScale < 3.5) currentScale += 0.4;
-        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
-    }
-    function zoomOut(e) {
-        e.stopPropagation();
-        if(currentScale > 0.8) currentScale -= 0.4;
-        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
-    }
-
-        scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "⏳ Görüntü yapay zekaya gönderiliyor...";
+    scanBtn.onclick = async () => {
+        statusDiv.innerHTML = "⏳ Analiz ediliyor...";
         try {
             const fd = new FormData(); fd.append("file", selectedFile);
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-            const hfData = await res.json();
-            const queryVector = hfData.vector;
+            const data = await res.json();
+            const queryVec = data.vector;
 
-            if (!queryVector) throw new Error("Vektör alınamadı.");
+            const db = await (await fetch(FIREBASE_VECTORS)).json();
+            let best = null, maxScore = -1;
 
-            const dbRes = await fetch(FIREBASE_VECTORS);
-            const dbData = await dbRes.json();
-
-            // Zaman bonusu hesaplamak için veritabanındaki en büyük ID'yi (en güncel mesajı) bulalım
-            let maxId = 1;
-            for (let key in dbData) {
-                let currentId = parseInt(dbData[key].afis_id);
-                if (currentId > maxId) maxId = currentId;
+            // En iyi eşleşmeyi bul
+            for (let key in db) {
+                let score = cosineSimilarity(queryVec, db[key].vektor);
+                if (score > maxScore) { maxScore = score; best = db[key]; }
             }
 
-            let bestMatch = null; let highestScore = -1;
-            
-            for (let key in dbData) {
-                const item = dbData[key];
-                if (item.vektor) {
-                    // Temel CLIP Cosine benzerliği
-                    let baseScore = cosineSimilarity(queryVector, item.vektor);
-                    
-                    // ⏱️ ZAMAN DESTEK BONUSU (Time-Decay)
-                    // Afiş ne kadar yeniyse (maxId'ye ne kadar yakınsa) o kadar çok bonus alır (Maksimum +0.15)
-                    let itemId = parseInt(item.afis_id);
-                    let ageBonus = 0;
-                    if (maxId > 0) {
-                        ageBonus = (itemId / maxId) * 0.15; 
-                    }
-                    
-                    let finalScore = baseScore + ageBonus;
-
-                    if (finalScore > highestScore) { 
-                        highestScore = finalScore; 
-                        bestMatch = item; 
-                    }
-                }
-            }
-
-            // 🌟 AKILLI EŞİK: CLIP + Zaman Bonusu ile hedefimiz temiz bir %70 başarısı!
-            const TARGET_THRESHOLD = 0.63;
-
-            if (bestMatch && highestScore > TARGET_THRESHOLD) {
-                const percentage = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Skor: %${percentage})`;
-                
-                const imgRes = await fetch(`${FIREBASE_IMAGES_BASE}/${bestMatch.afis_id}.json`);
-                const imgData = await imgRes.json();
-                
-                if(imgData && imgData.base64) {
-                    const base64Src = `data:image/jpeg;base64,${imgData.base64}`;
-                    document.getElementById('telegram-result').innerHTML = `
-                       <img src="${base64Src}" class="clickable-poster" onclick="openZoom('${base64Src}')" alt="Afiş">
-                       <span class="zoom-tip">📱 KODLARI OKUMAK İÇİN RESME TIKLA, BÜYÜT VE KAYDIR!</span>
-                       <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Telegram Mesajı</a>
-                    `;
-                    document.getElementById('result-container').style.display = 'block';
-                }
+            // 🔥 MANTIK GÜNCELLEMESİ: threshold'un altındaysa reddet
+            if (best && maxScore >= TARGET_THRESHOLD) {
+                const imgRes = await (await fetch(`${FIREBASE_IMAGES_BASE}/${best.afis_id}.json`)).json();
+                statusDiv.innerHTML = `✅ Eşleşti! (Skor: %${(maxScore*100).toFixed(1)})`;
+                resultDiv.style.display = 'block';
+                resultDiv.innerHTML = `
+                    <img src="data:image/jpeg;base64,${imgRes.base64}" class="clickable-poster">
+                    <a href="https://t.me/c/2458145229/${best.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Gör</a>
+                `;
             } else {
-                const yakalananSkor = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `❌ Bu ürünün afişi henüz sistemde yok veya tarama sınırına takıldı.<br><small>(En yakın eşleşme denemesi: %${yakalananSkor} - Gerekli Sınır: %70)</small>`;
+                statusDiv.innerHTML = `⚠️ <b>Ürün bulunamadı.</b><br>En benzer sonuç %${(maxScore*100).toFixed(1)} benzerlikte.<br>Lütfen ürünü daha net çekin.`;
+                resultDiv.style.display = 'none';
             }
-        } catch (error) { statusDiv.innerHTML = "❌ Hata: " + error.message; }
+        } catch (e) { statusDiv.innerText = "Hata: " + e.message; }
     };
-
 </script>
 </body>
 </html>
+
 
 
 
