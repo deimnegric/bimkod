@@ -38,12 +38,14 @@
 <script src="config.js"></script>
 <script>
     const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    // .json uzantısı çok önemli, tüm datayı çekmek için
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
     const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
     const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
     let selectedFile = null;
 
+    // Kamera Açma
     document.getElementById('camera-btn').onclick = async () => {
         document.getElementById('preview-container').style.display = 'block';
         video.style.display = 'block'; imgPrev.style.display = 'none';
@@ -52,6 +54,18 @@
         video.srcObject = stream;
     };
 
+    // Dosya Seçme
+    document.getElementById('file-input').onchange = (e) => {
+        if(e.target.files.length > 0) {
+            selectedFile = e.target.files[0];
+            imgPrev.src = URL.createObjectURL(selectedFile);
+            document.getElementById('preview-container').style.display = 'block';
+            imgPrev.style.display = 'block'; video.style.display = 'none';
+            captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
+        }
+    };
+
+    // Fotoğraf Çekme
     captureBtn.onclick = () => {
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth; canvas.height = video.videoHeight;
@@ -65,19 +79,72 @@
         }, 'image/jpeg');
     };
 
+    // İki vektör arasındaki benzerliği hesaplayan fonksiyon
+    function cosineSimilarity(vecA, vecB) {
+        let dotProduct = 0, normA = 0, normB = 0;
+        for (let i = 0; i < vecA.length; i++) {
+            dotProduct += vecA[i] * vecB[i];
+            normA += vecA[i] * vecA[i];
+            normB += vecB[i] * vecB[i];
+        }
+        return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+    }
+
+    // TARA VE BUL BUTONU
     scanBtn.onclick = async () => {
-        document.getElementById('status').innerHTML = "Analiz ediliyor...";
-        const fd = new FormData(); fd.append("file", selectedFile);
-        const res = await fetch(HF_API_URL, { method: "POST", body: fd });
-        const data = await res.json();
+        document.getElementById('status').innerHTML = "⏳ Görüntü işleniyor (HF API)...";
+        document.getElementById('result-container').style.display = 'none';
         
-        // Eşleşme sonucunu göster (Telegram resmini config.js'den gelen window.TOKEN ile çeker)
-        document.getElementById('result-container').style.display = 'block';
-        document.getElementById('telegram-result').innerHTML = `
-           <img src="https://api.telegram.org/file/bot${window.TOKEN}/${data.file_id || 'default'}" style="width:100%">
-           <a href="https://t.me/c/2458145229/${data.afis_id}" target="_blank" style="display:block; padding:10px; background:#2563eb; color:#fff; text-decoration:none; margin-top:10px;">Afişi Aç</a>
-        `;
+        try {
+            // 1. Görüntüyü HF API'ye gönder ve Vektör al
+            const fd = new FormData(); 
+            fd.append("file", selectedFile);
+            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+            const hfData = await res.json();
+            const queryVector = hfData.vector; // app.py "vector" anahtarı ile dönüyor
+
+            if (!queryVector) throw new Error("Vektör çıkarılamadı!");
+
+            document.getElementById('status').innerHTML = "🔍 Veritabanında (Firebase) eşleşme aranıyor...";
+
+            // 2. Firebase'den kayıtlı tüm vektörleri çek
+            const dbRes = await fetch(FIREBASE_URL);
+            const dbData = await dbRes.json();
+
+            // 3. Tek tek karşılaştır ve en yüksek benzerliği bul
+            let bestMatch = null;
+            let highestScore = -1;
+
+            for (let key in dbData) {
+                const item = dbData[key];
+                if (item.vektor && item.vektor.length > 0) { // veritabanı "vektor" anahtarı tutuyor olmalı
+                    const score = cosineSimilarity(queryVector, item.vektor);
+                    if (score > highestScore) {
+                        highestScore = score;
+                        bestMatch = item;
+                    }
+                }
+            }
+
+            // 4. Eşik değerin (örneğin %85) üzerindeyse göster
+            if (bestMatch && highestScore > 0.85) {
+                const yuzde = (highestScore * 100).toFixed(1);
+                document.getElementById('status').innerHTML = `✅ <b>Eşleşme Bulundu!</b> (Benzerlik: %${yuzde})`;
+                
+                document.getElementById('telegram-result').innerHTML = `
+                   <img src="https://api.telegram.org/file/bot${window.TOKEN}/${bestMatch.file_id}" style="width:100%; border-radius:10px;">
+                   <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" style="display:block; padding:15px; background:#2563eb; color:#fff; text-decoration:none; margin-top:10px; border-radius:10px;">Afişi Aç (ID: ${bestMatch.afis_id})</a>
+                `;
+                document.getElementById('result-container').style.display = 'block';
+            } else {
+                document.getElementById('status').innerHTML = "❌ Eşleşen ürün bulunamadı veya fotoğraf yeterince net değil.";
+            }
+
+        } catch (error) {
+            document.getElementById('status').innerHTML = "❌ Hata oluştu: " + error.message;
+        }
     };
 </script>
+
 </body>
 </html>
