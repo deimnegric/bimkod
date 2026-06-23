@@ -165,7 +165,7 @@
         document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
     }
 
-    scanBtn.onclick = async () => {
+        scanBtn.onclick = async () => {
         statusDiv.innerHTML = "⏳ Görüntü yapay zekaya gönderiliyor...";
         try {
             const fd = new FormData(); fd.append("file", selectedFile);
@@ -178,19 +178,44 @@
             const dbRes = await fetch(FIREBASE_VECTORS);
             const dbData = await dbRes.json();
 
+            // Zaman bonusu hesaplamak için veritabanındaki en büyük ID'yi (en güncel mesajı) bulalım
+            let maxId = 1;
+            for (let key in dbData) {
+                let currentId = parseInt(dbData[key].afis_id);
+                if (currentId > maxId) maxId = currentId;
+            }
+
             let bestMatch = null; let highestScore = -1;
+            
             for (let key in dbData) {
                 const item = dbData[key];
                 if (item.vektor) {
-                    const score = cosineSimilarity(queryVector, item.vektor);
-                    if (score > highestScore) { highestScore = score; bestMatch = item; }
+                    // Temel CLIP Cosine benzerliği
+                    let baseScore = cosineSimilarity(queryVector, item.vektor);
+                    
+                    // ⏱️ ZAMAN DESTEK BONUSU (Time-Decay)
+                    // Afiş ne kadar yeniyse (maxId'ye ne kadar yakınsa) o kadar çok bonus alır (Maksimum +0.15)
+                    let itemId = parseInt(item.afis_id);
+                    let ageBonus = 0;
+                    if (maxId > 0) {
+                        ageBonus = (itemId / maxId) * 0.15; 
+                    }
+                    
+                    let finalScore = baseScore + ageBonus;
+
+                    if (finalScore > highestScore) { 
+                        highestScore = finalScore; 
+                        bestMatch = item; 
+                    }
                 }
             }
 
-            // 🌟 GÜVENLİK SINIRI DEĞİŞİKLİĞİ: Hatalı eşleşmeleri engellemek için sınırı %66 yaptık!
-            if (bestMatch && highestScore > 0.55) {
+            // 🌟 AKILLI EŞİK: CLIP + Zaman Bonusu ile hedefimiz temiz bir %70 başarısı!
+            const TARGET_THRESHOLD = 0.70;
+
+            if (bestMatch && highestScore > TARGET_THRESHOLD) {
                 const percentage = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
+                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Skor: %${percentage})`;
                 
                 const imgRes = await fetch(`${FIREBASE_IMAGES_BASE}/${bestMatch.afis_id}.json`);
                 const imgData = await imgRes.json();
@@ -206,10 +231,11 @@
                 }
             } else {
                 const yakalananSkor = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `❌ Bu ürünün afişi henüz sistemde yok veya tarama sınırına takıldı.<br><small>(En yakın eşleşme denemesi: %${yakalananSkor} - Sınır: %66)</small>`;
+                statusDiv.innerHTML = `❌ Bu ürünün afişi henüz sistemde yok veya tarama sınırına takıldı.<br><small>(En yakın eşleşme denemesi: %${yakalananSkor} - Gerekli Sınır: %70)</small>`;
             }
         } catch (error) { statusDiv.innerHTML = "❌ Hata: " + error.message; }
     };
+
 </script>
 </body>
 </html>
