@@ -3,66 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Ürün Arama</title>
+    <title>BİM Pro Arama</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <style>
-        /* Modern tasarım */
-        body { background: #f0f2f5; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; }
-        .app-container { background: #fff; width: 100%; max-width: 400px; padding: 20px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        #image-to-crop { max-width: 100%; display: none; }
-        .btn { width: 100%; padding: 15px; margin-top: 10px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; color: white; }
-        #scan-btn { background: #28a745; display: none; }
-        #camera-btn { background: #007bff; }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f8f9fa; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 10px; }
+        .container { width: 100%; max-width: 500px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; }
+        #image-container { max-width: 100%; height: 300px; margin: 20px 0; background: #eee; }
+        img { max-width: 100%; display: block; }
+        .btn-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .btn { padding: 15px 25px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; flex: 1; color: white; }
+        #camera-btn { background: #0d6efd; }
+        #scan-btn { background: #198754; display: none; }
+        #result { margin-top: 20px; font-weight: bold; color: #333; }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    <h2>Pro Arama Asistanı</h2>
-    <button id="camera-btn" class="btn">📸 Fotoğraf Çek</button>
-    <input type="file" id="file-input" accept="image/*" style="display:none">
+<div class="container">
+    <h3>Pro Ürün Arama</h3>
     
-    <div id="preview-area" style="margin-top:20px;">
-        <img id="image-to-crop" alt="Ürün">
+    <input type="file" id="input-file" accept="image/*" capture="environment" style="display:none">
+    
+    <div class="btn-group">
+        <button id="camera-btn" class="btn" onclick="document.getElementById('input-file').click()">📸 Fotoğraf Çek</button>
     </div>
 
-    <button id="scan-btn" class="btn">🔍 Kırp ve Tara</button>
-    <div id="status"></div>
+    <div id="image-container">
+        <img id="image" src="" alt="Seçilen Ürün" style="display:none;">
+    </div>
+
+    <button id="scan-btn" class="btn">🔍 Kırp ve Ürünü Bul</button>
+    <div id="result"></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script>
-    const image = document.getElementById('image-to-crop');
+    const image = document.getElementById('image');
+    const input = document.getElementById('input-file');
+    const scanBtn = document.getElementById('scan-btn');
+    const resultDiv = document.getElementById('result');
     let cropper;
 
-    document.getElementById('camera-btn').onclick = () => document.getElementById('file-input').click();
-    document.getElementById('file-input').onchange = (e) => {
+    input.onchange = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
         reader.onload = (e) => {
             image.src = e.target.result;
             image.style.display = 'block';
+            scanBtn.style.display = 'block';
             if (cropper) cropper.destroy();
             cropper = new Cropper(image, { aspectRatio: NaN, viewMode: 1 });
-            document.getElementById('scan-btn').style.display = 'block';
         };
         reader.readAsDataURL(file);
     };
 
-    document.getElementById('scan-btn').onclick = () => {
+    scanBtn.onclick = async () => {
+        resultDiv.innerText = "🚀 Analiz ediliyor...";
         cropper.getCroppedCanvas().toBlob(async (blob) => {
-            document.getElementById('status').innerText = "🚀 Analiz ediliyor...";
             const formData = new FormData();
             formData.append('file', blob);
             
-            // Hugging Face Backend'e gönder
-            const res = await fetch("https://deimnegric-bimkod.hf.space/vektor-uret", {
-                method: "POST",
-                body: formData
-            });
-            const data = await res.json();
-            document.getElementById('status').innerText = "✅ Vektör üretildi: " + data.vector.slice(0,5) + "...";
-            // Burada önceki arama mantığını (Firebase eşleşmesi) çağıracaksın
+            try {
+                // Backend'e vektör gönder
+                const res = await fetch("https://deimnegric-bimkod.hf.space/vektor-uret", {
+                    method: "POST",
+                    body: formData
+                });
+                const data = await res.json();
+                
+                if(data.vector) {
+                    resultDiv.innerText = "✅ Vektör başarıyla üretildi! (Şimdi eşleştirme yapılacak)";
+                    console.log("Vektör:", data.vector);
+                    // BURAYA: Veritabanındaki afişlerle karşılaştırma (Similarity Search) kodunu ekleyeceksin.
+                }
+            } catch (err) {
+                resultDiv.innerText = "❌ Hata: " + err.message;
+            }
         });
     };
 </script>
