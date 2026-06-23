@@ -76,11 +76,12 @@
             });
 
             // D. Sonucu göster
-            if(highestScore > 0.70) {
-                resultDiv.innerHTML = `✅ <b>Bulundu:</b> ${bestMatch.name}<br>🎯 <b>Skor:</b> %${(highestScore*100).toFixed(1)}`;
-            } else {
-                resultDiv.innerText = "❌ Ürün bulunamadı (Skor düşük).";
-            }
+if(bestMatch && highestScore > 0.70) {
+    resultDiv.innerHTML = `✅ <b>Bulundu:</b> ${bestMatch.name}<br>🎯 <b>Skor:</b> %${(highestScore*100).toFixed(1)}`;
+} else {
+    resultDiv.innerText = "❌ Ürün bulunamadı veya benzerlik oranı düşük.";
+}
+
         });
     };
 </script>
