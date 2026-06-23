@@ -61,9 +61,9 @@
     </div>
 </div>
 
-<script src="config.js"></script>
 <script>
-    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    // URL tanımları - Artık her şey tek bir güvenli elden (HF) çıkıyor
+    const HF_BASE_URL = "https://deimnegric-bimkod.hf.space";
     const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
 
     const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
@@ -78,7 +78,7 @@
             previewContainer.style.display = 'block';
             video.style.display = 'block'; imgPrev.style.display = 'none';
             captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
-            statusDiv.innerHTML = "Kamera aktif, odağı ayarlayın.";
+            statusDiv.innerHTML = "Kamera aktif.";
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
             video.srcObject = stream;
         } catch (err) {
@@ -108,14 +108,14 @@
             imgPrev.src = URL.createObjectURL(blob);
             imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            statusDiv.innerHTML = "Görüntü donduruldu. Taramaya hazır.";
+            statusDiv.innerHTML = "Görüntü donduruldu.";
             if (video.srcObject) {
                 video.srcObject.getTracks().forEach(t => t.stop());
             }
         }, 'image/jpeg');
     };
 
-    // Kosinüs Benzerliği Algoritması
+    // Kosinüs Benzerliği
     function cosineSimilarity(vecA, vecB) {
         let dotProduct = 0, normA = 0, normB = 0;
         for (let i = 0; i < vecA.length; i++) {
@@ -126,36 +126,33 @@
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
-    // Vektör Tarama ve Firebase Karşılaştırma İşlemi
+    // Taramayı Başlat
     scanBtn.onclick = async () => {
         statusDiv.innerHTML = "⏳ Yapay zeka görüntüyü işliyor...";
         document.getElementById('result-container').style.display = 'none';
         
         try {
-            // 1. Hugging Face'den vektör çıkarma
             const fd = new FormData(); 
             fd.append("file", selectedFile);
-            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
+            const res = await fetch(`${HF_BASE_URL}/vektor-uret`, { method: "POST", body: fd });
             const hfData = await res.json();
             const queryVector = hfData.vector;
 
-            if (!queryVector) throw new Error("Görselden vektör kimliği elde edilemedi.");
+            if (!queryVector) throw new Error("Görsel analizi başarısız.");
 
-            statusDiv.innerHTML = "🔍 Veritabanı içinde eşleşmeler taranıyor...";
+            statusDiv.innerHTML = "🔍 Eşleşmeler taranıyor...";
 
-            // 2. Firebase Veritabanını Çekme
             const dbRes = await fetch(FIREBASE_URL);
             const dbData = await dbRes.json();
 
             if (!dbData) {
-                statusDiv.innerHTML = "❌ Veritabanında karşılaştırılacak afiş kaydı bulunamadı.";
+                statusDiv.innerHTML = "❌ Veritabanı boş.";
                 return;
             }
 
-            let bestMatch = None = null;
+            let bestMatch = null;
             let highestScore = -1;
 
-            // 3. Matris Karşılaştırma Döngüsü
             for (let key in dbData) {
                 const item = dbData[key];
                 if (item.vektor && Array.isArray(item.vektor)) {
@@ -167,28 +164,26 @@
                 }
             }
 
-            // 4. Sonuç Eşik Değeri Kontrolü (%75 ve üzeri benzerlikler)
             if (bestMatch && highestScore > 0.75) {
                 const percentage = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik Derecesi: %${percentage})`;
+                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
                 
-                // config.js içerisindeki window.TOKEN yapısını kullanır
-                const botToken = window.TOKEN || "";
+                // GÜVENLİ ÇEKİM: Resmi doğrudan gizli token'a sahip Hugging Face endpoint'inden talep ediyoruz
+                const guvenliResimUrl = `${HF_BASE_URL}/afis-getir/${bestMatch.file_id}`;
                 
                 document.getElementById('telegram-result').innerHTML = `
-                   <img src="https://api.telegram.org/file/bot${botToken}/${bestMatch.file_id}" alt="Eşleşen Afiş">
+                   <img src="${guvenliResimUrl}" alt="Eşleşen Afiş">
                    <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Göster</a>
                 `;
                 document.getElementById('result-container').style.display = 'block';
             } else {
-                statusDiv.innerHTML = "❌ Bu ürüne ait benzer bir afiş kaydı bulunamadı.";
+                statusDiv.innerHTML = "❌ Benzer bir ürün bulunamadı.";
             }
 
         } catch (error) {
-            statusDiv.innerHTML = "❌ İşlem sırasında hata: " + error.message;
+            statusDiv.innerHTML = "❌ Hata: " + error.message;
         }
     };
 </script>
 </body>
 </html>
-
