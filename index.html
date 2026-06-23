@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ürün Arama Asistanı</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: '-apple-system', BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
@@ -22,31 +22,33 @@
         .btn-trigger { width: 100%; padding: 16px; border-radius: 16px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; display: none; transition: all 0.2s; text-align: center; }
         #capture-btn { background: #3182ce; color: #fff; }
         #scan-btn { background: #38a169; color: #fff; }
-        .btn-trigger:active { transform: scale(0.98); filter: brightness(0.95); }
 
-        #status { font-size: 13px; text-align: center; color: #718096; margin: 12px 0; font-weight: 500; line-height: 1.4; }
-        
+        #status { font-size: 13px; text-align: center; color: #718096; margin: 12px 0; font-weight: 500; }
         #result-container { display: none; margin-top: 16px; border-top: 2px dashed #edf2f7; padding-top: 16px; }
         .result-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 12px; text-align: center; }
         
-        /* Afişin tıklandığını belli eden stil */
-        .clickable-poster { width: 100%; border-radius: 12px; display: block; background: #e2e8f0; cursor: zoom-in; transition: transform 0.2s; }
-        .clickable-poster:active { transform: scale(0.98); }
-        .zoom-tip { font-size: 11px; color: #718096; margin-top: 6px; display: block; font-weight: 500; }
+        .clickable-poster { width: 100%; border-radius: 12px; display: block; background: #e2e8f0; cursor: zoom-in; }
+        .zoom-tip { font-size: 12px; color: #3182ce; margin-top: 8px; display: block; font-weight: 600; }
+        .btn-redirect { display: block; width: 100%; text-align: center; padding: 14px; background: #2b6cb0; color: #fff; text-decoration: none; border-radius: 12px; margin-top: 12px; font-size: 14px; font-weight: 600; }
 
-        .btn-redirect { display: block; width: 100%; text-align: center; padding: 14px; background: #2b6cb0; color: #fff; text-decoration: none; border-radius: 12px; margin-top: 12px; font-size: 14px; font-weight: 600; transition: background 0.2s; }
-
-        /* TAM EKRAN DIŞ MODAL (BÜYÜTME EKRANI) */
-        .fullscreen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center; touch-action: pinch-zoom; }
-        .fullscreen-modal img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .close-modal { position: absolute; top: 20px; right: 20px; background: #fff; color: #000; border: none; padding: 10px 16px; border-radius: 50%; font-weight: bold; font-size: 16px; cursor: pointer; }
+        /* GELİŞMİŞ TAM EKRAN ZOOM MODAL */
+        .fullscreen-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; flex-direction: column; }
+        .modal-header { display: flex; justify-content: space-between; padding: 16px; background: rgba(0,0,0,0.5); z-index: 10001; }
+        .close-modal { background: #e53e3e; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        
+        /* İçeriğin taşması ve kaydırılabilmesi için alan */
+        .modal-body { flex: 1; overflow: auto; display: flex; justify-content: center; align-items: center; pading: 20px; }
+        #modalImg { max-width: 95%; max-height: 95%; transition: transform 0.2s; transform-origin: center center; }
+        
+        /* Zoom Kontrol Butonları */
+        .zoom-controls { display: flex; gap: 10px; }
+        .zoom-btn { background: #fff; color: #000; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="app-container">
     <h2>Ürün Arama Asistanı</h2>
-    
     <div class="action-group">
         <button id="camera-btn" class="btn-action"><span>📸</span>Fotoğraf Çek</button>
         <label for="file-input" class="btn-action"><span>🖼️</span>Galeriden Seç</label>
@@ -70,9 +72,17 @@
     </div>
 </div>
 
-<div id="imageModal" class="fullscreen-modal" onclick="closeZoom()">
-    <button class="close-modal">X</button>
-    <img id="modalImg" src="">
+<div id="imageModal" class="fullscreen-modal">
+    <div class="modal-header">
+        <div class="zoom-controls">
+            <button class="zoom-btn" onclick="zoomIn(event)">🔍+ Büyüt</button>
+            <button class="zoom-btn" onclick="zoomOut(event)">🔍- Küçült</button>
+        </div>
+        <button class="close-modal" onclick="closeZoom()">❌ Kapat</button>
+    </div>
+    <div class="modal-body" onclick="closeZoomOutside(event)">
+        <img id="modalImg" src="" alt="Afiş">
+    </div>
 </div>
 
 <script>
@@ -85,29 +95,25 @@
     const scanBtn = document.getElementById('scan-btn'), captureBtn = document.getElementById('capture-btn');
     const statusDiv = document.getElementById('status');
     let selectedFile = null;
+    let currentScale = 1;
 
-    // Kamera ve Galeri Tetikleyicileri
+    // Kamera/Dosya tetikleyicileri
     document.getElementById('camera-btn').onclick = async () => {
         try {
-            previewContainer.style.display = 'block';
-            video.style.display = 'block'; imgPrev.style.display = 'none';
+            previewContainer.style.display = 'block'; video.style.display = 'block'; imgPrev.style.display = 'none';
             captureBtn.style.display = 'block'; scanBtn.style.display = 'none';
-            statusDiv.innerHTML = "Kamera aktif.";
             const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
             video.srcObject = stream;
-        } catch (err) {
-            statusDiv.innerHTML = "❌ Kameraya erişilemedi: " + err.message;
-        }
+        } catch (err) { statusDiv.innerHTML = "❌ Kamera hatası: " + err.message; }
     };
 
     document.getElementById('file-input').onchange = (e) => {
         if(e.target.files.length > 0) {
             selectedFile = e.target.files[0];
             imgPrev.src = URL.createObjectURL(selectedFile);
-            previewContainer.style.display = 'block';
-            imgPrev.style.display = 'block'; video.style.display = 'none';
+            previewContainer.style.display = 'block'; imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            statusDiv.innerHTML = "Görsel seçildi. Taramaya hazır.";
+            statusDiv.innerHTML = "Görsel seçildi.";
         }
     };
 
@@ -120,10 +126,7 @@
             imgPrev.src = URL.createObjectURL(blob);
             imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            statusDiv.innerHTML = "Görüntü yakalandı. Taramaya hazır.";
-            if (video.srcObject) {
-                video.srcObject.getTracks().forEach(t => t.stop());
-            }
+            if (video.srcObject) video.srcObject.getTracks().forEach(t => t.stop());
         }, 'image/jpeg');
     };
 
@@ -137,83 +140,79 @@
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
-    // Yakınlaştırma Fonksiyonları
+    // ZOOM KONTROLLERİ
     function openZoom(src) {
         document.getElementById('imageModal').style.display = 'flex';
         document.getElementById('modalImg').src = src;
+        currentScale = 1;
+        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
     }
     function closeZoom() {
         document.getElementById('imageModal').style.display = 'none';
     }
+    function closeZoomOutside(e) {
+        if(e.target.id === 'modalImg') return;
+        closeZoom();
+    }
+    function zoomIn(e) {
+        e.stopPropagation();
+        if(currentScale < 3.5) currentScale += 0.4;
+        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
+    }
+    function zoomOut(e) {
+        e.stopPropagation();
+        if(currentScale > 0.8) currentScale -= 0.4;
+        document.getElementById('modalImg').style.transform = `scale(${currentScale})`;
+    }
 
     scanBtn.onclick = async () => {
-        statusDiv.innerHTML = "⏳ Yapay zeka görüntüyü işliyor...";
-        document.getElementById('result-container').style.display = 'none';
-        
+        statusDiv.innerHTML = "⏳ Görüntü yapay zekaya gönderiliyor...";
         try {
-            const fd = new FormData(); 
-            fd.append("file", selectedFile);
+            const fd = new FormData(); fd.append("file", selectedFile);
             const res = await fetch(HF_API_URL, { method: "POST", body: fd });
             const hfData = await res.json();
             const queryVector = hfData.vector;
 
-            if (!queryVector) throw new Error("Vektör üretilemedi.");
-
-            statusDiv.innerHTML = "🔍 Veritabanında eşleşmeler aranıyor...";
+            if (!queryVector) throw new Error("Vektör alınamadı.");
 
             const dbRes = await fetch(FIREBASE_VECTORS);
             const dbData = await dbRes.json();
 
-            if (!dbData) {
-                statusDiv.innerHTML = "❌ Veritabanı boş veya yüklenemedi.";
-                return;
-            }
-
-            let bestMatch = null;
-            let highestScore = -1;
-
+            let bestMatch = null; let highestScore = -1;
             for (let key in dbData) {
                 const item = dbData[key];
-                if (item.vektor && Array.isArray(item.vektor)) {
+                if (item.vektor) {
                     const score = cosineSimilarity(queryVector, item.vektor);
-                    if (score > highestScore) {
-                        highestScore = score;
-                        bestMatch = item;
-                    }
+                    if (score > highestScore) { highestScore = score; bestMatch = item; }
                 }
             }
 
-            if (bestMatch && highestScore > 0.62) {
+            // 🌟 GÜVENLİK SINIRI DEĞİŞİKLİĞİ: Hatalı eşleşmeleri engellemek için sınırı %66 yaptık!
+            if (bestMatch && highestScore > 0.66) {
                 const percentage = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `⏳ Ürün bulundu (%${percentage}), görsel yükleniyor...`;
+                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
                 
                 const imgRes = await fetch(`${FIREBASE_IMAGES_BASE}/${bestMatch.afis_id}.json`);
                 const imgData = await imgRes.json();
                 
                 if(imgData && imgData.base64) {
-                    statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
                     const base64Src = `data:image/jpeg;base64,${imgData.base64}`;
-                    
                     document.getElementById('telegram-result').innerHTML = `
-                       <img src="${base64Src}" class="clickable-poster" onclick="openZoom('${base64Src}')" alt="Eşleşen Afiş">
-                       <span class="zoom-tip">🔍 Tam ekran görmek ve büyütmek için resme tıkla</span>
+                       <img src="${base64Src}" class="clickable-poster" onclick="openZoom('${base64Src}')" alt="Afiş">
+                       <span class="zoom-tip">📱 KODLARI OKUMAK İÇİN RESME TIKLA, BÜYÜT VE KAYDIR!</span>
                        <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Telegram Mesajı</a>
                     `;
                     document.getElementById('result-container').style.display = 'block';
-                } else {
-                    statusDiv.innerHTML = "⚠️ Ürün eşleşti fakat görseli Firebase'den alınamadı.";
                 }
             } else {
                 const yakalananSkor = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `❌ Benzer bir ürün afişi bulunamadı.<br><small>(En yakın tahmin oranı: %${yakalananSkor} - Sınır: %62)</small>`;
+                statusDiv.innerHTML = `❌ Bu ürünün afişi henüz sistemde yok veya tarama sınırına takıldı.<br><small>(En yakın eşleşme denemesi: %${yakalananSkor} - Sınır: %66)</small>`;
             }
-
-        } catch (error) {
-            statusDiv.innerHTML = "❌ Hata: " + error.message;
-        }
+        } catch (error) { statusDiv.innerHTML = "❌ Hata: " + error.message; }
     };
 </script>
 </body>
 </html>
+
 
 
