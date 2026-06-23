@@ -188,7 +188,7 @@
             }
 
             // 🌟 GÜVENLİK SINIRI DEĞİŞİKLİĞİ: Hatalı eşleşmeleri engellemek için sınırı %66 yaptık!
-            if (bestMatch && highestScore > 0.66) {
+            if (bestMatch && highestScore > 0.55) {
                 const percentage = (highestScore * 100).toFixed(1);
                 statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
                 
