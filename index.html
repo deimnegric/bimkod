@@ -62,9 +62,9 @@
 </div>
 
 <script>
-    // URL tanımları - Artık her şey tek bir güvenli elden (HF) çıkıyor
-    const HF_BASE_URL = "https://deimnegric-bimkod.hf.space";
-    const FIREBASE_URL = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
+    const HF_API_URL = "https://deimnegric-bimkod.hf.space/vektor-uret";
+    const FIREBASE_VECTORS = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/vektorler.json";
+    const FIREBASE_IMAGES_BASE = "https://bimkod-ced21-default-rtdb.europe-west1.firebasedatabase.app/resimler";
 
     const video = document.getElementById('video'), imgPrev = document.getElementById('img-preview');
     const previewContainer = document.getElementById('preview-container');
@@ -72,7 +72,6 @@
     const statusDiv = document.getElementById('status');
     let selectedFile = null;
 
-    // Kamera Başlatma
     document.getElementById('camera-btn').onclick = async () => {
         try {
             previewContainer.style.display = 'block';
@@ -86,7 +85,6 @@
         }
     };
 
-    // Galeriden Görsel Seçme
     document.getElementById('file-input').onchange = (e) => {
         if(e.target.files.length > 0) {
             selectedFile = e.target.files[0];
@@ -98,7 +96,6 @@
         }
     };
 
-    // Anlık Görüntü Yakalama
     captureBtn.onclick = () => {
         const canvas = document.createElement('canvas');
         canvas.width = video.videoWidth; canvas.height = video.videoHeight;
@@ -108,14 +105,13 @@
             imgPrev.src = URL.createObjectURL(blob);
             imgPrev.style.display = 'block'; video.style.display = 'none';
             captureBtn.style.display = 'none'; scanBtn.style.display = 'block';
-            statusDiv.innerHTML = "Görüntü donduruldu.";
+            statusDiv.innerHTML = "Görüntü yakalandı. Taramaya hazır.";
             if (video.srcObject) {
                 video.srcObject.getTracks().forEach(t => t.stop());
             }
         }, 'image/jpeg');
     };
 
-    // Kosinüs Benzerliği
     function cosineSimilarity(vecA, vecB) {
         let dotProduct = 0, normA = 0, normB = 0;
         for (let i = 0; i < vecA.length; i++) {
@@ -126,7 +122,6 @@
         return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
     }
 
-    // Taramayı Başlat
     scanBtn.onclick = async () => {
         statusDiv.innerHTML = "⏳ Yapay zeka görüntüyü işliyor...";
         document.getElementById('result-container').style.display = 'none';
@@ -134,19 +129,19 @@
         try {
             const fd = new FormData(); 
             fd.append("file", selectedFile);
-            const res = await fetch(`${HF_BASE_URL}/vektor-uret`, { method: "POST", body: fd });
+            const res = await fetch(HF_API_URL, { method: "POST", body: fd });
             const hfData = await res.json();
             const queryVector = hfData.vector;
 
-            if (!queryVector) throw new Error("Görsel analizi başarısız.");
+            if (!queryVector) throw new Error("Vektör üretilemedi.");
 
-            statusDiv.innerHTML = "🔍 Eşleşmeler taranıyor...";
+            statusDiv.innerHTML = "🔍 Veritabanında eşleşmeler aranıyor...";
 
-            const dbRes = await fetch(FIREBASE_URL);
+            const dbRes = await fetch(FIREBASE_VECTORS);
             const dbData = await dbRes.json();
 
             if (!dbData) {
-                statusDiv.innerHTML = "❌ Veritabanı boş.";
+                statusDiv.innerHTML = "❌ Veritabanı boş veya yüklenemedi.";
                 return;
             }
 
@@ -166,18 +161,24 @@
 
             if (bestMatch && highestScore > 0.75) {
                 const percentage = (highestScore * 100).toFixed(1);
-                statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
+                statusDiv.innerHTML = `⏳ Ürün bulundu (%${percentage}), görsel yükleniyor...`;
                 
-                // GÜVENLİ ÇEKİM: Resmi doğrudan gizli token'a sahip Hugging Face endpoint'inden talep ediyoruz
-                const guvenliResimUrl = `${HF_BASE_URL}/afis-getir/${bestMatch.file_id}`;
+                // Eşleşen resmi Firebase'den dinamik olarak çekiyoruz
+                const imgRes = await fetch(`${FIREBASE_IMAGES_BASE}/${bestMatch.afis_id}.json`);
+                const imgData = await imgRes.json();
                 
-                document.getElementById('telegram-result').innerHTML = `
-                   <img src="${guvenliResimUrl}" alt="Eşleşen Afiş">
-                   <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Göster</a>
-                `;
-                document.getElementById('result-container').style.display = 'block';
+                if(imgData && imgData.base64) {
+                    statusDiv.innerHTML = `✅ <b>Ürün Eşleşti!</b> (Benzerlik: %${percentage})`;
+                    document.getElementById('telegram-result').innerHTML = `
+                       <img src="data:image/jpeg;base64,${imgData.base64}" alt="Eşleşen Afiş">
+                       <a href="https://t.me/c/2458145229/${bestMatch.afis_id}" target="_blank" class="btn-redirect">Orijinal Afişi Göster</a>
+                    `;
+                    document.getElementById('result-container').style.display = 'block';
+                } else {
+                    statusDiv.innerHTML = "⚠️ Ürün eşleşti fakat görseli Firebase'den alınamadı.";
+                }
             } else {
-                statusDiv.innerHTML = "❌ Benzer bir ürün bulunamadı.";
+                statusDiv.innerHTML = "❌ Benzer bir ürün afişi bulunamadı.";
             }
 
         } catch (error) {
@@ -187,3 +188,4 @@
 </script>
 </body>
 </html>
+
