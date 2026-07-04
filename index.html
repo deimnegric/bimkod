@@ -246,10 +246,11 @@
             });
         }
 
+                // --- İSTEDİĞİN DÜZELTİLMİŞ KOD BLOĞU ---
         async function cropProductsFromPoster(imgElement) {
             return new Promise((resolve, reject) => {
                 if (typeof cv === 'undefined' || !cv.Mat) {
-                    reject("OpenCV.js kütüphanesi henüz yüklenmedi. Lütfen birkaç saniye sonra tekrar deneyin.");
+                    reject("OpenCV.js kütüphanesi yüklenemedi.");
                     return;
                 }
                 try {
@@ -259,39 +260,76 @@
 
                     cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
                     cv.GaussianBlur(gray, gray, new cv.Size(5, 5), 0, 0, cv.BORDER_DEFAULT);
+                    // Eşik değerini daha iyi algılama için optimize ettik
                     cv.threshold(gray, thresh, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
                     cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
 
+                    let boxes = [];
+                    for (let i = 0; i < contours.size(); ++i) {
+                        let rect = cv.boundingRect(contours.get(i));
+                        // Boyut filtresi: 80x80 pikselden büyükleri al
+                        if (rect.width > 80 && rect.height > 80) {
+                            boxes.push(rect);
+                        }
+                    }
+
+                    // Yakın kutuları birleştirme (Metinler ve ürünlerin birleşmesi için)
+                    let mergedBoxes = mergeBoxes(boxes, 80); 
                     let croppedImagesBlobs = [];
                     let promises = [];
+                    let padding = 30; // Dıştan kırpma payı (Padding)
 
-                    for (let i = 0; i < contours.size(); ++i) {
-                        let cnt = contours.get(i); let rect = cv.boundingRect(cnt);
-                        if (rect.width > 150 && rect.height > 150 && rect.width < src.cols * 0.8 && rect.height < src.rows * 0.8) {
-                            let canvas = document.createElement('canvas');
-                            let ctx = canvas.getContext('2d');
-                            canvas.width = rect.width; canvas.height = rect.height;
-                            ctx.drawImage(imgElement, rect.x, rect.y, rect.width, rect.height, 0, 0, rect.width, rect.height);
-                            
-                            let p = new Promise((resBlob) => {
-                                canvas.toBlob((blob) => {
-                                    if (blob) croppedImagesBlobs.push({ blob: blob });
-                                    resBlob();
-                                }, 'image/png');
-                            });
-                            promises.push(p);
-                        }
+                    for (let rect of mergedBoxes) {
+                        let x = Math.max(0, rect.x - padding);
+                        let y = Math.max(0, rect.y - padding);
+                        let w = Math.min(src.cols - x, rect.width + (2 * padding));
+                        let h = Math.min(src.rows - y, rect.height + (2 * padding));
+
+                        let canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        let ctx = canvas.getContext('2d');
+                        ctx.drawImage(imgElement, x, y, w, h, 0, 0, w, h);
+                        
+                        promises.push(new Promise((res) => {
+                            canvas.toBlob((blob) => {
+                                if (blob) croppedImagesBlobs.push({ blob: blob });
+                                res();
+                            }, 'image/png');
+                        }));
                     }
 
                     Promise.all(promises).then(() => {
                         src.delete(); gray.delete(); thresh.delete(); contours.delete(); hierarchy.delete();
                         resolve(croppedImagesBlobs);
                     });
-                } catch (err) {
-                    reject(err);
-                }
+                } catch (err) { reject(err); }
             });
         }
+
+        // Yardımcı Fonksiyon: Yakın kutuları birleştirir
+        function mergeBoxes(boxes, threshold) {
+            if (boxes.length === 0) return [];
+            boxes.sort((a, b) => a.y - b.y);
+            let merged = [];
+            while (boxes.length > 0) {
+                let first = boxes.shift();
+                for (let i = 0; i < boxes.length; i++) {
+                    let next = boxes[i];
+                    if (Math.abs(first.x - next.x) < threshold || Math.abs(first.y - next.y) < threshold) {
+                        let newX = Math.min(first.x, next.x);
+                        let newY = Math.min(first.y, next.y);
+                        first.width = Math.max(first.x + first.width, next.x + next.width) - newX;
+                        first.height = Math.max(first.y + first.height, next.y + next.height) - newY;
+                        first.x = newX; first.y = newY;
+                        boxes.splice(i, 1); i--;
+                    }
+                }
+                merged.push(first);
+            }
+            return merged;
+        }
+        // ----------------------------------------------
+
 
         async function startAIProcessing() {
             const fileInput = document.getElementById('adminFileInput');
