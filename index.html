@@ -154,15 +154,40 @@
         }
 
         function temizleVeFormatla(metin) {
-            let temiz = metin.toUpperCase().replace(/['’"()]/g, "").replace(/[\n\r]/g, " ");
+            if (!metin) return getFallbackDate();
+            
+            let temiz = metin.toUpperCase()
+                .replace(/['’"()]/g, "")
+                .replace(/[İı]/g, "I")
+                .replace(/[Şş]/g, "S")
+                .replace(/[Çç]/g, "C")
+                .replace(/[Ğğ]/g, "G")
+                .replace(/[Üü]/g, "U")
+                .replace(/[Öö]/g, "O")
+                .replace(/[\n\r]/g, " ");
+
             const aylar = ["OCAK", "SUBAT", "MART", "NISAN", "MAYIS", "HAZIRAN", "TEMMUZ", "AGUSTOS", "EYLUL", "EKIM", "KASIM", "ARALIK"];
-            let bulunanAy = "TEMMUZ";
-            for (let ay of aylar) {
-                if (temiz.includes(ay)) { bulunanAy = ay; break; }
+            
+            // "24 HAZIRAN" veya "05 TEMMUZ" gibi tarih kalıplarını yakalar
+            const regexTarih = /(\d{1,2})\s+(OCAK|SUBAT|MART|NISAN|MAYIS|HAZIRAN|TEMMUZ|AGUSTOS|EYLUL|EKIM|KASIM|ARALIK)/i;
+            const match = temiz.match(regexTarih);
+
+            if (match) {
+                const gun = match[1];
+                const ay = match[2].toUpperCase();
+                return `${gun}-${ay}-${new Date().getFullYear()}`;
             }
-            const sayilar = temiz.match(/\d+/);
-            const gun = sayilar ? sayilar[0] : "3";
-            return `${gun}-${bulunanAy}-${new Date().getFullYear()}`;
+
+            // Tam kalıp bulunamazsa tek tek ay kelimelerini tarar
+            for (let ay of aylar) {
+                if (temiz.includes(ay)) {
+                    const sayilar = temiz.match(/\d+/);
+                    const gun = sayilar ? sayilar[0] : "3";
+                    return `${gun}-${ay}-${new Date().getFullYear()}`;
+                }
+            }
+            
+            return getFallbackDate();
         }
 
         async function detectFolderDate(file) {
@@ -176,12 +201,18 @@
                     img.onload = async function () {
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
-                        const cropWidth = img.width * 0.35;
-                        const cropHeight = img.height * 0.15;
-                        canvas.width = cropWidth; canvas.height = cropHeight;
+                        
+                        // Sabit Üst Şerit Koordinatları (%25 Kırpma)
+                        const cropWidth = img.width;
+                        const cropHeight = img.height * 0.25; 
+                        
+                        canvas.width = cropWidth; 
+                        canvas.height = cropHeight;
+                        
+                        // Görselin en üstünden aşağıya doğru %25'lik alanını kırpıyoruz
                         ctx.drawImage(img, 0, 0, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
                         
-                        const base64Image = canvas.toDataURL('image/jpeg').split(',')[1];
+                        const base64Image = canvas.toDataURL('image/jpeg', 0.95).split(',')[1];
                         const apiURL = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
 
                         try {
@@ -189,15 +220,25 @@
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({
-                                    requests: [{ image: { content: base64Image }, features: [{ type: "TEXT_DETECTION" }] }]
+                                    requests: [{ 
+                                        image: { content: base64Image }, 
+                                        features: [{ type: "TEXT_DETECTION" }] 
+                                    }]
                                 })
                             });
                             const result = await response.json();
                             const annotations = result.responses[0]?.textAnnotations;
                             if (annotations && annotations.length > 0) {
-                                resolve(temizleVeFormatla(annotations[0].description));
-                            } else { resolve(getFallbackDate()); }
-                        } catch (e) { resolve(getFallbackDate()); }
+                                const algilananMetin = annotations[0].description;
+                                console.log("%25'lik Üst Alandan Okunan Metin:", algilananMetin);
+                                resolve(temizleVeFormatla(algilananMetin));
+                            } else { 
+                                resolve(getFallbackDate()); 
+                            }
+                        } catch (e) { 
+                            console.error("Tarih şeridi okunurken hata:", e);
+                            resolve(getFallbackDate()); 
+                        }
                     };
                     img.src = event.target.result;
                 };
@@ -252,7 +293,6 @@
             });
         }
 
-        // ⚡ ASENKRON VE GÜVENLİ ENTEGRE MOTOR
         async function startAIProcessing() {
             const fileInput = document.getElementById('adminFileInput');
             const files = fileInput.files;
@@ -262,7 +302,6 @@
             if (files.length === 0) return alert("Lütfen önce afiş seçin!");
             if (!apiKey) return alert("⚠️ Lütfen önce Google Vision API Key kaydedin.");
 
-            // Çift tıklamayı ve donmayı engellemek için arayüzü kilitleyelim
             uploadBtn.disabled = true;
             uploadBtn.innerText = "⏳ İşleniyor...";
 
@@ -301,8 +340,6 @@
                         alert("OpenCV Hatası: " + cvError);
                         continue; 
                     }
-
-                    console.log(`${kirpilanUrunler.length} adet ürün parçalandı. OCR işlemi başlıyor.`);
 
                     for (let j = 0; j < kirpilanUrunler.length; j++) {
                         const urun = kirpilanUrunler[j];
@@ -349,7 +386,6 @@
                 }
             }
             
-            // Arayüzü serbest bırakalım
             uploadBtn.disabled = false;
             uploadBtn.innerText = "⚡ Seçilenleri Yükle ve Parçala";
             alert("Tüm afişler ve alt ürünleri başarıyla veritabanına işlendi! 🔥");
