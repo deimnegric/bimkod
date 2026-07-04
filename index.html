@@ -1,89 +1,476 @@
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>BİM Pro Arama</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
-    <style>
-        body { font-family: sans-serif; background: #f8f9fa; padding: 20px; text-align: center; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        #image { max-width: 100%; display: none; }
-        #result { margin-top: 20px; padding: 15px; border-radius: 10px; background: #eee; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akıllı Afiş & Ürün Kataloğu</title>
+    <!-- Firebase Uygulama ve Servis SDK'ları -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script async src="https://docs.opencv.org/4.5.4/opencv.js" type="text/javascript"></script>
 </head>
-<body>
+<body class="bg-gray-950 text-gray-100 font-sans min-h-screen flex flex-col justify-between">
 
-<div class="container">
-    <h3>Ürün Arama Asistanı</h3>
-    <input type="file" id="input" accept="image/*" style="display:none">
-    <button onclick="document.getElementById('input').click()">📸 Fotoğraf/Galeri</button>
+    <!-- KULLANICI ANA PANELİ -->
+    <header class="max-w-4xl mx-auto w-full px-4 pt-12 pb-6 text-center space-y-6">
+        <h1 class="text-3xl font-black tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">KAMPANYA BULUCU</h1>
+        
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <button onclick="document.getElementById('userFileInput').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all cursor-pointer flex items-center space-x-2">
+                <span>📁</span> <span>Görsel Yükle</span>
+            </button>
+            <button onclick="startCamera()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all cursor-pointer flex items-center space-x-2">
+                <span>📸</span> <span>Fotoğraf Çek</span>
+            </button>
+            <input type="file" id="userFileInput" class="hidden" accept="image/*" onchange="processUserImage(this)">
+        </div>
+    </header>
 
-    <div style="margin: 20px 0;">
-        <img id="image">
-    </div>
+    <!-- AKILLI ARAMA VE DİNAMİK ARŞİV GALERİSİ -->
+    <main class="max-w-5xl mx-auto w-full px-4 py-6 flex-grow space-y-8">
+        
+        <!-- Canlı Arama Çubuğu -->
+        <div class="relative max-w-xl mx-auto">
+            <input type="text" id="searchBar" onkeyup="handleGlobalSearch()" placeholder="Ürün adı ara (Örn: hava, scooter)..." class="w-full bg-gray-900 border border-gray-800 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-blue-500 placeholder-gray-500 font-medium transition-colors shadow-inner">
+            <span class="absolute right-4 top-3.5 text-gray-500 text-sm">🔍</span>
+        </div>
 
-    <button id="scan-btn" style="display:none; width: 100%; padding: 15px; background: green; color: white; border: none; border-radius: 10px;">🔍 Tara ve Bul</button>
-    <div id="result">Sonuç burada görünecek...</div>
-</div>
+        <!-- 1. CANLI ARAMA SONUÇLARI -->
+        <div id="searchResultsSection" class="hidden border-2 border-blue-900/30 bg-blue-950/5 rounded-2xl p-6 space-y-4">
+            <h2 class="text-xs font-black text-blue-400 tracking-wider font-mono">🎯 ARAMA SONUÇLARI (KIRPILMIŞ ÜRÜNLER)</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="searchResultsGrid">
+                <!-- Arama sonuçları buraya basılacak -->
+            </div>
+        </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
-<script>
-    let cropper;
-    const image = document.getElementById('image');
-    const resultDiv = document.getElementById('result');
+        <!-- 2. TARİH BAZLI KLASÖRLER (Ana Görünüm) -->
+        <div id="archiveFoldersSection" class="space-y-6">
+            <h2 class="text-sm font-bold text-gray-400 tracking-wider font-mono">📁 YÜKLENEN ARŞİV KLASÖRLERİ</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="folderGrid">
+                <!-- Klasörler dinamik yüklenecek -->
+            </div>
+        </div>
 
-    // 1. Resim seçilince Cropper'ı başlat
-    document.getElementById('input').onchange = (e) => {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            image.src = e.target.result;
-            image.style.display = 'block';
-            document.getElementById('scan-btn').style.display = 'block';
-            if(cropper) cropper.destroy();
-            cropper = new Cropper(image, { viewMode: 1 });
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    };
+        <!-- 3. DETAYLI KLASÖR İÇERİK MODALİ -->
+        <div id="folderModal" class="hidden fixed inset-0 bg-gray-950/90 backdrop-blur-md z-50 overflow-y-auto p-4 sm:p-6 md:p-10">
+            <div class="max-w-5xl mx-auto bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-6 shadow-2xl relative">
+                <button onclick="closeFolder()" class="absolute right-4 top-4 text-gray-400 hover:text-white font-mono text-sm cursor-pointer bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-lg transition-colors">✕ Kapat</button>
+                
+                <h2 id="modalTitle" class="text-lg font-black text-white tracking-wide font-mono">📁 KLASÖR: ...</h2>
+                
+                <div class="flex border-b border-gray-800">
+                    <button onclick="switchTab('cropped')" id="tabCroppedBtn" class="border-b-2 border-blue-500 px-4 py-2 text-xs font-bold text-white transition-all cursor-pointer">✂️ Kırpılmış Ürünler</button>
+                    <button onclick="switchTab('full')" id="tabFullBtn" class="border-b-2 border-transparent px-4 py-2 text-xs font-bold text-gray-400 hover:text-gray-200 transition-all cursor-pointer">🖼️ Tam Afişler</button>
+                </div>
 
-    // 2. Tara Butonu
-    document.getElementById('scan-btn').onclick = async () => {
-        resultDiv.innerText = "🚀 Vektör üretiliyor...";
-        cropper.getCroppedCanvas().toBlob(async (blob) => {
-            // A. Backend'e vektör gönder
-            const formData = new FormData();
-            formData.append('file', blob);
-            const res = await fetch("https://deimnegric-bimkod.hf.space/vektor-uret", { method: "POST", body: formData });
-            const data = await res.json();
+                <div id="croppedContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <!-- Dinamik kırpılmış ürünler -->
+                </div>
+
+                <div id="fullContent" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Dinamik tam afişler -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. FOTOĞRAF YAKINLAŞTIRMA MODALİ -->
+        <div id="imageZoomModal" class="hidden fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center p-4" onclick="closeZoom()">
+            <div class="relative max-w-3xl w-full max-h-[85vh] flex items-center justify-center">
+                <img id="zoomedImage" src="" alt="Görsel" class="max-h-[80vh] max-w-full object-contain rounded-lg shadow-2xl border border-gray-800">
+            </div>
+            <div class="text-center mt-4 space-y-1">
+                <p id="zoomTitle" class="text-sm font-bold text-white"></p>
+                <p class="text-xxs text-gray-500 font-mono">Kapatmak için ekranda herhangi bir yere tıklayın.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- YÖNETİCİ GİRİŞİ PANELİ -->
+    <footer class="bg-gray-950 border-t border-t-gray-900 py-6 px-4">
+        <div class="max-w-4xl mx-auto flex flex-col items-center space-y-4">
+            <button id="adminAuthBtn" onclick="toggleAdminPanel()" class="text-xs font-mono text-gray-500 hover:text-gray-300 transition-colors cursor-pointer tracking-widest">⚙️ YÖNETİCİ GİRİŞİ</button>
             
-            if(!data.vector) return resultDiv.innerText = "Hata!";
+            <div id="adminPanel" class="hidden w-full bg-gray-900/50 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-2xl">
+                <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                    <h2 class="text-sm font-black text-amber-500 tracking-wider">🛠️ OTOMATİK AFİŞ PARÇALAMA & ARŞİVLEME SİSTEMİ</h2>
+                    <span class="text-xxs font-mono bg-amber-950 text-amber-400 border border-amber-900 px-2 py-0.5 rounded">Admin Mode Active</span>
+                </div>
+                
+                <!-- 🔑 GİZLİ GITHUB GÜVENLİK ALANI -->
+                <div id="apiKeyManager" class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
+                    <label class="text-xxs font-mono text-amber-400 tracking-wider block">🔑 GOOGLE VISION API KEY (GITHUB'A GİTMEZ - TARAYICIDA KALIR)</label>
+                    <div class="flex gap-2">
+                        <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-amber-500 font-mono flex-grow">
+                        <button onclick="saveApiKey()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-4 py-1.5 rounded-lg transition-colors cursor-pointer">Anahtarı Kaydet</button>
+                    </div>
+                </div>
 
-            // B. products.json dosyasını çek (Bu dosya GitHub'da index.html'in yanında olmalı)
-            resultDiv.innerText = "🔍 Veritabanı aranıyor...";
-            const dbRes = await fetch('products.json');
-            const database = await dbRes.json();
+                <div class="space-y-4pt-2">
+                    <p class="text-xs text-gray-400">Yüklemek istediğiniz aktüel afişlerini **çoklu olarak** seçin. Yapay zeka tarihleri ayıklayıp parçalayacaktır.</p>
+                    <div class="flex items-center space-x-3">
+                        <button onclick="document.getElementById('adminFileInput').click()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs px-4 py-2.5 rounded-lg transition-colors cursor-pointer">📁 Afişleri Seç (Çoklu)</button>
+                        <input type="file" id="adminFileInput" class="hidden" accept="image/*" multiple onchange="updateSelectedFilesCount(this)">
+                        <button id="uploadBtn" onclick="startAIProcessing()" class="hidden bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition-colors cursor-pointer">⚡ Seçilenleri Yükle ve Parçala</button>
+                    </div>
+                    <p id="fileCountText" class="text-xxs font-mono text-gray-500"></p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            // C. Kosinüs Benzerliği ile karşılaştır
-            let bestMatch = null;
-            let highestScore = 0;
+    <!-- JAVASCRIPT MOTORU -->
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY", 
+            authDomain: "kalbim-d5570.firebaseapp.com",
+            databaseURL: "https://kalbim-d5570-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "kalbim-d5570",
+            storageBucket: "kalbim-d5570.appspot.com",
+            messagingSenderId: "952388733094",
+            appId: "1:952388733094:web:abfe7fca7f1b5f3a12cc67"
+        };
 
-            database.forEach(item => {
-                let dot = 0;
-                for(let i=0; i<data.vector.length; i++) dot += data.vector[i] * item.vector[i];
-                if(dot > highestScore) {
-                    highestScore = dot;
-                    bestMatch = item;
-                }
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database(); 
+        const storage = firebase.storage();
+        
+        let isAdmin = false;
+        let activeFolderData = []; 
+
+        window.onload = function() {
+            loadFolders();
+        };
+
+        function getVisionApiKey() {
+            return localStorage.getItem('MY_GIZLI_VISION_KEY') || "";
+        }
+
+        function saveApiKey() {
+            const key = document.getElementById('apiKeyInput').value.trim();
+            if (key) {
+                localStorage.setItem('MY_GIZLI_VISION_KEY', key);
+                alert("API Anahtarı tarayıcıya kilitlendi! 🚀");
+            } else {
+                localStorage.removeItem('MY_GIZLI_VISION_KEY');
+                alert("Anahtar silindi.");
+            }
+        }
+
+        function getFallbackDate() {
+            const aylar = ["OCAK", "SUBAT", "MART", "NISAN", "MAYIS", "HAZIRAN", "TEMMUZ", "AGUSTOS", "EYLUL", "EKIM", "KASIM", "ARALIK"];
+            const d = new Date();
+            return `${d.getDate()}-${aylar[d.getMonth()]}-${d.getFullYear()}`;
+        }
+
+        function temizleVeFormatla(metin) {
+            let temiz = metin.toUpperCase().replace(/['’"()]/g, "").replace(/[\n\r]/g, " ");
+            const aylar = ["OCAK", "SUBAT", "MART", "NISAN", "MAYIS", "HAZIRAN", "TEMMUZ", "AGUSTOS", "EYLUL", "EKIM", "KASIM", "ARALIK"];
+            let bulunanAy = "TEMMUZ";
+            for (let ay of aylar) {
+                if (temiz.includes(ay)) { bulunanAy = ay; break; }
+            }
+            const sayilar = temiz.match(/\d+/);
+            const gun = sayilar ? sayilar[0] : "3";
+            return `${gun}-${bulunanAy}-${new Date().getFullYear()}`;
+        }
+
+        async function detectFolderDate(file) {
+            return new Promise((resolve) => {
+                const apiKey = getVisionApiKey();
+                if (!apiKey) { resolve(getFallbackDate()); return; }
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = new Image();
+                    img.onload = async function () {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        const cropWidth = img.width * 0.35;
+                        const cropHeight = img.height * 0.15;
+                        canvas.width = cropWidth; canvas.height = cropHeight;
+                        ctx.drawImage(img, 0, 0, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+                        
+                        const base64Image = canvas.toDataURL('image/jpeg').split(',')[1];
+                        const apiURL = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
+
+                        try {
+                            const response = await fetch(apiURL, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    requests: [{ image: { content: base64Image }, features: [{ type: "TEXT_DETECTION" }] }]
+                                })
+                            });
+                            const result = await response.json();
+                            const annotations = result.responses[0]?.textAnnotations;
+                            if (annotations && annotations.length > 0) {
+                                resolve(temizleVeFormatla(annotations[0].description));
+                            } else { resolve(getFallbackDate()); }
+                        } catch (e) { resolve(getFallbackDate()); }
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
             });
+        }
 
-            // D. Sonucu göster
-if(bestMatch && highestScore > 0.70) {
-    resultDiv.innerHTML = `✅ <b>Bulundu:</b> ${bestMatch.name}<br>🎯 <b>Skor:</b> %${(highestScore*100).toFixed(1)}`;
-} else {
-    resultDiv.innerText = "❌ Ürün bulunamadı veya benzerlik oranı düşük.";
-}
+        async function cropProductsFromPoster(imgElement) {
+            return new Promise((resolve) => {
+                if (typeof cv === 'undefined' || !cv.Mat) {
+                    setTimeout(() => resolve(cropProductsFromPoster(imgElement)), 1000);
+                    return;
+                }
+                let src = cv.imread(imgElement);
+                let gray = new cv.Mat(); let thresh = new cv.Mat();
+                let contours = new cv.MatVector(); let hierarchy = new cv.Mat();
 
-        });
-    };
-</script>
+                cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+                cv.GaussianBlur(gray, gray, new cv.Size(5, 5), 0, 0, cv.BORDER_DEFAULT);
+                cv.threshold(gray, thresh, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
+                cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+                let croppedImagesBlobs = [];
+                for (let i = 0; i < contours.size(); ++i) {
+                    let cnt = contours.get(i); let rect = cv.boundingRect(cnt);
+                    if (rect.width > 150 && rect.height > 150 && rect.width < src.cols * 0.8 && rect.height < src.rows * 0.8) {
+                        let canvas = document.createElement('canvas');
+                        let ctx = canvas.getContext('2d');
+                        canvas.width = rect.width; canvas.height = rect.height;
+                        ctx.drawImage(imgElement, rect.x, rect.y, rect.width, rect.height, 0, 0, rect.width, rect.height);
+                        canvas.toBlob((blob) => {
+                            if (blob) croppedImagesBlobs.push({ blob: blob });
+                        }, 'image/png');
+                    }
+                }
+                setTimeout(() => {
+                    src.delete(); gray.delete(); thresh.delete(); contours.delete(); hierarchy.delete();
+                    resolve(croppedImagesBlobs);
+                }, 600);
+            });
+        }
+
+        // ⚡ ANA ENTEGRE MOTOR (Tek ve Sorunsuz Versiyon)
+        async function startAIProcessing() {
+            const fileInput = document.getElementById('adminFileInput');
+            const files = fileInput.files;
+            const apiKey = getVisionApiKey();
+
+            if (files.length === 0) return alert("Lütfen önce afiş seçin!");
+            if (!apiKey) return alert("⚠️ Lütfen önce Google Vision API Key kaydedin.");
+
+            alert(`${files.length} adet afiş işleniyor, sayfayı kapatmayın...`);
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                try {
+                    const tespitEdilenTarih = await detectFolderDate(file);
+                    
+                    const fullRef = storage.ref(`arsiv/${tespitEdilenTarih}/tam_afisler/${Date.now()}_${file.name}`);
+                    const fullSnapshot = await fullRef.put(file);
+                    const fullImgUrl = await fullSnapshot.ref.getDownloadURL();
+
+                    await database.ref("urunler").push().set({
+                        urunAdi: "TAM AFİŞ - GENEL GÖRÜNÜM",
+                        gorselUrl: fullImgUrl,
+                        tamAfisUrl: fullImgUrl,
+                        klasorAdi: tespitEdilenTarih,
+                        tip: "full_poster",
+                        yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
+                    });
+
+                    const imgElement = await new Promise((res) => {
+                        const img = new Image();
+                        img.onload = () => res(img);
+                        img.src = URL.createObjectURL(file);
+                    });
+
+                    const kirpilanUrunler = await cropProductsFromPoster(imgElement);
+
+                    for (let j = 0; j < kirpilanUrunler.length; j++) {
+                        const urun = kirpilanUrunler[j];
+                        let tespitEdilenUrunAdi = `BİM Aktüel Ürünü (Parça ${j + 1})`;
+
+                        try {
+                            const base64Product = await new Promise((res) => {
+                                const reader = new FileReader();
+                                reader.onloadend = () => res(reader.result.split(',')[1]);
+                                reader.readAsDataURL(urun.blob);
+                            });
+
+                            const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`, {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    requests: [{ image: { content: base64Product }, features: [{ type: "TEXT_DETECTION" }] }]
+                                })
+                            });
+                            const result = await response.json();
+                            const annotations = result.responses[0]?.textAnnotations;
+                            if (annotations && annotations.length > 0) {
+                                tespitEdilenUrunAdi = annotations[0].description.replace(/[\n\r]/g, " ").trim();
+                            }
+                        } catch (e) {}
+
+                        const croppedRef = storage.ref(`arsiv/${tespitEdilenTarih}/kirpilmis_urunler/urun_${j}_${Date.now()}.png`);
+                        const croppedSnapshot = await croppedRef.put(urun.blob);
+                        const croppedImgUrl = await croppedSnapshot.ref.getDownloadURL();
+
+                        await database.ref("urunler").push().set({
+                            urunAdi: tespitEdilenUrunAdi,
+                            gorselUrl: croppedImgUrl,
+                            tamAfisUrl: fullImgUrl,
+                            klasorAdi: tespitEdilenTarih,
+                            tip: "cropped_product",
+                            yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
+                        });
+                    }
+                } catch (err) { console.error(err); }
+            }
+            alert("Tüm afişler başarıyla işlendi! 🔥");
+            loadFolders();
+        }
+
+        async function loadFolders() {
+            const folderGrid = document.getElementById('folderGrid');
+            folderGrid.innerHTML = "";
+            try {
+                const snapshot = await database.ref("urunler").once("value");
+                const eklenenKlasorler = new Set();
+                snapshot.forEach(child => { eklenenKlasorler.add(child.val().klasorAdi); });
+                eklenenKlasorler.forEach(klasor => {
+                    folderGrid.innerHTML += `
+                        <div onclick="openFolder('${klasor}')" class="bg-gray-900 border border-gray-800 hover:border-gray-700 p-5 rounded-2xl shadow-md cursor-pointer transition-all flex flex-col items-center justify-center space-y-3 group">
+                            <span class="text-4xl group-hover:scale-110 transition-transform">📁</span>
+                            <h3 class="text-xs font-bold text-gray-200">${klasor}</h3>
+                        </div>`;
+                });
+            } catch (e) {}
+        }
+
+        async function handleGlobalSearch() {
+            const query = document.getElementById('searchBar').value.toLowerCase().trim();
+            const resultsSection = document.getElementById('searchResultsSection');
+            const foldersSection = document.getElementById('archiveFoldersSection');
+            const resultsGrid = document.getElementById('searchResultsGrid');
+
+            if (query.length > 0) {
+                foldersSection.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                resultsGrid.innerHTML = "";
+                try {
+                    const snapshot = await database.ref("urunler").once("value");
+                    let count = 0;
+                    snapshot.forEach(child => {
+                        const p = child.val();
+                        if (p.tip === "cropped_product" && p.urunAdi.toLowerCase().includes(query)) {
+                            count++;
+                            resultsGrid.innerHTML += `
+                                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-md cursor-pointer hover:border-gray-700 transition-colors" onclick="zoomImage('${p.gorselUrl}', '${p.urunAdi.toUpperCase()}')">
+                                    <div class="aspect-square bg-gray-950 flex items-center justify-center p-4">
+                                        <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded">
+                                    </div>
+                                    <div class="p-3 bg-gray-950/60 border-t border-gray-800/40">
+                                        <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-xxs font-mono block w-max mb-1">${p.klasorAdi}</span>
+                                        <h3 class="text-xs font-bold text-gray-200 truncate">${p.urunAdi}</h3>
+                                    </div>
+                                </div>`;
+                        }
+                    });
+                    if (count === 0) resultsGrid.innerHTML = `<p class="col-span-3 text-xs text-gray-500 font-mono italic p-2">Ürün bulunamadı...</p>`;
+                } catch (e) {}
+            } else {
+                resultsSection.classList.add('hidden');
+                foldersSection.classList.remove('hidden');
+            }
+        }
+
+        async function openFolder(folderName) {
+            document.getElementById('modalTitle').innerText = `📁 KLASÖR: ${folderName}`;
+            document.getElementById('folderModal').classList.remove('hidden');
+            
+            const croppedContent = document.getElementById('croppedContent');
+            const fullContent = document.getElementById('fullContent');
+            croppedContent.innerHTML = ""; fullContent.innerHTML = "";
+
+            try {
+                const snapshot = await database.ref("urunler").orderByChild("klasorAdi").equalTo(folderName).once("value");
+                snapshot.forEach(child => {
+                    const p = child.val();
+                    if (p.tip === "cropped_product") {
+                        croppedContent.innerHTML += `
+                            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden cursor-pointer hover:border-gray-700" onclick="zoomImage('${p.gorselUrl}', '${p.urunAdi}')">
+                                <div class="aspect-square bg-gray-950 flex items-center justify-center p-4">
+                                    <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded">
+                                </div>
+                                <div class="p-3 border-t border-gray-800/40"><h3 class="text-xs font-bold text-gray-300 truncate">${p.urunAdi}</h3></div>
+                            </div>`;
+                    } else {
+                        fullContent.innerHTML += `
+                            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden cursor-pointer hover:border-gray-700" onclick="zoomImage('${p.gorselUrl}', 'Tam Afis')">
+                                <div class="aspect-[3/4] bg-gray-950 flex items-center justify-center p-2">
+                                    <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain">
+                                </div>
+                            </div>`;
+                    }
+                });
+            } catch (e) {}
+            switchTab('cropped');
+        }
+
+        function closeFolder() { document.getElementById('folderModal').classList.add('hidden'); }
+        function closeZoom() { document.getElementById('imageZoomModal').classList.add('hidden'); }
+        function zoomImage(src, title) {
+            document.getElementById('zoomedImage').src = src;
+            document.getElementById('zoomTitle').innerText = title;
+            document.getElementById('imageZoomModal').classList.remove('hidden');
+        }
+
+        function switchTab(tab) {
+            const croppedBtn = document.getElementById('tabCroppedBtn'); const fullBtn = document.getElementById('tabFullBtn');
+            const croppedContent = document.getElementById('croppedContent'); const fullContent = document.getElementById('fullContent');
+            if (tab === 'cropped') {
+                croppedBtn.className = "border-b-2 border-blue-500 px-4 py-2 text-xs font-bold text-white transition-all cursor-pointer";
+                fullBtn.className = "border-b-2 border-transparent px-4 py-2 text-xs font-bold text-gray-400 hover:text-gray-200 transition-all cursor-pointer";
+                croppedContent.classList.remove('hidden'); fullContent.classList.add('hidden');
+            } else {
+                fullBtn.className = "border-b-2 border-blue-500 px-4 py-2 text-xs font-bold text-white transition-all cursor-pointer";
+                croppedBtn.className = "border-b-2 border-transparent px-4 py-2 text-xs font-bold text-gray-400 hover:text-gray-200 transition-all cursor-pointer";
+                fullContent.classList.remove('hidden'); croppedContent.classList.add('hidden');
+            }
+        }
+
+        function toggleAdminPanel() {
+            const btn = document.getElementById('adminAuthBtn'); const panel = document.getElementById('adminPanel');
+            const apiKeyInput = document.getElementById('apiKeyInput');
+            if (!isAdmin) {
+                let password = prompt("Yönetici Şifresini Girin:");
+                if (password === "2407") {
+                    isAdmin = true; panel.classList.remove('hidden');
+                    btn.innerText = "❌ ÇIKIŞ YAP"; btn.classList.add('text-red-500');
+                    if (getVisionApiKey()) apiKeyInput.value = getVisionApiKey();
+                } else if (password !== null) alert("Hatalı Şifre!");
+            } else {
+                isAdmin = false; panel.classList.add('hidden');
+                btn.innerText = "⚙️ YÖNETİCİ GİRİŞİ"; btn.classList.remove('text-red-500');
+            }
+        }
+
+        function updateSelectedFilesCount(input) {
+            const count = input.files.length;
+            const text = document.getElementById('fileCountText'); const uploadBtn = document.getElementById('uploadBtn');
+            if (count > 0) {
+                text.innerText = `${count} adet afiş seçildi.`; uploadBtn.classList.remove('hidden');
+            } else { text.innerText = ""; uploadBtn.classList.add('hidden'); }
+        }
+
+        function startCamera() { alert("Kamera yakında aktif edilecek kanki!"); }
+        function processUserImage(input) { if(input.files.length > 0) alert("Kullanıcı resmi tarama modülü yakında aktif!"); }
+    </script>
 </body>
 </html>
