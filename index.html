@@ -3,68 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akıllı Afiş & Ürün Kataloğu</title>
-    
+    <title>BİMKOD</title>
+
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.1/dist/mobilenet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
     <script id="opencv-script" async src="https://docs.opencv.org/4.5.4/opencv.js" type="text/javascript"></script>
 </head>
 <body class="bg-gray-950 text-gray-100 font-sans min-h-screen flex flex-col justify-between">
 
     <header class="max-w-4xl mx-auto w-full px-4 pt-12 pb-6 text-center space-y-6">
-        <h1 class="text-3xl font-black tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">KAMPANYA BULUCU</h1>
-        
+        <h1 class="text-3xl font-black tracking-tight bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">BİMKOD</h1>
+        <p id="modelStatus" class="text-xxs font-mono text-amber-500">🧠 Görsel arama motoru yükleniyor...</p>
+
         <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
             <button onclick="document.getElementById('userFileInput').click()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all cursor-pointer flex items-center space-x-2">
-                <span>📁</span> <span>Görsel Yükle</span>
+                <span>📁</span> <span>Galeriden Seç</span>
             </button>
             <button onclick="startCamera()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-3 rounded-xl shadow-lg transition-all cursor-pointer flex items-center space-x-2">
                 <span>📸</span> <span>Fotoğraf Çek</span>
             </button>
-            <input type="file" id="userFileInput" class="hidden" accept="image/*" onchange="processUserImage(this)">
+            <input type="file" id="userFileInput" class="hidden" accept="image/*" onchange="loadImageIntoCropper(this.files[0])">
         </div>
     </header>
 
     <main class="max-w-5xl mx-auto w-full px-4 py-6 flex-grow space-y-8">
-        
+
+        <!-- Manuel isim/tarih arama -->
         <div class="relative max-w-xl mx-auto">
-            <input type="text" id="searchBar" onkeyup="handleGlobalSearch()" placeholder="Ürün adı ara (Örn: hava, scooter)..." class="w-full bg-gray-900 border border-gray-800 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-blue-500 placeholder-gray-500 font-medium transition-colors shadow-inner">
+            <input type="text" id="searchBar" onkeyup="handleGlobalSearch()" placeholder="Ürün adı veya tarih ara (Örn: runner, hava kompresörü, 3 temmuz)..." class="w-full bg-gray-900 border border-gray-800 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-blue-500 placeholder-gray-500 font-medium transition-colors shadow-inner">
             <span class="absolute right-4 top-3.5 text-gray-500 text-sm">🔍</span>
         </div>
 
         <div id="searchResultsSection" class="hidden border-2 border-blue-900/30 bg-blue-950/5 rounded-2xl p-6 space-y-4">
-            <h2 class="text-xs font-black text-blue-400 tracking-wider font-mono">🎯 ARAMA SONUÇLARI (KIRPILMIŞ ÜRÜNLER)</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="searchResultsGrid">
-                </div>
+            <h2 class="text-xs font-black text-blue-400 tracking-wider font-mono">🎯 ARAMA SONUÇLARI</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="searchResultsGrid"></div>
+        </div>
+
+        <!-- Görsel arama sonuçları (kamera / galeri) -->
+        <div id="visualResultsSection" class="hidden border-2 border-emerald-900/30 bg-emerald-950/5 rounded-2xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xs font-black text-emerald-400 tracking-wider font-mono">🧠 GÖRSEL ARAMA SONUÇLARI</h2>
+                <button onclick="closeVisualResults()" class="text-xxs font-mono text-gray-500 hover:text-gray-300">✕ Kapat</button>
+            </div>
+            <p id="visualResultsHint" class="text-xxs font-mono text-gray-500"></p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="visualResultsGrid"></div>
         </div>
 
         <div id="archiveFoldersSection" class="space-y-6">
-            <h2 class="text-sm font-bold text-gray-400 tracking-wider font-mono">📁 YÜKLENEN ARŞİV KLASÖRLERİ</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="folderGrid">
-                </div>
+            <h2 class="text-sm font-bold text-gray-400 tracking-wider font-mono">📁 YÜKLENEN ARŞİV KLASÖRLERİ (Afiş Tarihleri)</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="folderGrid"></div>
+        </div>
+
+        <!-- Kamera / Kırpma modalı -->
+        <div id="cropModal" class="hidden fixed inset-0 bg-gray-950/95 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 space-y-4">
+            <h2 class="text-sm font-black text-white tracking-wide font-mono">✂️ Ürünü Kırp (isteğe bağlı) ve Ara</h2>
+
+            <video id="cameraVideo" class="hidden max-h-[55vh] rounded-xl border border-gray-800" autoplay playsinline></video>
+            <button id="captureBtn" onclick="capturePhoto()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg cursor-pointer">📸 Çek</button>
+
+            <div id="cropCanvasWrap" class="hidden relative select-none">
+                <canvas id="cropCanvas" class="max-h-[55vh] rounded-xl border border-gray-800 cursor-crosshair"></canvas>
+            </div>
+            <p class="text-xxs font-mono text-gray-500">Fareyle/parmakla ürünün üzerine bir kutu çiz. Kutu çizmezsen tüm görsel aranır.</p>
+
+            <div class="flex gap-3">
+                <button onclick="runVisualSearch()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm px-6 py-3 rounded-xl cursor-pointer">🔍 Ara</button>
+                <button onclick="closeCropModal()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 font-bold text-sm px-6 py-3 rounded-xl cursor-pointer">İptal</button>
+            </div>
+            <p id="cropStatus" class="text-xxs font-mono text-blue-400"></p>
         </div>
 
         <div id="folderModal" class="hidden fixed inset-0 bg-gray-950/90 backdrop-blur-md z-50 overflow-y-auto p-4 sm:p-6 md:p-10">
             <div class="max-w-5xl mx-auto bg-gray-900 border border-gray-800 rounded-2xl p-6 space-y-6 shadow-2xl relative">
                 <button onclick="closeFolder()" class="absolute right-4 top-4 text-gray-400 hover:text-white font-mono text-sm cursor-pointer bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-lg transition-colors">✕ Kapat</button>
-                
                 <h2 id="modalTitle" class="text-lg font-black text-white tracking-wide font-mono">📁 KLASÖR: ...</h2>
-                
                 <div class="flex border-b border-gray-800">
                     <button onclick="switchTab('cropped')" id="tabCroppedBtn" class="border-b-2 border-blue-500 px-4 py-2 text-xs font-bold text-white transition-all cursor-pointer">✂️ Kırpılmış Ürünler</button>
                     <button onclick="switchTab('full')" id="tabFullBtn" class="border-b-2 border-transparent px-4 py-2 text-xs font-bold text-gray-400 hover:text-gray-200 transition-all cursor-pointer">🖼️ Tam Afişler</button>
                 </div>
-
-                <div id="croppedContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    </div>
-
-                <div id="fullContent" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    </div>
+                <div id="croppedContent" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+                <div id="fullContent" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
             </div>
         </div>
 
@@ -83,37 +108,54 @@
     <footer class="bg-gray-950 border-t border-t-gray-900 py-6 px-4">
         <div class="max-w-4xl mx-auto flex flex-col items-center space-y-4">
             <button id="adminAuthBtn" onclick="toggleAdminPanel()" class="text-xs font-mono text-gray-500 hover:text-gray-300 transition-colors cursor-pointer tracking-widest">⚙️ YÖNETİCİ GİRİŞİ</button>
-            
+
             <div id="adminPanel" class="hidden w-full bg-gray-900/50 border border-gray-800 rounded-2xl p-6 space-y-4 shadow-2xl">
                 <div class="flex items-center justify-between border-b border-gray-800 pb-3">
-                    <h2 class="text-sm font-black text-amber-500 tracking-wider">🛠️ OTOMATİK AFİŞ PARÇALAMA & ARŞİVLEME SİSTEMİ</h2>
+                    <h2 class="text-sm font-black text-amber-500 tracking-wider">🛠️ OTOMATİK AFİŞ PARÇALAMA & ARŞİVLEME</h2>
                     <span class="text-xxs font-mono bg-amber-950 text-amber-400 border border-amber-900 px-2 py-0.5 rounded">Admin Mode Active</span>
                 </div>
-                
+
                 <div id="apiKeyManager" class="bg-gray-950 p-4 rounded-xl border border-gray-800 space-y-2">
-                    <label class="text-xxs font-mono text-amber-400 tracking-wider block">🔑 GOOGLE VISION API KEY (TARAYICIDA SAKLANIR)</label>
+                    <label class="text-xxs font-mono text-amber-400 tracking-wider block">🔑 GOOGLE VISION API KEY (opsiyonel — boş bırakırsan ücretsiz Tesseract.js OCR kullanılır)</label>
                     <div class="flex gap-2">
-                        <input type="password" id="apiKeyInput" placeholder="AIzaSy..." class="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-amber-500 font-mono flex-grow">
+                        <input type="password" id="apiKeyInput" placeholder="AIzaSy... (opsiyonel)" class="bg-gray-900 border border-gray-800 rounded-lg px-3 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-amber-500 font-mono flex-grow">
                         <button onclick="saveApiKey()" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-4 py-1.5 rounded-lg transition-colors cursor-pointer">Anahtarı Kaydet</button>
                     </div>
                 </div>
 
                 <div class="space-y-4 pt-2">
-                    <p class="text-xs text-gray-400">Yüklemek istediğiniz aktüel afişlerini **çoklu olarak** seçin. Yapay zeka tarihleri ayıklayıp parçalayacaktır.</p>
-                    <div class="flex items-center space-x-3">
+                    <p class="text-xs text-gray-400">Aktüel afişlerini **çoklu olarak** seç. Sistem tarihi, ürünleri ve isimleri otomatik çıkarır; kaydetmeden önce düzeltme ekranı gösterilir.</p>
+                    <div class="flex items-center space-x-3 flex-wrap gap-y-2">
                         <button onclick="document.getElementById('adminFileInput').click()" class="bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-bold text-xs px-4 py-2.5 rounded-lg transition-colors cursor-pointer">📁 Afişleri Seç (Çoklu)</button>
                         <input type="file" id="adminFileInput" class="hidden" accept="image/*" multiple onchange="updateSelectedFilesCount(this)">
-                        <button id="uploadBtn" onclick="startAIProcessing()" class="hidden bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition-colors cursor-pointer">⚡ Seçilenleri Yükle ve Parçala</button>
+                        <button id="uploadBtn" onclick="startAIProcessing()" class="hidden bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow-md transition-colors cursor-pointer">⚡ Tara ve İşle</button>
                     </div>
                     <p id="fileCountText" class="text-xxs font-mono text-gray-500"></p>
+
+                    <div id="progressWrap" class="hidden space-y-1">
+                        <div class="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                            <div id="progressBar" class="bg-amber-500 h-2.5 rounded-full transition-all" style="width:0%"></div>
+                        </div>
+                        <p id="progressText" class="text-xxs font-mono text-gray-500"></p>
+                    </div>
+                </div>
+
+                <!-- Manuel düzeltme ekranı -->
+                <div id="reviewSection" class="hidden space-y-3 pt-4 border-t border-gray-800">
+                    <h3 class="text-xs font-black text-blue-400 tracking-wider font-mono">📝 KAYDETMEDEN ÖNCE KONTROL ET</h3>
+                    <div id="reviewList" class="space-y-2 max-h-96 overflow-y-auto"></div>
+                    <button onclick="confirmSaveAll()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-5 py-2.5 rounded-lg cursor-pointer">✅ Onayla ve Veritabanına Kaydet</button>
                 </div>
             </div>
         </div>
     </footer>
 
+    <canvas id="hiddenWorkCanvas" class="hidden"></canvas>
+
     <script>
+        // =================== FIREBASE ===================
         const firebaseConfig = {
-            apiKey: "YOUR_FIREBASE_API_KEY", 
+            apiKey: "AIzaSyARlocHf8EVqfGkKNez2dqMXzMmnWdOEL0",
             authDomain: "kalbim-d5570.firebaseapp.com",
             databaseURL: "https://kalbim-d5570-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "kalbim-d5570",
@@ -121,124 +163,143 @@
             messagingSenderId: "952388733094",
             appId: "1:952388733094:web:abfe7fca7f1b5f3a12cc67"
         };
-
         firebase.initializeApp(firebaseConfig);
-        const database = firebase.database(); 
+        const database = firebase.database();
         const storage = firebase.storage();
-        
-        let isAdmin = false;
 
-        window.onload = function() {
+        let isAdmin = false;
+        let mobilenetModel = null;
+        let pendingReviewItems = []; // admin: {blob, fullImgUrl, folderName, rawText, editedName, embedding}
+        let cameraStream = null;
+        let cropSourceImg = null; // Image element currently loaded in crop canvas
+        let cropBox = null; // {x,y,w,h} in canvas pixel space, or null = whole image
+
+        window.onload = function () {
             loadFolders();
+            loadVisualModel();
         };
 
-        function getVisionApiKey() {
-            return localStorage.getItem('MY_GIZLI_VISION_KEY') || "";
-        }
-
-        function saveApiKey() {
-            const key = document.getElementById('apiKeyInput').value.trim();
-            if (key) {
-                localStorage.setItem('MY_GIZLI_VISION_KEY', key);
-                alert("API Anahtarı tarayıcıya kilitlendi! 🚀");
-            } else {
-                localStorage.removeItem('MY_GIZLI_VISION_KEY');
-                alert("Anahtar silindi.");
+        async function loadVisualModel() {
+            try {
+                mobilenetModel = await mobilenet.load({ version: 2, alpha: 1.0 });
+                document.getElementById('modelStatus').innerText = "✅ Görsel arama motoru hazır";
+                document.getElementById('modelStatus').classList.replace('text-amber-500', 'text-emerald-500');
+            } catch (e) {
+                console.error(e);
+                document.getElementById('modelStatus').innerText = "⚠️ Görsel arama motoru yüklenemedi, sadece isim araması çalışacak";
             }
         }
 
+        // =================== API KEY (opsiyonel Vision) ===================
+        function getVisionApiKey() { return localStorage.getItem('MY_GIZLI_VISION_KEY') || ""; }
+        function saveApiKey() {
+            const key = document.getElementById('apiKeyInput').value.trim();
+            if (key) { localStorage.setItem('MY_GIZLI_VISION_KEY', key); alert("API Anahtarı tarayıcıya kaydedildi 🚀"); }
+            else { localStorage.removeItem('MY_GIZLI_VISION_KEY'); alert("Anahtar silindi. Artık ücretsiz Tesseract.js OCR kullanılacak."); }
+        }
+
+        // =================== OCR (Vision varsa Vision, yoksa ücretsiz Tesseract.js) ===================
+        async function ocrCanvas(canvas) {
+            const apiKey = getVisionApiKey();
+            if (apiKey) {
+                try {
+                    const base64Image = canvas.toDataURL('image/jpeg', 0.92).split(',')[1];
+                    const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`, {
+                        method: "POST", headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ requests: [{ image: { content: base64Image }, features: [{ type: "TEXT_DETECTION" }] }] })
+                    });
+                    const result = await response.json();
+                    const annotations = result.responses[0]?.textAnnotations;
+                    if (annotations && annotations.length > 0) return annotations[0].description;
+                } catch (e) { console.error("Vision OCR hata, Tesseract'a düşülüyor:", e); }
+            }
+            try {
+                const { data } = await Tesseract.recognize(canvas, 'tur+eng');
+                return data.text || "";
+            } catch (e) { console.error("Tesseract hata:", e); return ""; }
+        }
+
+        // =================== Ürün adını Claude ile temizleme (ücretsiz, bu ortamda hazır) ===================
+        async function refineProductName(rawText) {
+            const cleanedRaw = (rawText || "").replace(/\s+/g, " ").trim();
+            if (!cleanedRaw) return "Bilinmeyen Ürün";
+            try {
+                const response = await fetch("https://api.anthropic.com/v1/messages", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        model: "claude-sonnet-4-6",
+                        max_tokens: 60,
+                        messages: [{
+                            role: "user",
+                            content: `Bir market aktüel afişindeki ürün etiketinden OCR ile çıkarılmış ham metin aşağıda. ` +
+                                `Bunu kısa ve net bir ürün adına çevir. Format: "MARKA ÜRÜN TİPİ ÖZELLİK" (örn: "DIJITSU 43 INC TV", "BOSCH 1200W BLENDER"). ` +
+                                `Fiyat, para birimi, TL, kampanya sloganı gibi alakasız kısımları at. Sadece ürün adını yaz, başka açıklama ekleme, tırnak kullanma.\n\nHam metin:\n${cleanedRaw}`
+                        }]
+                    })
+                });
+                const data = await response.json();
+                const text = (data.content || []).map(b => b.text || "").join(" ").trim();
+                return text || cleanedRaw.split("\n")[0].slice(0, 60);
+            } catch (e) {
+                console.error("Ad temizleme hatası:", e);
+                return cleanedRaw.split("\n")[0].slice(0, 60);
+            }
+        }
+
+        // =================== Tarih algılama (üst şerit: CUMA + 3 TEMMUZ gibi) ===================
         function getFallbackDate() {
             const aylar = ["OCAK", "SUBAT", "MART", "NISAN", "MAYIS", "HAZIRAN", "TEMMUZ", "AGUSTOS", "EYLUL", "EKIM", "KASIM", "ARALIK"];
             const d = new Date();
-            return `${d.getDate()}-${aylar[d.getMonth()]}-${d.getFullYear()}`;
+            return `${d.getDate()} ${aylar[d.getMonth()]} CUMA`;
         }
 
         function temizleVeFormatla(metin) {
             if (!metin) return getFallbackDate();
-            
             let temiz = metin.toUpperCase()
                 .replace(/['’"()]/g, "")
-                .replace(/[İı]/g, "I")
-                .replace(/[Şş]/g, "S")
-                .replace(/[Çç]/g, "C")
-                .replace(/[Ğğ]/g, "G")
-                .replace(/[Üü]/g, "U")
-                .replace(/[Öö]/g, "O")
+                .replace(/[İı]/g, "I").replace(/[Şş]/g, "S").replace(/[Çç]/g, "C")
+                .replace(/[Ğğ]/g, "G").replace(/[Üü]/g, "U").replace(/[Öö]/g, "O")
                 .replace(/[\n\r]/g, " ");
 
             const aylar = ["OCAK", "SUBAT", "MART", "NISAN", "MAYIS", "HAZIRAN", "TEMMUZ", "AGUSTOS", "EYLUL", "EKIM", "KASIM", "ARALIK"];
-            
-            // "24 HAZIRAN" veya "05 TEMMUZ" gibi tarih kalıplarını yakalar
-            const regexTarih = /(\d{1,2})\s+(OCAK|SUBAT|MART|NISAN|MAYIS|HAZIRAN|TEMMUZ|AGUSTOS|EYLUL|EKIM|KASIM|ARALIK)/i;
-            const match = temiz.match(regexTarih);
+            const gunler = ["PAZARTESI", "SALI", "CARSAMBA", "PERSEMBE", "CUMA", "CUMARTESI", "PAZAR"];
 
-            if (match) {
-                const gun = match[1];
-                const ay = match[2].toUpperCase();
-                return `${gun}-${ay}-${new Date().getFullYear()}`;
-            }
+            // "3 TEMMUZ CUMA" ya da "CUMA 3 TEMMUZ" kalıplarını yakala
+            const regexTarihGun = /(\d{1,2})\s+(OCAK|SUBAT|MART|NISAN|MAYIS|HAZIRAN|TEMMUZ|AGUSTOS|EYLUL|EKIM|KASIM|ARALIK)|(PAZARTESI|SALI|CARSAMBA|PERSEMBE|CUMA|CUMARTESI|PAZAR)/g;
+            const bulunanlar = temiz.match(regexTarihGun) || [];
 
-            // Tam kalıp bulunamazsa tek tek ay kelimelerini tarar
-            for (let ay of aylar) {
-                if (temiz.includes(ay)) {
+            let gun = null, ay = null, haftaGunu = null;
+            const sayiAyMatch = temiz.match(/(\d{1,2})\s+(OCAK|SUBAT|MART|NISAN|MAYIS|HAZIRAN|TEMMUZ|AGUSTOS|EYLUL|EKIM|KASIM|ARALIK)/);
+            if (sayiAyMatch) { gun = sayiAyMatch[1]; ay = sayiAyMatch[2]; }
+            for (let g of gunler) { if (temiz.includes(g)) { haftaGunu = g; break; } }
+
+            if (gun && ay) return `${gun} ${ay}${haftaGunu ? " " + haftaGunu : ""}`;
+
+            for (let a of aylar) {
+                if (temiz.includes(a)) {
                     const sayilar = temiz.match(/\d+/);
-                    const gun = sayilar ? sayilar[0] : "3";
-                    return `${gun}-${ay}-${new Date().getFullYear()}`;
+                    gun = sayilar ? sayilar[0] : "3";
+                    return `${gun} ${a}${haftaGunu ? " " + haftaGunu : ""}`;
                 }
             }
-            
             return getFallbackDate();
         }
 
         async function detectFolderDate(file) {
             return new Promise((resolve) => {
-                const apiKey = getVisionApiKey();
-                if (!apiKey) { resolve(getFallbackDate()); return; }
-
                 const reader = new FileReader();
                 reader.onload = function (event) {
                     const img = new Image();
                     img.onload = async function () {
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
-                        
-                        // Sabit Üst Şerit Koordinatları (%25 Kırpma)
                         const cropWidth = img.width;
-                        const cropHeight = img.height * 0.25; 
-                        
-                        canvas.width = cropWidth; 
-                        canvas.height = cropHeight;
-                        
-                        // Görselin en üstünden aşağıya doğru %25'lik alanını kırpıyoruz
+                        const cropHeight = img.height * 0.25;
+                        canvas.width = cropWidth; canvas.height = cropHeight;
                         ctx.drawImage(img, 0, 0, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
-                        
-                        const base64Image = canvas.toDataURL('image/jpeg', 0.95).split(',')[1];
-                        const apiURL = `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`;
-
-                        try {
-                            const response = await fetch(apiURL, {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    requests: [{ 
-                                        image: { content: base64Image }, 
-                                        features: [{ type: "TEXT_DETECTION" }] 
-                                    }]
-                                })
-                            });
-                            const result = await response.json();
-                            const annotations = result.responses[0]?.textAnnotations;
-                            if (annotations && annotations.length > 0) {
-                                const algilananMetin = annotations[0].description;
-                                console.log("%25'lik Üst Alandan Okunan Metin:", algilananMetin);
-                                resolve(temizleVeFormatla(algilananMetin));
-                            } else { 
-                                resolve(getFallbackDate()); 
-                            }
-                        } catch (e) { 
-                            console.error("Tarih şeridi okunurken hata:", e);
-                            resolve(getFallbackDate()); 
-                        }
+                        const metin = await ocrCanvas(canvas);
+                        resolve(temizleVeFormatla(metin));
                     };
                     img.src = event.target.result;
                 };
@@ -246,13 +307,10 @@
             });
         }
 
-                // --- İSTEDİĞİN DÜZELTİLMİŞ KOD BLOĞU ---
+        // =================== OpenCV ile ürün kırpma ===================
         async function cropProductsFromPoster(imgElement) {
             return new Promise((resolve, reject) => {
-                if (typeof cv === 'undefined' || !cv.Mat) {
-                    reject("OpenCV.js kütüphanesi yüklenemedi.");
-                    return;
-                }
+                if (typeof cv === 'undefined' || !cv.Mat) { reject("OpenCV.js kütüphanesi yüklenemedi."); return; }
                 try {
                     let src = cv.imread(imgElement);
                     let gray = new cv.Mat(); let thresh = new cv.Mat();
@@ -260,24 +318,18 @@
 
                     cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
                     cv.GaussianBlur(gray, gray, new cv.Size(5, 5), 0, 0, cv.BORDER_DEFAULT);
-                    // Eşik değerini daha iyi algılama için optimize ettik
                     cv.threshold(gray, thresh, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
                     cv.findContours(thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
 
                     let boxes = [];
                     for (let i = 0; i < contours.size(); ++i) {
                         let rect = cv.boundingRect(contours.get(i));
-                        // Boyut filtresi: 80x80 pikselden büyükleri al
-                        if (rect.width > 80 && rect.height > 80) {
-                            boxes.push(rect);
-                        }
+                        if (rect.width > 80 && rect.height > 80) boxes.push(rect);
                     }
-
-                    // Yakın kutuları birleştirme (Metinler ve ürünlerin birleşmesi için)
-                    let mergedBoxes = mergeBoxes(boxes, 80); 
+                    let mergedBoxes = mergeBoxes(boxes, 80);
                     let croppedImagesBlobs = [];
                     let promises = [];
-                    let padding = 30; // Dıştan kırpma payı (Padding)
+                    let padding = 30;
 
                     for (let rect of mergedBoxes) {
                         let x = Math.max(0, rect.x - padding);
@@ -289,15 +341,11 @@
                         canvas.width = w; canvas.height = h;
                         let ctx = canvas.getContext('2d');
                         ctx.drawImage(imgElement, x, y, w, h, 0, 0, w, h);
-                        
+
                         promises.push(new Promise((res) => {
-                            canvas.toBlob((blob) => {
-                                if (blob) croppedImagesBlobs.push({ blob: blob });
-                                res();
-                            }, 'image/png');
+                            canvas.toBlob((blob) => { if (blob) croppedImagesBlobs.push({ blob, canvas }); res(); }, 'image/png');
                         }));
                     }
-
                     Promise.all(promises).then(() => {
                         src.delete(); gray.delete(); thresh.delete(); contours.delete(); hierarchy.delete();
                         resolve(croppedImagesBlobs);
@@ -306,7 +354,6 @@
             });
         }
 
-        // Yardımcı Fonksiyon: Yakın kutuları birleştirir
         function mergeBoxes(boxes, threshold) {
             if (boxes.length === 0) return [];
             boxes.sort((a, b) => a.y - b.y);
@@ -316,8 +363,7 @@
                 for (let i = 0; i < boxes.length; i++) {
                     let next = boxes[i];
                     if (Math.abs(first.x - next.x) < threshold || Math.abs(first.y - next.y) < threshold) {
-                        let newX = Math.min(first.x, next.x);
-                        let newY = Math.min(first.y, next.y);
+                        let newX = Math.min(first.x, next.x); let newY = Math.min(first.y, next.y);
                         first.width = Math.max(first.x + first.width, next.x + next.width) - newX;
                         first.height = Math.max(first.y + first.height, next.y + next.height) - newY;
                         first.x = newX; first.y = newY;
@@ -328,40 +374,49 @@
             }
             return merged;
         }
-        // ----------------------------------------------
 
+        // =================== Görsel embedding (MobileNet) ===================
+        async function getEmbedding(imgOrCanvas) {
+            if (!mobilenetModel) return null;
+            try {
+                const t = tf.tidy(() => mobilenetModel.infer(imgOrCanvas, true));
+                const arr = Array.from(await t.data());
+                t.dispose();
+                return arr;
+            } catch (e) { console.error("Embedding hatası:", e); return null; }
+        }
 
+        function cosineSimilarity(a, b) {
+            if (!a || !b || a.length !== b.length) return -1;
+            let dot = 0, normA = 0, normB = 0;
+            for (let i = 0; i < a.length; i++) { dot += a[i] * b[i]; normA += a[i] * a[i]; normB += b[i] * b[i]; }
+            return dot / (Math.sqrt(normA) * Math.sqrt(normB) + 1e-8);
+        }
+
+        // =================== ADMIN: Toplu afiş işleme ===================
         async function startAIProcessing() {
             const fileInput = document.getElementById('adminFileInput');
             const files = fileInput.files;
-            const apiKey = getVisionApiKey();
             const uploadBtn = document.getElementById('uploadBtn');
+            const progressWrap = document.getElementById('progressWrap');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
 
             if (files.length === 0) return alert("Lütfen önce afiş seçin!");
-            if (!apiKey) return alert("⚠️ Lütfen önce Google Vision API Key kaydedin.");
 
-            uploadBtn.disabled = true;
-            uploadBtn.innerText = "⏳ İşleniyor...";
-
-            alert(`${files.length} adet afiş işleniyor, lütfen işlem bitene kadar bekleyin...`);
+            uploadBtn.disabled = true; uploadBtn.innerText = "⏳ İşleniyor...";
+            progressWrap.classList.remove('hidden');
+            pendingReviewItems = [];
 
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
+                progressText.innerText = `Afiş ${i + 1}/${files.length} işleniyor: ${file.name}`;
+                progressBar.style.width = `${Math.round(((i) / files.length) * 100)}%`;
                 try {
                     const tespitEdilenTarih = await detectFolderDate(file);
-                    
                     const fullRef = storage.ref(`arsiv/${tespitEdilenTarih}/tam_afisler/${Date.now()}_${file.name}`);
                     const fullSnapshot = await fullRef.put(file);
                     const fullImgUrl = await fullSnapshot.ref.getDownloadURL();
-
-                    await database.ref("urunler").push().set({
-                        urunAdi: "TAM AFİŞ - GENEL GÖRÜNÜM",
-                        gorselUrl: fullImgUrl,
-                        tamAfisUrl: fullImgUrl,
-                        klasorAdi: tespitEdilenTarih,
-                        tip: "full_poster",
-                        yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
-                    });
 
                     const imgElement = await new Promise((res) => {
                         const img = new Image();
@@ -369,67 +424,93 @@
                         img.src = URL.createObjectURL(file);
                     });
 
-                    console.log("OpenCV segmentasyonu başlıyor...");
+                    // Tam afişi review listesine ekle (kaydedilecek)
+                    pendingReviewItems.push({
+                        tip: "full_poster", blob: null, fullImgUrl, folderName: tespitEdilenTarih,
+                        editedName: "TAM AFİŞ - GENEL GÖRÜNÜM", embedding: null
+                    });
+
                     let kirpilanUrunler = [];
-                    try {
-                        kirpilanUrunler = await cropProductsFromPoster(imgElement);
-                    } catch (cvError) {
-                        console.error("OpenCV hatası:", cvError);
-                        alert("OpenCV Hatası: " + cvError);
-                        continue; 
-                    }
+                    try { kirpilanUrunler = await cropProductsFromPoster(imgElement); }
+                    catch (cvError) { console.error("OpenCV hatası:", cvError); alert("OpenCV Hatası: " + cvError); continue; }
 
                     for (let j = 0; j < kirpilanUrunler.length; j++) {
                         const urun = kirpilanUrunler[j];
-                        let tespitEdilenUrunAdi = `BİM Aktüel Ürünü (Parça ${j + 1})`;
+                        const rawText = await ocrCanvas(urun.canvas);
+                        const guzelIsim = await refineProductName(rawText);
+                        const embedding = await getEmbedding(urun.canvas);
 
-                        try {
-                            const base64Product = await new Promise((res) => {
-                                const reader = new FileReader();
-                                reader.onloadend = () => res(reader.result.split(',')[1]);
-                                reader.readAsDataURL(urun.blob);
-                            });
-
-                            const response = await fetch(`https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`, {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json" },
-                                body: JSON.stringify({
-                                    requests: [{ image: { content: base64Product }, features: [{ type: "TEXT_DETECTION" }] }]
-                                })
-                            });
-                            const result = await response.json();
-                            const annotations = result.responses[0]?.textAnnotations;
-                            if (annotations && annotations.length > 0) {
-                                tespitEdilenUrunAdi = annotations[0].description.replace(/[\n\r]/g, " ").trim();
-                            }
-                        } catch (e) {
-                            console.error("Ürün OCR Hatası:", e);
-                        }
-
-                        const croppedRef = storage.ref(`arsiv/${tespitEdilenTarih}/kirpilmis_urunler/urun_${j}_${Date.now()}.png`);
-                        const croppedSnapshot = await croppedRef.put(urun.blob);
-                        const croppedImgUrl = await croppedSnapshot.ref.getDownloadURL();
-
-                        await database.ref("urunler").push().set({
-                            urunAdi: tespitEdilenUrunAdi,
-                            gorselUrl: croppedImgUrl,
-                            tamAfisUrl: fullImgUrl,
-                            klasorAdi: tespitEdilenTarih,
-                            tip: "cropped_product",
-                            yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
+                        pendingReviewItems.push({
+                            tip: "cropped_product", blob: urun.blob, fullImgUrl, folderName: tespitEdilenTarih,
+                            rawText, editedName: `${guzelIsim} - ${tespitEdilenTarih}`, embedding
                         });
                     }
-                } catch (err) { 
-                    console.error("Genel döngü hatası:", err); 
+                } catch (err) { console.error("Genel döngü hatası:", err); }
+            }
+
+            progressBar.style.width = "100%";
+            progressText.innerText = `Tamamlandı: ${files.length} afiş tarandı. Şimdi kontrol edip kaydedebilirsin.`;
+            uploadBtn.disabled = false; uploadBtn.innerText = "⚡ Tara ve İşle";
+            renderReviewList();
+        }
+
+        function renderReviewList() {
+            const reviewSection = document.getElementById('reviewSection');
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = "";
+            reviewSection.classList.remove('hidden');
+
+            pendingReviewItems.forEach((item, idx) => {
+                if (item.tip === "full_poster") return; // tam afişler otomatik kaydedilir, düzeltme gerekmez
+                const previewUrl = URL.createObjectURL(item.blob);
+                reviewList.innerHTML += `
+                    <div class="flex items-center gap-3 bg-gray-950 border border-gray-800 rounded-lg p-2">
+                        <img src="${previewUrl}" class="w-14 h-14 object-contain bg-gray-900 rounded">
+                        <span class="text-xxs font-mono text-gray-500 w-24 shrink-0">${item.folderName}</span>
+                        <input type="text" value="${item.editedName}" onchange="pendingReviewItems[${idx}].editedName = this.value"
+                            class="flex-grow bg-gray-900 border border-gray-800 rounded px-2 py-1 text-xs text-gray-200 focus:outline-none focus:border-blue-500">
+                    </div>`;
+            });
+        }
+
+        async function confirmSaveAll() {
+            const progressWrap = document.getElementById('progressWrap');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            progressWrap.classList.remove('hidden');
+
+            for (let i = 0; i < pendingReviewItems.length; i++) {
+                const item = pendingReviewItems[i];
+                progressText.innerText = `Kaydediliyor ${i + 1}/${pendingReviewItems.length}`;
+                progressBar.style.width = `${Math.round((i / pendingReviewItems.length) * 100)}%`;
+
+                if (item.tip === "full_poster") {
+                    await database.ref("urunler").push().set({
+                        urunAdi: item.editedName, gorselUrl: item.fullImgUrl, tamAfisUrl: item.fullImgUrl,
+                        klasorAdi: item.folderName, tip: "full_poster",
+                        yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
+                    });
+                } else {
+                    const croppedRef = storage.ref(`arsiv/${item.folderName}/kirpilmis_urunler/urun_${i}_${Date.now()}.png`);
+                    const croppedSnapshot = await croppedRef.put(item.blob);
+                    const croppedImgUrl = await croppedSnapshot.ref.getDownloadURL();
+
+                    await database.ref("urunler").push().set({
+                        urunAdi: item.editedName, gorselUrl: croppedImgUrl, tamAfisUrl: item.fullImgUrl,
+                        klasorAdi: item.folderName, tip: "cropped_product",
+                        embedding: item.embedding || null,
+                        yuklenmeTarihi: firebase.database.ServerValue.TIMESTAMP
+                    });
                 }
             }
-            
-            uploadBtn.disabled = false;
-            uploadBtn.innerText = "⚡ Seçilenleri Yükle ve Parçala";
-            alert("Tüm afişler ve alt ürünleri başarıyla veritabanına işlendi! 🔥");
+            progressBar.style.width = "100%";
+            progressText.innerText = "Tüm ürünler veritabanına kaydedildi! 🔥";
+            document.getElementById('reviewSection').classList.add('hidden');
+            pendingReviewItems = [];
             loadFolders();
         }
 
+        // =================== Klasörler / Manuel arama ===================
         async function loadFolders() {
             const folderGrid = document.getElementById('folderGrid');
             folderGrid.innerHTML = "";
@@ -451,32 +532,24 @@
             const query = document.getElementById('searchBar').value.toLowerCase().trim();
             const resultsSection = document.getElementById('searchResultsSection');
             const foldersSection = document.getElementById('archiveFoldersSection');
-            const MekanizmaGrid = document.getElementById('searchResultsGrid');
+            const grid = document.getElementById('searchResultsGrid');
 
             if (query.length > 0) {
                 foldersSection.classList.add('hidden');
                 resultsSection.classList.remove('hidden');
-                MekanizmaGrid.innerHTML = "";
+                grid.innerHTML = "";
                 try {
                     const snapshot = await database.ref("urunler").once("value");
                     let count = 0;
                     snapshot.forEach(child => {
                         const p = child.val();
-                        if (p.tip === "cropped_product" && p.urunAdi.toLowerCase().includes(query)) {
+                        const hedefMetin = (p.urunAdi + " " + p.klasorAdi).toLowerCase();
+                        if (p.tip === "cropped_product" && hedefMetin.includes(query)) {
                             count++;
-                            MekanizmaGrid.innerHTML += `
-                                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-md cursor-pointer hover:border-gray-700 transition-colors" onclick="zoomImage('${p.gorselUrl}', '${p.urunAdi.toUpperCase()}')">
-                                    <div class="aspect-square bg-gray-950 flex items-center justify-center p-4">
-                                        <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded">
-                                    </div>
-                                    <div class="p-3 bg-gray-950/60 border-t border-gray-800/40">
-                                        <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-xxs font-mono block w-max mb-1">${p.klasorAdi}</span>
-                                        <h3 class="text-xs font-bold text-gray-200 truncate">${p.urunAdi}</h3>
-                                    </div>
-                                </div>`;
+                            grid.innerHTML += renderProductCard(p);
                         }
                     });
-                    if (count === 0) MekanizmaGrid.innerHTML = `<p class="col-span-3 text-xs text-gray-500 font-mono italic p-2">Ürün bulunamadı...</p>`;
+                    if (count === 0) grid.innerHTML = `<p class="col-span-3 text-xs text-gray-500 font-mono italic p-2">Ürün bulunamadı...</p>`;
                 } catch (e) { console.error(e); }
             } else {
                 resultsSection.classList.add('hidden');
@@ -484,32 +557,40 @@
             }
         }
 
+        function renderProductCard(p) {
+            return `
+                <div class="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-md cursor-pointer hover:border-gray-700 transition-colors" onclick="zoomImage('${p.gorselUrl}', '${(p.urunAdi || '').replace(/'/g, "\\'")}')">
+                    <div class="aspect-square bg-gray-950 flex items-center justify-center p-4">
+                        <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded">
+                    </div>
+                    <div class="p-3 bg-gray-950/60 border-t border-gray-800/40">
+                        <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-xxs font-mono block w-max mb-1">${p.klasorAdi}</span>
+                        <h3 class="text-xs font-bold text-gray-200 truncate">${p.urunAdi}</h3>
+                        ${p.tamAfisUrl ? `<button onclick="event.stopPropagation(); zoomImage('${p.tamAfisUrl}', 'Tam Afiş')" class="mt-2 text-xxs font-mono text-blue-400 hover:text-blue-300">🖼️ Tam Afişi Gör</button>` : ""}
+                    </div>
+                </div>`;
+        }
+
         async function openFolder(folderName) {
             document.getElementById('modalTitle').innerText = `📁 KLASÖR: ${folderName}`;
             document.getElementById('folderModal').classList.remove('hidden');
-            
             const croppedContent = document.getElementById('croppedContent');
             const fullContent = document.getElementById('fullContent');
             croppedContent.innerHTML = ""; fullContent.innerHTML = "";
-
             try {
                 const snapshot = await database.ref("urunler").orderByChild("klasorAdi").equalTo(folderName).once("value");
                 snapshot.forEach(child => {
                     const p = child.val();
                     if (p.tip === "cropped_product") {
                         croppedContent.innerHTML += `
-                            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden cursor-pointer hover:border-gray-700" onclick="zoomImage('${p.gorselUrl}', '${p.urunAdi}')">
-                                <div class="aspect-square bg-gray-950 flex items-center justify-center p-4">
-                                    <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded">
-                                </div>
+                            <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden cursor-pointer hover:border-gray-700" onclick="zoomImage('${p.gorselUrl}', '${(p.urunAdi || '').replace(/'/g, "\\'")}')">
+                                <div class="aspect-square bg-gray-950 flex items-center justify-center p-4"><img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain rounded"></div>
                                 <div class="p-3 border-t border-gray-800/40"><h3 class="text-xs font-bold text-gray-300 truncate">${p.urunAdi}</h3></div>
                             </div>`;
                     } else if (p.tip === "full_poster") {
                         fullContent.innerHTML += `
                             <div class="bg-gray-950 border border-gray-800 rounded-xl overflow-hidden cursor-pointer hover:border-gray-700" onclick="zoomImage('${p.gorselUrl}', 'Tam Afiş Görünümü')">
-                                <div class="aspect-[3/4] bg-gray-950 flex items-center justify-center p-2">
-                                    <img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain">
-                                </div>
+                                <div class="aspect-[3/4] bg-gray-950 flex items-center justify-center p-2"><img src="${p.gorselUrl}" class="max-h-full max-w-full object-contain"></div>
                             </div>`;
                     }
                 });
@@ -519,7 +600,6 @@
 
         function closeFolder() { document.getElementById('folderModal').classList.add('hidden'); }
         function closeZoom() { document.getElementById('imageZoomModal').classList.add('hidden'); }
-        
         function zoomImage(src, title) {
             document.getElementById('zoomedImage').src = src;
             document.getElementById('zoomTitle').innerText = title;
@@ -545,7 +625,7 @@
             const apiKeyInput = document.getElementById('apiKeyInput');
             if (!isAdmin) {
                 let password = prompt("Yönetici Şifresini Girin:");
-                if (password === "2407") {
+                if (password === "9553") {
                     isAdmin = true; panel.classList.remove('hidden');
                     btn.innerText = "❌ ÇIKIŞ YAP"; btn.classList.add('text-red-500');
                     if (getVisionApiKey()) apiKeyInput.value = getVisionApiKey();
@@ -559,13 +639,168 @@
         function updateSelectedFilesCount(input) {
             const count = input.files.length;
             const text = document.getElementById('fileCountText'); const uploadBtn = document.getElementById('uploadBtn');
-            if (count > 0) {
-                text.innerText = `${count} adet afiş seçildi.`; uploadBtn.classList.remove('hidden');
-            } else { text.innerText = ""; uploadBtn.classList.add('hidden'); }
+            if (count > 0) { text.innerText = `${count} adet afiş seçildi.`; uploadBtn.classList.remove('hidden'); }
+            else { text.innerText = ""; uploadBtn.classList.add('hidden'); }
         }
 
-        function startCamera() { alert("Kamera entegrasyonu aktif ediliyor..."); }
-        function processUserImage(input) { if(input.files.length > 0) alert("Müşteri görsel arama taraması başlıyor..."); }
+        // =================== Kullanıcı: Kamera / Galeri / Kırpma / Görsel Arama ===================
+        function loadImageIntoCropper(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => { openCropModalWithImage(img); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function startCamera() {
+            document.getElementById('cropModal').classList.remove('hidden');
+            const video = document.getElementById('cameraVideo');
+            const captureBtn = document.getElementById('captureBtn');
+            document.getElementById('cropCanvasWrap').classList.add('hidden');
+            video.classList.remove('hidden'); captureBtn.classList.remove('hidden');
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+                video.srcObject = cameraStream;
+            } catch (e) {
+                alert("Kameraya erişilemedi: " + e.message);
+                closeCropModal();
+            }
+        }
+
+        function capturePhoto() {
+            const video = document.getElementById('cameraVideo');
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0);
+            const img = new Image();
+            img.onload = () => {
+                stopCameraStream();
+                document.getElementById('cameraVideo').classList.add('hidden');
+                document.getElementById('captureBtn').classList.add('hidden');
+                openCropModalWithImage(img);
+            };
+            img.src = canvas.toDataURL('image/jpeg', 0.95);
+        }
+
+        function stopCameraStream() {
+            if (cameraStream) { cameraStream.getTracks().forEach(t => t.stop()); cameraStream = null; }
+        }
+
+        function openCropModalWithImage(img) {
+            document.getElementById('cropModal').classList.remove('hidden');
+            document.getElementById('cameraVideo').classList.add('hidden');
+            document.getElementById('captureBtn').classList.add('hidden');
+            const wrap = document.getElementById('cropCanvasWrap');
+            wrap.classList.remove('hidden');
+            const canvas = document.getElementById('cropCanvas');
+            const maxW = 500;
+            const scale = Math.min(1, maxW / img.width);
+            canvas.width = img.width * scale; canvas.height = img.height * scale;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            cropSourceImg = img; cropBox = null;
+            setupCropDrag(canvas, img, ctx);
+        }
+
+        function setupCropDrag(canvas, img, ctx) {
+            let dragging = false, startX = 0, startY = 0;
+            function redraw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                if (cropBox) {
+                    ctx.strokeStyle = "#3b82f6"; ctx.lineWidth = 2;
+                    ctx.strokeRect(cropBox.x, cropBox.y, cropBox.w, cropBox.h);
+                }
+            }
+            function pos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { x: clientX - rect.left, y: clientY - rect.top };
+            }
+            function down(e) { dragging = true; const p = pos(e); startX = p.x; startY = p.y; }
+            function move(e) {
+                if (!dragging) return;
+                const p = pos(e);
+                cropBox = { x: Math.min(startX, p.x), y: Math.min(startY, p.y), w: Math.abs(p.x - startX), h: Math.abs(p.y - startY) };
+                redraw();
+            }
+            function up() { dragging = false; }
+            canvas.onmousedown = down; canvas.onmousemove = move; window.onmouseup = up;
+            canvas.ontouchstart = down; canvas.ontouchmove = move; canvas.ontouchend = up;
+        }
+
+        function closeCropModal() {
+            stopCameraStream();
+            document.getElementById('cropModal').classList.add('hidden');
+            document.getElementById('cropStatus').innerText = "";
+            cropSourceImg = null; cropBox = null;
+        }
+
+        async function runVisualSearch() {
+            if (!cropSourceImg) return;
+            const statusEl = document.getElementById('cropStatus');
+            if (!mobilenetModel) { statusEl.innerText = "⚠️ Görsel arama motoru henüz hazır değil, biraz bekleyip tekrar deneyin."; return; }
+            statusEl.innerText = "🔎 Aranıyor...";
+
+            const workCanvas = document.getElementById('hiddenWorkCanvas');
+            const displayCanvas = document.getElementById('cropCanvas');
+            const scaleX = cropSourceImg.width / displayCanvas.width;
+            const scaleY = cropSourceImg.height / displayCanvas.height;
+
+            let sx = 0, sy = 0, sw = cropSourceImg.width, sh = cropSourceImg.height;
+            if (cropBox && cropBox.w > 5 && cropBox.h > 5) {
+                sx = cropBox.x * scaleX; sy = cropBox.y * scaleY;
+                sw = cropBox.w * scaleX; sh = cropBox.h * scaleY;
+            }
+            workCanvas.width = sw; workCanvas.height = sh;
+            workCanvas.getContext('2d').drawImage(cropSourceImg, sx, sy, sw, sh, 0, 0, sw, sh);
+
+            const queryEmbedding = await getEmbedding(workCanvas);
+            if (!queryEmbedding) { statusEl.innerText = "⚠️ Görsel işlenemedi."; return; }
+
+            try {
+                const snapshot = await database.ref("urunler").once("value");
+                let scored = [];
+                snapshot.forEach(child => {
+                    const p = child.val();
+                    if (p.tip === "cropped_product" && p.embedding) {
+                        scored.push({ p, score: cosineSimilarity(queryEmbedding, p.embedding) });
+                    }
+                });
+                scored.sort((a, b) => b.score - a.score);
+                showVisualResults(scored.slice(0, 6));
+                closeCropModal();
+            } catch (e) { console.error(e); statusEl.innerText = "⚠️ Arama sırasında hata oluştu."; }
+        }
+
+        function showVisualResults(scored) {
+            const section = document.getElementById('visualResultsSection');
+            const grid = document.getElementById('visualResultsGrid');
+            const hint = document.getElementById('visualResultsHint');
+            document.getElementById('archiveFoldersSection').classList.add('hidden');
+            document.getElementById('searchResultsSection').classList.add('hidden');
+            section.classList.remove('hidden');
+            grid.innerHTML = "";
+
+            if (scored.length === 0) { hint.innerText = "Arşivde henüz görsel karşılaştırılabilir ürün yok."; return; }
+
+            const best = scored[0];
+            if (best.score > 0.85) hint.innerText = `✅ Muhtemelen aynı ürün bulundu (benzerlik %${Math.round(best.score * 100)})`;
+            else hint.innerText = `🤔 Tam eşleşme bulunamadı, en yakın/benzer ürünler isim ve görsel bazlı listeleniyor (en yüksek benzerlik %${Math.round(best.score * 100)})`;
+
+            scored.forEach(({ p, score }) => {
+                grid.innerHTML += renderProductCard(p).replace('</h3>', `</h3><span class="text-xxs font-mono text-emerald-500">%${Math.round(score * 100)} benzer</span>`);
+            });
+        }
+
+        function closeVisualResults() {
+            document.getElementById('visualResultsSection').classList.add('hidden');
+            document.getElementById('archiveFoldersSection').classList.remove('hidden');
+        }
     </script>
 </body>
 </html>
