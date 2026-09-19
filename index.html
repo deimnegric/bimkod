@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7FA8C9">
+<title>BİMKOD</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">BİMKOD</div>
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input id="searchInput" type="text" placeholder="Ürün adı ara… (örn. beyaz)" autocomplete="off" inputmode="search">
+      <button id="clearSearch" class="clear-btn" aria-label="Aramayı temizle" hidden>&times;</button>
+    </div>
+
+    <div class="scan-buttons">
+      <button id="btnCamera" class="scan-btn scan-btn--blue">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span>Fotoğraf Çek</span>
+      </button>
+      <button id="btnUpload" class="scan-btn scan-btn--red">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <span>Görsel Yükle</span>
+      </button>
+    </div>
+    <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+    <input type="file" id="uploadInput" accept="image/*" hidden>
+  </header>
+
+  <div id="statusBar" class="status-bar" hidden></div>
+
+  <main id="main">
+
+    <section id="visualQueryBanner" class="visual-banner" hidden>
+      <img id="visualQueryThumb" alt="Aranan görsel">
+      <div class="visual-banner-text">
+        <strong>Görselle arama</strong>
+        <span>Arşivdeki en benzer ürünler listeleniyor</span>
+      </div>
+      <button id="clearVisualQuery" class="clear-btn">&times;</button>
+    </section>
+
+    <section id="newArrivals" class="new-arrivals" hidden>
+      <h2>🆕 Yeni Eklenenler</h2>
+      <div id="newArrivalsList" class="new-arrivals-list"></div>
+    </section>
+
+    <section id="resultsInfo" class="results-info"></section>
+
+    <section id="resultsList" class="results-list"></section>
+
+    <nav id="pagination" class="pagination" hidden></nav>
+
+    <section id="emptyState" class="empty-state">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <p>Ürün adı yazın ya da fotoğraf/görsel ile arayın</p>
+    </section>
+
+  </main>
+
+  <div id="imageModal" class="image-modal" hidden>
+    <img id="imageModalImg" alt="Büyütülmüş ürün görseli">
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Fuse.js: metin arama için fuzzy search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <!-- Transformers.js: tarayıcıda CLIP embedding çıkarımı (coldstart yok, statik hosting) -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
