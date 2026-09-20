@@ -94,6 +94,33 @@
     <button class="btn-primary" id="loadBtn">Bekleyen Ürünleri Yükle</button>
   </div>
 
+  <div class="panel" id="manualPanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">Manuel Ürün Ekle</h3>
+    <p class="sub" style="margin:0 0 10px;">YOLO'nun hiç yakalamadığı ürünler için (örn. standart grid dışı özel/spot reklamlar). Görseli yükle, bilgileri gir, direkt sisteme eklensin.</p>
+    <div class="row">
+      <div style="flex:1">
+        <label>Ürün görseli</label>
+        <input type="file" id="manualImageInput" accept="image/*">
+      </div>
+    </div>
+    <div class="field-row">
+      <div>
+        <label>Kod</label>
+        <input type="text" id="manualCode" placeholder="örn. 1714999">
+      </div>
+      <div>
+        <label>İsim</label>
+        <input type="text" id="manualName" placeholder="örn. Sıvı Çamaşır Deterjanı Miss 1500 ml">
+      </div>
+      <div>
+        <label>Fiyat (TL, opsiyonel)</label>
+        <input type="text" id="manualPrice" placeholder="örn. 139">
+      </div>
+    </div>
+    <button class="btn-approve" id="manualAddBtn">Ürünü Ekle</button>
+    <div id="manualStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
+  </div>
+
   <div id="status"></div>
   <div id="counter" class="hidden"></div>
   <div id="queue"></div>
@@ -293,7 +320,49 @@ async function rejectItem(item, card) {
   }
 }
 
-// ---- Onayla: products.json + embeddings.json + images/ + corrections.csv güncelle, review'dan sil ----
+// ---- Ortak: bir görseli (URL veya base64) products.json + embeddings.json'a ekler ----
+// embedSource: CLIP'in okuyabileceği bir URL (http/https ya da blob:)
+// imageBase64: images/ klasörüne yüklenecek ham görsel (base64)
+async function commitNewProduct({ code, name, price, confidence, embedSource, imageBase64, onProgress }) {
+  onProgress?.("Görsel embedding hesaplanıyor…");
+  const embedding = await embedImage(embedSource);
+
+  onProgress?.("products.json okunuyor…");
+  const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
+  const products = JSON.parse(productsText);
+
+  onProgress?.("embeddings.json okunuyor…");
+  const { text: embText, sha: embSha } = await ghGetFile("data/embeddings.json");
+  const embData = JSON.parse(embText);
+
+  const embIndex = embData.vectors.length;
+  const imageFilename = `${String(embIndex).padStart(6, "0")}.jpg`;
+
+  onProgress?.("Görsel images/ klasörüne yükleniyor…");
+  await ghPutBinaryFile(`images/${imageFilename}`, imageBase64, `Admin: ${code} görseli eklendi`);
+
+  embData.vectors.push(embedding);
+  products.push({
+    code, name,
+    price: price || null,
+    image: `images/${imageFilename}`,
+    embIndex,
+    confidence: confidence ?? null,
+    addedAt: new Date().toISOString(),
+    approvedManually: true,
+  });
+
+  onProgress?.("products.json güncelleniyor…");
+  await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin: ${code} eklendi`);
+
+  onProgress?.("embeddings.json güncelleniyor…");
+  await ghPutFile("data/embeddings.json", JSON.stringify(embData), embSha, `Admin: ${code} embedding eklendi`);
+
+  onProgress?.("corrections.csv güncelleniyor…");
+  await appendCorrection(code, name);
+}
+
+// ---- Onayla: review kuyruğundaki bir ürünü sisteme ekle ----
 async function approveItem(item, card) {
   const code = card.querySelector(".code-input").value.trim();
   const name = card.querySelector(".name-input").value.trim();
@@ -302,44 +371,13 @@ async function approveItem(item, card) {
   card.classList.add("done");
   try {
     const imgUrl = `${rawBase()}/${item.review_image}`;
-
-    cardStatus(card, "Görsel embedding hesaplanıyor…");
-    const embedding = await embedImage(imgUrl);
-
-    cardStatus(card, "products.json okunuyor…");
-    const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
-    const products = JSON.parse(productsText);
-
-    cardStatus(card, "embeddings.json okunuyor…");
-    const { text: embText, sha: embSha } = await ghGetFile("data/embeddings.json");
-    const embData = JSON.parse(embText);
-
-    const embIndex = embData.vectors.length;
-    const imageFilename = `${String(embIndex).padStart(6, "0")}.jpg`;
-
-    cardStatus(card, "Görsel images/ klasörüne yükleniyor…");
     const imgBase64 = await fetchImageAsBase64(imgUrl);
-    await ghPutBinaryFile(`images/${imageFilename}`, imgBase64, `Admin onayı: ${code} görseli eklendi`);
 
-    embData.vectors.push(embedding);
-    products.push({
-      code, name,
-      price: item.price || null,
-      image: `images/${imageFilename}`,
-      embIndex,
-      confidence: item.confidence || null,
-      addedAt: new Date().toISOString(),
-      approvedManually: true,
+    await commitNewProduct({
+      code, name, price: item.price, confidence: item.confidence,
+      embedSource: imgUrl, imageBase64,
+      onProgress: (msg) => cardStatus(card, msg),
     });
-
-    cardStatus(card, "products.json güncelleniyor…");
-    await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin onayı: ${code} eklendi`);
-
-    cardStatus(card, "embeddings.json güncelleniyor…");
-    await ghPutFile("data/embeddings.json", JSON.stringify(embData), embSha, `Admin onayı: ${code} embedding eklendi`);
-
-    cardStatus(card, "corrections.csv güncelleniyor…");
-    await appendCorrection(code, name);
 
     cardStatus(card, "Kuyruktan siliniyor…");
     await removeFromReviewQueue(item);
@@ -350,6 +388,44 @@ async function approveItem(item, card) {
     cardStatus(card, "❌ Hata: " + err.message);
   }
 }
+
+// ---- Manuel ekleme: YOLO'nun hiç yakalamadığı ürünler için (görsel elle yükleniyor) ----
+document.getElementById("manualAddBtn").addEventListener("click", async () => {
+  const fileInput = document.getElementById("manualImageInput");
+  const code = document.getElementById("manualCode").value.trim();
+  const name = document.getElementById("manualName").value.trim();
+  const price = document.getElementById("manualPrice").value.trim();
+  const statusEl = document.getElementById("manualStatus");
+
+  if (!fileInput.files[0]) { statusEl.textContent = "⚠️ Önce bir görsel seç."; return; }
+  if (!code || !name) { statusEl.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
+
+  try {
+    const file = fileInput.files[0];
+    const objectUrl = URL.createObjectURL(file);
+
+    const buf = await file.arrayBuffer();
+    let binary = "";
+    const bytes = new Uint8Array(buf);
+    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+    const imageBase64 = btoa(binary);
+
+    await commitNewProduct({
+      code, name, price, confidence: null,
+      embedSource: objectUrl, imageBase64,
+      onProgress: (msg) => { statusEl.textContent = msg; },
+    });
+
+    URL.revokeObjectURL(objectUrl);
+    statusEl.textContent = "✅ Eklendi ve yayında! Formu temizleyebilirsin.";
+    fileInput.value = "";
+    document.getElementById("manualCode").value = "";
+    document.getElementById("manualName").value = "";
+    document.getElementById("manualPrice").value = "";
+  } catch (err) {
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+});
 
 async function appendCorrection(code, name) {
   let text = "code,name\n", sha = null;
