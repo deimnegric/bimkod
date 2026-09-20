@@ -75,6 +75,10 @@ function renderNewArrivals() {
       <div class="name">${p.name}</div>
     </div>
   `).join("");
+
+  [...el.newArrivalsList.children].forEach((card, i) => {
+    card._product = recent[i];
+  });
 }
 
 // ---------- Türkçe normalize ----------
@@ -173,18 +177,25 @@ function highlightMatch(name, query) {
 function render() {
   const hasQuery = state.mode === "text" ? state.query.trim().length > 0 : true;
   const isVisual = state.mode === "visual";
+  const isDefaultBrowse = !hasQuery; // arama kutusu boş -> varsayılan listeleme modu
 
   renderNewArrivals();
 
   el.visualBanner.hidden = !isVisual;
   if (isVisual && state.visualThumb) el.visualThumb.src = state.visualThumb;
 
-  if (!hasQuery) {
-    el.emptyState.hidden = false;
-    el.resultsList.innerHTML = "";
-    el.resultsInfo.textContent = "";
-    el.pagination.hidden = true;
-    return;
+  if (isDefaultBrowse) {
+    if (PRODUCTS.length === 0) {
+      el.emptyState.hidden = false;
+      el.resultsList.innerHTML = "";
+      el.resultsInfo.textContent = "";
+      el.pagination.hidden = true;
+      return;
+    }
+    // Henüz "en çok aranan" takibi yok -> varsayılan olarak en yeni eklenenden eskiye sırala
+    state.results = [...PRODUCTS].sort(
+      (a, b) => new Date(b.addedAt || 0) - new Date(a.addedAt || 0)
+    );
   }
   el.emptyState.hidden = true;
 
@@ -194,9 +205,11 @@ function render() {
   const start = (state.page - 1) * PAGE_SIZE;
   const pageItems = state.results.slice(start, start + PAGE_SIZE);
 
-  el.resultsInfo.textContent = total
-    ? `${total} ürün bulundu`
-    : (isVisual ? "Benzer ürün bulunamadı" : "Sonuç bulunamadı");
+  el.resultsInfo.textContent = isDefaultBrowse
+    ? `Tüm ürünler (${total})`
+    : total
+      ? `${total} ürün bulundu`
+      : (isVisual ? "Benzer ürün bulunamadı" : "Sonuç bulunamadı");
 
   el.resultsList.innerHTML = pageItems.map((p) => `
     <div class="result-row" data-code="${p.code}">
@@ -318,6 +331,13 @@ el.resultsList.addEventListener("click", (e) => {
   } else if (shareBtn) {
     sharedProductCard(product);
   }
+});
+
+el.newArrivalsList.addEventListener("click", (e) => {
+  const card = e.target.closest(".new-arrival-card");
+  if (!card || !card._product) return;
+  el.imageModalImg.src = card._product.image || "";
+  el.imageModal.hidden = false;
 });
 
 el.imageModal.addEventListener("click", () => { el.imageModal.hidden = true; });
