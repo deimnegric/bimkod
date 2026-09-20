@@ -67,7 +67,7 @@ def main():
 
         final_name = f"{emb_index:06d}.jpg"
         final_path = IMAGES_DIR / final_name
-        src = Path(item["photo_crop"])
+        src = Path(item["full_crop"])
         if src.exists():
             shutil.copy(src, final_path)
 

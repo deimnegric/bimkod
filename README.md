@@ -15,15 +15,16 @@
   1. `scrape_telegram.py` — kisakod'dan yeni afiş görsellerini indirir
      (Telegram mesaj tarihini de kaydeder → `flyer_date`)
   2. `detect_products.py` — YOLO ile afişteki her ürün **karesini** tespit
-     eder (foto + isim + fiyat + kod hepsi birlikte). Her tespit için iki
-     kırpım üretir: `full_crop` (OCR için, metin dahil) ve `photo_crop`
-     (temiz fotoğraf, üst %58'i — bkz. `PHOTO_HEIGHT_RATIO`, kalibre etmen
-     gerekebilir).
+     eder (foto + isim + fiyat + kod hepsi birlikte), `full_crop` olarak
+     kaydeder. (Önceden "sadece fotoğraf" ayrı bir kırpım da üretiliyordu,
+     ama bazı şablonlarda fotoğrafın tamamını silip görsel aramayı bozduğu
+     görüldüğü için kaldırıldı — artık tek tip kırpım var.)
   3. `ocr_extract.py` — `full_crop` üzerinde Tesseract OCR çalıştırır,
-     **kod** (7 haneli, `1` ile başlayan), **isim** ve **fiyat**'ı regex ile
+     **kod** (6-8 haneli bağımsız sayı), **isim** ve **fiyat**'ı regex ile
      ayrıştırır. Kod/isim bulunamayan crop'lar `pipeline/ocr_review.json`'a
-     düşer (elle bakılacak).
-  4. `embed_products.py` — `photo_crop` üzerinden CLIP embedding çıkarır.
+     düşer (görseli `review/` klasörüne kalıcı kaydedilir — bkz.
+     `admin.html`, elle onay ekranı).
+  4. `embed_products.py` — `full_crop` üzerinden CLIP embedding çıkarır.
   5. `build_data.py` — kod bazlı **dedupe** yaparak (aynı ürün tekrar
      çıkarsa güncellenir, çoğaltılmaz) `data/products.json` +
      `data/embeddings.json`'a ekler, commit'ler → Pages otomatik yayınlar.
@@ -63,20 +64,22 @@ artırmak istersen (örn. tekrar 10dk'ya) maliyet sorunu olmaz.
    commit, büyükse GitHub Release asset'i — workflow oradan indirir).
 
 5. **İlk test**: Actions → "BİMKOD Index Güncelle" → Run workflow (manuel).
-   Loglara bak, `data/products.json` dolmalı. `pipeline/ocr_review.json`'ı
-   kontrol et — OCR'ın kod/isim okuyamadığı crop'lar burada, bunlara bakarak
-   `PHOTO_HEIGHT_RATIO`'yu ve OCR regex'lerini (`ocr_extract.py`) kalibre et.
+   Loglara bak, `data/products.json` dolmalı.
 
-6. **OCR hatalarını kalıcı düzelt**: Bir ürünün ismi hep yanlış okunuyorsa
-   `pipeline/catalog_source/corrections.csv` dosyasına `code,name` olarak
-   ekle (şablon: `corrections.csv.example`) — `build_data.py` bunu otomatik
-   uygular, koda göre kalıcı override sağlar.
+6. **Bekleyen ürünleri onayla**: `admin.html`'i tarayıcıda aç (yerelde dosyayı
+   çift tıklayarak ya da `https://<kullanıcı>.github.io/<repo>/admin.html`
+   üzerinden). GitHub Personal Access Token'ını (repo yazma izinli) gir,
+   "Bekleyen Ürünleri Yükle"ye bas. OCR'ın kod/isim çıkaramadığı ürünler
+   görsel + ham OCR metniyle listelenir; kod/ismi düzeltip **Onayla**'ya
+   basınca ürün embedding'i de hesaplanıp anında canlı siteye eklenir,
+   **Reddet**'e basınca (gerçek ürün değilse) kuyruktan silinir.
+
+7. **OCR hatalarını kalıcı düzelt**: Admin sayfasından onaylanan her ürün
+   otomatik olarak `pipeline/catalog_source/corrections.csv`'ye eklenir —
+   o kod bir daha OCR'dan geçtiğinde artık doğru ismi kullanılır.
 
 ## Sıradaki geliştirme fikirleri
-- `ocr_review.json`'ı görsel bir "onay ekranı"na çevirip elle düzeltmeyi
-  hızlandırmak (crop'u göster, isim/kod gir, corrections.csv'ye otomatik yaz)
-- `PHOTO_HEIGHT_RATIO`'yu sabit oran yerine OCR'ın bulduğu ilk metin
-  satırının y-konumuna göre dinamik hesaplamak (farklı ürün kartı
-  boyutlarında daha sağlam kırpma)
 - Webhook tabanlı gerçek anlık tetikleme (Telegram bot + Cloudflare Worker)
-  — 10dk polling yeterli gelmezse
+  — günde 3 kontrol yeterli gelmezse
+- Metin aramasını uzun/tam cümle sorgularda daha toleranslı hale getirmek
+  (şu an kısa anahtar kelimeler daha iyi sonuç veriyor)

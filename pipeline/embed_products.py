@@ -1,9 +1,9 @@
 """
 BİMKOD Pipeline — Adım 4: CLIP embedding
-ocr_extract.py'ın kod+isim atadığı ürünlerin "photo_crop" (temiz, metinsiz
-fotoğraf) görseli üzerinden embedding çıkarır. openai/clip-vit-base-patch32
-kullanılır — tarayıcıdaki Xenova/clip-vit-base-patch32 (Transformers.js) ile
-AYNI ağırlıkların ONNX'e çevrilmiş hali olduğu için embedding uzayı birebir
+ocr_extract.py'ın kod+isim atadığı ürünlerin "full_crop" (tam kare) görseli
+üzerinden embedding çıkarır. openai/clip-vit-base-patch32 kullanılır —
+tarayıcıdaki Xenova/clip-vit-base-patch32 (Transformers.js) ile AYNI
+ağırlıkların ONNX'e çevrilmiş hali olduğu için embedding uzayı birebir
 uyumludur.
 """
 
@@ -34,13 +34,13 @@ def main():
     results = []
     with torch.no_grad():
         for item in items:
-            img = Image.open(item["photo_crop"]).convert("RGB")
+            img = Image.open(item["full_crop"]).convert("RGB")
             inputs = processor(images=img, return_tensors="pt")
             feats = model.get_image_features(**inputs)
             feats = feats / feats.norm(p=2, dim=-1, keepdim=True)  # L2 normalize
 
             results.append({
-                "photo_crop": item["photo_crop"],
+                "full_crop": item["full_crop"],
                 "code": item["code"],
                 "name": item["name"],
                 "price": item.get("price"),

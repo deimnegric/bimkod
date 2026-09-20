@@ -1,17 +1,16 @@
 """
 BİMKOD Pipeline — Adım 2: Ürün tespiti (YOLOv8)
-Roboflow'da eğitilmiş modeli kullanır (~90% mAP). Model, afiş üzerindeki her
-ürün "karesini" (fotoğraf + isim + fiyat + kod hepsi birlikte, bkz. örnek
-crop) tek kutu olarak tespit ediyor.
+Roboflow'da eğitilmiş modeli kullanır. Model, afiş üzerindeki her ürün
+"karesini" (fotoğraf + isim + fiyat + kod hepsi birlikte) tek kutu olarak
+tespit ediyor. Bu tam kare (full_crop) hem OCR'a hem CLIP embedding'e hem
+de uygulamada gösterilecek thumbnail'e kaynak olarak kullanılıyor.
 
-Her tespit için İKİ görsel üretilir:
-  - full  (tam kare): isim/fiyat/kod metnini de içerir -> OCR bunu okuyacak
-  - photo (sadece üst kısım): metin olmadan temiz ürün fotoğrafı ->
-    uygulamada gösterilecek thumbnail + CLIP embedding bunun üzerinden
-
-PHOTO_HEIGHT_RATIO: karenin üstten yüzde kaçı "sadece fotoğraf" sayılsın.
-Gerçek crop'lara bakıp bu oranı ayarlamak gerekebilir (örnek karede ~%55-60
-civarı fotoğraf, altında isim + fiyat + kod var).
+NOT: Daha önce "sadece fotoğraf" (üstten sabit bir oran) ayrı bir kırpım
+üretiliyordu, ama farklı afiş şablonlarında bu oran fotoğrafın TAMAMINI
+silip sadece metni bıraktığı için (gerçek örnekte görüldü — "Soda Plus"
+ürününde hiç fotoğraf kalmamıştı, görsel arama bu yüzden başarısız oldu)
+bu yaklaşımdan vazgeçildi. Tam kare daha güvenilir: en azından fotoğraf
+her zaman içeride kalıyor, isim/fiyat/kod da görünür kalması kötü değil.
 """
 
 import json
@@ -23,16 +22,13 @@ from PIL import Image
 MODEL_PATH = Path("pipeline/model/best.pt")
 NEW_FILES = Path("pipeline/new_files.json")
 FULL_CROPS_DIR = Path("pipeline/crops_full")
-PHOTO_CROPS_DIR = Path("pipeline/crops_photo")
 DETECTIONS_OUT = Path("pipeline/detections.json")
 
 CONF_THRESHOLD = 0.4
-PHOTO_HEIGHT_RATIO = 0.58  # TODO: gerçek crop'larla kalibre et
 
 
 def main():
     FULL_CROPS_DIR.mkdir(parents=True, exist_ok=True)
-    PHOTO_CROPS_DIR.mkdir(parents=True, exist_ok=True)
 
     new_files = json.loads(NEW_FILES.read_text()) if NEW_FILES.exists() else []
     if not new_files:
@@ -55,17 +51,11 @@ def main():
             x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
             full_crop = img.crop((x1, y1, x2, y2))
 
-            photo_h = int((y2 - y1) * PHOTO_HEIGHT_RATIO)
-            photo_crop = full_crop.crop((0, 0, full_crop.width, photo_h))
-
             full_name = f"{crop_idx:06d}.jpg"
-            photo_name = f"{crop_idx:06d}.jpg"
             full_crop.save(FULL_CROPS_DIR / full_name, quality=90)
-            photo_crop.save(PHOTO_CROPS_DIR / photo_name, quality=90)
 
             detections.append({
                 "full_crop": str(FULL_CROPS_DIR / full_name),
-                "photo_crop": str(PHOTO_CROPS_DIR / photo_name),
                 "source_flyer": fpath,
                 "flyer_date": flyer_date,
                 "bbox": [x1, y1, x2, y2],
