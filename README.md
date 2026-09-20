@@ -11,7 +11,7 @@
     markasıyla bir PNG üretir, WhatsApp/Instagram'a "İsim — Ürün Kodu: X"
     metniyle paylaşılır (mevcut kullandığın format).
 
-- **Pipeline (GitHub Actions, `update-index.yml`, her 10 dakikada bir)**:
+- **Pipeline (GitHub Actions, `update-index.yml`, günde 3 kez — TR saatiyle 08:00/16:00/00:00)**:
   1. `scrape_telegram.py` — kisakod'dan yeni afiş görsellerini indirir
      (Telegram mesaj tarihini de kaydeder → `flyer_date`)
   2. `detect_products.py` — YOLO ile afişteki her ürün **karesini** tespit
@@ -35,11 +35,13 @@ afişin kendisi zaten kod+isim+fiyatı içeriyor** (her ürün karesinde basıl�
 Yani ayrı bir katalog kaynağına gerek yok — YOLO kutusunu kırpıp OCR ile
 okumak yeterli ve daha güvenilir (kaynak tek, gecikme yok).
 
-## Neden "polling" (10dk) ve neden PUBLIC repo?
-Telegram, GitHub Actions'a webhook push edemiyor; bu yüzden kısa aralıkla
-yokluyoruz. **Repo mutlaka public olmalı** — private repoda Actions'ın
-ücretsiz kotası 2000dk/ay, bu sıklıkla (günde ~144 çalışma) hızla tükenir.
-Public repoda Actions dakikası sınırsız ve ücretsizdir.
+## Neden "polling" (günde 3 kez) ve neden PUBLIC repo?
+Telegram, GitHub Actions'a webhook push edemiyor; bu yüzden zamanlanmış
+aralıklarla yokluyoruz. Afişler haftada 3 gün (Pzt/Per/Cmt) paylaşıldığı
+için günde 3 kontrol (08:00/16:00/00:00 TR) pratikte yeterli. **Repo yine
+de public kalmalı** — private repoda Actions'ın ücretsiz kotası 2000dk/ay,
+public repoda Actions dakikası sınırsız ve ücretsizdir, ileride sıklığı
+artırmak istersen (örn. tekrar 10dk'ya) maliyet sorunu olmaz.
 
 ## Kurulum adımları
 

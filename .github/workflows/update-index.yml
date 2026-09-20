@@ -2,14 +2,13 @@ name: BİMKOD Index Güncelle
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # her 10 dakikada bir — kisakod'a yeni afiş düşünce ~10dk içinde yakalanır
-  workflow_dispatch: {}       # manuel tetikleme butonu
+    - cron: "0 5,13,21 * * *"   # günde 3 kez: TR saatiyle 08:00 / 16:00 / 00:00 (UTC 05:00/13:00/21:00)
+  workflow_dispatch: {}          # manuel tetikleme butonu
 
-# NOT: Gerçek "push oldukça anında" tetikleme (webhook) GitHub Actions'ta
-# doğrudan yok — Telegram bunu bize push edemiyor, biz kısa aralıkla
-# yokluyoruz (polling). 10 dakika pratikte "otomatik ve hızlı" hissi verir.
-# Repo PUBLIC olmalı: private repoda 2000dk/ay ücretsiz kota bu sıklıkla
-# hızla tükenir, public repoda Actions dakikası sınırsız ve ücretsizdir.
+# NOT: cron her gün çalışıyor (sadece Pzt/Per/Cmt'e kısıtlamadık) çünkü
+# gün+saat birleşimini UTC'ye çevirirken 00:00 TR bir önceki UTC gününe
+# denk geldiği için gün kısıtlaması karmaşıklaşıyor; repo public olduğu
+# için günde 3 boş kontrol de maliyetsiz, sorun yaratmıyor.
 
 permissions:
   contents: write
