@@ -28,7 +28,7 @@ DETECTIONS_FILE = Path("pipeline/detections.json")
 OCR_OUT = Path("pipeline/ocr_results.json")
 REVIEW_OUT = Path("pipeline/ocr_review.json")
 
-CODE_RE = re.compile(r"\b1\d{6}\b")          # 7 haneli, 1 ile başlayan kod
+CODE_RE = re.compile(r"\b\d{6,8}\b")         # 6-8 haneli bağımsız kod (format yıllar içinde değişmiş olabilir)
 PRICE_RE = re.compile(r"\b(\d{1,4})\s?[t₺]\b", re.IGNORECASE)
 
 # OCR çıktısında isimden ayıklanacak marketing/gürültü kelimeleri
@@ -59,12 +59,14 @@ def clean_name(lines, code_line_idx, price_line_idx):
 def parse_ocr_text(raw_text):
     lines = [l for l in raw_text.split("\n") if l.strip()]
 
+    # Kod genelde kartın EN ALTINDA duruyor -> tüm eşleşmeleri toplayıp SONUNCUSUNU al.
+    # (Boşlukları silmiyoruz: "ij 1713165" gibi durumlarda \b sınırını bozup
+    #  gerçek kodu kaçırmamak için orijinal satır üzerinde arıyoruz.)
     code, code_idx = None, None
     for i, line in enumerate(lines):
-        m = CODE_RE.search(line.replace(" ", ""))
+        m = CODE_RE.search(line)
         if m:
-            code, code_idx = m.group(0), i
-            break  # genelde en alttaki satırda, ilk bulunan yeterli
+            code, code_idx = m.group(0), i  # break YOK, üzerine yazmaya devam -> son bulunan kalır
 
     price, price_idx = None, None
     for i, line in enumerate(lines):
@@ -85,8 +87,12 @@ def main():
         return
 
     results, review_queue = [], []
+    total = len(detections)
+    print(f"OCR başlıyor: {total} ürün karesi işlenecek")
 
-    for det in detections:
+    for i, det in enumerate(detections, 1):
+        if i % 25 == 0 or i == total:
+            print(f"  ilerleme: {i}/{total}")
         img = Image.open(det["full_crop"])
         raw_text = pytesseract.image_to_string(img, lang="tur")
         code, name, price = parse_ocr_text(raw_text)
