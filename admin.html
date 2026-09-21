@@ -122,9 +122,42 @@
   </div>
 
   <div id="status"></div>
+
+  <div class="panel hidden" id="bulkPanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">Toplu İşlemler</h3>
+    <p class="sub" id="bulkCounts" style="margin:0 0 10px;"></p>
+    <div class="row">
+      <button class="btn-reject" id="bulkDeleteNoImageBtn">Görselsiz olanları sil + yeniden tara</button>
+      <button class="btn-primary" id="fastModeBtn">⚡ Hızlı Onay Moduna Geç</button>
+    </div>
+  </div>
+
   <div id="counter" class="hidden"></div>
   <div id="queue"></div>
   <button id="loadMore" class="btn-secondary hidden">Sonraki 20'yi Göster</button>
+
+  <div class="hidden" id="fastMode">
+    <div class="panel">
+      <p class="sub" style="margin:0;">
+        <b>Enter</b>: onayla ve ekle &nbsp;·&nbsp; alandan çıkıp <b>Delete</b>: reddet (Telegram'dan yeniden taranacak) &nbsp;·&nbsp; <b>Esc</b>: listeye dön
+      </p>
+    </div>
+    <div class="card" id="fastCard" style="flex-direction:column; align-items:center; max-width:420px; margin:0 auto 10px;">
+      <img id="fastImg" style="width:220px; height:270px; object-fit:contain; background:var(--bg); border-radius:8px;">
+      <div class="raw-ocr" id="fastRawOcr" style="width:100%; margin-top:10px;"></div>
+      <div class="field-row" style="width:100%;">
+        <div><label>Kod</label><input type="text" id="fastCode"></div>
+        <div><label>İsim</label><input type="text" id="fastName"></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-approve" id="fastApproveBtn">Onayla (Enter)</button>
+        <button class="btn-reject" id="fastRejectBtn">Reddet (Delete)</button>
+        <button class="btn-secondary" id="fastExitBtn">Listeye Dön (Esc)</button>
+      </div>
+      <div id="fastStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
+      <div id="fastCounter" style="font-size:12px; color:var(--text-soft); margin-top:4px;"></div>
+    </div>
+  </div>
 
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
@@ -139,7 +172,24 @@ const el = {
   counter: document.getElementById("counter"),
   queue: document.getElementById("queue"),
   loadMore: document.getElementById("loadMore"),
+  bulkPanel: document.getElementById("bulkPanel"),
+  bulkCounts: document.getElementById("bulkCounts"),
+  bulkDeleteNoImageBtn: document.getElementById("bulkDeleteNoImageBtn"),
+  fastModeBtn: document.getElementById("fastModeBtn"),
+  fastMode: document.getElementById("fastMode"),
+  fastImg: document.getElementById("fastImg"),
+  fastRawOcr: document.getElementById("fastRawOcr"),
+  fastCode: document.getElementById("fastCode"),
+  fastName: document.getElementById("fastName"),
+  fastApproveBtn: document.getElementById("fastApproveBtn"),
+  fastRejectBtn: document.getElementById("fastRejectBtn"),
+  fastExitBtn: document.getElementById("fastExitBtn"),
+  fastStatus: document.getElementById("fastStatus"),
+  fastCounter: document.getElementById("fastCounter"),
 };
+
+let fastQueue = [];
+let fastIndex = 0;
 
 const PAGE_SIZE = 20;
 const CODE_RE = /\b\d{6,8}\b/;
@@ -291,6 +341,7 @@ el.loadBtn.addEventListener("click", async () => {
     shownCount = 0;
     setStatus(`Yüklendi. Toplam bekleyen: ${reviewItems.length}`);
     el.counter.classList.remove("hidden");
+    updateBulkPanel();
     renderMore();
   } catch (err) {
     setStatus("Hata: " + err.message);
@@ -429,7 +480,7 @@ async function approveItem(item, card) {
   card.classList.add("done");
   try {
     const imgUrl = `${rawBase()}/${item.review_image}`;
-    const imgBase64 = await fetchImageAsBase64(imgUrl);
+    const imageBase64 = await fetchImageAsBase64(imgUrl);
 
     await commitNewProduct({
       code, name, price: item.price, confidence: item.confidence,
@@ -514,6 +565,175 @@ async function removeFromReviewQueue(item) {
   // bellekteki listeden de çıkar
   reviewItems = reviewItems.filter((x) => x !== item);
 }
+
+// ==================== Yeniden Tarama Kuyruğu + Toplu İşlemler ====================
+
+// item.source_flyer = "pipeline/raw_flyers/{telegram_mesaj_id}.jpg" -> mesaj ID'sini çıkar
+function extractMsgId(item) {
+  const m = /raw_flyers[\/\\](\d+)\.jpg$/.exec(item.source_flyer || "");
+  return m ? parseInt(m[1], 10) : null;
+}
+
+// Verilen kayıtların kaynak Telegram mesajlarını pipeline/rescan_queue.json'a ekler
+// (tek commit'te, min_id sınırından bağımsız olarak bir sonraki pipeline çalışmasında yeniden indirilirler).
+async function queueForRescan(items) {
+  const ids = items.map(extractMsgId).filter((id) => id !== null);
+  if (!ids.length) return 0;
+  let existing = [], sha = null;
+  try {
+    const f = await ghGetFile("pipeline/rescan_queue.json");
+    existing = JSON.parse(f.text);
+    sha = f.sha;
+  } catch { /* dosya yoksa sıfırdan oluşturulacak */ }
+  const merged = Array.from(new Set([...existing, ...ids]));
+  if (sha) {
+    await ghPutFile("pipeline/rescan_queue.json", JSON.stringify(merged), sha, `Admin: ${ids.length} mesaj yeniden tarama kuyruğuna eklendi`);
+  } else {
+    await ghPutBinaryFile("pipeline/rescan_queue.json", btoa(unescape(encodeURIComponent(JSON.stringify(merged)))), `Admin: rescan_queue.json oluşturuldu (${ids.length} mesaj)`);
+  }
+  return ids.length;
+}
+
+function updateBulkPanel() {
+  const withImg = reviewItems.filter((x) => x.review_image).length;
+  const noImg = reviewItems.length - withImg;
+  el.bulkCounts.textContent = `${withImg} görselli · ${noImg} görselsiz bekliyor.`;
+  el.bulkDeleteNoImageBtn.textContent = `Görselsiz olanları sil + yeniden tara (${noImg})`;
+  el.bulkDeleteNoImageBtn.disabled = noImg === 0;
+  el.fastModeBtn.disabled = withImg === 0;
+  el.bulkPanel.classList.remove("hidden");
+}
+
+// ---- Toplu işlem: görseli olmayan (kurtarılamaz) kayıtları tek commit'te sil, kaynak mesajları yeniden taramaya ekle ----
+el.bulkDeleteNoImageBtn.addEventListener("click", async () => {
+  const targets = reviewItems.filter((x) => !x.review_image);
+  if (!targets.length) return;
+  if (!confirm(`${targets.length} görselsiz kayıt silinip, kaynak Telegram mesajları yeniden taranmak üzere kuyruğa eklenecek. Devam edilsin mi?`)) return;
+
+  el.bulkDeleteNoImageBtn.disabled = true;
+  setStatus(`${targets.length} görselsiz kayıt işleniyor… (1/2) yeniden tarama kuyruğuna ekleniyor`);
+  try {
+    const queued = await queueForRescan(targets);
+    setStatus(`(2/2) ocr_review.json güncelleniyor…`);
+    const { text, sha } = await ghGetFile("pipeline/ocr_review.json");
+    const current = JSON.parse(text);
+    const filtered = current.filter((x) => x.review_image);
+    await ghPutFile("pipeline/ocr_review.json", JSON.stringify(filtered, null, 2), sha, `Admin: ${targets.length} görselsiz kayıt silindi, yeniden taramaya eklendi`);
+    reviewItems = filtered;
+    shownCount = 0;
+    el.queue.innerHTML = "";
+    renderMore();
+    updateBulkPanel();
+    const kayip = targets.length - queued;
+    setStatus(`✅ ${targets.length} kayıt silindi. ${queued} mesaj yeniden tarama kuyruğuna eklendi${kayip ? ` (${kayip} tanesinin kaynağı belirlenemedi, kurtarılamadı)` : ""}. Kalan: ${reviewItems.length}`);
+  } catch (err) {
+    setStatus("❌ Hata: " + err.message);
+  }
+  el.bulkDeleteNoImageBtn.disabled = false;
+});
+
+// ==================== Hızlı Onay Modu (görselli kayıtlar için, klavye kısayollu) ====================
+
+el.fastModeBtn.addEventListener("click", () => {
+  fastQueue = reviewItems.filter((x) => x.review_image);
+  if (!fastQueue.length) { setStatus("Görselli bekleyen kayıt yok."); return; }
+  fastIndex = 0;
+  el.queue.classList.add("hidden");
+  el.loadMore.classList.add("hidden");
+  el.counter.classList.add("hidden");
+  el.bulkPanel.classList.add("hidden");
+  el.fastMode.classList.remove("hidden");
+  showFastCard();
+});
+
+function showFastCard() {
+  if (fastIndex >= fastQueue.length) {
+    el.fastStatus.textContent = "🎉 Görselli kuyruk bitti! Listeye dönebilirsin.";
+    el.fastImg.style.visibility = "hidden";
+    el.fastCode.value = ""; el.fastName.value = ""; el.fastRawOcr.textContent = "";
+    el.fastCounter.textContent = `${fastQueue.length} / ${fastQueue.length}`;
+    return;
+  }
+  const item = fastQueue[fastIndex];
+  el.fastImg.style.visibility = "visible";
+  el.fastImg.src = `${rawBase()}/${item.review_image}`;
+  el.fastRawOcr.textContent = item.raw_ocr || "(OCR metni yok)";
+  el.fastCode.value = item.code || guessCode(item.raw_ocr);
+  el.fastName.value = guessName(item);
+  el.fastStatus.textContent = "";
+  el.fastCounter.textContent = `${fastIndex + 1} / ${fastQueue.length} (görselli kuyruk)`;
+}
+
+function exitFastMode() {
+  el.fastMode.classList.add("hidden");
+  el.queue.classList.remove("hidden");
+  el.loadMore.classList.remove("hidden");
+  el.counter.classList.remove("hidden");
+  updateBulkPanel();
+}
+
+async function fastApprove() {
+  const item = fastQueue[fastIndex];
+  if (!item) return;
+  const code = el.fastCode.value.trim();
+  const name = el.fastName.value.trim();
+  if (!code || !name) { el.fastStatus.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
+
+  el.fastApproveBtn.disabled = true; el.fastRejectBtn.disabled = true;
+  try {
+    const imgUrl = `${rawBase()}/${item.review_image}`;
+    const imageBase64 = await fetchImageAsBase64(imgUrl);
+    await commitNewProduct({
+      code, name, price: item.price, confidence: item.confidence,
+      embedSource: imgUrl, imageBase64,
+      onProgress: (msg) => { el.fastStatus.textContent = msg; },
+    });
+    await removeFromReviewQueue(item);
+    fastQueue.splice(fastIndex, 1);
+    el.fastStatus.textContent = "✅ Eklendi ve yayında.";
+  } catch (err) {
+    el.fastStatus.textContent = "❌ Hata: " + err.message;
+    el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+    return;
+  }
+  el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+  showFastCard();
+}
+
+async function fastReject() {
+  const item = fastQueue[fastIndex];
+  if (!item) return;
+
+  el.fastApproveBtn.disabled = true; el.fastRejectBtn.disabled = true;
+  el.fastStatus.textContent = "Reddediliyor, kaynak mesaj yeniden tarama kuyruğuna ekleniyor…";
+  try {
+    await queueForRescan([item]);
+    await removeFromReviewQueue(item);
+    fastQueue.splice(fastIndex, 1);
+    el.fastStatus.textContent = "🗑️ Reddedildi, bir sonraki taramada tekrar denenecek.";
+  } catch (err) {
+    el.fastStatus.textContent = "❌ Hata: " + err.message;
+    el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+    return;
+  }
+  el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+  showFastCard();
+}
+
+el.fastApproveBtn.addEventListener("click", fastApprove);
+el.fastRejectBtn.addEventListener("click", fastReject);
+el.fastExitBtn.addEventListener("click", exitFastMode);
+
+// Klavye kısayolları: Enter=onayla, Esc=listeye dön, (yazı alanı dışındayken) Delete/Backspace=reddet
+// NOT: Delete/Backspace sadece bir input'a odaklanılmamışken çalışır -> Kod/İsim düzenlerken
+// yanlışlıkla ürünü reddetmeyi önler.
+document.addEventListener("keydown", (e) => {
+  if (el.fastMode.classList.contains("hidden")) return;
+  const isTyping = e.target.tagName === "INPUT";
+  if (e.key === "Enter") { e.preventDefault(); fastApprove(); }
+  else if (e.key === "Escape") { e.preventDefault(); exitFastMode(); }
+  else if (!isTyping && (e.key === "Delete" || e.key === "Backspace")) { e.preventDefault(); fastReject(); }
+});
 </script>
 </body>
 </html>
