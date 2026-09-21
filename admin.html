@@ -173,17 +173,16 @@ function rawBase() {
 }
 
 // ---- GitHub Contents API yardımcıları ----
-// NOT: GitHub, 1MB'ın üstündeki dosyalarda normal (json) isteğinde "content"
-// alanını BOŞ döner (sadece sha/metadata gelir). Bu yüzden sha'yı normal
-// istekten, gerçek içeriği ise "raw" content-type ile AYRI bir istekten
-// alıyoruz -- dosya boyutu ne olursa olsun çalışır.
+// NOT: Contents API'nin "raw" media type'ı (1MB üstü dosyalarda gerekli)
+// pratikte güvenilir davranmadığı için, sha'yı Contents API'den, gerçek
+// içeriği ise raw.githubusercontent.com'dan (dosya boyutundan bağımsız,
+// her zaman ham içerik döner) alıyoruz.
 async function ghGetFile(path) {
-  const url = `${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`;
-  const metaRes = await fetch(url, { headers: ghHeaders() });
+  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
   if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
   const meta = await metaRes.json();
 
-  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw+json" } });
+  const rawRes = await fetch(`${rawBase()}/${path}?_=${Date.now()}`);
   if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
   const text = await rawRes.text();
   return { text, sha: meta.sha };
@@ -191,12 +190,11 @@ async function ghGetFile(path) {
 
 // Binary dosya (embeddings.bin gibi) için: içerik ArrayBuffer olarak döner.
 async function ghGetBinaryFile(path) {
-  const url = `${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`;
-  const metaRes = await fetch(url, { headers: ghHeaders() });
+  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
   if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
   const meta = await metaRes.json();
 
-  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw+json" } });
+  const rawRes = await fetch(`${rawBase()}/${path}?_=${Date.now()}`);
   if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
   const buf = await rawRes.arrayBuffer();
   return { buf, sha: meta.sha };
