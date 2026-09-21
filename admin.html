@@ -183,7 +183,7 @@ async function ghGetFile(path) {
   if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
   const meta = await metaRes.json();
 
-  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw" } });
+  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw+json" } });
   if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
   const text = await rawRes.text();
   return { text, sha: meta.sha };
@@ -196,7 +196,7 @@ async function ghGetBinaryFile(path) {
   if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
   const meta = await metaRes.json();
 
-  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw" } });
+  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw+json" } });
   if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
   const buf = await rawRes.arrayBuffer();
   return { buf, sha: meta.sha };
@@ -284,7 +284,9 @@ el.loadBtn.addEventListener("click", async () => {
   setStatus("pipeline/ocr_review.json yükleniyor…");
   try {
     const { text } = await ghGetFile("pipeline/ocr_review.json");
-    reviewItems = JSON.parse(text);
+    const parsed = JSON.parse(text);
+    if (!Array.isArray(parsed)) throw new Error("ocr_review.json beklenen formatta değil (dizi değil) — GitHub API yanıtını kontrol et.");
+    reviewItems = parsed;
     shownCount = 0;
     setStatus(`Yüklendi. Toplam bekleyen: ${reviewItems.length}`);
     el.counter.classList.remove("hidden");
@@ -369,6 +371,7 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
   onProgress?.("products.json okunuyor…");
   const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
   const products = JSON.parse(productsText);
+  if (!Array.isArray(products)) throw new Error("products.json beklenen formatta değil (dizi değil) — GitHub API yanıtını kontrol et.");
 
   onProgress?.("embeddings.json (metadata) okunuyor…");
   const { text: embMetaText, sha: embMetaSha } = await ghGetFile("data/embeddings.json");
