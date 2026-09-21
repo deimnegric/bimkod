@@ -96,12 +96,24 @@
 
   <div class="panel" id="manualPanel">
     <h3 style="margin:0 0 8px; font-size:14px;">Manuel Ürün Ekle</h3>
-    <p class="sub" style="margin:0 0 10px;">YOLO'nun hiç yakalamadığı ürünler için (örn. standart grid dışı özel/spot reklamlar). Görseli yükle, bilgileri gir, direkt sisteme eklensin.</p>
+    <p class="sub" style="margin:0 0 10px;">YOLO'nun hiç yakalamadığı ürünler ya da kesimi bozuk çıkanlar için. Ürünün kendi görselini YA DA tüm afişi yükleyip aşağıdan fareyle doğru alanı kırpabilirsin.</p>
     <div class="row">
       <div style="flex:1">
-        <label>Ürün görseli</label>
+        <label>Görsel (ürün fotoğrafı ya da tüm afiş)</label>
         <input type="file" id="manualImageInput" accept="image/*">
       </div>
+    </div>
+    <div id="cropWrap" class="hidden" style="margin-bottom:10px;">
+      <p class="sub" style="margin:0 0 6px;">Tüm afiş yüklediysen, fareyle/parmakla sürükleyerek ürünü (foto+isim+fiyat+kod) seç.</p>
+      <canvas id="cropCanvas" style="max-width:100%; touch-action:none; cursor:crosshair; border-radius:8px; border:1px solid var(--border);"></canvas>
+      <div class="row" style="margin-top:8px;">
+        <button class="btn-approve" id="cropApplyBtn">Bu Alanı Kırp</button>
+        <button class="btn-secondary" id="cropSkipBtn">Kırpma, olduğu gibi kullan</button>
+      </div>
+    </div>
+    <div id="cropPreviewWrap" class="hidden" style="margin-bottom:10px;">
+      <label>Kullanılacak görsel</label>
+      <img id="cropPreview" style="max-width:140px; max-height:170px; border-radius:8px; border:1px solid var(--border); display:block;">
     </div>
     <div class="field-row">
       <div>
@@ -119,6 +131,17 @@
     </div>
     <button class="btn-approve" id="manualAddBtn">Ürünü Ekle</button>
     <div id="manualStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
+  </div>
+
+  <div class="panel" id="liveSearchPanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">Canlı Ürünlerde Ara (bozuk/eksik görsel düzeltme)</h3>
+    <p class="sub" style="margin:0 0 10px;">İsim ya da koda göre ara. Görseli bozuk/eksik çıkan bir ürünü bulup "Sil ve Yeniden Tara" dersen: sistemden kaldırılır, kaynak afiş bir sonraki taramada yeniden işlenir.</p>
+    <div class="row">
+      <input type="text" id="liveSearchInput" placeholder="Ürün adı ya da kod ara…">
+      <button class="btn-primary" id="liveSearchBtn">Ara</button>
+    </div>
+    <div id="liveSearchStatus" style="font-size:12px; color:var(--text-soft); margin-bottom:8px;"></div>
+    <div id="liveSearchResults"></div>
   </div>
 
   <div id="status"></div>
@@ -186,6 +209,10 @@ const el = {
   fastExitBtn: document.getElementById("fastExitBtn"),
   fastStatus: document.getElementById("fastStatus"),
   fastCounter: document.getElementById("fastCounter"),
+  liveSearchInput: document.getElementById("liveSearchInput"),
+  liveSearchBtn: document.getElementById("liveSearchBtn"),
+  liveSearchStatus: document.getElementById("liveSearchStatus"),
+  liveSearchResults: document.getElementById("liveSearchResults"),
 };
 
 let fastQueue = [];
@@ -498,26 +525,107 @@ async function approveItem(item, card) {
   }
 }
 
-// ---- Manuel ekleme: YOLO'nun hiç yakalamadığı ürünler için (görsel elle yükleniyor) ----
+// ==================== Manuel kırpma aracı ====================
+// Kullanıcı ürünün kendi görselini YA DA tüm afişi yükleyebilir; afiş yüklediyse
+// fareyle/parmakla bir dikdörtgen seçip sadece o alanı kırpar. Sonuç `croppedBlob`
+// içinde tutulur ve "Ürünü Ekle" bu Blob'u (ya da hiç kırpılmadıysa orijinal
+// dosyayı) kullanır.
+const cropCanvas = document.getElementById("cropCanvas");
+const cropCtx = cropCanvas.getContext("2d");
+let cropSourceImg = null, cropRect = null, cropDragging = false, cropStart = null;
+let croppedBlob = null;
+
+document.getElementById("manualImageInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  croppedBlob = file; // varsayılan: hiç kırpılmamış haliyle kullan
+  document.getElementById("cropPreviewWrap").classList.add("hidden");
+
+  const img = new Image();
+  img.onload = () => {
+    cropSourceImg = img;
+    const maxW = 480;
+    const scale = Math.min(1, maxW / img.width);
+    cropCanvas.width = img.width * scale;
+    cropCanvas.height = img.height * scale;
+    cropCtx.drawImage(img, 0, 0, cropCanvas.width, cropCanvas.height);
+    cropRect = null;
+    document.getElementById("cropWrap").classList.remove("hidden");
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+function cropPointerPos(e) {
+  const rect = cropCanvas.getBoundingClientRect();
+  const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+  return { x: cx * (cropCanvas.width / rect.width), y: cy * (cropCanvas.height / rect.height) };
+}
+function redrawCrop() {
+  cropCtx.drawImage(cropSourceImg, 0, 0, cropCanvas.width, cropCanvas.height);
+  if (cropRect) {
+    cropCtx.strokeStyle = "#D98A8A";
+    cropCtx.lineWidth = 2;
+    cropCtx.setLineDash([6, 4]);
+    cropCtx.strokeRect(cropRect.x, cropRect.y, cropRect.w, cropRect.h);
+  }
+}
+function cropStartDrag(e) { e.preventDefault(); cropDragging = true; cropStart = cropPointerPos(e); }
+function cropMoveDrag(e) {
+  if (!cropDragging) return;
+  e.preventDefault();
+  const p = cropPointerPos(e);
+  cropRect = { x: Math.min(cropStart.x, p.x), y: Math.min(cropStart.y, p.y), w: Math.abs(p.x - cropStart.x), h: Math.abs(p.y - cropStart.y) };
+  redrawCrop();
+}
+function cropEndDrag() { cropDragging = false; }
+cropCanvas.addEventListener("mousedown", cropStartDrag);
+cropCanvas.addEventListener("mousemove", cropMoveDrag);
+window.addEventListener("mouseup", cropEndDrag);
+cropCanvas.addEventListener("touchstart", cropStartDrag, { passive: false });
+cropCanvas.addEventListener("touchmove", cropMoveDrag, { passive: false });
+window.addEventListener("touchend", cropEndDrag);
+
+document.getElementById("cropApplyBtn").addEventListener("click", () => {
+  if (!cropRect || cropRect.w < 5 || cropRect.h < 5) { alert("Önce fareyle/parmakla ürünün üstünden bir alan seç."); return; }
+  const scaleX = cropSourceImg.width / cropCanvas.width;
+  const scaleY = cropSourceImg.height / cropCanvas.height;
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = Math.round(cropRect.w * scaleX);
+  outCanvas.height = Math.round(cropRect.h * scaleY);
+  outCanvas.getContext("2d").drawImage(
+    cropSourceImg,
+    cropRect.x * scaleX, cropRect.y * scaleY, cropRect.w * scaleX, cropRect.h * scaleY,
+    0, 0, outCanvas.width, outCanvas.height
+  );
+  outCanvas.toBlob((blob) => {
+    croppedBlob = blob;
+    const previewImg = document.getElementById("cropPreview");
+    previewImg.src = URL.createObjectURL(blob);
+    document.getElementById("cropPreviewWrap").classList.remove("hidden");
+  }, "image/jpeg", 0.92);
+});
+document.getElementById("cropSkipBtn").addEventListener("click", () => {
+  croppedBlob = document.getElementById("manualImageInput").files[0];
+  document.getElementById("cropPreviewWrap").classList.add("hidden");
+});
+
+// ---- Manuel ekleme: YOLO'nun hiç yakalamadığı/kesimi bozuk ürünler için ----
 document.getElementById("manualAddBtn").addEventListener("click", async () => {
-  const fileInput = document.getElementById("manualImageInput");
   const code = document.getElementById("manualCode").value.trim();
   const name = document.getElementById("manualName").value.trim();
   const price = document.getElementById("manualPrice").value.trim();
   const statusEl = document.getElementById("manualStatus");
 
-  if (!fileInput.files[0]) { statusEl.textContent = "⚠️ Önce bir görsel seç."; return; }
+  if (!croppedBlob) { statusEl.textContent = "⚠️ Önce bir görsel seç."; return; }
   if (!code || !name) { statusEl.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
 
   try {
-    const file = fileInput.files[0];
+    const file = croppedBlob;
     const objectUrl = URL.createObjectURL(file);
 
     const buf = await file.arrayBuffer();
-    let binary = "";
-    const bytes = new Uint8Array(buf);
-    for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-    const imageBase64 = btoa(binary);
+    const imageBase64 = arrayBufferToBase64(buf);
 
     await commitNewProduct({
       code, name, price, confidence: null,
@@ -527,10 +635,13 @@ document.getElementById("manualAddBtn").addEventListener("click", async () => {
 
     URL.revokeObjectURL(objectUrl);
     statusEl.textContent = "✅ Eklendi ve yayında! Formu temizleyebilirsin.";
-    fileInput.value = "";
+    document.getElementById("manualImageInput").value = "";
     document.getElementById("manualCode").value = "";
     document.getElementById("manualName").value = "";
     document.getElementById("manualPrice").value = "";
+    document.getElementById("cropWrap").classList.add("hidden");
+    document.getElementById("cropPreviewWrap").classList.add("hidden");
+    croppedBlob = null; cropSourceImg = null; cropRect = null;
   } catch (err) {
     statusEl.textContent = "❌ Hata: " + err.message;
   }
@@ -723,6 +834,80 @@ async function fastReject() {
 el.fastApproveBtn.addEventListener("click", fastApprove);
 el.fastRejectBtn.addEventListener("click", fastReject);
 el.fastExitBtn.addEventListener("click", exitFastMode);
+
+// ==================== Canlı Ürünlerde Ara + Sil & Yeniden Tara ====================
+let liveProducts = null; // data/products.json (ilk aramada yüklenip belllekte tutulur)
+
+el.liveSearchBtn.addEventListener("click", async () => {
+  const q = el.liveSearchInput.value.trim().toLocaleLowerCase("tr");
+  if (!q) return;
+  el.liveSearchBtn.disabled = true;
+  el.liveSearchStatus.textContent = "Aranıyor…";
+  try {
+    if (!liveProducts) {
+      el.liveSearchStatus.textContent = "data/products.json yükleniyor (ilk aramada biraz sürebilir)…";
+      const { text } = await ghGetFile("data/products.json");
+      liveProducts = JSON.parse(text);
+    }
+    const results = liveProducts.filter((p) =>
+      (p.name || "").toLocaleLowerCase("tr").includes(q) || (p.code || "").includes(q)
+    ).slice(0, 30);
+    renderLiveSearchResults(results);
+    el.liveSearchStatus.textContent = `${results.length} sonuç gösteriliyor (en fazla 30) — toplam ${liveProducts.length} üründe arandı.`;
+  } catch (err) {
+    el.liveSearchStatus.textContent = "❌ Hata: " + err.message;
+  }
+  el.liveSearchBtn.disabled = false;
+});
+el.liveSearchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") el.liveSearchBtn.click(); });
+
+function renderLiveSearchResults(results) {
+  el.liveSearchResults.innerHTML = results.map((p) => `
+    <div class="card" data-code="${p.code}">
+      <img src="${rawBase()}/${p.image}" alt="${p.name}" onerror="this.style.opacity=0.15">
+      <div class="card-body">
+        <div style="font-weight:600; font-size:13.5px; margin-bottom:4px;">${p.name}</div>
+        <div style="font-size:12px; color:var(--text-soft); margin-bottom:8px;">Kod: ${p.code}${p.price ? ` · ${p.price} ₺` : ""}</div>
+        <div class="card-actions"><button class="btn-reject btn-rescan-live">Sil ve Yeniden Tara</button></div>
+        <div class="live-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
+      </div>
+    </div>
+  `).join("");
+
+  [...el.liveSearchResults.children].forEach((card, i) => {
+    card.querySelector(".btn-rescan-live").addEventListener("click", () => rescanLiveProduct(results[i], card));
+  });
+}
+
+// Kaynağı bilinen (sourceFlyer dolu) bir ürünü: rescan_queue.json'a ekler, products.json'dan siler.
+// NOT: embeddings.bin'deki satırı silmiyoruz (index kaymasını önlemek için) — kullanılmayan
+// satır olarak kalır, önemsiz miktarda yer kaplar. Görsel dosyası (images/xxxxx.jpg) da
+// diskte kalır, zararsız. Bir sonraki pipeline çalışmasında ürün yeni bir kayıt olarak eklenir.
+async function rescanLiveProduct(product, card) {
+  const statusEl = card.querySelector(".live-status");
+  const msgId = extractMsgId({ source_flyer: product.sourceFlyer });
+  if (msgId === null) {
+    statusEl.textContent = "⚠️ Bu ürünün kaynağı bilinmiyor (eski kayıt, bu özellikten önce eklenmiş). Otomatik yeniden taranamaz — manuel kırpma aracıyla elle düzeltebilirsin.";
+    return;
+  }
+  if (!confirm(`"${product.name}" (${product.code}) silinip kaynak afiş yeniden taranacak. Devam edilsin mi?`)) return;
+
+  card.classList.add("done");
+  statusEl.textContent = "Yeniden tarama kuyruğuna ekleniyor…";
+  try {
+    await queueForRescan([{ source_flyer: product.sourceFlyer }]);
+    statusEl.textContent = "data/products.json güncelleniyor…";
+    const { text, sha } = await ghGetFile("data/products.json");
+    const current = JSON.parse(text);
+    const filtered = current.filter((p) => p.code !== product.code);
+    await ghPutFile("data/products.json", JSON.stringify(filtered, null, 2), sha, `Admin: ${product.code} silindi, yeniden taramaya eklendi`);
+    liveProducts = filtered;
+    statusEl.textContent = "✅ Silindi ve yeniden tarama kuyruğuna eklendi. Bir sonraki taramada doğru görselle geri gelecek.";
+  } catch (err) {
+    card.classList.remove("done");
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+}
 
 // Klavye kısayolları: Enter=onayla, Esc=listeye dön, (yazı alanı dışındayken) Delete/Backspace=reddet
 // NOT: Delete/Backspace sadece bir input'a odaklanılmamışken çalışır -> Kod/İsim düzenlerken
