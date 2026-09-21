@@ -173,12 +173,33 @@ function rawBase() {
 }
 
 // ---- GitHub Contents API yardımcıları ----
+// NOT: GitHub, 1MB'ın üstündeki dosyalarda normal (json) isteğinde "content"
+// alanını BOŞ döner (sadece sha/metadata gelir). Bu yüzden sha'yı normal
+// istekten, gerçek içeriği ise "raw" content-type ile AYRI bir istekten
+// alıyoruz -- dosya boyutu ne olursa olsun çalışır.
 async function ghGetFile(path) {
-  const res = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
-  if (!res.ok) throw new Error(`${path} okunamadı (${res.status})`);
-  const data = await res.json();
-  const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
-  return { text, sha: data.sha };
+  const url = `${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`;
+  const metaRes = await fetch(url, { headers: ghHeaders() });
+  if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
+  const meta = await metaRes.json();
+
+  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw" } });
+  if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
+  const text = await rawRes.text();
+  return { text, sha: meta.sha };
+}
+
+// Binary dosya (embeddings.bin gibi) için: içerik ArrayBuffer olarak döner.
+async function ghGetBinaryFile(path) {
+  const url = `${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`;
+  const metaRes = await fetch(url, { headers: ghHeaders() });
+  if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
+  const meta = await metaRes.json();
+
+  const rawRes = await fetch(url, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw" } });
+  if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
+  const buf = await rawRes.arrayBuffer();
+  return { buf, sha: meta.sha };
 }
 
 async function ghPutFile(path, contentStr, sha, message) {
@@ -203,13 +224,31 @@ async function ghPutBinaryFile(path, base64Content, message) {
   return res.json();
 }
 
+async function ghPutBinaryFileWithSha(path, base64Content, sha, message) {
+  // Var olan binary dosyayı GÜNCELLİYORUZ -> sha zorunlu
+  const res = await fetch(`${apiBase()}/contents/${path}`, {
+    method: "PUT",
+    headers: { ...ghHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ message, content: base64Content, sha, branch: el.branch.value.trim() }),
+  });
+  if (!res.ok) throw new Error(`${path} yazılamadı (${res.status}): ${await res.text()}`);
+  return res.json();
+}
+
+function arrayBufferToBase64(buf) {
+  let binary = "";
+  const bytes = new Uint8Array(buf);
+  const chunk = 8192; // büyük buffer'larda tek seferde String.fromCharCode çağırmamak için parça parça işle
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+  }
+  return btoa(binary);
+}
+
 async function fetchImageAsBase64(url) {
   const res = await fetch(url);
   const buf = await res.arrayBuffer();
-  let binary = "";
-  const bytes = new Uint8Array(buf);
-  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-  return btoa(binary);
+  return arrayBufferToBase64(buf);
 }
 
 // ---- CLIP embedding (görsel arama indeksine eklemek için) ----
@@ -325,23 +364,32 @@ async function rejectItem(item, card) {
 // imageBase64: images/ klasörüne yüklenecek ham görsel (base64)
 async function commitNewProduct({ code, name, price, confidence, embedSource, imageBase64, onProgress }) {
   onProgress?.("Görsel embedding hesaplanıyor…");
-  const embedding = await embedImage(embedSource);
+  const embedding = await embedImage(embedSource); // Float32 sayı dizisi, 512 boyut
 
   onProgress?.("products.json okunuyor…");
   const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
   const products = JSON.parse(productsText);
 
-  onProgress?.("embeddings.json okunuyor…");
-  const { text: embText, sha: embSha } = await ghGetFile("data/embeddings.json");
-  const embData = JSON.parse(embText);
+  onProgress?.("embeddings.json (metadata) okunuyor…");
+  const { text: embMetaText, sha: embMetaSha } = await ghGetFile("data/embeddings.json");
+  const embMeta = JSON.parse(embMetaText);
+  const dim = embMeta.dim || 512;
 
-  const embIndex = embData.vectors.length;
+  onProgress?.("embeddings.bin okunuyor (biraz sürebilir, birkaç MB)…");
+  const { buf: embBuf, sha: embBinSha } = await ghGetBinaryFile("data/embeddings.bin");
+
+  const embIndex = embMeta.count;
   const imageFilename = `${String(embIndex).padStart(6, "0")}.jpg`;
 
   onProgress?.("Görsel images/ klasörüne yükleniyor…");
   await ghPutBinaryFile(`images/${imageFilename}`, imageBase64, `Admin: ${code} görseli eklendi`);
 
-  embData.vectors.push(embedding);
+  // Yeni vektörü mevcut binary'nin SONUNA ekle (float32, little-endian)
+  const newVecBytes = new Float32Array(embedding).buffer;
+  const combined = new Uint8Array(embBuf.byteLength + newVecBytes.byteLength);
+  combined.set(new Uint8Array(embBuf), 0);
+  combined.set(new Uint8Array(newVecBytes), embBuf.byteLength);
+
   products.push({
     code, name,
     price: price || null,
@@ -355,8 +403,11 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
   onProgress?.("products.json güncelleniyor…");
   await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin: ${code} eklendi`);
 
-  onProgress?.("embeddings.json güncelleniyor…");
-  await ghPutFile("data/embeddings.json", JSON.stringify(embData), embSha, `Admin: ${code} embedding eklendi`);
+  onProgress?.("embeddings.bin güncelleniyor…");
+  await ghPutBinaryFileWithSha("data/embeddings.bin", arrayBufferToBase64(combined.buffer), embBinSha, `Admin: ${code} embedding eklendi`);
+
+  onProgress?.("embeddings.json (metadata) güncelleniyor…");
+  await ghPutFile("data/embeddings.json", JSON.stringify({ ...embMeta, count: embIndex + 1 }), embMetaSha, `Admin: embedding sayacı güncellendi`);
 
   onProgress?.("corrections.csv güncelleniyor…");
   await appendCorrection(code, name);

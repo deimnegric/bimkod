@@ -91,18 +91,27 @@ function trNormalize(str) {
     .trim();
 }
 
-// ---------- Veri yükleme (products.json + embeddings.json) ----------
+// ---------- Veri yükleme (products.json + embeddings.bin) ----------
+// Embedding'ler artık ham binary (float32) dosyada -> JSON parse yok,
+// tek büyük ArrayBuffer fetch'i + üzerine "bakan" Float32Array view'ları.
+// Eski JSON-vektör formatına göre ~5.5 kat daha az veri indirilir.
 async function loadData() {
   showStatus("Ürün verisi yükleniyor…");
-  const [productsRes, embRes] = await Promise.all([
+  const [productsRes, embMeta, embBuf] = await Promise.all([
     fetch("data/products.json").then((r) => r.json()).catch(() => []),
     fetch("data/embeddings.json").then((r) => r.json()).catch(() => null),
+    fetch("data/embeddings.bin").then((r) => r.arrayBuffer()).catch(() => null),
   ]);
 
   PRODUCTS = productsRes.map((p) => ({ ...p, normName: trNormalize(p.name) }));
 
-  if (embRes && embRes.vectors) {
-    EMBEDDINGS = embRes.vectors.map((v) => Float32Array.from(v));
+  if (embMeta && embBuf) {
+    const dim = embMeta.dim;
+    const bytesPerVec = dim * 4; // float32 = 4 byte
+    EMBEDDINGS = [];
+    for (let i = 0; i < embMeta.count; i++) {
+      EMBEDDINGS.push(new Float32Array(embBuf, i * bytesPerVec, dim));
+    }
   }
 
   fuse = new Fuse(PRODUCTS, {

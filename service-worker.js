@@ -16,6 +16,7 @@ const CORE_ASSETS = [
   // Gerçek sistemde eklenecek:
   "./data/products.json",
   "./data/embeddings.json",
+  "./data/embeddings.bin",
   // "./models/yolo.onnx",
   // "./models/clip-vision.onnx",
 ];
