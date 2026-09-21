@@ -17,21 +17,21 @@
     "raw_ocr": "Duş Banyo Sabunu\nDuru 4x150 g\n\nij 1713165\n"
   },
   {
-    "full_crop": "pipeline/crops_full/000005.jpg",
-    "photo_crop": "pipeline/crops_photo/000005.jpg",
+    "full_crop": "pipeline/crops_full/000002.jpg",
+    "photo_crop": "pipeline/crops_photo/000002.jpg",
     "source_flyer": "pipeline/raw_flyers/1179.jpg",
     "flyer_date": "2026-09-19T05:28:13+00:00",
     "bbox": [
-      345,
-      1259,
-      466,
-      1429
+      438,
+      564,
+      572,
+      812
     ],
-    "confidence": 0.9343299865722656,
+    "confidence": 0.93759685754776,
     "code": null,
-    "name": "Diş Macunu Signal Beyazlatıcı Sistem 75 mlx2",
+    "name": "Konsantre Çamaşır Yumuşatıcısı Abc 1440 ml Mavi Düş «Pembe Rüya 4744081 Çİ",
     "price": null,
-    "raw_ocr": "Diş Macunu\nSignal Beyazlatıcı\nSistem 75 mlx2\n\n"
+    "raw_ocr": "Konsantre Çamaşır\nYumuşatıcısı\n\nAbc 1440 ml\nMavi Düş «Pembe Rüya\n\n4744081 Çİ\n"
   },
   {
     "full_crop": "pipeline/crops_full/000006.jpg",
