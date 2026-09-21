@@ -26,6 +26,29 @@ DETECTIONS_OUT = Path("pipeline/detections.json")
 
 CONF_THRESHOLD = 0.4
 
+# ---- Kutu payı (padding) ----
+# Bazı ürünlerde YOLO kutuyu sadece isim/fiyat/kod bölgesine sıkıştırıyor,
+# BİM kart düzeninde bunların ÜSTÜNDE duran ürün fotoğrafını dışarıda
+# bırakıyor (örnek: "Figürlü Tarak" ürününde sadece fiyat etiketi kırpıldı,
+# fotoğraf hiç görünmedi). Bu geçici/ölçülü bir düzeltme: kutuyu özellikle
+# yukarı doğru genişletiyoruz. Zaten doğru boyuttaki kutularda komşu üst
+# hücreye hafif taşabilir -> oranlar kasıtlı olarak agresif değil.
+# NOT: Asıl kalıcı çözüm Roboflow'daki etiketlerin (bazı örneklerde kutu
+# sadece fiyat etiketini kapsıyor gibi görünüyor) tutarlı hale getirilip
+# modelin yeniden eğitilmesi. Bu pay, o yapılana kadarki ara önlem.
+PAD_TOP_RATIO = 0.35
+PAD_SIDE_RATIO = 0.06
+PAD_BOTTOM_RATIO = 0.05
+
+
+def pad_box(x1, y1, x2, y2, img_w, img_h):
+    w, h = x2 - x1, y2 - y1
+    x1p = max(0, x1 - int(w * PAD_SIDE_RATIO))
+    x2p = min(img_w, x2 + int(w * PAD_SIDE_RATIO))
+    y1p = max(0, y1 - int(h * PAD_TOP_RATIO))
+    y2p = min(img_h, y2 + int(h * PAD_BOTTOM_RATIO))
+    return x1p, y1p, x2p, y2p
+
 
 def main():
     FULL_CROPS_DIR.mkdir(parents=True, exist_ok=True)
@@ -49,6 +72,7 @@ def main():
 
         for box in results.boxes:
             x1, y1, x2, y2 = map(int, box.xyxy[0].tolist())
+            x1, y1, x2, y2 = pad_box(x1, y1, x2, y2, img.width, img.height)
             full_crop = img.crop((x1, y1, x2, y2))
 
             full_name = f"{crop_idx:06d}.jpg"

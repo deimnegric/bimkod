@@ -47,6 +47,8 @@ def main():
                 "flyer_date": item.get("flyer_date"),
                 "confidence": item["confidence"],
                 "embedding": feats[0].tolist(),
+                "source_flyer": item.get("source_flyer"),
+                "bbox": item.get("bbox"),
             })
 
     EMBED_OUT.write_text(json.dumps(results, ensure_ascii=False))

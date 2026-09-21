@@ -110,6 +110,10 @@ def main():
             "embIndex": emb_index,
             "confidence": item["confidence"],
             "addedAt": added_at,
+            # İleride "bu ürünün görseli eksik/yanlış, yeniden tara" özelliği için:
+            # kaynağı bilmeden bir ürünü yeniden taramaya sokamayız.
+            "sourceFlyer": item.get("source_flyer"),
+            "bbox": item.get("bbox"),
         }
 
         if existing:
