@@ -285,7 +285,10 @@ el.loadBtn.addEventListener("click", async () => {
   try {
     const { text } = await ghGetFile("pipeline/ocr_review.json");
     const parsed = JSON.parse(text);
-    if (!Array.isArray(parsed)) throw new Error("ocr_review.json beklenen formatta değil (dizi değil) — GitHub API yanıtını kontrol et.");
+    if (!Array.isArray(parsed)) {
+      const detail = parsed && parsed.message ? ` — GitHub: "${parsed.message}"` : "";
+      throw new Error(`ocr_review.json beklenen formatta değil (dizi değil)${detail}`);
+    }
     reviewItems = parsed;
     shownCount = 0;
     setStatus(`Yüklendi. Toplam bekleyen: ${reviewItems.length}`);
@@ -371,7 +374,10 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
   onProgress?.("products.json okunuyor…");
   const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
   const products = JSON.parse(productsText);
-  if (!Array.isArray(products)) throw new Error("products.json beklenen formatta değil (dizi değil) — GitHub API yanıtını kontrol et.");
+  if (!Array.isArray(products)) {
+    const detail = products && products.message ? ` — GitHub: "${products.message}"` : "";
+    throw new Error(`products.json beklenen formatta değil (dizi değil)${detail}`);
+  }
 
   onProgress?.("embeddings.json (metadata) okunuyor…");
   const { text: embMetaText, sha: embMetaSha } = await ghGetFile("data/embeddings.json");
