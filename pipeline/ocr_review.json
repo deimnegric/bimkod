@@ -1,20 +1,20 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000002.jpg",
-    "photo_crop": "pipeline/crops_photo/000002.jpg",
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "photo_crop": "pipeline/crops_photo/000000.jpg",
     "source_flyer": "pipeline/raw_flyers/1179.jpg",
     "flyer_date": "2026-09-19T05:28:13+00:00",
     "bbox": [
-      438,
-      564,
-      572,
-      812
+      495,
+      1065,
+      646,
+      1236
     ],
-    "confidence": 0.93759685754776,
+    "confidence": 0.9493098855018616,
     "code": null,
-    "name": "Konsantre Çamaşır Yumuşatıcısı Abc 1440 ml Mavi Düş «Pembe Rüya 4744081 Çİ",
+    "name": "Duş Banyo Sabunu Duru 4x150 g ij 1713165",
     "price": null,
-    "raw_ocr": "Konsantre Çamaşır\nYumuşatıcısı\n\nAbc 1440 ml\nMavi Düş «Pembe Rüya\n\n4744081 Çİ\n"
+    "raw_ocr": "Duş Banyo Sabunu\nDuru 4x150 g\n\nij 1713165\n"
   },
   {
     "full_crop": "pipeline/crops_full/000005.jpg",
