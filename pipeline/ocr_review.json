@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000000.jpg",
-    "photo_crop": "pipeline/crops_photo/000000.jpg",
-    "source_flyer": "pipeline/raw_flyers/1179.jpg",
-    "flyer_date": "2026-09-19T05:28:13+00:00",
-    "bbox": [
-      495,
-      1065,
-      646,
-      1236
-    ],
-    "confidence": 0.9493098855018616,
-    "code": null,
-    "name": "Duş Banyo Sabunu Duru 4x150 g ij 1713165",
-    "price": null,
-    "raw_ocr": "Duş Banyo Sabunu\nDuru 4x150 g\n\nij 1713165\n"
-  },
-  {
     "full_crop": "pipeline/crops_full/000002.jpg",
     "photo_crop": "pipeline/crops_photo/000002.jpg",
     "source_flyer": "pipeline/raw_flyers/1179.jpg",
