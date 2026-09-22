@@ -42,6 +42,7 @@ const el = {
   emptyState: document.getElementById("emptyState"),
   imageModal: document.getElementById("imageModal"),
   imageModalImg: document.getElementById("imageModalImg"),
+  imageModalClose: document.getElementById("imageModalClose"),
   toast: document.getElementById("toast"),
   statusBar: document.getElementById("statusBar"),
   newArrivals: document.getElementById("newArrivals"),
@@ -225,26 +226,34 @@ function render() {
       <div class="result-thumb" data-thumb data-src="${p.image || ""}">
         ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : "Görsel"}
       </div>
-      <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? p.name : highlightMatch(p.name, state.query)}</div>
-      <div class="result-meta">
-        <span class="result-code">${p.code}</span>
-        ${p.price ? `<span class="result-price">${p.price} ₺</span>` : ""}
-        <button class="share-btn" data-share aria-label="Paylaş">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-            <line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/>
-          </svg>
-        </button>
+      <div class="result-content">
+        <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? p.name : highlightMatch(p.name, state.query)}</div>
+        <div class="result-meta">
+          <span class="result-code">${p.code}</span>
+          ${p.price ? `<span class="result-price">${p.price} ₺</span>` : ""}
+          <button class="share-btn" data-share aria-label="Paylaş">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   `).join("");
 
-  // sayfalama
+  // sayfalama (çok sayfa varsa akıllı/kısaltılmış: 1 … 8 9 [10] 11 12 … 136)
   if (totalPages > 1) {
     el.pagination.hidden = false;
+    const cur = state.page;
+    const pagesToShow = new Set([1, totalPages, cur, cur - 1, cur + 1, cur - 2, cur + 2]);
     let btns = "";
+    let lastRendered = 0;
     for (let i = 1; i <= totalPages; i++) {
-      btns += `<button class="page-btn ${i === state.page ? "active" : ""}" data-page="${i}">${i}</button>`;
+      if (!pagesToShow.has(i)) continue;
+      if (i - lastRendered > 1) btns += `<span class="page-ellipsis">…</span>`;
+      btns += `<button class="page-btn ${i === cur ? "active" : ""}" data-page="${i}">${i}</button>`;
+      lastRendered = i;
     }
     el.pagination.innerHTML = btns;
   } else {
@@ -351,6 +360,10 @@ el.newArrivalsList.addEventListener("click", (e) => {
 
 el.imageModal.addEventListener("click", () => { el.imageModal.hidden = true; });
 el.imageModalImg.addEventListener("click", (e) => { e.stopPropagation(); });
+el.imageModalClose.addEventListener("click", () => { el.imageModal.hidden = true; });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !el.imageModal.hidden) el.imageModal.hidden = true;
+});
 
 // ---------- Paylaşım kartı üretimi ----------
 async function sharedProductCard(product) {

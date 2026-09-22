@@ -27,18 +27,19 @@ DETECTIONS_OUT = Path("pipeline/detections.json")
 CONF_THRESHOLD = 0.4
 
 # ---- Kutu payı (padding) ----
-# Bazı ürünlerde YOLO kutuyu sadece isim/fiyat/kod bölgesine sıkıştırıyor,
-# BİM kart düzeninde bunların ÜSTÜNDE duran ürün fotoğrafını dışarıda
-# bırakıyor (örnek: "Figürlü Tarak" ürününde sadece fiyat etiketi kırpıldı,
-# fotoğraf hiç görünmedi). Bu geçici/ölçülü bir düzeltme: kutuyu özellikle
-# yukarı doğru genişletiyoruz. Zaten doğru boyuttaki kutularda komşu üst
-# hücreye hafif taşabilir -> oranlar kasıtlı olarak agresif değil.
-# NOT: Asıl kalıcı çözüm Roboflow'daki etiketlerin (bazı örneklerde kutu
-# sadece fiyat etiketini kapsıyor gibi görünüyor) tutarlı hale getirilip
-# modelin yeniden eğitilmesi. Bu pay, o yapılana kadarki ara önlem.
-PAD_TOP_RATIO = 0.35
-PAD_SIDE_RATIO = 0.06
-PAD_BOTTOM_RATIO = 0.05
+# DENENDİ VE GERİ ALINDI: %35 üst pay bazı ürünlerde fotoğrafı yakalasa da,
+# çoğu üründe komşu (üstteki) ürünün fotoğrafını/metnini de kutuya dahil
+# etti -> hem görselde iki ürün üst üste bindi hem de OCR iki ürünün metnini
+# karıştırıp "Brode Perde -140x260 cm Terlik 163058 ... Ruletleri..." gibi
+# anlamsız isimler üretti (ve bunlar bazen YANLIŞLIKLA "başarılı" sayılıp
+# yayına bile girdi). Zarar faydadan büyük oldu, bu yüzden payı minimuma
+# indiriyoruz (sadece metnin tam kenardan kırpılmasını önleyecek kadar).
+# Asıl kalıcı çözüm: Roboflow etiketlerini tutarlı hale getirip modeli
+# yeniden eğitmek. Münferit kötü kesimler için admin.html'deki "Canlı
+# Ürünlerde Ara -> Sil ve Yeniden Tara" ile manuel kırpma aracı kullanılmalı.
+PAD_TOP_RATIO = 0.0
+PAD_SIDE_RATIO = 0.02
+PAD_BOTTOM_RATIO = 0.02
 
 
 def pad_box(x1, y1, x2, y2, img_w, img_h):
