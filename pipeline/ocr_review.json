@@ -462254,5 +462254,501 @@
     "name": "",
     "price": null,
     "raw_ocr": "1714927\n\n1714929\n\n1714928\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000002.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      732,
+      1162,
+      1021,
+      1463
+    ],
+    "confidence": 0.9487143158912659,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000003.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      664,
+      724,
+      1025,
+      993
+    ],
+    "confidence": 0.9470107555389404,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      406,
+      733,
+      633,
+      1026
+    ],
+    "confidence": 0.9256071448326111,
+    "code": "1640958",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1640958\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000008.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      60,
+      1017,
+      350,
+      1227
+    ],
+    "confidence": 0.924705445766449,
+    "code": null,
+    "name": "Ğ",
+    "price": null,
+    "raw_ocr": "Ğ\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000010.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      693,
+      928,
+      1034,
+      1222
+    ],
+    "confidence": 0.9129727482795715,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      7,
+      0,
+      478,
+      564
+    ],
+    "confidence": 0.750860333442688,
+    "code": null,
+    "name": "CUMA 25 Eylül'den itibaren © wexta ÇOCUK VALİZ « 96100 Abs hammadeden üretilmiştir. * 360 derece dönebilen | #'lü teker sistemi | « Ürün Ölçüleri: 35x25x53 cm » Fileli kapaklı dstar * Sık dişli kalın fermuar",
+    "price": null,
+    "raw_ocr": "CUMA\n\n25 Eylül'den itibaren\n© wexta\nÇOCUK VALİZ\n\n« 96100 Abs hammadeden üretilmiştir.\n\n* 360 derece dönebilen |\n#'lü teker sistemi |\n\n« Ürün Ölçüleri: 35x25x53 cm\n\n» Fileli kapaklı dstar\n\n* Sık dişli kalın fermuar\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000014.jpg",
+    "source_flyer": "pipeline/raw_flyers/1190.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      0,
+      0,
+      1080,
+      565
+    ],
+    "confidence": 0.5568057894706726,
+    "code": null,
+    "name": "CUMA İÇERİĞİNİ VE 25 Eylül'den itibaren rn 7 KALİTESİNİ KARŞILAŞTIRINIZ © wexta i ie SEVİMLİ ÇOCUK VALIZ ğ CANAVARLAR emel TOKA ÇEŞİTLERİ «rün Öğle #B425x88 em — Fileli kapaklı sar X en 5 a e Sık dişli kalın fermuar. a ! o b",
+    "price": null,
+    "raw_ocr": "CUMA\n\nİÇERİĞİNİ VE\n25 Eylül'den itibaren\n\nrn 7 KALİTESİNİ\n\nKARŞILAŞTIRINIZ\n© wexta i ie SEVİMLİ\nÇOCUK VALIZ ğ CANAVARLAR\nemel TOKA ÇEŞİTLERİ\n«rün Öğle #B425x88 em\n— Fileli kapaklı sar X en 5 a e\nSık dişli kalın fermuar. a\n\n! o\nb\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000021.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      580,
+      971,
+      706,
+      1239
+    ],
+    "confidence": 0.9341884851455688,
+    "code": "1644083",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1644083\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      364,
+      758,
+      546,
+      1018
+    ],
+    "confidence": 0.920997142791748,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000028.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      560,
+      530,
+      706,
+      814
+    ],
+    "confidence": 0.9100609421730042,
+    "code": null,
+    "name": "i Punch İğne Seti",
+    "price": null,
+    "raw_ocr": "i\n\nPunch İğne Seti\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000032.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      80,
+      0,
+      597,
+      579
+    ],
+    "confidence": 0.8948041200637817,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000036.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      679,
+      757,
+      842,
+      1025
+    ],
+    "confidence": 0.8769328594207764,
+    "code": null,
+    "name": "Dikiş Sökme ve İlik Açma Aparatı",
+    "price": null,
+    "raw_ocr": "Dikiş Sökme ve\nİlik Açma Aparatı\n\n——\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000041.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      616,
+      120,
+      813,
+      530
+    ],
+    "confidence": 0.5362149477005005,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000042.jpg",
+    "source_flyer": "pipeline/raw_flyers/1189.jpg",
+    "flyer_date": "2026-09-22T08:04:14+00:00",
+    "bbox": [
+      806,
+      0,
+      1033,
+      596
+    ],
+    "confidence": 0.4510310888290405,
+    "code": null,
+    "name": "İÇERİĞİNİ VE KALİTESİN KARŞILAŞTIRINIZ MİNİ ULTRA SKİN MAKAS * Kapak uçlu",
+    "price": null,
+    "raw_ocr": "İÇERİĞİNİ VE\nKALİTESİN\nKARŞILAŞTIRINIZ\nMİNİ ULTRA\nSKİN MAKAS\n\n* Kapak uçlu\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000043.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      762,
+      1191,
+      889,
+      1471
+    ],
+    "confidence": 0.9495123028755188,
+    "code": null,
+    "name": ") ya n",
+    "price": null,
+    "raw_ocr": ") ya\n\nn\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000044.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      49,
+      1064,
+      295,
+      1268
+    ],
+    "confidence": 0.9384968876838684,
+    "code": null,
+    "name": "i Renkli Gravürlü Borosilikat Sürahi",
+    "price": null,
+    "raw_ocr": "i\nRenkli Gravürlü\n\nBorosilikat\nSürahi\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      350,
+      1169,
+      487,
+      1478
+    ],
+    "confidence": 0.914372444152832,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000054.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      743,
+      919,
+      1046,
+      1080
+    ],
+    "confidence": 0.9126155376434326,
+    "code": null,
+    "name": "amirinin! İr.y 75 Okanus İN liği 2 Mak Ürünler Ki 35”",
+    "price": null,
+    "raw_ocr": "amirinin!\n\nİr.y 75 Okanus\n\nİN liği\n2 Mak Ürünler\nKi 35”\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000056.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      490,
+      896,
+      772,
+      1106
+    ],
+    "confidence": 0.907130241394043,
+    "code": null,
+    "name": "Metal Standlı Kesme Tahtası Seti > 29x20x7.cm",
+    "price": null,
+    "raw_ocr": "Metal Standlı\nKesme Tahtası Seti\n> 29x20x7.cm\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000059.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      794,
+      543,
+      993,
+      775
+    ],
+    "confidence": 0.9012303352355957,
+    "code": "1641625",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1641625\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000064.jpg",
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      43,
+      8,
+      482,
+      581
+    ],
+    "confidence": 0.8692054748535156,
+    "code": null,
+    "name": "CUMA , NX 25 Eylül'den itibaren Mİ DUNES v9 MEŞRUBAT © İBARDAĞI e İM -410 cc",
+    "price": null,
+    "raw_ocr": "CUMA , NX\n25 Eylül'den itibaren\nMİ DUNES v9\nMEŞRUBAT ©\nİBARDAĞI e\n\nİM -410 cc\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000068.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      804,
+      876,
+      960,
+      1101
+    ],
+    "confidence": 0.9430930614471436,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000074.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      362,
+      1265,
+      568,
+      1382
+    ],
+    "confidence": 0.9142830967903137,
+    "code": "1646855",
+    "name": "",
+    "price": null,
+    "raw_ocr": "GA 1646855\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000077.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      544,
+      1074,
+      727,
+      1282
+    ],
+    "confidence": 0.9078754186630249,
+    "code": "1646815",
+    "name": "",
+    "price": null,
+    "raw_ocr": "Boncuk 1646815\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000079.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      722,
+      1082,
+      932,
+      1283
+    ],
+    "confidence": 0.9033384919166565,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000080.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      822,
+      1230,
+      973,
+      1476
+    ],
+    "confidence": 0.9029994010925293,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000085.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      624,
+      675,
+      747,
+      931
+    ],
+    "confidence": 0.8872475624084473,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000086.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      0,
+      1235,
+      154,
+      1476
+    ],
+    "confidence": 0.886115312576294,
+    "code": null,
+    "name": "g Porselen Sufle Kabı 4-180 ce *-9em",
+    "price": null,
+    "raw_ocr": "g Porselen\n\nSufle Kabı\n4-180 ce *-9em\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000088.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      729,
+      687,
+      997,
+      931
+    ],
+    "confidence": 0.8654308319091797,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
+  },
+  {
+    "full_crop": "pipeline/crops_full/000090.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      194,
+      522,
+      427,
+      738
+    ],
+    "confidence": 0.844803512096405,
+    "code": null,
+    "name": "ei. ! Bambu Tabanlı Kapaklı N / Kek Fanusu « Bambu Taban: Benanz İ ABzdBzei1 em Kapak 16 15x15 8x105 em",
+    "price": null,
+    "raw_ocr": "ei.\n\n! Bambu Tabanlı Kapaklı N\n/ Kek Fanusu\n\n« Bambu Taban: Benanz\n\nİ ABzdBzei1 em\n\nKapak 16\n\n15x15 8x105 em\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000093.jpg",
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "flyer_date": "2026-09-22T08:04:13+00:00",
+    "bbox": [
+      388,
+      1360,
+      572,
+      1462
+    ],
+    "confidence": 0.5894554853439331,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": ""
   }
 ]
