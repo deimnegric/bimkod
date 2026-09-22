@@ -26,7 +26,7 @@
   .row{ display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
   .row input{ flex:1; min-width:120px; }
   label{ font-size:12px; color:var(--text-soft); display:block; margin-bottom:3px; }
-  input[type=text], input[type=password]{
+  input[type=text], input[type=password], input[type=number]{
     width:100%; padding:8px 10px; border:1px solid var(--border); border-radius:8px;
     font-size:13.5px; background:var(--bg); color:var(--text);
   }
@@ -182,6 +182,35 @@
     </div>
   </div>
 
+  <div class="panel" id="sandboxPanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">🧪 Test Sandbox: Afiş Yükle, Kırp, OCR Dene</h3>
+    <p class="sub" style="margin:0 0 10px;">Tüm pipeline'ı (~2 saat) çalıştırmadan tek bir görsel üzerinde dene: YOLO'nun bulacağı kutuyu elle çiz, güncel payı (padding) uygula, OCR + isim temizleme mantığının sonucunu anında gör. Not: tarayıcı OCR'ı (Tesseract.js) ile Python'daki (pytesseract) motor biraz farklı olabilir, ama kırpma sınırlarını ve isim temizleme mantığını test etmek için birebir yeterli.</p>
+    <input type="file" id="sandboxImageInput" accept="image/*">
+    <div id="sandboxCropWrap" class="hidden" style="margin-top:10px;">
+      <p class="sub" style="margin:0 0 6px;">Ürünün (YOLO'nun bulacağı) çekirdek kutusunu fareyle/parmakla seç:</p>
+      <canvas id="sandboxCanvas" style="max-width:100%; touch-action:none; cursor:crosshair; border-radius:8px; border:1px solid var(--border);"></canvas>
+      <div class="field-row" style="margin-top:8px;">
+        <div><label>Üst pay (%)</label><input type="number" id="sbPadTop" value="0" step="5"></div>
+        <div><label>Yan pay (%)</label><input type="number" id="sbPadSide" value="2" step="5"></div>
+        <div><label>Alt pay (%)</label><input type="number" id="sbPadBottom" value="2" step="5"></div>
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <button class="btn-secondary" id="sbPreviewBtn">Payı Önizle</button>
+        <button class="btn-approve" id="sbOcrBtn">Bu Alanda OCR Dene</button>
+      </div>
+    </div>
+    <div id="sandboxResult" class="hidden" style="margin-top:12px;">
+      <label>Kırpılan alan (gerçek pipeline'a giden görüntü budur)</label>
+      <img id="sbCroppedPreview" style="max-width:220px; max-height:270px; border-radius:8px; border:1px solid var(--border); display:block; margin:6px 0 10px;">
+      <label>Ham OCR metni</label>
+      <div class="raw-ocr" id="sbRawOcr" style="margin-bottom:10px;"></div>
+      <label>Temizlenmiş sonuç (yeni isim mantığıyla)</label>
+      <div id="sbParsed" style="font-size:13.5px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px;"></div>
+    </div>
+    <div id="sandboxStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
 
@@ -213,6 +242,12 @@ const el = {
   liveSearchBtn: document.getElementById("liveSearchBtn"),
   liveSearchStatus: document.getElementById("liveSearchStatus"),
   liveSearchResults: document.getElementById("liveSearchResults"),
+  sandboxCropWrap: document.getElementById("sandboxCropWrap"),
+  sandboxResult: document.getElementById("sandboxResult"),
+  sandboxStatus: document.getElementById("sandboxStatus"),
+  sbCroppedPreview: document.getElementById("sbCroppedPreview"),
+  sbRawOcr: document.getElementById("sbRawOcr"),
+  sbParsed: document.getElementById("sbParsed"),
 };
 
 let fastQueue = [];
@@ -908,6 +943,174 @@ async function rescanLiveProduct(product, card) {
     statusEl.textContent = "❌ Hata: " + err.message;
   }
 }
+
+// ==================== Test Sandbox: manuel kutu + pay önizleme + OCR ====================
+// pipeline/ocr_extract.py'daki clean_name/parse_ocr_text mantığının BİREBİR JS karşılığı.
+// Python tarafı değişirse burayı da güncellemek gerekir.
+function parseOcrTextJS(rawText) {
+  const CODE_RE = /\b\d{6,8}\b/;
+  const PRICE_RE = /\b(\d{1,4})\s?[t₺]\b/i;
+  const NOISE_RE = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
+  const BULLET_RE = /[•*·»«]/;
+  const LEADING_CODE_RE = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
+  const TRIM_PUNCT_RE = /^[\s\-:|.]+|[\s\-:|.]+$/g;
+
+  const lines = rawText.split("\n").filter((l) => l.trim());
+
+  let code = null, codeIdx = null, codeSpan = null;
+  lines.forEach((line, i) => {
+    const m = CODE_RE.exec(line);
+    if (m) { code = m[0]; codeIdx = i; codeSpan = [m.index, m.index + m[0].length]; }
+  });
+
+  let price = null, priceIdx = null;
+  for (let i = 0; i < lines.length; i++) {
+    const m = PRICE_RE.exec(lines[i]);
+    if (m) { price = m[1]; priceIdx = i; break; }
+  }
+
+  const nameLines = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (i === priceIdx) continue;
+    let stripped = lines[i].trim();
+    if (i === codeIdx && codeSpan) {
+      stripped = (lines[i].slice(0, codeSpan[0]) + lines[i].slice(codeSpan[1])).replace(TRIM_PUNCT_RE, "");
+    }
+    if (!stripped) continue;
+    if (NOISE_RE.test(stripped)) continue;
+    if (/^[\d\W]+$/.test(stripped)) continue;
+
+    const bm = BULLET_RE.exec(stripped);
+    if (bm) {
+      const before = stripped.slice(0, bm.index).replace(TRIM_PUNCT_RE, "");
+      if (before) nameLines.push(before);
+      break;
+    }
+    nameLines.push(stripped);
+  }
+
+  let name = nameLines.join(" ").trim();
+  name = name.replace(LEADING_CODE_RE, "").trim();
+  name = name.replace(/\s{2,}/g, " ");
+  return { code, name, price };
+}
+
+const sbCanvas = document.getElementById("sandboxCanvas");
+const sbCtx = sbCanvas.getContext("2d");
+let sbSourceImg = null, sbRect = null, sbPaddedRect = null, sbDragging = false, sbStart = null;
+
+document.getElementById("sandboxImageInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  el.sandboxResult.classList.add("hidden");
+  el.sandboxStatus.textContent = "";
+
+  const img = new Image();
+  img.onload = () => {
+    sbSourceImg = img;
+    const maxW = 480;
+    const scale = Math.min(1, maxW / img.width);
+    sbCanvas.width = img.width * scale;
+    sbCanvas.height = img.height * scale;
+    sbCtx.drawImage(img, 0, 0, sbCanvas.width, sbCanvas.height);
+    sbRect = null; sbPaddedRect = null;
+    el.sandboxCropWrap.classList.remove("hidden");
+  };
+  img.src = URL.createObjectURL(file);
+});
+
+function sbPointerPos(e) {
+  const rect = sbCanvas.getBoundingClientRect();
+  const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+  const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+  return { x: cx * (sbCanvas.width / rect.width), y: cy * (sbCanvas.height / rect.height) };
+}
+function sbRedraw() {
+  sbCtx.drawImage(sbSourceImg, 0, 0, sbCanvas.width, sbCanvas.height);
+  if (sbPaddedRect) {
+    sbCtx.strokeStyle = "#7FA8C9";
+    sbCtx.lineWidth = 2;
+    sbCtx.setLineDash([4, 3]);
+    sbCtx.strokeRect(sbPaddedRect.x, sbPaddedRect.y, sbPaddedRect.w, sbPaddedRect.h);
+  }
+  if (sbRect) {
+    sbCtx.strokeStyle = "#D98A8A";
+    sbCtx.lineWidth = 2;
+    sbCtx.setLineDash([6, 4]);
+    sbCtx.strokeRect(sbRect.x, sbRect.y, sbRect.w, sbRect.h);
+  }
+}
+function sbStartDrag(e) { e.preventDefault(); sbDragging = true; sbStart = sbPointerPos(e); sbPaddedRect = null; }
+function sbMoveDrag(e) {
+  if (!sbDragging) return;
+  e.preventDefault();
+  const p = sbPointerPos(e);
+  sbRect = { x: Math.min(sbStart.x, p.x), y: Math.min(sbStart.y, p.y), w: Math.abs(p.x - sbStart.x), h: Math.abs(p.y - sbStart.y) };
+  sbRedraw();
+}
+function sbEndDrag() { sbDragging = false; }
+sbCanvas.addEventListener("mousedown", sbStartDrag);
+sbCanvas.addEventListener("mousemove", sbMoveDrag);
+window.addEventListener("mouseup", sbEndDrag);
+sbCanvas.addEventListener("touchstart", sbStartDrag, { passive: false });
+sbCanvas.addEventListener("touchmove", sbMoveDrag, { passive: false });
+window.addEventListener("touchend", sbEndDrag);
+
+// Kırmızı = senin seçtiğin çekirdek kutu (YOLO'nun bulacağı gibi düşün).
+// Mavi = pipeline'ın uyguladığı pay ile GERÇEKTE kırpılacak alan.
+document.getElementById("sbPreviewBtn").addEventListener("click", () => {
+  if (!sbRect || sbRect.w < 5 || sbRect.h < 5) { alert("Önce fareyle bir ürünün üstünden çekirdek kutuyu seç."); return; }
+  const padTop = Number(document.getElementById("sbPadTop").value) / 100;
+  const padSide = Number(document.getElementById("sbPadSide").value) / 100;
+  const padBottom = Number(document.getElementById("sbPadBottom").value) / 100;
+  const w = sbRect.w, h = sbRect.h;
+  sbPaddedRect = {
+    x: Math.max(0, sbRect.x - w * padSide),
+    y: Math.max(0, sbRect.y - h * padTop),
+    w: Math.min(sbCanvas.width, sbRect.x + w + w * padSide) - Math.max(0, sbRect.x - w * padSide),
+    h: Math.min(sbCanvas.height, sbRect.y + h + h * padBottom) - Math.max(0, sbRect.y - h * padTop),
+  };
+  sbRedraw();
+});
+
+async function sbGetCroppedBlob() {
+  const useRect = sbPaddedRect || sbRect;
+  if (!useRect || useRect.w < 5 || useRect.h < 5) return null;
+  const scaleX = sbSourceImg.width / sbCanvas.width;
+  const scaleY = sbSourceImg.height / sbCanvas.height;
+  const outCanvas = document.createElement("canvas");
+  outCanvas.width = Math.round(useRect.w * scaleX);
+  outCanvas.height = Math.round(useRect.h * scaleY);
+  outCanvas.getContext("2d").drawImage(
+    sbSourceImg,
+    useRect.x * scaleX, useRect.y * scaleY, useRect.w * scaleX, useRect.h * scaleY,
+    0, 0, outCanvas.width, outCanvas.height
+  );
+  return new Promise((resolve) => outCanvas.toBlob(resolve, "image/jpeg", 0.92));
+}
+
+document.getElementById("sbOcrBtn").addEventListener("click", async () => {
+  const blob = await sbGetCroppedBlob();
+  if (!blob) { el.sandboxStatus.textContent = "⚠️ Önce fareyle bir alan seç (istersen 'Payı Önizle' ile genişlet)."; return; }
+
+  el.sbCroppedPreview.src = URL.createObjectURL(blob);
+  el.sandboxResult.classList.remove("hidden");
+  el.sandboxStatus.textContent = "OCR çalışıyor (ilk seferde Türkçe dil paketi indiriliyor, biraz sürebilir)…";
+
+  try {
+    const { data: { text } } = await Tesseract.recognize(blob, "tur");
+    el.sbRawOcr.textContent = text || "(OCR metni yok)";
+    const { code, name, price } = parseOcrTextJS(text || "");
+    el.sbParsed.innerHTML = `
+      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}</div>
+      <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}</div>
+      <div><b>Fiyat:</b> ${price ? price + " ₺" : "<i>bulunamadı</i>"}</div>
+    `;
+    el.sandboxStatus.textContent = "✅ Tamamlandı. Beğenmediysen payı değiştirip 'OCR Dene'ye tekrar bas.";
+  } catch (err) {
+    el.sandboxStatus.textContent = "❌ Hata: " + err.message;
+  }
+});
 
 // Klavye kısayolları: Enter=onayla, Esc=listeye dön, (yazı alanı dışındayken) Delete/Backspace=reddet
 // NOT: Delete/Backspace sadece bir input'a odaklanılmamışken çalışır -> Kod/İsim düzenlerken
