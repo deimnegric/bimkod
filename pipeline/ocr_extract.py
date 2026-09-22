@@ -24,7 +24,7 @@ import shutil
 from pathlib import Path
 
 import pytesseract
-from PIL import Image
+from PIL import Image, ImageOps
 
 DETECTIONS_FILE = Path("pipeline/detections.json")
 OCR_OUT = Path("pipeline/ocr_results.json")
@@ -33,6 +33,28 @@ REVIEW_IMAGES_DIR = Path("review")  # kalıcı, admin sayfasının okuyacağı k
 
 CODE_RE = re.compile(r"\b\d{6,8}\b")         # 6-8 haneli bağımsız kod (format yıllar içinde değişmiş olabilir)
 PRICE_RE = re.compile(r"\b(\d{1,4})\s?[t₺]\b", re.IGNORECASE)
+
+# Kırpımlar küçük/düşük çözünürlüklü olduğunda Tesseract rakamları karıştırıyor
+# (9<->8, 3<->8 gibi). Büyütme (upscale) + gri tonlama bunu belirgin azaltıyor.
+def preprocess_for_ocr(img, scale=2):
+    if scale != 1:
+        img = img.resize((img.width * scale, img.height * scale), Image.LANCZOS)
+    return ImageOps.grayscale(img)
+
+
+# Kod neredeyse her zaman kartın EN ALTINDA, tek satır rakam olarak duruyor.
+# O şeridi ayrı, agresif büyütme + SADECE RAKAM izniyle okumak, genel OCR
+# geçişindeki isim/fiyat metniyle karışmadan çok daha güvenilir kod veriyor.
+# Genel geçiş bulamazsa ya da bu ikisi çelişirse, bu şerit-bazlı sonucu tercih ederiz.
+def extract_code_from_bottom_strip(img):
+    h = img.height
+    strip = img.crop((0, int(h * 0.78), img.width, h))
+    strip = preprocess_for_ocr(strip, scale=4)
+    text = pytesseract.image_to_string(
+        strip, lang="tur", config="--psm 7 -c tessedit_char_whitelist=0123456789"
+    )
+    m = CODE_RE.search(text)
+    return m.group(0) if m else None
 
 # OCR çıktısında isimden ayıklanacak marketing/gürültü kelimeleri
 NOISE_PATTERNS = [
@@ -125,8 +147,14 @@ def main():
         if i % 25 == 0 or i == total:
             print(f"  ilerleme: {i}/{total}")
         img = Image.open(det["full_crop"])
-        raw_text = pytesseract.image_to_string(img, lang="tur")
+        raw_text = pytesseract.image_to_string(preprocess_for_ocr(img, scale=2), lang="tur")
         code, name, price = parse_ocr_text(raw_text)
+
+        # Kodu ayrıca hedefli/rakam-only geçişle doğrula — genel geçişten daha
+        # güvenilir, elimizde varsa onu tercih ediyoruz.
+        strip_code = extract_code_from_bottom_strip(img)
+        if strip_code:
+            code = strip_code
 
         record = {**det, "code": code, "name": name, "price": price, "raw_ocr": raw_text}
 

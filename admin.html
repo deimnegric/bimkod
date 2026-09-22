@@ -1089,6 +1089,41 @@ async function sbGetCroppedBlob() {
   return new Promise((resolve) => outCanvas.toBlob(resolve, "image/jpeg", 0.92));
 }
 
+// Bir canvas'ı belirli bir kat büyütüp (upscale) gri tonlamaya çevirir —
+// pipeline/ocr_extract.py'daki preprocess_for_ocr ile aynı mantık, Tesseract'ın
+// küçük/düşük çözünürlüklü kırpımlarda rakam karıştırmasını (9<->8 gibi) azaltır.
+function upscaleCanvas(sourceCanvas, scale) {
+  const out = document.createElement("canvas");
+  out.width = sourceCanvas.width * scale;
+  out.height = sourceCanvas.height * scale;
+  const ctx = out.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(sourceCanvas, 0, 0, out.width, out.height);
+  return out;
+}
+function blobToCanvas(blob) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = img.width; c.height = img.height;
+      c.getContext("2d").drawImage(img, 0, 0);
+      resolve(c);
+    };
+    img.src = URL.createObjectURL(blob);
+  });
+}
+// Kod genelde kartın en altında, tek satır rakam olarak duruyor — o şeridi
+// ayrı, agresif büyütme + SADECE RAKAM izniyle okumak çok daha güvenilir.
+function bottomStripCanvas(sourceCanvas, ratio = 0.22) {
+  const h = Math.round(sourceCanvas.height * ratio);
+  const out = document.createElement("canvas");
+  out.width = sourceCanvas.width; out.height = h;
+  out.getContext("2d").drawImage(sourceCanvas, 0, sourceCanvas.height - h, sourceCanvas.width, h, 0, 0, sourceCanvas.width, h);
+  return out;
+}
+
 document.getElementById("sbOcrBtn").addEventListener("click", async () => {
   const blob = await sbGetCroppedBlob();
   if (!blob) { el.sandboxStatus.textContent = "⚠️ Önce fareyle bir alan seç (istersen 'Payı Önizle' ile genişlet)."; return; }
@@ -1097,18 +1132,34 @@ document.getElementById("sbOcrBtn").addEventListener("click", async () => {
   el.sandboxResult.classList.remove("hidden");
   el.sandboxStatus.textContent = "OCR çalışıyor (ilk seferde Türkçe dil paketi indiriliyor, biraz sürebilir)…";
 
+  let worker;
   try {
-    const { data: { text } } = await Tesseract.recognize(blob, "tur");
+    const baseCanvas = await blobToCanvas(blob);
+    const upscaled = upscaleCanvas(baseCanvas, 2);
+    const strip = upscaleCanvas(bottomStripCanvas(baseCanvas), 4);
+
+    worker = await Tesseract.createWorker("tur");
+
+    const { data: { text } } = await worker.recognize(upscaled);
     el.sbRawOcr.textContent = text || "(OCR metni yok)";
-    const { code, name, price } = parseOcrTextJS(text || "");
+    let { code, name, price } = parseOcrTextJS(text || "");
+
+    // Kodu ayrıca hedefli/rakam-only geçişle doğrula — bulursa onu tercih et
+    await worker.setParameters({ tessedit_char_whitelist: "0123456789" });
+    const { data: { text: stripText } } = await worker.recognize(strip);
+    const stripMatch = /\b\d{6,8}\b/.exec(stripText || "");
+    if (stripMatch) code = stripMatch[0];
+
     el.sbParsed.innerHTML = `
-      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}</div>
+      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${stripMatch ? ` <span style="color:var(--text-soft); font-size:12px;">(şerit: "${stripText.trim()}")</span>` : ""}</div>
       <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}</div>
       <div><b>Fiyat:</b> ${price ? price + " ₺" : "<i>bulunamadı</i>"}</div>
     `;
     el.sandboxStatus.textContent = "✅ Tamamlandı. Beğenmediysen payı değiştirip 'OCR Dene'ye tekrar bas.";
   } catch (err) {
     el.sandboxStatus.textContent = "❌ Hata: " + err.message;
+  } finally {
+    if (worker) await worker.terminate();
   }
 });
 
