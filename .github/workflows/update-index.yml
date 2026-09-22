@@ -66,7 +66,9 @@ jobs:
         run: |
           git config user.name "bimkod-bot"
           git config user.email "actions@github.com"
-          mkdir -p data images review
+          mkdir -p data images review pipeline/catalog_source
+          [ -f pipeline/catalog_source/corrections.csv ] || echo "code,name" > pipeline/catalog_source/corrections.csv
+          [ -f pipeline/rescan_queue.json ] || echo "[]" > pipeline/rescan_queue.json
           git add data/ images/ review/ pipeline/scrape_state.json pipeline/ocr_review.json pipeline/catalog_source/corrections.csv pipeline/rescan_queue.json
           git diff --cached --quiet && echo "Değişiklik yok" || git commit -m "Otomatik veri güncelleme $(date -u +%Y-%m-%d)"
           git push
