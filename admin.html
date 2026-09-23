@@ -945,54 +945,61 @@ async function rescanLiveProduct(product, card) {
 }
 
 // ==================== Test Sandbox: manuel kutu + pay önizleme + OCR ====================
-// pipeline/ocr_extract.py'daki clean_name/parse_ocr_text mantığının BİREBİR JS karşılığı.
+// pipeline/ocr_extract.py'daki clean_name mantığının BİREBİR JS karşılığı — artık
+// bullet aramak yerine YAZI BOYUTUNA (font yüksekliği) bakıyor. Tesseract.js'in
+// recognize() sonucundaki data.lines dizisi zaten her satırın bbox'ını (dolayısıyla
+// yüksekliğini) veriyor, ayrıca image_to_data'ya gerek yok.
 // Python tarafı değişirse burayı da güncellemek gerekir.
-function parseOcrTextJS(rawText) {
-  const CODE_RE = /\b\d{6,8}\b/;
-  const PRICE_RE = /\b(\d{1,4})\s?[t₺]\b/i;
-  const NOISE_RE = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
-  const BULLET_RE = /[•*·»«]/;
-  const LEADING_CODE_RE = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
-  const TRIM_PUNCT_RE = /^[\s\-:|.]+|[\s\-:|.]+$/g;
+const CODE_RE_JS = /\b\d{6,8}\b/;
+const PRICE_RE_JS = /\b(\d{1,4})\s?[t₺]\b/i;
+const NOISE_RE_JS = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
+const BULLET_RE_JS = /[•*·»«]/;
+const LEADING_CODE_RE_JS = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
+const TITLE_HEIGHT_RATIO_JS = 0.65;
 
-  const lines = rawText.split("\n").filter((l) => l.trim());
+function cleanNameJS(ocrLines) {
+  // ocrLines: [{text, height}], üstten alta sıralı
+  let price = null, priceText = null;
+  for (const l of ocrLines) {
+    const m = PRICE_RE_JS.exec(l.text);
+    if (m) { price = m[1]; priceText = l.text; break; }
+  }
 
-  let code = null, codeIdx = null, codeSpan = null;
-  lines.forEach((line, i) => {
-    const m = CODE_RE.exec(line);
-    if (m) { code = m[0]; codeIdx = i; codeSpan = [m.index, m.index + m[0].length]; }
-  });
-
-  let price = null, priceIdx = null;
-  for (let i = 0; i < lines.length; i++) {
-    const m = PRICE_RE.exec(lines[i]);
-    if (m) { price = m[1]; priceIdx = i; break; }
+  const candidates = [];
+  for (const l of ocrLines) {
+    const t = l.text.trim();
+    if (!t || t === priceText) continue;
+    if (NOISE_RE_JS.test(t)) continue;
+    if (/^[\d\W]+$/.test(t)) continue;
+    candidates.push({ text: t, height: l.height });
   }
 
   const nameLines = [];
-  for (let i = 0; i < lines.length; i++) {
-    if (i === priceIdx) continue;
-    let stripped = lines[i].trim();
-    if (i === codeIdx && codeSpan) {
-      stripped = (lines[i].slice(0, codeSpan[0]) + lines[i].slice(codeSpan[1])).replace(TRIM_PUNCT_RE, "");
+  if (candidates.length) {
+    const maxH = Math.max(...candidates.map((c) => c.height));
+    const threshold = maxH * TITLE_HEIGHT_RATIO_JS;
+    for (const c of candidates) {
+      if (c.height < threshold) break; // küçük punto -> detay/özellik başladı, dur
+      let t = c.text;
+      const cm = CODE_RE_JS.exec(t);
+      // Kod bazen başlıkla aynı satırda oluyor -> sadece kod kısmını isimden çıkar
+      // (kodun KENDİSİ ayrı bir tüm-görsel rakam-only geçişten geliyor, burada değil)
+      if (cm) { t = (t.slice(0, cm.index) + t.slice(cm.index + cm[0].length)).replace(/^[\s|:\-–—.]+|[\s|:\-–—.]+$/g, ""); }
+      if (!t) continue;
+      const bm = BULLET_RE_JS.exec(t);
+      if (bm) {
+        const before = t.slice(0, bm.index).replace(/^[\s\-:|.]+|[\s\-:|.]+$/g, "");
+        if (before) nameLines.push(before);
+        break;
+      }
+      nameLines.push(t);
     }
-    if (!stripped) continue;
-    if (NOISE_RE.test(stripped)) continue;
-    if (/^[\d\W]+$/.test(stripped)) continue;
-
-    const bm = BULLET_RE.exec(stripped);
-    if (bm) {
-      const before = stripped.slice(0, bm.index).replace(TRIM_PUNCT_RE, "");
-      if (before) nameLines.push(before);
-      break;
-    }
-    nameLines.push(stripped);
   }
 
   let name = nameLines.join(" ").trim();
-  name = name.replace(LEADING_CODE_RE, "").trim();
+  name = name.replace(LEADING_CODE_RE_JS, "").trim();
   name = name.replace(/\s{2,}/g, " ");
-  return { code, name, price };
+  return { name, price };
 }
 
 const sbCanvas = document.getElementById("sandboxCanvas");
@@ -1114,14 +1121,41 @@ function blobToCanvas(blob) {
     img.src = URL.createObjectURL(blob);
   });
 }
-// Kod genelde kartın en altında, tek satır rakam olarak duruyor — o şeridi
-// ayrı, agresif büyütme + SADECE RAKAM izniyle okumak çok daha güvenilir.
-function bottomStripCanvas(sourceCanvas, ratio = 0.22) {
-  const h = Math.round(sourceCanvas.height * ratio);
+// Gri tonlama + karanlıksa ters çevirme (invert) — koyu rozet üzerine beyaz
+// yazılarda (örn. siyah kod rozeti) Tesseract çok daha iyi sonuç veriyor.
+function grayscaleWithMean(sourceCanvas) {
   const out = document.createElement("canvas");
-  out.width = sourceCanvas.width; out.height = h;
-  out.getContext("2d").drawImage(sourceCanvas, 0, sourceCanvas.height - h, sourceCanvas.width, h, 0, 0, sourceCanvas.width, h);
+  out.width = sourceCanvas.width; out.height = sourceCanvas.height;
+  const ctx = out.getContext("2d");
+  ctx.drawImage(sourceCanvas, 0, 0);
+  const imgData = ctx.getImageData(0, 0, out.width, out.height);
+  const d = imgData.data;
+  let sum = 0;
+  for (let i = 0; i < d.length; i += 4) {
+    const g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+    d[i] = d[i + 1] = d[i + 2] = g;
+    sum += g;
+  }
+  ctx.putImageData(imgData, 0, 0);
+  return { canvas: out, mean: sum / (d.length / 4) };
+}
+function invertCanvas(sourceCanvas) {
+  const out = document.createElement("canvas");
+  out.width = sourceCanvas.width; out.height = sourceCanvas.height;
+  const ctx = out.getContext("2d");
+  ctx.drawImage(sourceCanvas, 0, 0);
+  const imgData = ctx.getImageData(0, 0, out.width, out.height);
+  const d = imgData.data;
+  for (let i = 0; i < d.length; i += 4) { d[i] = 255 - d[i]; d[i + 1] = 255 - d[i + 1]; d[i + 2] = 255 - d[i + 2]; }
+  ctx.putImageData(imgData, 0, 0);
   return out;
+}
+// pipeline/ocr_extract.py'daki preprocess_for_ocr ile aynı mantık: büyüt + gri
+// tonlama + karanlıksa ters çevir.
+function preprocessForOcrJS(sourceCanvas, scale) {
+  const up = upscaleCanvas(sourceCanvas, scale);
+  const { canvas: gray, mean } = grayscaleWithMean(up);
+  return mean < 110 ? invertCanvas(gray) : gray;
 }
 
 document.getElementById("sbOcrBtn").addEventListener("click", async () => {
@@ -1135,23 +1169,32 @@ document.getElementById("sbOcrBtn").addEventListener("click", async () => {
   let worker;
   try {
     const baseCanvas = await blobToCanvas(blob);
-    const upscaled = upscaleCanvas(baseCanvas, 2);
-    const strip = upscaleCanvas(bottomStripCanvas(baseCanvas), 4);
+    const mainProcessed = preprocessForOcrJS(baseCanvas, 2);
 
     worker = await Tesseract.createWorker("tur");
+    const { data } = await worker.recognize(mainProcessed);
+    el.sbRawOcr.textContent = data.text || "(OCR metni yok)";
 
-    const { data: { text } } = await worker.recognize(upscaled);
-    el.sbRawOcr.textContent = text || "(OCR metni yok)";
-    let { code, name, price } = parseOcrTextJS(text || "");
+    // Satır + yükseklik bilgisini al (Python'daki get_ocr_lines karşılığı).
+    // Tesseract.js sürümüne göre data.lines gelmeyebilir -> düz metne düş (fallback),
+    // o durumda tüm satırlar eşit yükseklik varsayılır (eski bullet-only davranışı).
+    let ocrLines;
+    if (data.lines && data.lines.length) {
+      ocrLines = data.lines.map((l) => ({ text: (l.text || "").trim(), height: Math.max(1, (l.bbox?.y1 ?? 0) - (l.bbox?.y0 ?? 0)) })).filter((l) => l.text);
+    } else {
+      ocrLines = (data.text || "").split("\n").map((t) => ({ text: t.trim(), height: 1 })).filter((l) => l.text);
+    }
+    const { name, price } = cleanNameJS(ocrLines);
 
-    // Kodu ayrıca hedefli/rakam-only geçişle doğrula — bulursa onu tercih et
+    // Kod: konumu karta göre değiştiği için TÜM görseli, sadece rakam izniyle ayrı okuyoruz.
+    const codeProcessed = preprocessForOcrJS(baseCanvas, 3);
     await worker.setParameters({ tessedit_char_whitelist: "0123456789" });
-    const { data: { text: stripText } } = await worker.recognize(strip);
-    const stripMatch = /\b\d{6,8}\b/.exec(stripText || "");
-    if (stripMatch) code = stripMatch[0];
+    const { data: { text: codeText } } = await worker.recognize(codeProcessed);
+    const codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
+    const code = codeMatches.length ? codeMatches[codeMatches.length - 1] : null;
 
     el.sbParsed.innerHTML = `
-      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${stripMatch ? ` <span style="color:var(--text-soft); font-size:12px;">(şerit: "${stripText.trim()}")</span>` : ""}</div>
+      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${codeMatches.length ? ` <span style="color:var(--text-soft); font-size:12px;">(rakam geçişi: "${codeText.trim()}")</span>` : ""}</div>
       <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}</div>
       <div><b>Fiyat:</b> ${price ? price + " ₺" : "<i>bulunamadı</i>"}</div>
     `;

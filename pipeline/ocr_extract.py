@@ -2,19 +2,27 @@
 BİMKOD Pipeline — Adım 3: OCR ile isim/kod/fiyat çıkarma
 detect_products.py'ın ürettiği "full_crop" (foto+isim+fiyat+kod hepsi bir arada)
 üzerinde OCR çalıştırır ve şu alanları ayrıştırır:
-  - code : 6-7 haneli ürün kodu (örn. 1646722) — genelde karenin en altında
-  - name : ürün adı (fiyat/taksit metinlerinden temizlenmiş satırlar)
+  - code : 6-8 haneli ürün kodu (örn. 1646722) — konumu karta göre değişebiliyor
+  - name : ürün adı — SADECE büyük/kalın BAŞLIK metni, küçük punto özellik/
+           detay satırları (• Güç: 535 W, • %95 pamuk %5 elastan vb.) hariç
   - price: "349" gibi TL tutarı (best-effort, opsiyonel bilgi)
 
-BİM broşür kodları gözlemlenen örneklerde hep 7 haneli ve "1" ile başlıyor
-(1646722, 1647433, 1607031, 1645159...). CODE_RE bunu hedefliyor; farklı
-kod formatları görürsen burayı güncelle.
+İsim çıkarma yazı BOYUTUNA bakarak yapılıyor (bullet/madde işareti aramak
+yerine): Tesseract'ın image_to_data çıktısından her satırın piksel
+yüksekliğini alıyoruz, en büyük yükseklikteki satır(lar)ı "başlık" kabul
+edip küçük punto satırları atıyoruz. Bu, OCR bir madde işaretini yanlış/hiç
+okuyamasa bile (küçük yazı genelde daha çok bozuluyor) çalışmaya devam eder.
+
+Kod için ayrıca görselin TAMAMINI büyütüp (upscale) SADECE RAKAM izniyle
+ikinci bir geçiş yapıyoruz; konumu karta göre değiştiği için sabit bir
+şerit yerine tüm görseli tarıyoruz. Koyu zemin üzerine açık renkli
+(beyaz-üstü-siyah rozet gibi) yazılarda Tesseract çok kötü performans
+gösterdiği için, görsel karanlıksa OCR'a vermeden önce renkleri ters
+çeviriyoruz (invert).
 
 OCR mükemmel olmayacak (Türkçe karakterler, düşük çözünürlük vb.) — kod
-regex ile YAKALANAMAYAN crop'lar pipeline/ocr_review.json'a düşer, elle
-düzeltme/onay için. Bu dosyada review_queue'yu düzenli kontrol etmek,
-zamanla OCR kalitesini (crop kalibrasyonu, dil paketi vb.) iyileştirmenin
-en hızlı yolu.
+YA DA isim çıkarılamayan crop'lar pipeline/ocr_review.json'a düşer, elle
+düzeltme/onay için.
 """
 
 import hashlib
@@ -24,6 +32,7 @@ import shutil
 from pathlib import Path
 
 import pytesseract
+from pytesseract import Output
 from PIL import Image, ImageOps
 
 DETECTIONS_FILE = Path("pipeline/detections.json")
@@ -34,28 +43,6 @@ REVIEW_IMAGES_DIR = Path("review")  # kalıcı, admin sayfasının okuyacağı k
 CODE_RE = re.compile(r"\b\d{6,8}\b")         # 6-8 haneli bağımsız kod (format yıllar içinde değişmiş olabilir)
 PRICE_RE = re.compile(r"\b(\d{1,4})\s?[t₺]\b", re.IGNORECASE)
 
-# Kırpımlar küçük/düşük çözünürlüklü olduğunda Tesseract rakamları karıştırıyor
-# (9<->8, 3<->8 gibi). Büyütme (upscale) + gri tonlama bunu belirgin azaltıyor.
-def preprocess_for_ocr(img, scale=2):
-    if scale != 1:
-        img = img.resize((img.width * scale, img.height * scale), Image.LANCZOS)
-    return ImageOps.grayscale(img)
-
-
-# Kod neredeyse her zaman kartın EN ALTINDA, tek satır rakam olarak duruyor.
-# O şeridi ayrı, agresif büyütme + SADECE RAKAM izniyle okumak, genel OCR
-# geçişindeki isim/fiyat metniyle karışmadan çok daha güvenilir kod veriyor.
-# Genel geçiş bulamazsa ya da bu ikisi çelişirse, bu şerit-bazlı sonucu tercih ederiz.
-def extract_code_from_bottom_strip(img):
-    h = img.height
-    strip = img.crop((0, int(h * 0.78), img.width, h))
-    strip = preprocess_for_ocr(strip, scale=4)
-    text = pytesseract.image_to_string(
-        strip, lang="tur", config="--psm 7 -c tessedit_char_whitelist=0123456789"
-    )
-    m = CODE_RE.search(text)
-    return m.group(0) if m else None
-
 # OCR çıktısında isimden ayıklanacak marketing/gürültü kelimeleri
 NOISE_PATTERNS = [
     r"peşin\s*fiyat", r"taksit", r"adet", r"stok", r"garanti",
@@ -63,73 +50,112 @@ NOISE_PATTERNS = [
 ]
 NOISE_RE = re.compile("|".join(NOISE_PATTERNS), re.IGNORECASE)
 
-# Broşürlerde ürün adının ALTINDA madde işaretli özellik/detay satırları oluyor
-# ("• M,L,XL", "• %95 pamuk %5 elastan", "* 360 derece dönebilen..."). Bunlar
-# isim için gürültü — sadece kalın/ana başlığı istiyoruz. OCR bu işaretleri
-# •, *, «, » gibi farklı karakterlere okuyabiliyor; hangisi olursa olsun
-# İLK görüldüğü yerde ismi kesip duruyoruz (o satırdaki öncesi varsa alınır,
-# sonraki TÜM satırlar -varsa başka bir ürünün sızıntısı bile olsa- atılır).
+# Nadiren küçük punto satırda okunaklı bir madde işareti kalırsa (•,*,«,»)
+# yine de orada kesiyoruz — ama artık ASIL filtre yazı boyutu.
 BULLET_RE = re.compile(r"[•*·»«]")
 # Kod bazen ismin/satırın başına sızıyor ("1641010 | o 164 Yuvarlak Cırt Bant...")
 LEADING_CODE_RE = re.compile(r"^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?", re.IGNORECASE)
 
+TITLE_HEIGHT_RATIO = 0.65  # bir satır, en büyük satırın bu oranından KÜÇÜKSE "detay" sayılır
 
-def clean_name(lines, code_line_idx, code_span, price_line_idx):
-    """Kod ve fiyat gürültüsünü ayıklar, ilk madde işaretinde ismi keser."""
+
+def preprocess_for_ocr(img, scale=2):
+    """Büyütme (upscale) + gri tonlama + koyu zeminse ters çevirme (invert).
+    Küçük/düşük çözünürlüklü ya da koyu-rozet-beyaz-yazı kırpımlarında
+    Tesseract'ın doğruluğunu belirgin artırıyor."""
+    if scale != 1:
+        img = img.resize((img.width * scale, img.height * scale), Image.LANCZOS)
+    gray = ImageOps.grayscale(img)
+    # Ortalama piksel karanlıksa (koyu zemin/açık yazı), Tesseract için ters çevir
+    if gray.getextrema() != (0, 0):  # tamamen siyah/boş görsel değilse
+        hist = gray.histogram()
+        total = sum(hist)
+        mean = sum(i * c for i, c in enumerate(hist)) / total if total else 255
+        if mean < 110:
+            gray = ImageOps.invert(gray)
+    return gray
+
+
+def extract_code_anywhere(img):
+    """Kodun kart üzerindeki konumu tasarıma göre değişiyor (bazen altta,
+    bazen ortada) -> sabit bir şerit yerine TÜM görseli, sadece rakam
+    izniyle ikinci kez okuyoruz. Birden fazla eşleşme varsa SONUNCUSUNU
+    tercih ediyoruz (kod genelde fiyat/ölçü gibi kısa sayılardan sonra gelir)."""
+    processed = preprocess_for_ocr(img, scale=3)
+    text = pytesseract.image_to_string(
+        processed, lang="tur", config="--psm 11 -c tessedit_char_whitelist=0123456789"
+    )
+    matches = CODE_RE.findall(text)
+    return matches[-1] if matches else None
+
+
+def get_ocr_lines(img, lang="tur"):
+    """Tesseract'tan satır bazlı metin + o satırın ortalama piksel
+    yüksekliğini (font boyutu göstergesi) döndürür, üstten alta sıralı."""
+    data = pytesseract.image_to_data(img, lang=lang, output_type=Output.DICT)
+    grouped = {}
+    n = len(data["text"])
+    for i in range(n):
+        word = data["text"][i].strip()
+        if not word:
+            continue
+        key = (data["block_num"][i], data["par_num"][i], data["line_num"][i])
+        top, height = data["top"][i], data["height"][i]
+        entry = grouped.setdefault(key, {"words": [], "top": top, "height_sum": 0.0, "n": 0})
+        entry["words"].append(word)
+        entry["height_sum"] += height
+        entry["n"] += 1
+        entry["top"] = min(entry["top"], top)
+    ordered = sorted(grouped.values(), key=lambda l: l["top"])
+    return [{"text": " ".join(l["words"]), "height": l["height_sum"] / l["n"]} for l in ordered]
+
+
+def clean_name(ocr_lines, price_text):
+    """Sadece BÜYÜK/KALIN başlık satırlarını isim olarak alır. Küçük punto
+    özellik/detay satırlarını -okunaklı bir madde işareti olsun ya da OCR
+    onu tamamen bozmuş olsun fark etmeksizin- yükseklik farkına bakarak eler."""
+    candidates = []
+    for line in ocr_lines:
+        t = line["text"].strip()
+        if not t or t == price_text:
+            continue
+        if NOISE_RE.search(t):
+            continue
+        if re.fullmatch(r"[\d\W]+", t):  # sadece sayı/sembol olan satırları at (kod, fiyat vb.)
+            continue
+        candidates.append({"text": t, "height": line["height"]})
+
+    if not candidates:
+        return ""
+
+    max_h = max(c["height"] for c in candidates)
+    threshold = max_h * TITLE_HEIGHT_RATIO
+
     name_lines = []
-    for i, line in enumerate(lines):
-        if i == price_line_idx:
+    for c in candidates:
+        if c["height"] < threshold:
+            break  # küçük punto -> detay/özellik başladı, dur
+
+        t = c["text"]
+        m = CODE_RE.search(t)
+        if m:  # kod bazen başlıkla aynı satırda -> sadece kodu çıkar
+            t = (t[: m.start()] + t[m.end():]).strip(" |:-–—.")
+        if not t:
             continue
 
-        stripped = line.strip()
-        if i == code_line_idx and code_span is not None:
-            # Satırın tamamını atmak yerine SADECE kod kısmını çıkar —
-            # kod bazen isimle aynı satırda oluyor, o zaman isim de kaybolmasın.
-            stripped = (line[: code_span[0]] + line[code_span[1] :]).strip(" |:-–—.")
-
-        if not stripped:
-            continue
-        if NOISE_RE.search(stripped):
-            continue
-        if re.fullmatch(r"[\d\W]+", stripped):  # sadece sayı/sembol olan satırları at
-            continue
-
-        m = BULLET_RE.search(stripped)
-        if m:
-            before = stripped[: m.start()].strip(" -:|.")
+        bm = BULLET_RE.search(t)
+        if bm:
+            before = t[: bm.start()].strip(" -:|.")
             if before:
                 name_lines.append(before)
-            break  # bu noktadan sonrası özellik/detay (ya da başka ürün sızıntısı) -> dur
+            break
 
-        name_lines.append(stripped)
+        name_lines.append(t)
 
     name = " ".join(name_lines).strip()
     name = LEADING_CODE_RE.sub("", name).strip()
     name = re.sub(r"\s{2,}", " ", name)
     return name
-
-
-def parse_ocr_text(raw_text):
-    lines = [l for l in raw_text.split("\n") if l.strip()]
-
-    # Kod genelde kartın EN ALTINDA duruyor -> tüm eşleşmeleri toplayıp SONUNCUSUNU al.
-    # (Boşlukları silmiyoruz: "ij 1713165" gibi durumlarda \b sınırını bozup
-    #  gerçek kodu kaçırmamak için orijinal satır üzerinde arıyoruz.)
-    code, code_idx, code_span = None, None, None
-    for i, line in enumerate(lines):
-        m = CODE_RE.search(line)
-        if m:
-            code, code_idx, code_span = m.group(0), i, m.span()  # break YOK, son bulunan kalır
-
-    price, price_idx = None, None
-    for i, line in enumerate(lines):
-        m = PRICE_RE.search(line)
-        if m:
-            price, price_idx = m.group(1), i
-            break
-
-    name = clean_name(lines, code_idx, code_span, price_idx)
-    return code, name, price
 
 
 def main():
@@ -146,15 +172,22 @@ def main():
     for i, det in enumerate(detections, 1):
         if i % 25 == 0 or i == total:
             print(f"  ilerleme: {i}/{total}")
-        img = Image.open(det["full_crop"])
-        raw_text = pytesseract.image_to_string(preprocess_for_ocr(img, scale=2), lang="tur")
-        code, name, price = parse_ocr_text(raw_text)
 
-        # Kodu ayrıca hedefli/rakam-only geçişle doğrula — genel geçişten daha
-        # güvenilir, elimizde varsa onu tercih ediyoruz.
-        strip_code = extract_code_from_bottom_strip(img)
-        if strip_code:
-            code = strip_code
+        img = Image.open(det["full_crop"])
+        processed = preprocess_for_ocr(img, scale=2)
+
+        ocr_lines = get_ocr_lines(processed)
+        raw_text = "\n".join(l["text"] for l in ocr_lines)
+
+        price, price_text = None, None
+        for l in ocr_lines:
+            m = PRICE_RE.search(l["text"])
+            if m:
+                price, price_text = m.group(1), l["text"]
+                break
+
+        name = clean_name(ocr_lines, price_text)
+        code = extract_code_anywhere(img)
 
         record = {**det, "code": code, "name": name, "price": price, "raw_ocr": raw_text}
 
