@@ -248656,5 +248656,243 @@
     "price": null,
     "raw_ocr": "30 yıllık inovasyon. mm\n",
     "review_image": "review/9af121f2d0b8e91f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000001.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      894,
+      1428,
+      1042,
+      1559
+    ],
+    "confidence": 0.9512952566146851,
+    "code": null,
+    "name": "Kağıt Sufle Kabı",
+    "price": null,
+    "raw_ocr": "Kağıt Sufle Kabı",
+    "review_image": "review/bda36975aae6a9b4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000006.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      865,
+      1335,
+      1045,
+      1426
+    ],
+    "confidence": 0.9409811496734619,
+    "code": null,
+    "name": "Okyanus “Limon Press",
+    "price": null,
+    "raw_ocr": "(Okyanus\n1631941\n“Limon Press",
+    "review_image": "review/313fbbec48cf7e73.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      690,
+      1328,
+      869,
+      1447
+    ],
+    "confidence": 0.938226044178009,
+    "code": null,
+    "name": "İ Renkli Çelik Tl",
+    "price": null,
+    "raw_ocr": "İ Renkli Çelik\nTl\n: -20 cm\n119”",
+    "review_image": "review/fbc1bcc3c0c335f6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000010.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      588,
+      615,
+      820,
+      781
+    ],
+    "confidence": 0.9241552352905273,
+    "code": "1634901",
+    "name": "1 YGlesinler ( Cam Kahve",
+    "price": null,
+    "raw_ocr": "1 1634901 YGlesinler\n( Cam Kahve\n! v3 Fincan Seti\nMu",
+    "review_image": "review/e6e7dcad77d9c908.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000011.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      677,
+      1449,
+      901,
+      1559
+    ],
+    "confidence": 0.9232327342033386,
+    "code": null,
+    "name": "Silikon g9 Tutacak/Nihale",
+    "price": null,
+    "raw_ocr": "Silikon\ng9 Tutacak/Nihale",
+    "review_image": "review/92284dcf23ac6983.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000014.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      876,
+      1100,
+      1043,
+      1339
+    ],
+    "confidence": 0.9159612059593201,
+    "code": null,
+    "name": "i İON SR Derin Emaye Kase",
+    "price": null,
+    "raw_ocr": "<i İON SR\nDerin Emaye Kase\n1\n!\n| -16 cm\n| * Fırın ve Mikrodalga\n| — Kullanıma Uygundur\nı* İndüksiyon dahil tüm ocak\n| — tipleriyle uyumludur\n!\nl\nt\nt\nl",
+    "review_image": "review/f48dd7d6fc3d9b08.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000019.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      386,
+      960,
+      629,
+      1099
+    ],
+    "confidence": 0.8958579897880554,
+    "code": null,
+    "name": "o İşlemeli o Yrm Tepsi v cz cm",
+    "price": null,
+    "raw_ocr": "o İşlemeli\no Yrm Tepsi\nv cz cm",
+    "review_image": "review/63064d71bfbee863.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000021.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      452,
+      1450,
+      679,
+      1560
+    ],
+    "confidence": 0.8931660056114197,
+    "code": null,
+    "name": "o",
+    "price": null,
+    "raw_ocr": "o.",
+    "review_image": "review/af80c7a1e6457c88.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000022.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      679,
+      780,
+      860,
+      952
+    ],
+    "confidence": 0.8895576000213623,
+    "code": null,
+    "name": "olan im bor Ahşap Halkalı Gravürlü Cam Bardak",
+    "price": null,
+    "raw_ocr": "olan im bor\nAhşap Halkalı\nGravürlü\nCam Bardak\n1-230 cc\n89:\nbD42636",
+    "review_image": "review/5b310dc33df48cb4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      28,
+      614,
+      272,
+      772
+    ],
+    "confidence": 0.8681910037994385,
+    "code": "1626369",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1626369\n*p Paşabahçe\n| $\nMağaği Melis Çay Seti\ng -125 cc\nhe — #\nİn Gr\na 299\"",
+    "review_image": "review/530205d0717d5b9c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000028.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      851,
+      798,
+      1069,
+      946
+    ],
+    "confidence": 0.8239957690238953,
+    "code": null,
+    "name": "AnŞşap Halka ç Gravürlü Cam Sürahi er Ga",
+    "price": null,
+    "raw_ocr": "AnŞşap Halka\nç Gravürlü\nCam Sürahi\n-1000 cc 1642637\ner Ga\nGİ 219:",
+    "review_image": "review/ac1b7a3fe5353c40.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000030.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      778,
+      947,
+      1066,
+      1020
+    ],
+    "confidence": 0.7644956111907959,
+    "code": null,
+    "name": "Yenal Akasya Sunum Tabağı",
+    "price": null,
+    "raw_ocr": "Yenal\nAkasya\nSunum Tabağı",
+    "review_image": "review/8a387183c4b2c0bf.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000031.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      692,
+      160,
+      1045,
+      589
+    ],
+    "confidence": 0.7383895516395569,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/a3c377632d251cc1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000033.jpg",
+    "source_flyer": "pipeline/raw_flyers/784.jpg",
+    "flyer_date": "2025-12-21T19:56:49+00:00",
+    "bbox": [
+      288,
+      156,
+      1039,
+      599
+    ],
+    "confidence": 0.5375077128410339,
+    "code": null,
+    "name": "orcam Kare Fırın Tepsisi",
+    "price": null,
+    "raw_ocr": "orcam Kare\nFırın Tepsisi\n(100 cc -28,7 cm",
+    "review_image": "review/62c362e2f9df7f59.jpg"
   }
 ]
