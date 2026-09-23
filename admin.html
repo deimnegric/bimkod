@@ -45,10 +45,15 @@
 
   .card{
     background:var(--surface); border:1px solid var(--border); border-radius:12px;
-    padding:12px; margin-bottom:10px; display:flex; gap:12px;
+    padding:12px; margin-bottom:10px; display:flex; gap:14px; flex-wrap:wrap;
   }
-  .card img{ width:90px; height:110px; object-fit:contain; border-radius:8px; background:var(--bg); flex-shrink:0; }
-  .card-body{ flex:1; min-width:0; }
+  /* Görsel yoksa/küçükse ürünü elle doğrulamak imkansız -> Sandbox'taki kırpım
+     önizlemesiyle aynı büyüklükte göster (~180x220). Küçük "canlı arama"
+     kartlarında (data-code'lu, review_image'siz) daha kompakt kalsın diye
+     ayrı bir küçük sınıf (.card img.small) tanımlıyoruz. */
+  .card img{ width:180px; height:220px; object-fit:contain; border-radius:8px; background:var(--bg); flex-shrink:0; }
+  .card img.small{ width:90px; height:110px; }
+  .card-body{ flex:1; min-width:200px; }
   .raw-ocr{
     font-family:ui-monospace,monospace; font-size:11px; color:var(--text-soft);
     background:var(--bg); padding:6px 8px; border-radius:6px; margin-bottom:8px;
@@ -431,7 +436,7 @@ function renderCard(item, index) {
   const suggestedName = guessName(item);
 
   card.innerHTML = `
-    ${imgUrl ? `<img src="${imgUrl}" alt="crop" onerror="this.style.opacity=0.15">` : `<div style="width:90px;height:110px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
+    ${imgUrl ? `<img src="${imgUrl}" alt="crop" onerror="this.style.opacity=0.15">` : `<div style="width:180px;height:220px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
     <div class="card-body">
       <div class="raw-ocr">${(item.raw_ocr || "(OCR metni yok)").replace(/</g, "&lt;")}</div>
       <div class="field-row">
@@ -899,7 +904,7 @@ el.liveSearchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") e
 function renderLiveSearchResults(results) {
   el.liveSearchResults.innerHTML = results.map((p) => `
     <div class="card" data-code="${p.code}">
-      <img src="${rawBase()}/${p.image}" alt="${p.name}" onerror="this.style.opacity=0.15">
+      <img class="small" src="${rawBase()}/${p.image}" alt="${p.name}" onerror="this.style.opacity=0.15">
       <div class="card-body">
         <div style="font-weight:600; font-size:13.5px; margin-bottom:4px;">${p.name}</div>
         <div style="font-size:12px; color:var(--text-soft); margin-bottom:8px;">Kod: ${p.code}${p.price ? ` · ${p.price} ₺` : ""}</div>
@@ -955,7 +960,21 @@ const PRICE_RE_JS = /\b(\d{1,4})\s?[t₺]\b/i;
 const NOISE_RE_JS = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
 const BULLET_RE_JS = /[•*·»«]/;
 const LEADING_CODE_RE_JS = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
-const TITLE_HEIGHT_RATIO_JS = 0.65;
+const TITLE_HEIGHT_RATIO_JS = 0.6;
+
+function isMostlyNumericJS(t) {
+  const letters = (t.match(/[a-zA-ZÇĞİÖŞÜçğıöşü]/g) || []).length;
+  const digits = (t.match(/[0-9]/g) || []).length;
+  return digits > 0 && digits >= letters;
+}
+function isSuspiciousNameJS(name) {
+  if (!name) return true;
+  const letters = (name.match(/[a-zA-ZÇĞİÖŞÜçğıöşü]/g) || []).length;
+  if (letters < 3) return true;
+  const firstAlnum = [...name].find((c) => /[a-zA-Z0-9ÇĞİÖŞÜçğıöşü]/.test(c)) || "";
+  if (!/[a-zA-ZÇĞİÖŞÜçğıöşü]/.test(firstAlnum)) return true;
+  return false;
+}
 
 function cleanNameJS(ocrLines) {
   // ocrLines: [{text, height}], üstten alta sıralı
@@ -971,13 +990,15 @@ function cleanNameJS(ocrLines) {
     if (!t || t === priceText) continue;
     if (NOISE_RE_JS.test(t)) continue;
     if (/^[\d\W]+$/.test(t)) continue;
+    if (isMostlyNumericJS(t)) continue; // örn. OCR "699₺"yi "699t" gibi kaçırmışsa da yakala
     candidates.push({ text: t, height: l.height });
   }
 
   const nameLines = [];
   if (candidates.length) {
-    const maxH = Math.max(...candidates.map((c) => c.height));
-    const threshold = maxH * TITLE_HEIGHT_RATIO_JS;
+    // Çıpa: global max yerine İLK satır (bazı tasarımlarda fiyat/logo başlıktan
+    // daha büyük punto olabiliyor; global max o zaman gerçek başlığı da eler).
+    const threshold = candidates[0].height * TITLE_HEIGHT_RATIO_JS;
     for (const c of candidates) {
       if (c.height < threshold) break; // küçük punto -> detay/özellik başladı, dur
       let t = c.text;
@@ -998,6 +1019,8 @@ function cleanNameJS(ocrLines) {
 
   let name = nameLines.join(" ").trim();
   name = name.replace(LEADING_CODE_RE_JS, "").trim();
+  name = name.replace(/^[^a-zA-ZÇĞİÖŞÜçğıöşü0-9]+/, "");
+  name = name.replace(/[^a-zA-ZÇĞİÖŞÜçğıöşü0-9)"'%]+$/, "");
   name = name.replace(/\s{2,}/g, " ");
   return { name, price };
 }
@@ -1187,15 +1210,26 @@ document.getElementById("sbOcrBtn").addEventListener("click", async () => {
     const { name, price } = cleanNameJS(ocrLines);
 
     // Kod: konumu karta göre değiştiği için TÜM görseli, sadece rakam izniyle ayrı okuyoruz.
-    const codeProcessed = preprocessForOcrJS(baseCanvas, 3);
+    // Küçük koyu rozetler genel parlaklığı değiştirmeyebiliyor -> normal VE ters
+    // çevrilmiş halde deniyoruz, hangisi bulursa onu kullanıyoruz.
     await worker.setParameters({ tessedit_char_whitelist: "0123456789" });
-    const { data: { text: codeText } } = await worker.recognize(codeProcessed);
-    const codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
+    const codeProcessed = preprocessForOcrJS(baseCanvas, 3);
+    let { data: { text: codeText } } = await worker.recognize(codeProcessed);
+    let codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
+    let usedInverted = false;
+    if (!codeMatches.length) {
+      const inverted = invertCanvas(codeProcessed);
+      const r2 = await worker.recognize(inverted);
+      codeText = r2.data.text;
+      codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
+      usedInverted = true;
+    }
     const code = codeMatches.length ? codeMatches[codeMatches.length - 1] : null;
 
+    const suspicious = isSuspiciousNameJS(name);
     el.sbParsed.innerHTML = `
-      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${codeMatches.length ? ` <span style="color:var(--text-soft); font-size:12px;">(rakam geçişi: "${codeText.trim()}")</span>` : ""}</div>
-      <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}</div>
+      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${codeMatches.length ? ` <span style="color:var(--text-soft); font-size:12px;">(rakam geçişi${usedInverted ? ", ters çevrilmiş" : ""}: "${codeText.trim()}")</span>` : ""}</div>
+      <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}${suspicious ? ` <span style="color:var(--red-dark); font-size:12px;">(şüpheli — gerçek pipeline bunu admin kuyruğuna gönderirdi)</span>` : ""}</div>
       <div><b>Fiyat:</b> ${price ? price + " ₺" : "<i>bulunamadı</i>"}</div>
     `;
     el.sandboxStatus.textContent = "✅ Tamamlandı. Beğenmediysen payı değiştirip 'OCR Dene'ye tekrar bas.";

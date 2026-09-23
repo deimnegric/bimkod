@@ -56,7 +56,30 @@ BULLET_RE = re.compile(r"[•*·»«]")
 # Kod bazen ismin/satırın başına sızıyor ("1641010 | o 164 Yuvarlak Cırt Bant...")
 LEADING_CODE_RE = re.compile(r"^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?", re.IGNORECASE)
 
-TITLE_HEIGHT_RATIO = 0.65  # bir satır, en büyük satırın bu oranından KÜÇÜKSE "detay" sayılır
+TITLE_HEIGHT_RATIO = 0.6  # bir satır, çıpa (ilk) satırın bu oranından KÜÇÜKSE "detay" sayılır
+
+
+def is_mostly_numeric(text):
+    """Fiyat/kod gibi rakam-ağırlıklı satırları (tam rakam olmasa bile,
+    örn. OCR bir sembolü harfe çevirip '699t' gibi kaçırdıysa) tespit eder."""
+    letters = sum(1 for c in text if c.isalpha())
+    digits = sum(1 for c in text if c.isdigit())
+    return digits > 0 and digits >= letters
+
+
+def is_suspicious_name(name):
+    """İsim teknik olarak 'bulundu' ama muhtemelen anlamsız/eksikse (örn.
+    '(> Fakir' gibi bir logonun bozuk OCR'ı) — yayınlamak yerine admin'e
+    (görseliyle birlikte) gönderip elle tamamlanmasını istiyoruz."""
+    if not name:
+        return True
+    letters = sum(1 for c in name if c.isalpha())
+    if letters < 3:
+        return True
+    first_alpha = next((c for c in name if c.isalnum()), "")
+    if not first_alpha.isalpha():
+        return True  # isim bir harfle değil garip bir sembolle/sayıyla başlıyor
+    return False
 
 
 def preprocess_for_ocr(img, scale=2):
@@ -76,17 +99,25 @@ def preprocess_for_ocr(img, scale=2):
     return gray
 
 
-def extract_code_anywhere(img):
-    """Kodun kart üzerindeki konumu tasarıma göre değişiyor (bazen altta,
-    bazen ortada) -> sabit bir şerit yerine TÜM görseli, sadece rakam
-    izniyle ikinci kez okuyoruz. Birden fazla eşleşme varsa SONUNCUSUNU
-    tercih ediyoruz (kod genelde fiyat/ölçü gibi kısa sayılardan sonra gelir)."""
-    processed = preprocess_for_ocr(img, scale=3)
+def _digit_scan(img):
     text = pytesseract.image_to_string(
-        processed, lang="tur", config="--psm 11 -c tessedit_char_whitelist=0123456789"
+        img, lang="tur", config="--psm 11 -c tessedit_char_whitelist=0123456789"
     )
     matches = CODE_RE.findall(text)
     return matches[-1] if matches else None
+
+
+def extract_code_anywhere(img):
+    """Kodun kart üzerindeki konumu tasarıma göre değişiyor (bazen altta,
+    bazen ortada) -> sabit bir şerit yerine TÜM görseli, sadece rakam
+    izniyle ikinci kez okuyoruz. Genel parlaklık ortalaması küçük/koyu bir
+    rozeti (beyaz yazı) tetiklemeyebileceği için hem normal hem TERS
+    ÇEVRİLMİŞ halde deniyoruz, hangisi bulursa onu kullanıyoruz."""
+    processed = preprocess_for_ocr(img, scale=3)
+    code = _digit_scan(processed)
+    if code:
+        return code
+    return _digit_scan(ImageOps.invert(processed))
 
 
 def get_ocr_lines(img, lang="tur"):
@@ -123,13 +154,18 @@ def clean_name(ocr_lines, price_text):
             continue
         if re.fullmatch(r"[\d\W]+", t):  # sadece sayı/sembol olan satırları at (kod, fiyat vb.)
             continue
+        if is_mostly_numeric(t):  # örn. OCR "699₺"yi "699t" gibi kaçırmışsa da yakala
+            continue
         candidates.append({"text": t, "height": line["height"]})
 
     if not candidates:
         return ""
 
-    max_h = max(c["height"] for c in candidates)
-    threshold = max_h * TITLE_HEIGHT_RATIO
+    # Çıpa: global en büyük satır yerine İLK satırı baz alıyoruz. Bazı
+    # tasarımlarda fiyat/logo başlıktan daha büyük punto olabiliyor; global
+    # max kullanmak o durumda gerçek başlığı da eleyip boş isim üretiyordu.
+    # İlk satır neredeyse hep başlığın kendisi (ya da onun bir parçası).
+    threshold = candidates[0]["height"] * TITLE_HEIGHT_RATIO
 
     name_lines = []
     for c in candidates:
@@ -154,6 +190,10 @@ def clean_name(ocr_lines, price_text):
 
     name = " ".join(name_lines).strip()
     name = LEADING_CODE_RE.sub("", name).strip()
+    # Baştaki anlamsız sembol çöplerini temizle (örn. logonun bozuk OCR'ından
+    # kalan "(>", "©", "-" gibi karakterler) — ilk gerçek harfe kadar at.
+    name = re.sub(r"^[^a-zA-ZÇĞİÖŞÜçğıöşü0-9]+", "", name)
+    name = re.sub(r"[^a-zA-ZÇĞİÖŞÜçğıöşü0-9)\"'%]+$", "", name)
     name = re.sub(r"\s{2,}", " ", name)
     return name
 
@@ -191,7 +231,7 @@ def main():
 
         record = {**det, "code": code, "name": name, "price": price, "raw_ocr": raw_text}
 
-        if not code or not name:
+        if not code or not name or is_suspicious_name(name):
             # pipeline/crops_full/... geçici (Actions diskinde), admin sayfası
             # görseli görebilsin diye kalıcı review/ klasörüne kopyalıyoruz.
             REVIEW_IMAGES_DIR.mkdir(exist_ok=True)
