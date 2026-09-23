@@ -248350,5 +248350,311 @@
     "name": "JO1UUAU Taşınabilir Güç İstasyonu Be yi bein fel * Pil Yönetim Sistemi (BMS) cihazınızı her zaman izter ve. v3 m emme e merlin eN en Bl pre e mn e e yy ki asa",
     "price": null,
     "raw_ocr": "JO1UUAU\n\nTaşınabilir\n\nGüç İstasyonu\n\nBe yi bein fel\n* Pil Yönetim Sistemi (BMS) cihazınızı her zaman izter ve. v3\n\nm\n\nemme e merlin\n\neN en\n\nBl pre\n\ne mn e e\nyy\n\n*\n“7\n\nki\nasa\n\n"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "source_flyer": "pipeline/raw_flyers/1195.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      836,
+      1166,
+      1032,
+      1582
+    ],
+    "confidence": 0.9499140381813049,
+    "code": null,
+    "name": "arnica Hydra Rain Su Filtreli Halı Yıkama Makinesi",
+    "price": null,
+    "raw_ocr": "arnica\nHydra Rain Su Filtreli\n\nHalı Yıkama Makinesi\n* 2400 W Max\n* Hepa 153 Filtre\n* Koltuk Temizleme Aparatı\n\n* Özel Halı Şampuanı\n* Kablo: 6,5 m\n\n* Temiz Su Tankı: 10L\n\n* Kirli Su Tankı: 8,5 L\n\nStok: 9.000\n",
+    "review_image": "review/35b0889d533b5471.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000004.jpg",
+    "source_flyer": "pipeline/raw_flyers/1195.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      0,
+      620,
+      440,
+      910
+    ],
+    "confidence": 0.9360768795013428,
+    "code": null,
+    "name": "PHILIPS Tam or Tam Otomatik Makine zn EP3341/50",
+    "price": null,
+    "raw_ocr": "PHILIPS Tam or\nTam Otomatik Makine\nzn EP3341/50\n* Hazırlayabildiği içecekler: Espresso, Kahve,\nCappuccino, Latte Macchiato, Buzlu Kahve, Sıcak Su\n* Kahve çekirdeği haznesi kapasitesi: 275 g\n* Arayüz: Sezgisel dokunmatik ekran\n» Önceden programlanmış içecekler: 5\n* Su haznesi kapasitesi: 1,8 L\n* Süt çözümü: LatteGo\n»* Süt kabı:0,26L\n* Güç: 1500 W\n\n2 Yı\n\n",
+    "review_image": "review/30f5c89a472b6af5.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1195.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      0,
+      424,
+      1026,
+      599
+    ],
+    "confidence": 0.6057818531990051,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/4de97607e410ea85.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000013.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      545,
+      1307,
+      716,
+      1570
+    ],
+    "confidence": 0.9560173749923706,
+    "code": null,
+    "name": "gi <o NE Ir 980/491 1k Ep | il99 ama e —",
+    "price": null,
+    "raw_ocr": "gi <o NE\nIr 980/491 1k\n\nEp | il99\nama e —\n3\n\n",
+    "review_image": "review/6fc577b70a450c7a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000029.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      766,
+      855,
+      1080,
+      1034
+    ],
+    "confidence": 0.9105085134506226,
+    "code": "1639061",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1639061\n",
+    "review_image": "review/9172ff06642e64b5.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000030.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      349,
+      618,
+      505,
+      856
+    ],
+    "confidence": 0.9094135761260986,
+    "code": null,
+    "name": "PICCOLO MONDİ Metal İş Araçları",
+    "price": null,
+    "raw_ocr": "PICCOLO MONDİ\nMetal İş Araçları\n",
+    "review_image": "review/051cc52f8801fd2d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000031.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      603,
+      1039,
+      727,
+      1308
+    ],
+    "confidence": 0.9052145481109619,
+    "code": "1641689",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1641689\n",
+    "review_image": "review/55fc4e341a139bf7.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000032.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      0,
+      1054,
+      176,
+      1310
+    ],
+    "confidence": 0.9038956165313721,
+    "code": null,
+    "name": "Pelüş Penguen CL pa",
+    "price": null,
+    "raw_ocr": "Pelüş\nPenguen\n\nCL\n\npa\n\n*—\n",
+    "review_image": "review/4a69bebb182a92f0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000033.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      368,
+      1313,
+      529,
+      1584
+    ],
+    "confidence": 0.8989559412002563,
+    "code": null,
+    "name": "Ğ Hışırtılı Bez Kitap",
+    "price": null,
+    "raw_ocr": "Ğ\nHışırtılı Bez Kitap\n\n» Farklı çeşitlerde\n\n89* |\n\nsn\n\n",
+    "review_image": "review/3ac7bff4fed95c0a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000034.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      201,
+      617,
+      348,
+      835
+    ],
+    "confidence": 0.8987386226654053,
+    "code": null,
+    "name": "PiCCOLO MONDİ Oyuncak Parlak | Spor Araba e !",
+    "price": null,
+    "raw_ocr": "PiCCOLO MONDİ\n\nOyuncak Parlak |\nSpor Araba e !\n»* Farki\n\nlı renklerde NN |\n\nPP\n\ny1\n",
+    "review_image": "review/d264353d002021e1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000035.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      701,
+      619,
+      841,
+      855
+    ],
+    "confidence": 0.8947288393974304,
+    "code": null,
+    "name": "Babi Oyuncak Bebek | GEZİ",
+    "price": null,
+    "raw_ocr": "Babi\nOyuncak Bebek |\n\nGEZİ\n",
+    "review_image": "review/4e613d09aa1fc46d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000037.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      511,
+      147,
+      1060,
+      582
+    ],
+    "confidence": 0.5968820452690125,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/a2887c5b26591917.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000038.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      35,
+      132,
+      505,
+      583
+    ],
+    "confidence": 0.5070573091506958,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/ee0fcdf1a0667421.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000044.jpg",
+    "source_flyer": "pipeline/raw_flyers/1193.jpg",
+    "flyer_date": "2026-09-23T06:15:14+00:00",
+    "bbox": [
+      395,
+      1311,
+      585,
+      1575
+    ],
+    "confidence": 0.8866541385650635,
+    "code": null,
+    "name": "lp Tabancası : ir © — BEZ",
+    "price": null,
+    "raw_ocr": "lp Tabancası\n———\n\n: ir ©\n— BEZ\n\n",
+    "review_image": "review/88be7afb392423e0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000051.jpg",
+    "source_flyer": "pipeline/raw_flyers/1193.jpg",
+    "flyer_date": "2026-09-23T06:15:14+00:00",
+    "bbox": [
+      787,
+      607,
+      1030,
+      770
+    ],
+    "confidence": 0.5657113194465637,
+    "code": null,
+    "name": "43 İnç Frameless FHD Whale OS 10 - Android GleJd TV ŞE 43WF7500F0 .& GE) bilgisi için OR kodu okutunuz.",
+    "price": null,
+    "raw_ocr": "43 İnç Frameless\nFHD Whale OS 10 -\nAndroid GleJd TV ŞE\n\n43WF7500F0 .&\n\nGE)\nbilgisi için\nOR kodu\nokutunuz.\n\n12.990.\n",
+    "review_image": "review/c5ead496cfdafd4a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1193.jpg",
+    "flyer_date": "2026-09-23T06:15:14+00:00",
+    "bbox": [
+      624,
+      1469,
+      810,
+      1573
+    ],
+    "confidence": 0.5092381834983826,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/db3ee56ed6167d85.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000053.jpg",
+    "source_flyer": "pipeline/raw_flyers/1191.jpg",
+    "flyer_date": "2026-09-23T06:14:08+00:00",
+    "bbox": [
+      0,
+      931,
+      1317,
+      1080
+    ],
+    "confidence": 0.4842812120914459,
+    "code": null,
+    "name": "© 2026 ExxonMobil. Mobil ve Mobil 1, ExxonMobil Corporation veya bağlı şirketlerinin ticari markaları ya da tescilli ticari markalarıdır. Tüm ticari markalar ve tasarımlar ilgili hak sahiplerine aittir.",
+    "price": null,
+    "raw_ocr": "© 2026 ExxonMobil. Mobil ve Mobil 1, ExxonMobil Corporation veya bağlı şirketlerinin ticari markaları ya da tescilli ticari markalarıdır.\nTüm ticari markalar ve tasarımlar ilgili hak sahiplerine aittir.\n",
+    "review_image": "review/60895cc0876b5544.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000054.jpg",
+    "source_flyer": "pipeline/raw_flyers/1191.jpg",
+    "flyer_date": "2026-09-23T06:14:08+00:00",
+    "bbox": [
+      4,
+      170,
+      1007,
+      735
+    ],
+    "confidence": 0.4380101263523102,
+    "code": null,
+    "name": "30 yıllık inovasyon. mm",
+    "price": null,
+    "raw_ocr": "30 yıllık inovasyon. mm\n",
+    "review_image": "review/9af121f2d0b8e91f.jpg"
   }
 ]
