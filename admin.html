@@ -960,7 +960,7 @@ const PRICE_RE_JS = /\b(\d{1,4})\s?[t₺]\b/i;
 const NOISE_RE_JS = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
 const BULLET_RE_JS = /[•*·»«]/;
 const LEADING_CODE_RE_JS = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
-const TITLE_HEIGHT_RATIO_JS = 0.6;
+const TITLE_HEIGHT_RATIO_JS = 0.5;
 
 function isMostlyNumericJS(t) {
   const letters = (t.match(/[a-zA-ZÇĞİÖŞÜçğıöşü]/g) || []).length;
@@ -1018,6 +1018,7 @@ function cleanNameJS(ocrLines) {
   }
 
   let name = nameLines.join(" ").trim();
+  if (!name && candidates.length) name = candidates[0].text; // tamamen boş kalmaktansa en azından ilk adayı kullan
   name = name.replace(LEADING_CODE_RE_JS, "").trim();
   name = name.replace(/^[^a-zA-ZÇĞİÖŞÜçğıöşü0-9]+/, "");
   name = name.replace(/[^a-zA-ZÇĞİÖŞÜçğıöşü0-9)"'%]+$/, "");

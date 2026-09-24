@@ -56,7 +56,7 @@ BULLET_RE = re.compile(r"[•*·»«]")
 # Kod bazen ismin/satırın başına sızıyor ("1641010 | o 164 Yuvarlak Cırt Bant...")
 LEADING_CODE_RE = re.compile(r"^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?", re.IGNORECASE)
 
-TITLE_HEIGHT_RATIO = 0.6  # bir satır, çıpa (ilk) satırın bu oranından KÜÇÜKSE "detay" sayılır
+TITLE_HEIGHT_RATIO = 0.5  # bir satır, çıpa (ilk) satırın bu oranından KÜÇÜKSE "detay" sayılır
 
 
 def is_mostly_numeric(text):
@@ -189,6 +189,8 @@ def clean_name(ocr_lines, price_text):
         name_lines.append(t)
 
     name = " ".join(name_lines).strip()
+    if not name and candidates:
+        name = candidates[0]["text"]  # tamamen boş kalmaktansa en azından ilk adayı kullan
     name = LEADING_CODE_RE.sub("", name).strip()
     # Baştaki anlamsız sembol çöplerini temizle (örn. logonun bozuk OCR'ından
     # kalan "(>", "©", "-" gibi karakterler) — ilk gerçek harfe kadar at.
