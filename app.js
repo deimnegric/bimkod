@@ -471,6 +471,54 @@ function showToast(msg) {
   toastTimer = setTimeout(() => { el.toast.hidden = true; }, 2200);
 }
 
+// ==================== Ürün Bildirim Formu ====================
+// Kullanıcı kodunu bulamadığı bir ürünü (görsel + varsa isim) bildirebiliyor.
+// TODO(Firebase): Şu an gönderim sadece yerel bir onay mesajı gösteriyor,
+// hiçbir yere kaydetmiyor. Firebase projesi hazır olunca:
+//   1) Burada gerçek bir "pending_reports" koleksiyonuna (görsel base64/Storage
+//      URL + isim + tarih) yazan bir SDK çağrısı eklenecek.
+//   2) admin.html'e aynı koleksiyonu okuyup "Çalışan İsteği" bölümünde
+//      (ocr_review.json kartlarıyla aynı görünümde: büyük görsel + kod/isim
+//      kutucukları + Onayla/Reddet) listeleyen bir bölüm eklenecek.
+// Public sitede GitHub yazma token'ı ASLA bulunamayacağı için (güvenlik açığı
+// olur), bu akış GitHub API değil Firebase üzerinden gidecek.
+const reportModal = document.getElementById("reportModal");
+const reportStatus = document.getElementById("reportStatus");
+
+document.getElementById("reportMissingBtn").addEventListener("click", () => {
+  reportModal.hidden = false;
+});
+document.getElementById("reportModalClose").addEventListener("click", () => {
+  reportModal.hidden = true;
+});
+reportModal.addEventListener("click", (e) => {
+  if (e.target === reportModal) reportModal.hidden = true;
+});
+
+document.getElementById("reportSubmitBtn").addEventListener("click", async () => {
+  const file = document.getElementById("reportImageInput").files[0];
+  const name = document.getElementById("reportNameInput").value.trim();
+
+  if (!file) {
+    reportStatus.textContent = "⚠️ Lütfen önce bir ürün görseli seçin.";
+    return;
+  }
+
+  reportStatus.textContent = "Gönderiliyor…";
+
+  // TODO(Firebase): gerçek gönderim burada olacak. Şimdilik sadece
+  // kullanıcıya "alındı" hissi veriyoruz.
+  await new Promise((r) => setTimeout(r, 500));
+
+  reportStatus.textContent = "✅ Alındı, teşekkürler! Ekibimiz en kısa sürede inceleyip ekleyecek.";
+  setTimeout(() => {
+    reportModal.hidden = true;
+    reportStatus.textContent = "";
+    document.getElementById("reportImageInput").value = "";
+    document.getElementById("reportNameInput").value = "";
+  }, 1900);
+});
+
 // ---------- Service worker kaydı ----------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

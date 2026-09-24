@@ -1,17 +1,23 @@
 :root{
-  --bg: #FAF9F5;
+  --bg: #F4F6F8;
   --surface: #FFFFFF;
-  --border: #E8E4DA;
-  --text: #2C2A26;
-  --text-soft: #8A8578;
-  --blue: #7FA8C9;
-  --blue-soft: #EAF1F6;
-  --blue-dark: #5E85A3;
-  --red: #D98A8A;
-  --red-soft: #FBEDED;
-  --red-dark: #B96666;
+  --border: #E3E7EC;
+  --text: #171B21;
+  --text-soft: #667085;
+  --navy: #16324A;
+  --navy-soft: #E7EDF2;
+  --navy-dark: #0D2033;
+  --blue: #16324A;      /* eski kodla uyum için "blue" adı korunuyor, artık lacivert */
+  --blue-soft: #E7EDF2;
+  --blue-dark: #0D2033;
+  --red: #D6293E;
+  --red-soft: #FBE9EC;
+  --red-dark: #A11F2F;
+  --green: #2F855A;
+  --green-soft: #E6F4EC;
   --radius: 14px;
-  --shadow: 0 2px 10px rgba(44,42,38,0.06);
+  --shadow: 0 2px 10px rgba(23,27,33,0.06);
+  --shadow-lg: 0 12px 32px rgba(23,27,33,0.14);
 }
 
 *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
@@ -36,12 +42,30 @@ body{
   border-bottom:1px solid var(--border);
 }
 .brand{
-  font-weight:800;
-  font-size:15px;
-  letter-spacing:0.08em;
-  color:var(--blue-dark);
-  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin-bottom:14px;
 }
+.brand img{ height:30px; width:auto; }
+.brand-text{
+  font-weight:800;
+  font-size:19px;
+  letter-spacing:0.16em;
+  color:var(--navy-dark);
+  position:relative;
+}
+.brand-text span{ color:var(--red); }
+.brand-tagline{
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:0.12em;
+  color:var(--text-soft);
+  text-transform:uppercase;
+  margin-top:1px;
+}
+.brand-col{ display:flex; flex-direction:column; align-items:center; }
 .search-wrap{
   position:relative;
   display:flex;
@@ -101,7 +125,7 @@ body{
 .scan-btn--red{ background:var(--red-soft); color:var(--red-dark); }
 
 /* ---------- Main ---------- */
-main{ padding:14px 16px 0; max-width:640px; margin:0 auto; }
+main{ padding:14px 16px 0; max-width:680px; margin:0 auto; }
 
 .visual-banner{
   display:flex;
@@ -368,6 +392,84 @@ main{ padding:14px 16px 0; max-width:640px; margin:0 auto; }
   z-index:60;
   box-shadow:var(--shadow);
 }
+
+/* ---------- Ürün Bildirim Formu ---------- */
+.report-missing-btn{
+  display:block;
+  width:calc(100% - 32px);
+  max-width:680px;
+  margin:20px auto 0;
+  text-align:center;
+  background:var(--surface);
+  border:1px dashed #C9D2DA;
+  border-radius:var(--radius);
+  padding:13px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--text-soft);
+  cursor:pointer;
+  transition:border-color .15s ease, color .15s ease;
+}
+.report-missing-btn:hover{ border-color:var(--blue); color:var(--blue-dark); }
+
+.report-modal{
+  position:fixed; inset:0;
+  background:rgba(13,32,51,0.55);
+  display:flex; align-items:center; justify-content:center;
+  z-index:55; padding:20px;
+  backdrop-filter:blur(2px);
+}
+.report-modal-inner{
+  background:var(--surface);
+  border-radius:16px;
+  padding:22px;
+  max-width:380px;
+  width:100%;
+  position:relative;
+  box-shadow:var(--shadow-lg);
+}
+.report-modal-inner h3{ margin:0 0 6px; font-size:16.5px; color:var(--navy-dark); }
+.report-sub{ font-size:12.5px; color:var(--text-soft); margin:0 0 14px; line-height:1.5; }
+.report-modal-inner label{
+  display:block; font-size:12px; font-weight:600; color:var(--text); margin:10px 0 5px;
+}
+.report-modal-inner input[type=text],
+.report-modal-inner input[type=file]{
+  width:100%; padding:9px 10px;
+  border:1px solid var(--border); border-radius:8px;
+  font-size:13.5px; background:var(--bg); color:var(--text);
+}
+.report-submit-btn{
+  width:100%; margin-top:18px; padding:12px;
+  border:none; border-radius:10px;
+  background:var(--blue); color:#fff;
+  font-weight:700; font-size:14px; cursor:pointer;
+}
+.report-submit-btn:active{ transform:scale(0.98); }
+.report-status{ margin-top:10px; font-size:12.5px; color:var(--text-soft); text-align:center; min-height:16px; }
+
+/* ---------- Footer ---------- */
+.site-footer{
+  max-width:680px;
+  margin:28px auto 0;
+  padding:18px 20px 30px;
+  text-align:center;
+  border-top:1px solid var(--border);
+}
+.site-footer p{
+  margin:0 0 6px;
+  font-size:10px;
+  letter-spacing:0.03em;
+  color:var(--text-soft);
+  line-height:1.6;
+}
+.site-footer a{
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--blue-dark);
+  text-decoration:none;
+}
+.site-footer a:hover{ text-decoration:underline; }
 
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }

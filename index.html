@@ -13,6 +13,13 @@
 <body>
 
   <header class="topbar">
+    <div class="brand">
+      <!-- Gerçek logo (QR ikon + yazı) yüklenince buraya <img src="icons/logo-wordmark.png" alt="BİMKOD"> olarak değişecek -->
+      <div class="brand-col">
+        <span class="brand-text">Bİ<span>M</span>KOD</span>
+        <span class="brand-tagline">Ürün Kod &amp; Görsel Arama</span>
+      </div>
+    </div>
     <div class="search-wrap">
       <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -73,6 +80,27 @@
     </section>
 
   </main>
+
+  <button id="reportMissingBtn" class="report-missing-btn">🔍 Aradığınız ürünü bulamadınız mı? Bildirin</button>
+
+  <footer class="site-footer">
+    <p>PROJE ÜRÜNÜDÜR. GELİŞTİRİCİ: 9553 ÇUMRA BÖLGE - ATATÜRK CD. MAĞAZASI</p>
+    <a href="https://instagram.com/h_seyinn" target="_blank" rel="noopener noreferrer">@h_seyinn</a>
+  </footer>
+
+  <div id="reportModal" class="report-modal" hidden>
+    <div class="report-modal-inner">
+      <button id="reportModalClose" class="image-modal-close" aria-label="Kapat">&times;</button>
+      <h3>Ürün Bildir</h3>
+      <p class="report-sub">Kodunu bulamadığınız ürünün fotoğrafını (ve varsa adını) gönderin, ekibimiz inceleyip sisteme eklesin.</p>
+      <label for="reportImageInput">Ürün görseli</label>
+      <input type="file" id="reportImageInput" accept="image/*" capture="environment">
+      <label for="reportNameInput">Ürün adı (biliyorsanız)</label>
+      <input type="text" id="reportNameInput" placeholder="örn. Sıvı Çamaşır Deterjanı Miss 1500 ml">
+      <button id="reportSubmitBtn" class="report-submit-btn">Gönder</button>
+      <div id="reportStatus" class="report-status"></div>
+    </div>
+  </div>
 
   <div id="imageModal" class="image-modal" hidden>
     <button id="imageModalClose" class="image-modal-close" aria-label="Kapat">&times;</button>
