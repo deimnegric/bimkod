@@ -15627,18 +15627,18 @@
   },
   {
     "code": "1630152",
-    "name": "ORTADAN AÇILIR KAPAKLI ÇÖP KOVASI",
+    "name": "Ortadan Açılır i: Kapaklı Çöp Kovası",
     "price": null,
     "image": "images/001016.jpg",
     "embIndex": 1016,
-    "confidence": 0.6020195484161377,
-    "addedAt": "2024-08-09T20:15:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/80.jpg",
+    "confidence": 0.9266390800476074,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      511,
-      1000,
-      906,
-      1206
+      245,
+      1432,
+      448,
+      1562
     ]
   },
   {
@@ -16657,18 +16657,18 @@
   },
   {
     "code": "1641801",
-    "name": "Kare Cam Tatlı Kasesi -330 cc Çi",
+    "name": "Kare Cam Tatlı Kasesi",
     "price": null,
     "image": "images/001083.jpg",
     "embIndex": 1083,
-    "confidence": 0.7993441224098206,
-    "addedAt": "2026-07-01T12:09:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1060.jpg",
+    "confidence": 0.8562920093536377,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      751,
-      559,
-      869,
-      872
+      223,
+      1099,
+      340,
+      1303
     ]
   },
   {
@@ -19137,7 +19137,7 @@
   },
   {
     "code": "1628866",
-    "name": "LAN Cam Kapaklı Saklama Kabı - 380cc Ves",
+    "name": "LAV Cam Kapaklı",
     "price": null,
     "image": "images/001245.jpg",
     "embIndex": 1245,
@@ -40742,18 +40742,18 @@
   },
   {
     "code": "1636927",
-    "name": "meme iel aaa i e Borosilikat Bombeli Bardak -300 cc",
+    "name": "Bombeli © Cam Bardak",
     "price": null,
     "image": "images/002692.jpg",
     "embIndex": 2692,
-    "confidence": 0.9139304757118225,
-    "addedAt": "2025-03-10T13:55:26+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/377.jpg",
+    "confidence": 0.9695214629173279,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      10,
-      862,
-      210,
-      1034
+      25,
+      953,
+      197,
+      1078
     ]
   },
   {
@@ -40774,7 +40774,7 @@
   },
   {
     "code": "1644329",
-    "name": "Jitem Kalp Şekilli Akasya Servis Kaşığı",
+    "name": "Kalp Şekilli Akasya Servis Kaşığı",
     "price": null,
     "image": "images/002694.jpg",
     "embIndex": 2694,
@@ -40790,18 +40790,18 @@
   },
   {
     "code": "1644147",
-    "name": "Cam Servis /Salata Kasesi -26 cm",
+    "name": "Cam Servis /Salata Kasesi",
     "price": null,
     "image": "images/002695.jpg",
     "embIndex": 2695,
-    "confidence": 0.8999872803688049,
+    "confidence": 0.8999872207641602,
     "addedAt": "2025-12-21T19:56:49+00:00",
     "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      467,
-      1039,
-      605,
-      1309
+      472,
+      1106,
+      600,
+      1303
     ]
   },
   {
@@ -43135,18 +43135,18 @@
   },
   {
     "code": "1629957",
-    "name": "Mutfak Gereçleri",
+    "name": "Sürgeçii Badya Kapaklı ku Gereçleri",
     "price": null,
     "image": "images/002849.jpg",
     "embIndex": 2849,
-    "confidence": 0.8832085728645325,
-    "addedAt": "2025-11-23T06:18:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/753.jpg",
+    "confidence": 0.9154718518257141,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      476,
-      1429,
-      753,
-      1568
+      478,
+      1325,
+      701,
+      1432
     ]
   },
   {
@@ -101950,7 +101950,7 @@
   },
   {
     "code": "1618309",
-    "name": "Krep Tava -26 cm « Yanmaz Yapışmaz « Sof Tovch Kulp",
+    "name": "Krep Tava",
     "price": null,
     "image": "images/006773.jpg",
     "embIndex": 6773,
@@ -101982,18 +101982,18 @@
   },
   {
     "code": "1644131",
-    "name": "742 m Siyah Kapaklı! Cam Demlik -900 mi",
+    "name": "Siyah Kapaklı",
     "price": null,
     "image": "images/006775.jpg",
     "embIndex": 6775,
-    "confidence": 0.9066396355628967,
+    "confidence": 0.9066397547721863,
     "addedAt": "2025-12-21T19:56:49+00:00",
     "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      178,
-      920,
-      403,
-      1093
+      186,
+      963,
+      395,
+      1089
     ]
   },
   {
@@ -102014,18 +102014,18 @@
   },
   {
     "code": "1644323",
-    "name": "NA Metal Patates-Soğar Kabı Seti » Patates Kabı - 8.51 . Kabı -65L",
+    "name": "Metal Patates-Soğ: “ Kabı Seti o İB",
     "price": null,
     "image": "images/006778.jpg",
     "embIndex": 6778,
-    "confidence": 0.8854602575302124,
+    "confidence": 0.885460376739502,
     "addedAt": "2025-12-21T19:56:49+00:00",
     "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      167,
-      1251,
-      472,
-      1441
+      178,
+      1298,
+      461,
+      1437
     ]
   },
   {
@@ -102062,18 +102062,18 @@
   },
   {
     "code": "1643057",
-    "name": "kağ wi , Akasya N Sunum Tabağı 9: İ “30 cm x 10 em BOMERE'",
+    "name": "Akasya Sunum Tabağı Çeşitleri",
     "price": null,
     "image": "images/006781.jpg",
     "embIndex": 6781,
-    "confidence": 0.7971425652503967,
+    "confidence": 0.7971424460411072,
     "addedAt": "2025-12-21T19:56:49+00:00",
     "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      758,
-      899,
+      770,
+      953,
       1069,
-      1117
+      1113
     ]
   },
   {
@@ -145854,18 +145854,18 @@
   },
   {
     "code": "1644136",
-    "name": "Kelepçeli Kek Kalıbı Yanmaz Yapışmaz. > ikm pm kp",
+    "name": "Kapaklı Kelepçeli Kek Kalıbı Ji U",
     "price": null,
     "image": "images/009518.jpg",
     "embIndex": 9518,
-    "confidence": 0.9023069739341736,
-    "addedAt": "2026-09-22T08:04:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "confidence": 0.8732268214225769,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      811,
-      514,
-      997,
-      751
+      764,
+      1113,
+      878,
+      1329
     ]
   },
   {
@@ -155774,23 +155774,23 @@
   },
   {
     "code": "1640496",
-    "name": "me çin Cidarlı",
+    "name": "Yilan in box Kokinalı Çift Cidarlı Kupa ya",
     "price": null,
     "image": "images/010138.jpg",
     "embIndex": 10138,
-    "confidence": 0.892461895942688,
-    "addedAt": "2024-12-14T12:21:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/265.jpg",
+    "confidence": 0.9415706992149353,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
     "bbox": [
-      270,
-      309,
-      379,
-      504
+      822,
+      618,
+      1050,
+      768
     ]
   },
   {
     "code": "1637740",
-    "name": "Gold Rimli Kahve Yanı . İ | Su Bardağı > z135 cc O DU kk 1637741 N. o)",
+    "name": "KLE Gold Rimli Kahve Yanı i SuBardağı İman Ge)",
     "price": null,
     "image": "images/010139.jpg",
     "embIndex": 10139,
@@ -176202,6 +176202,102 @@
       1313,
       846,
       1574
+    ]
+  },
+  {
+    "code": "250110",
+    "name": "m R Desenli Kupa ve RAKLE Mumseti EDİ ZE 229: © alime zili",
+    "price": null,
+    "image": "images/011415.jpg",
+    "embIndex": 11415,
+    "confidence": 0.9506831765174866,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      263,
+      616,
+      604,
+      771
+    ]
+  },
+  {
+    "code": "1613135",
+    "name": "Metal Mısır Kovası",
+    "price": null,
+    "image": "images/011416.jpg",
+    "embIndex": 11416,
+    "confidence": 0.9416511654853821,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      29,
+      1258,
+      178,
+      1444
+    ]
+  },
+  {
+    "code": "281355",
+    "name": "Zenanlz> Akasya Çerezlik",
+    "price": null,
+    "image": "images/011417.jpg",
+    "embIndex": 11417,
+    "confidence": 0.931084930896759,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      634,
+      942,
+      777,
+      1115
+    ]
+  },
+  {
+    "code": "3418145",
+    "name": "Metal Ekmek Kutusu",
+    "price": null,
+    "image": "images/011418.jpg",
+    "embIndex": 11418,
+    "confidence": 0.9210944771766663,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      23,
+      1440,
+      260,
+      1559
+    ]
+  },
+  {
+    "code": "1637742",
+    "name": "Gold Rimli Meşrubat Bardağı",
+    "price": null,
+    "image": "images/011419.jpg",
+    "embIndex": 11419,
+    "confidence": 0.8943397402763367,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      16,
+      786,
+      278,
+      951
+    ]
+  },
+  {
+    "code": "100287",
+    "name": "orcam Kare Fırın Tepsisi",
+    "price": null,
+    "image": "images/011420.jpg",
+    "embIndex": 11420,
+    "confidence": 0.5893955230712891,
+    "addedAt": "2025-12-21T19:56:49+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "bbox": [
+      316,
+      161,
+      754,
+      594
     ]
   }
 ]
