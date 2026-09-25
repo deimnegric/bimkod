@@ -72,7 +72,13 @@ function renderNewArrivals() {
   el.newArrivalsList.innerHTML = recent.map((p) => `
     <div class="new-arrival-card" data-code="${p.code}">
       <span class="badge-new">YENİ</span>
-      <div class="thumb">${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : ""}</div>
+      <button class="share-btn share-btn--card" data-share aria-label="Paylaş">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/>
+        </svg>
+      </button>
+      <div class="thumb" data-thumb>${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : ""}</div>
       <div class="name">${p.name}</div>
     </div>
   `).join("");
@@ -354,6 +360,11 @@ el.resultsList.addEventListener("click", (e) => {
 el.newArrivalsList.addEventListener("click", (e) => {
   const card = e.target.closest(".new-arrival-card");
   if (!card || !card._product) return;
+  const shareBtn = e.target.closest("[data-share]");
+  if (shareBtn) {
+    sharedProductCard(card._product);
+    return;
+  }
   el.imageModalImg.src = card._product.image || "";
   el.imageModal.hidden = false;
 });
@@ -379,7 +390,11 @@ async function sharedProductCard(product) {
   if (product.image) {
     try {
       const img = await loadImage(product.image);
-      ctx.drawImage(img, 40, 40, 560, 340);
+      // Görseli esnetmeden (en-boy oranını koruyarak) kutuya ortala — "contain" mantığı
+      const boxX = 40, boxY = 40, boxW = 560, boxH = 340;
+      const scale = Math.min(boxW / img.width, boxH / img.height);
+      const w = img.width * scale, h = img.height * scale;
+      ctx.drawImage(img, boxX + (boxW - w) / 2, boxY + (boxH - h) / 2, w, h);
     } catch {
       drawPlaceholderGradient(ctx);
     }
