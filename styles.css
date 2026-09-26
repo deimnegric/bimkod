@@ -41,9 +41,13 @@ body{
   padding:14px 16px 12px;
   border-bottom:1px solid var(--border);
 }.brand-logo {
-  height: 32px;
+  height: 48px; /* Eski değer ~32px idi, buradan yüksekliği artırabilirsiniz */
   width: auto;
+  max-width: 180px; /* Geniş ekranlarda çok fazla yayılmasını engeller */
   object-fit: contain;
+  display: block;
+}
+
 }
 .brand{
   display:flex;
