@@ -40,6 +40,10 @@ body{
   background:var(--bg);
   padding:14px 16px 12px;
   border-bottom:1px solid var(--border);
+}.brand-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 .brand{
   display:flex;
