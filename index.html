@@ -14,10 +14,10 @@
 
   <header class="topbar">
     <div class="brand">
-      <!-- Gerçek logo (QR ikon + yazı) yüklenince buraya <img src="icons/logo-wordmark.png" alt="BİMKOD"> olarak değişecek -->
+      <!-- Sadece BIMKOD yazısı logosu site içinde görüntülenecek -->
+      <img src="icons/logo-wordmark.png" alt="BİMKOD" class="brand-logo">
       <div class="brand-col">
-        <span class="brand-text">Bİ<span>M</span>KOD</span>
-        <span class="brand-tagline">Ürün Kod &amp; Görsel Arama</span>
+        <span class="brand-tagline"> &amp; </span>
       </div>
     </div>
     <div class="search-wrap">
@@ -84,7 +84,7 @@
   <button id="reportMissingBtn" class="report-missing-btn">🔍 Aradığınız ürünü bulamadınız mı? Bildirin</button>
 
   <footer class="site-footer">
-    <p>PROJE ÜRÜNÜDÜR. GELİŞTİRİCİ: 9553 ÇUMRA BÖLGE - ATATÜRK CD. MAĞAZASI</p>
+    <p>PROJE ÜRÜNÜDÜR. GELİŞTİRİCİ: 9553 ÇUMRA BÖLGE - ATATÜRK CD. MAĞAZA SORUMLUSU</p>
     <a href="https://instagram.com/h_seyinn" target="_blank" rel="noopener noreferrer">@h_seyinn</a>
   </footer>
 
@@ -109,9 +109,20 @@
 
   <div id="toast" class="toast" hidden></div>
 
-  <!-- Fuse.js: metin arama için fuzzy search -->
+  <!-- Service Worker Kaydı -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker yüklendi:', reg.scope))
+          .catch(err => console.error('Service Worker hatası:', err));
+      });
+    }
+  </script>
+
+  <!-- Fuse.js -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-  <!-- Transformers.js: tarayıcıda CLIP embedding çıkarımı (coldstart yok, statik hosting) -->
+  <!-- Transformers.js -->
   <script type="module" src="app.js"></script>
 </body>
 </html>
