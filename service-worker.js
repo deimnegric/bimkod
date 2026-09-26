@@ -1,14 +1,5 @@
 // BİMKOD Service Worker
-// Amaç: uygulamanın offline'da da açılabilmesi.
-//
-// STRATEJİ: network-first (önce ağdan dene, offline'sa cache'e düş).
-// Önceki "cache-first" stratejisi, dosyalar her güncellendiğinde tarayıcının
-// SONSUZA KADAR eski sürümü göstermesine sebep oluyordu (hard refresh bile
-// bunu aşamıyordu) -- aktif geliştirme sürecinde bu ciddi kafa karışıklığına
-// yol açtı. network-first ile her zaman en güncel dosya gösterilir, sadece
-// internet yokken cache devreye girer.
-
-const CACHE_NAME = "bimkod-v2";
+const CACHE_NAME = "bimkod-v3";
 
 const CORE_ASSETS = [
   "./",
@@ -18,9 +9,10 @@ const CORE_ASSETS = [
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
+  "./icons/logo-wordmark.png",
   "./data/products.json",
   "./data/embeddings.json",
-  "./data/embeddings.bin",
+  "./data/embeddings.bin"
 ];
 
 self.addEventListener("install", (event) => {
@@ -39,9 +31,6 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Network-first: önce ağdan çek (ve cache'i güncelle), ağ başarısız olursa
-// (offline) cache'e düş. Böylece dosyalar güncellendiğinde kullanıcı hep
-// en güncelini görür, sadece internetsizken eski (cache'li) sürüm devreye girer.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
