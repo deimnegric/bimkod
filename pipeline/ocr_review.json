@@ -149598,5 +149598,906 @@
     "price": null,
     "raw_ocr": "360” Aksiyor\nMntosi,\n* Kompakt 360” Aksiyon Kamerası * 5,7K 360 Vi\n* Su geçirmez (10 m/33 #0 «\n» Gerçek Ambisonik Ses «Çift 1/1,55”F1.6 Diyafram,\n» Geniz açıklık özelliği » 1 Adet yedek batarya » 17868!\n» Uzatma Üzen Yl ekipmanları » Koruyucu\n/ 7; > )\nSuperSteaey Z 2\nStabilizasyon İf ..\n4 Kanallı 350” MM\nAmbisonies Audio\nmikrofon\n16.999,00*\n1640020",
     "review_image": "review/64e0a8a86d08dd0f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000001.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      61,
+      862,
+      255,
+      1090
+    ],
+    "confidence": 0.9578539133071899,
+    "code": "1715039",
+    "name": "3'lü Puding Dr. Oetker",
+    "price": null,
+    "raw_ocr": "3'lü Puding\nDr. Oetker\n» Kakaolu 147 g » Vanilyalı 120 g\n» Çikolatalı Antep Fıstıklı 100 g\n1715039 4'E",
+    "review_image": "review/85a35c7c15916de4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000003.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      395,
+      1246,
+      543,
+      1477
+    ],
+    "confidence": 0.9464602470397949,
+    "code": null,
+    "name": "Sade Mozaik Pasta Bisküvisi",
+    "price": null,
+    "raw_ocr": "Sade Mozaik Pasta\nBisküvisi\nCC 300g\n“ 1715174",
+    "review_image": "review/3b1f496ba593dba1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000005.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      642,
+      805,
+      760,
+      1022
+    ],
+    "confidence": 0.9295181035995483,
+    "code": null,
+    "name": "Bitter Çikolatalı Sos Dr. Oetker ba)",
+    "price": null,
+    "raw_ocr": "Bitter\nÇikolatalı Sos\nDr. Oetker\n© 122g\nba)\n©\nm 49”\n> MET\nİni",
+    "review_image": "review/19e7896eec962452.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      729,
+      1264,
+      886,
+      1478
+    ],
+    "confidence": 0.9230771660804749,
+    "code": null,
+    "name": "Beyaz/Bitter Kuvertür Çikolata Daphne 200 g",
+    "price": null,
+    "raw_ocr": "Beyaz/Bitter\nKuvertür Çikolata\nDaphne 200 g\n99.\nBEYAZ\nCAL KUYEATIN\nCi ÇİKOLATA\nal\nmi\nal\nLE)",
+    "review_image": "review/da5c8bf4447dbff9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000008.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      516,
+      804,
+      626,
+      1013
+    ],
+    "confidence": 0.9226818084716797,
+    "code": null,
+    "name": "Pembe Pudra Şekeri Dr. Oetker",
+    "price": null,
+    "raw_ocr": "Pembe\nPudra Şekeri\nDr. Oetker\n5x15g\nTp",
+    "review_image": "review/0963fbf2af6f6b9e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000009.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      894,
+      1266,
+      1017,
+      1472
+    ],
+    "confidence": 0.9224773645401001,
+    "code": null,
+    "name": "Sütlü Çikolatalı Draje M&M's Minis",
+    "price": null,
+    "raw_ocr": "Sütlü\nÇikolatalı\nDraje\nM&M's Minis\n1714020",
+    "review_image": "review/b31e8f4cd61601e0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000010.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      53,
+      1231,
+      210,
+      1472
+    ],
+    "confidence": 0.9211037755012512,
+    "code": null,
+    "name": "Topping Sos Çeşitleri Kent Boringer",
+    "price": null,
+    "raw_ocr": "Topping Sos\nÇeşitleri\nKent Boringer\n* Çikolatalı 300 g\n* Meyveli 320g\n* Karamelli 325 g\n69 504\nya\n1707593",
+    "review_image": "review/9ec15876f30cd889.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000011.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      232,
+      1240,
+      377,
+      1474
+    ],
+    "confidence": 0.9151644706726074,
+    "code": null,
+    "name": "Kahve ve Tatlı Şurubu Kent Boringer",
+    "price": null,
+    "raw_ocr": "Kahve ve Tatlı\nŞurubu\nKent Boringer\n200 ml\n» Karamel « Vanilya e Fındık\n:s\nGı\nİ.\n3\nG ği sm\nMW\n(<Soğman\n1712127",
+    "review_image": "review/e9ce275028b31ca1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000013.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      74,
+      628,
+      189,
+      843
+    ],
+    "confidence": 0.9111524820327759,
+    "code": null,
+    "name": "Pasta Kreması Dr. Oetker",
+    "price": null,
+    "raw_ocr": "Pasta Kreması\nDr. Oetker\n129g\n* Sade\n1\na Dua\nm\na\nj",
+    "review_image": "review/54afa454135c20b1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000015.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      398,
+      805,
+      506,
+      1013
+    ],
+    "confidence": 0.9084958434104919,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "1706064",
+    "review_image": "review/e6e07298d7786950.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      822,
+      625,
+      1011,
+      812
+    ],
+    "confidence": 0.9038205742835999,
+    "code": null,
+    "name": "Krem Şanti 216 g &Pudra Şekeri 150 g “ m > m$anti Çpudru Şekeri",
+    "price": null,
+    "raw_ocr": "Krem Şanti 216 g\n&Pudra Şekeri 150 g “\n1 09: ser\n1710966\nm >\nm$anti Çpudru Şekeri",
+    "review_image": "review/e93aef2d9ba10131.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000017.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      772,
+      814,
+      879,
+      1008
+    ],
+    "confidence": 0.9038113951683044,
+    "code": null,
+    "name": "Kakao Dr. Oetker",
+    "price": null,
+    "raw_ocr": "Kakao\nDr. Oetker\n2x25g\n52.\n1711425",
+    "review_image": "review/20f3144c015cd087.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000021.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      888,
+      813,
+      996,
+      999
+    ],
+    "confidence": 0.8131739497184753,
+    "code": null,
+    "name": "2'li Jelatin Dr. Oetker yce",
+    "price": null,
+    "raw_ocr": "2'li Jelatin\nDr. Oetker\n6g\n2 508\nyce",
+    "review_image": "review/702ae0f421062fde.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000023.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      188,
+      628,
+      369,
+      850
+    ],
+    "confidence": 0.7407374978065491,
+    "code": null,
+    "name": "Pişirmeli Pastacı Kreması Çeşitleri Dr. Oetker",
+    "price": null,
+    "raw_ocr": "Pişirmeli Pastacı\nKreması Çeşitleri\nDr. Oetker\n» Sade 156g\n* Kakaolu 144 g",
+    "review_image": "review/fe67bd9d36de62ef.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000024.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      186,
+      626,
+      449,
+      849
+    ],
+    "confidence": 0.6792333722114563,
+    "code": null,
+    "name": "Pişirmeli Pastacı Kreması Çeşitleri Dr. Oetker",
+    "price": null,
+    "raw_ocr": "| Pişirmeli Pastacı\nKreması Çeşitleri\nDr. Oetker\n» Sade 156g\n* Kakaolu 144 g\n29",
+    "review_image": "review/8ba9bb391fbe9a02.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      192,
+      752,
+      372,
+      847
+    ],
+    "confidence": 0.5424283742904663,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "1703515",
+    "review_image": "review/13d0f9342956f1c8.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000026.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      431,
+      1032,
+      665,
+      1168
+    ],
+    "confidence": 0.5175875425338745,
+    "code": null,
+    "name": "Pasta Süsü Çeşitleri Dr. Oetker 10 ” si KA pie Ni",
+    "price": null,
+    "raw_ocr": "Pasta Süsü Çeşitleri\nDr. Oetker 10\n” si KA pie Ni\n* Galaksi » Kalpli karışım ye\n—İl—\nli > ©\nn 8\ntker m",
+    "review_image": "review/0102d8b1ea8743ec.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000027.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      22,
+      1046,
+      100,
+      1193
+    ],
+    "confidence": 0.4386599361896515,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/2985af21cbe2b58d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000028.jpg",
+    "source_flyer": "pipeline/raw_flyers/1203.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      418,
+      1034,
+      669,
+      1099
+    ],
+    "confidence": 0.41765162348747253,
+    "code": null,
+    "name": "Pasta Süsü Çeşitleri Dr. Oetker 10",
+    "price": null,
+    "raw_ocr": "Pasta Süsü Çeşitleri\nDr. Oetker 10\n* Gümüş İnci » Kala 3 504\n« Galaksi » Kalpli karışım zen",
+    "review_image": "review/c9cbeb90302944a3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000031.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      230,
+      575,
+      420,
+      781
+    ],
+    "confidence": 0.9438859224319458,
+    "code": null,
+    "name": "Yarım Yağlı Tost Peyniri Onur 1500 g",
+    "price": null,
+    "raw_ocr": "Yarım Yağlı\nTost Peyniri\nOnur 1500 g",
+    "review_image": "review/883b2ef7429e64b4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000033.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      884,
+      1055,
+      1023,
+      1251
+    ],
+    "confidence": 0.9340224862098694,
+    "code": "1714534",
+    "name": "2618 Yağlı Krema Tikveşli 500 ml",
+    "price": null,
+    "raw_ocr": "2618 Yağlı Krema\nTikveşli 500 ml\n1714534",
+    "review_image": "review/8c48ddc0f76d7417.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000035.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      792,
+      1281,
+      1010,
+      1480
+    ],
+    "confidence": 0.9334688186645508,
+    "code": null,
+    "name": "Peynir Helvası Tatlı Bey 150g",
+    "price": null,
+    "raw_ocr": "Peynir Helvası\nTatlı Bey 150g\n« Antep Fıstıklı * Portakallı\n1714296",
+    "review_image": "review/3fc7f7b83640b028.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000037.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      503,
+      1320,
+      753,
+      1475
+    ],
+    "confidence": 0.9173742532730103,
+    "code": "1713441",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1713441",
+    "review_image": "review/f61cc9865ef5cf70.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000038.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      495,
+      1051,
+      622,
+      1284
+    ],
+    "confidence": 0.9165140986442566,
+    "code": null,
+    "name": "Proteinli Kahveli Süt İçim Fit 400 ml p",
+    "price": null,
+    "raw_ocr": "Proteinli\nKahveli Süt\nİçim Fit 400 ml\np",
+    "review_image": "review/c3a136a4134471a2.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000043.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      728,
+      808,
+      849,
+      1055
+    ],
+    "confidence": 0.9082409739494324,
+    "code": "1715065",
+    "name": "263 Yağlı Süt Yörsan 1 L",
+    "price": null,
+    "raw_ocr": "263 Yağlı Süt\nYörsan 1 L\n1715065.",
+    "review_image": "review/fe31fbccb5ce3452.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000046.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      754,
+      1058,
+      877,
+      1254
+    ],
+    "confidence": 0.8939113616943359,
+    "code": null,
+    "name": "Yaban Mersinli Ouark Sek 140g me",
+    "price": null,
+    "raw_ocr": "Yaban Mersinli\nOuark\nSek 140g\nme",
+    "review_image": "review/5fee089678fc2243.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000048.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      542,
+      127,
+      958,
+      550
+    ],
+    "confidence": 0.8884089589118958,
+    "code": null,
+    "name": "4 TAM YAĞLI TAZE i KAŞAR PEYNİRİ",
+    "price": null,
+    "raw_ocr": "4 TAM YAĞLI TAZE\ni KAŞAR PEYNİRİ\nPINAR 700 g 1714914 b",
+    "review_image": "review/855d605448f9ecad.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000054.jpg",
+    "source_flyer": "pipeline/raw_flyers/1202.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      58,
+      1049,
+      172,
+      1163
+    ],
+    "confidence": 0.4239402711391449,
+    "code": null,
+    "name": "Piliç Jülyen Sosis Aytaç 500g",
+    "price": null,
+    "raw_ocr": "Piliç\nJülyen Sosis\nAytaç 500g",
+    "review_image": "review/28a1e0a908c2db82.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000055.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      47,
+      1196,
+      177,
+      1325
+    ],
+    "confidence": 0.9494186043739319,
+    "code": null,
+    "name": "Lip Balm Mara",
+    "price": null,
+    "raw_ocr": "Lip Balm\nMara\n1715217\n19",
+    "review_image": "review/d6930ae87ddf4b2d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000056.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      439,
+      1325,
+      537,
+      1476
+    ],
+    "confidence": 0.9483352899551392,
+    "code": null,
+    "name": "Body Mist | İso 250 mi > ise | SETİ ZCOSTZT",
+    "price": null,
+    "raw_ocr": "Body Mist\n| İso 250 mi\n> ise |\nSETİ\nZCOSTZT",
+    "review_image": "review/bb333c27629ae021.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000059.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      727,
+      872,
+      847,
+      1033
+    ],
+    "confidence": 0.9389156699180603,
+    "code": null,
+    "name": "Renkli Te mizlik Bezi İlbay's",
+    "price": null,
+    "raw_ocr": "Renkli\nTe\nmizlik Bezi\n1714831\nİlbay's",
+    "review_image": "review/314c722f34693bda.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000062.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      67,
+      574,
+      224,
+      722
+    ],
+    "confidence": 0.9272021055221558,
+    "code": null,
+    "name": "Evcil Hayvan Temizleme Havlusu Sleepy Petcare 60'lı Seyi",
+    "price": null,
+    "raw_ocr": "Evcil Hayvan\nTemizleme Havlusu\nSleepy Petcare 60'lı\n1714695\nSeyi",
+    "review_image": "review/9d394bd115fce84c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000067.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      395,
+      578,
+      597,
+      726
+    ],
+    "confidence": 0.9193161129951477,
+    "code": null,
+    "name": "Yaş Kedi Maması Konserve Bestpet 85 g",
+    "price": null,
+    "raw_ocr": "Yaş Kedi Maması Konserve\nBestpet 85 g\n» Gğerli « Kuzu Etli\n» Tavualu » Somonlu\n1714890ğ/478\nbaki kğ",
+    "review_image": "review/f2b27c923a58d29f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000073.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      579,
+      872,
+      725,
+      1038
+    ],
+    "confidence": 0.9096649289131165,
+    "code": null,
+    "name": "Ultra Çamaşır Suyu Hypo 3240 ml",
+    "price": null,
+    "raw_ocr": "Ultra Çamaşır Suyu\nHypo 3240 ml\n1714369",
+    "review_image": "review/13dc33efb1ef936f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000076.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      831,
+      573,
+      1022,
+      713
+    ],
+    "confidence": 0.9055768251419067,
+    "code": null,
+    "name": "ku Mar (ETİ",
+    "price": null,
+    "raw_ocr": "ku Mar (ETİ\nSilindir\nSmiley World\n1714180\n*(1n",
+    "review_image": "review/7a216427d06c7384.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000078.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      896,
+      1329,
+      1020,
+      1479
+    ],
+    "confidence": 0.8959367871284485,
+    "code": null,
+    "name": "Kaş Sabitleyici",
+    "price": null,
+    "raw_ocr": "Kaş Sabitleyici\n10 ml\n1715216",
+    "review_image": "review/b565c0b51f3c2b5c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000081.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      50,
+      728,
+      284,
+      875
+    ],
+    "confidence": 0.8765062093734741,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/d5409b14ae87d09c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000084.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      462,
+      875,
+      575,
+      1026
+    ],
+    "confidence": 0.8600643873214722,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/339a74b188471a90.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000087.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      210,
+      874,
+      347,
+      1019
+    ],
+    "confidence": 0.8452040553092957,
+    "code": null,
+    "name": "Çamaşır Makinesi Temizleyici Bind Activit EB",
+    "price": null,
+    "raw_ocr": "Çamaşır Makinesi\nTemizleyici\nBind Activit\n250ml 1701358\nEB\n35 w",
+    "review_image": "review/0357774345976fc9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000088.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      174,
+      1194,
+      429,
+      1317
+    ],
+    "confidence": 0.8426929712295532,
+    "code": null,
+    "name": "Saç Bakım Suyu i Saç Yağı Mara 200 ml , Mara 100 mi",
+    "price": null,
+    "raw_ocr": "Saç Bakım Suyu i Saç Yağı\nMara 200 ml , Mara 100 mi\n* Biberiye A Biberiye\nBili gı\n1712173 ' 1714015",
+    "review_image": "review/34439152d079aa19.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000094.jpg",
+    "source_flyer": "pipeline/raw_flyers/1201.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      65,
+      728,
+      267,
+      787
+    ],
+    "confidence": 0.4480957090854645,
+    "code": null,
+    "name": "Dreamies 60g",
+    "price": null,
+    "raw_ocr": "Dreamies 60g",
+    "review_image": "review/875416e30acc9809.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000095.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      814,
+      929,
+      1045,
+      1143
+    ],
+    "confidence": 0.9402247071266174,
+    "code": null,
+    "name": "Bonbon Şeker Çeşitleri Milky Candy & Coffe Black 350g",
+    "price": null,
+    "raw_ocr": "Bonbon Şeker Çeşitleri\nMilky Candy &\nCoffe Black 350g\n* Tereyağlı Sütlü * Tereyağlı Kahveli",
+    "review_image": "review/817b84f3eeb885d3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000098.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      660,
+      924,
+      812,
+      1158
+    ],
+    "confidence": 0.9345386624336243,
+    "code": null,
+    "name": "Sütlü Çikolata ve Hindistan Cevizli Yumuşak Kurabiye Bounty 180 g",
+    "price": null,
+    "raw_ocr": "Sütlü Çikolata ve\nHindistan Cevizli\nYumuşak Kurabiye\nBounty 180 g\n1715108",
+    "review_image": "review/5bf8fefd3f48f770.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000099.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      438,
+      1168,
+      605,
+      1337
+    ],
+    "confidence": 0.9331358671188354,
+    "code": null,
+    "name": "Bademli Kömbe Kurabiye Ira Gi",
+    "price": null,
+    "raw_ocr": "“ Bademli Kömbe\nKurabiye\nei 150g\n713898\nIra\nGi\n1",
+    "review_image": "review/25e3c5164122ce1f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000102.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      882,
+      1150,
+      1035,
+      1344
+    ],
+    "confidence": 0.9303106069564819,
+    "code": null,
+    "name": "Karışık Yumuşak Şekerleme Haribo Anaconda",
+    "price": null,
+    "raw_ocr": "Karışık Yumuşak\nŞekerleme\nHaribo Anaconda\n400g\n1714904\nm 2",
+    "review_image": "review/7e83556abb02ae64.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000103.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      807,
+      735,
+      1027,
+      921
+    ],
+    "confidence": 0.9286938905715942,
+    "code": null,
+    "name": "Kahve Karamel Aromalı © , Maden Suyu n",
+    "price": null,
+    "raw_ocr": "' Kahve Karamel Aromalı ©\n, Maden Suyu n",
+    "review_image": "review/85597d2d37f3719c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000108.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      608,
+      1167,
+      751,
+      1347
+    ],
+    "confidence": 0.910184383392334,
+    "code": null,
+    "name": "Cino — m dinli Sari",
+    "price": null,
+    "raw_ocr": "Cino — m\ndinli Sari\n—\n* Kayısı Parçalı a\nm\namm)\nwe\nami",
+    "review_image": "review/8dcf6cfa5f539f1a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000114.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      258,
+      1167,
+      444,
+      1331
+    ],
+    "confidence": 0.901334822177887,
+    "code": "1714087",
+    "name": "7 Tuzlu Karamel b ve Bademli m Sütlü Çikolata il Milka 190g al",
+    "price": null,
+    "raw_ocr": "7 Tuzlu Karamel\nb ve Bademli\nm Sütlü Çikolata\nil Milka 190g\nal\n1714087",
+    "review_image": "review/79391349bdf2ec1b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000115.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      62,
+      926,
+      192,
+      1156
+    ],
+    "confidence": 0.9010913372039795,
+    "code": null,
+    "name": "Kakaolu Fındık Kreması Milka 350g",
+    "price": null,
+    "raw_ocr": "Kakaolu\nFındık Kreması\nMilka 350g\n1706566",
+    "review_image": "review/82d146766f8d87bf.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000117.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      60,
+      768,
+      273,
+      922
+    ],
+    "confidence": 0.8980756998062134,
+    "code": null,
+    "name": "Kahve Beyazlatıcı Coffee Mate",
+    "price": null,
+    "raw_ocr": "Kahve\nBeyazlatıcı\nCoffee Mate\n79.",
+    "review_image": "review/0884207c4e43cd78.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000120.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      29,
+      1346,
+      240,
+      1467
+    ],
+    "confidence": 0.8891770839691162,
+    "code": null,
+    "name": "Basmati | | - ö” Pirinç Patlağı ia",
+    "price": null,
+    "raw_ocr": "Basmati | |\n- ö” Pirinç Patlağı\n&\n© . ; 100g İ\nia,",
+    "review_image": "review/35ddaa77eb83738e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000122.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      67,
+      653,
+      359,
+      771
+    ],
+    "confidence": 0.6435166597366333,
+    "code": null,
+    "name": "İk, khan ktkambasi EE Çikolata- “Portakal",
+    "price": null,
+    "raw_ocr": "İk, khan ktkambasi\nEE Çikolata- “Portakal\n* Kaymak\nve 49,5 50\n1715068 Ç",
+    "review_image": "review/258bfbafa1c0c6da.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000123.jpg",
+    "source_flyer": "pipeline/raw_flyers/1200.jpg",
+    "flyer_date": "2026-09-26T12:57:57+00:00",
+    "bbox": [
+      66,
+      582,
+      371,
+      669
+    ],
+    "confidence": 0.6352476477622986,
+    "code": null,
+    "name": "Aromalı ) Yİ Türk Kahvesi Çeşitleri | ı Abdullah Efendi 100 9g! i",
+    "price": null,
+    "raw_ocr": "Aromalı\n) Yİ Türk Kahvesi Çeşitleri | ı\nAbdullah Efendi 100 9g! i\n— *Çilek » Çikolata\nNY ya l",
+    "review_image": "review/9c825a7a7ee8d83f.jpg"
   }
 ]

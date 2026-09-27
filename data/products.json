@@ -6452,18 +6452,18 @@
   },
   {
     "code": "1709969",
-    "name": "Piliç Jülyen Sosis eya” 500g",
+    "name": "Piliç Jülyen Sosis Aytaç 500g",
     "price": null,
     "image": "images/000408.jpg",
     "embIndex": 408,
-    "confidence": 0.8420336842536926,
-    "addedAt": "2024-12-14T12:21:02+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/261.jpg",
+    "confidence": 0.8400761485099792,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      59,
-      821,
-      206,
-      1087
+      57,
+      1051,
+      177,
+      1302
     ]
   },
   {
@@ -6532,18 +6532,18 @@
   },
   {
     "code": "1713786",
-    "name": "Peynir Çeşitleri Aknaz 200g",
+    "name": "Peynir Çeşitleri Aknaz 200 g",
     "price": null,
     "image": "images/000413.jpg",
     "embIndex": 413,
-    "confidence": 0.9215835928916931,
-    "addedAt": "2026-06-06T21:07:55+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1022.jpg",
+    "confidence": 0.9354460835456848,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      687,
-      797,
-      819,
-      974
+      57,
+      578,
+      213,
+      797
     ]
   },
   {
@@ -6621,18 +6621,18 @@
   },
   {
     "code": "1711094",
-    "name": "Tavuk Tantuni Dürüm Aytaç",
+    "name": "Tavuk Tantuni Dürüm Aytaç 165g",
     "price": null,
     "image": "images/000419.jpg",
     "embIndex": 419,
-    "confidence": 0.8872291445732117,
-    "addedAt": "2025-06-16T11:31:50+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/515.jpg",
+    "confidence": 0.9043180346488953,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      713,
-      628,
-      830,
-      781
+      355,
+      1038,
+      480,
+      1302
     ]
   },
   {
@@ -6641,30 +6641,30 @@
     "price": null,
     "image": "images/000420.jpg",
     "embIndex": 420,
-    "confidence": 0.9042398929595947,
-    "addedAt": "2025-12-29T18:36:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/800.jpg",
+    "confidence": 0.9086214900016785,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      41,
-      1135,
-      224,
-      1344
+      432,
+      574,
+      606,
+      773
     ]
   },
   {
     "code": "1711579",
-    "name": "Labne İçim 3x180g",
+    "name": "Labne İçim",
     "price": null,
     "image": "images/000421.jpg",
     "embIndex": 421,
-    "confidence": 0.9045645594596863,
-    "addedAt": "2025-03-03T19:05:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/358.jpg",
+    "confidence": 0.9127225875854492,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      480,
-      670,
-      682,
-      772
+      767,
+      579,
+      877,
+      793
     ]
   },
   {
@@ -13032,18 +13032,18 @@
   },
   {
     "code": "1703348",
-    "name": "Yarım Yağlı Laktozsuz Süt Pınar Denge iL",
+    "name": "Laktozsuz Süt Pınar 1L",
     "price": null,
     "image": "images/000828.jpg",
     "embIndex": 828,
-    "confidence": 0.9137498140335083,
-    "addedAt": "2025-06-05T06:50:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/505.jpg",
+    "confidence": 0.8691394329071045,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      507,
-      665,
-      616,
-      878
+      567,
+      799,
+      693,
+      1052
     ]
   },
   {
@@ -15257,18 +15257,18 @@
   },
   {
     "code": "1712174",
-    "name": "İfa",
+    "name": "a Tüy Dökücü Krem Veet 200 mi",
     "price": null,
     "image": "images/000971.jpg",
     "embIndex": 971,
-    "confidence": 0.9051877856254578,
-    "addedAt": "2025-06-22T05:51:47+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/529.jpg",
+    "confidence": 0.8834331631660461,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      144,
-      654,
-      254,
-      784
+      877,
+      1060,
+      1010,
+      1189
     ]
   },
   {
@@ -15289,18 +15289,18 @@
   },
   {
     "code": "1708559",
-    "name": "Krem",
+    "name": "Tüy Dökücü F- Krem kiaeikdal",
     "price": null,
     "image": "images/000973.jpg",
     "embIndex": 973,
-    "confidence": 0.5092340707778931,
-    "addedAt": "2024-08-02T08:55:19+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/63.jpg",
+    "confidence": 0.9284750819206238,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      780,
-      764,
-      875,
-      828
+      732,
+      1044,
+      873,
+      1180
     ]
   },
   {
@@ -15545,18 +15545,18 @@
   },
   {
     "code": "1707164",
-    "name": "İçim 1L Kefir",
+    "name": "Laktozsuz Kefir İçim 1 L mn",
     "price": null,
     "image": "images/000989.jpg",
     "embIndex": 989,
-    "confidence": 0.9143693447113037,
-    "addedAt": "2024-07-29T06:12:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/16.jpg",
+    "confidence": 0.8784360885620117,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      230,
-      765,
-      414,
-      946
+      418,
+      797,
+      546,
+      1033
     ]
   },
   {
@@ -15609,18 +15609,18 @@
   },
   {
     "code": "1710366",
-    "name": "Ya a Yağlı Yoğurt 5 İŞE İçim 3 kg Yaymaksız giri Lv sz Yağı yi",
-    "price": "50",
+    "name": "Az Yağlı Yoğurt İçim 3000 g z",
+    "price": null,
     "image": "images/000993.jpg",
     "embIndex": 993,
-    "confidence": 0.8902711272239685,
-    "addedAt": "2024-08-16T20:49:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/83.jpg",
+    "confidence": 0.9536327719688416,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      346,
-      245,
-      613,
-      440
+      243,
+      798,
+      392,
+      1044
     ]
   },
   {
@@ -15657,18 +15657,18 @@
   },
   {
     "code": "1713772",
-    "name": "Dana Döner 7 Namet 450g",
+    "name": "Dana Döner Namet",
     "price": null,
     "image": "images/000996.jpg",
     "embIndex": 996,
-    "confidence": 0.9114324450492859,
-    "addedAt": "2026-02-12T08:46:59+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/854.jpg",
+    "confidence": 0.8910595178604126,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      22,
-      1408,
-      291,
-      1557
+      282,
+      1339,
+      493,
+      1478
     ]
   },
   {
@@ -16548,18 +16548,18 @@
   },
   {
     "code": "1709370",
-    "name": "gi ei",
+    "name": "Süzme Yoğurt Sek 400g",
     "price": null,
     "image": "images/001053.jpg",
     "embIndex": 1053,
-    "confidence": 0.916396975517273,
-    "addedAt": "2024-09-09T10:38:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/113.jpg",
+    "confidence": 0.9334850907325745,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      294,
-      520,
-      496,
-      646
+      72,
+      806,
+      211,
+      1026
     ]
   },
   {
@@ -17629,18 +17629,18 @@
   },
   {
     "code": "1710296",
-    "name": "Ayran İçim mmm 5",
+    "name": "Ayran İçim 200 ml",
     "price": null,
     "image": "images/001121.jpg",
     "embIndex": 1121,
-    "confidence": 0.547057569026947,
-    "addedAt": "2024-09-09T10:38:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/113.jpg",
+    "confidence": 0.8433080911636353,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      501,
-      568,
-      674,
-      681
+      630,
+      1056,
+      741,
+      1242
     ]
   },
   {
@@ -26301,18 +26301,18 @@
   },
   {
     "code": "1713611",
-    "name": "Soda e 500g Arap Sabun 1L Miss eti z “gi",
+    "name": "SÜPER İKİLİ MİSS ARAP SABUNU 1 L SUPER \"74 İKİLİSİ Şiz j mis N 004 P MP: , sona pus ARNPSADUMİ",
     "price": null,
     "image": "images/001677.jpg",
     "embIndex": 1677,
-    "confidence": 0.9336336851119995,
-    "addedAt": "2026-05-09T12:11:34+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/980.jpg",
+    "confidence": 0.9218935370445251,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      230,
-      760,
-      355,
-      983
+      550,
+      129,
+      928,
+      556
     ]
   },
   {
@@ -32486,18 +32486,18 @@
   },
   {
     "code": "1714104",
-    "name": "ZE a) , 77) Banyo Hava Temiley Lİ arar Glzde 107m1 el çar Teli",
+    "name": "Aerosol eleği eya Banyo Hava Temizleyici Glade 300 mi ey Cihaz",
     "price": null,
     "image": "images/002071.jpg",
     "embIndex": 2071,
-    "confidence": 0.8570558428764343,
-    "addedAt": "2026-04-04T08:15:30+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/924.jpg",
+    "confidence": 0.8920478820800781,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      157,
-      1105,
-      354,
-      1249
+      253,
+      1029,
+      578,
+      1190
     ]
   },
   {
@@ -37110,18 +37110,18 @@
   },
   {
     "code": "1709287",
-    "name": "Kabak Çekirdeği 17 Nutova 200g",
+    "name": "Kabak İl Çekirdeği an Nutova",
     "price": null,
     "image": "images/002367.jpg",
     "embIndex": 2367,
-    "confidence": 0.9442828893661499,
-    "addedAt": "2024-12-21T11:50:21+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/269.jpg",
+    "confidence": 0.936103105545044,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      53,
-      567,
-      254,
-      692
+      434,
+      1343,
+      613,
+      1484
     ]
   },
   {
@@ -37142,18 +37142,18 @@
   },
   {
     "code": "1711481",
-    "name": "coin, Sütlü Çikolata Kaplı Me? Buğday Patlaklı Bar Kinder m 23,55g",
+    "name": "Sütlü Çikolata Kaplı .! Buğday Patlaklı Bar iç il , Kinder Country",
     "price": null,
     "image": "images/002369.jpg",
     "embIndex": 2369,
-    "confidence": 0.89952552318573,
-    "addedAt": "2025-03-03T19:05:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/357.jpg",
+    "confidence": 0.905662477016449,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      634,
-      853,
-      834,
-      975
+      52,
+      1174,
+      262,
+      1341
     ]
   },
   {
@@ -43154,18 +43154,18 @@
   },
   {
     "code": "1713366",
-    "name": "Tam Yağlı Süzme Peynir Bahçıvan 2x250g",
+    "name": "Tam Yağlı Süzme Peynir Bahçıvan 2x250 g",
     "price": null,
     "image": "images/002757.jpg",
     "embIndex": 2757,
-    "confidence": 0.908444881439209,
-    "addedAt": "2025-12-09T15:23:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/773.jpg",
+    "confidence": 0.9465215802192688,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      733,
-      603,
-      891,
-      851
+      879,
+      575,
+      1027,
+      813
     ]
   },
   {
@@ -54590,18 +54590,18 @@
   },
   {
     "code": "1711243",
-    "name": "Protex Çift Kilitli Buzdolabı Poşeti",
+    "name": "Çift Kilitli Buzdolabı Poşeti Protex",
     "price": null,
     "image": "images/003491.jpg",
     "embIndex": 3491,
-    "confidence": 0.9332118630409241,
-    "addedAt": "2025-06-05T06:50:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/504.jpg",
+    "confidence": 0.9077793955802917,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      708,
-      847,
-      824,
-      966
+      854,
+      717,
+      1040,
+      870
     ]
   },
   {
@@ -54622,18 +54622,18 @@
   },
   {
     "code": "1711244",
-    "name": "Protex Kesilmiş Çok Amaçlı (Folyolu) Pişirme Kağıdı <8 Yaprak EEE)",
+    "name": "Çok Amaçlı Pişirme Kağıdı Protex",
     "price": null,
     "image": "images/003493.jpg",
     "embIndex": 3493,
-    "confidence": 0.9244111776351929,
-    "addedAt": "2025-06-05T06:50:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/504.jpg",
+    "confidence": 0.9193134307861328,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      570,
-      853,
-      701,
-      979
+      30,
+      876,
+      206,
+      1020
     ]
   },
   {
@@ -80991,18 +80991,18 @@
   },
   {
     "code": "1709525",
-    "name": "Hazır Kahve Çeşitleri Nescafe",
+    "name": "Et ASA V ÇEŞİTLERİ NESCAFE 25'li 189 t",
     "price": null,
     "image": "images/005243.jpg",
     "embIndex": 5243,
-    "confidence": 0.680356502532959,
-    "addedAt": "2024-08-02T08:55:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/54.jpg",
+    "confidence": 0.931125283241272,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      278,
-      320,
-      469,
-      533
+      558,
+      136,
+      1046,
+      548
     ]
   },
   {
@@ -88897,18 +88897,18 @@
   },
   {
     "code": "1712644",
-    "name": "Piliç Çıtır Finger Banvit 1000 g",
+    "name": "Piliç Çıtır Finger Banvit an",
     "price": null,
     "image": "images/005759.jpg",
     "embIndex": 5759,
-    "confidence": 0.930554986000061,
-    "addedAt": "2025-09-30T09:58:46+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/678.jpg",
+    "confidence": 0.9128695130348206,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      490,
-      1008,
-      647,
-      1229
+      53,
+      1338,
+      271,
+      1479
     ]
   },
   {
@@ -94577,18 +94577,18 @@
   },
   {
     "code": "1712867",
-    "name": "Karışım Kahve Latte Çeşitleri Cafe Crown 6x21,5g",
+    "name": "Karışım Kahve Çeşitleri , leri Cafe Crown",
     "price": null,
     "image": "images/006114.jpg",
     "embIndex": 6114,
-    "confidence": 0.9158859848976135,
-    "addedAt": "2026-05-17T06:37:57+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/993.jpg",
+    "confidence": 0.8976187705993652,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      330,
-      1182,
-      512,
-      1383
+      328,
+      584,
+      591,
+      771
     ]
   },
   {
@@ -96453,14 +96453,14 @@
     "price": null,
     "image": "images/006231.jpg",
     "embIndex": 6231,
-    "confidence": 0.9120137095451355,
-    "addedAt": "2026-05-01T05:27:44+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/969.jpg",
+    "confidence": 0.8398484587669373,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      806,
-      1461,
-      967,
-      1579
+      344,
+      875,
+      462,
+      1021
     ]
   },
   {
@@ -98881,18 +98881,18 @@
   },
   {
     "code": "1714105",
-    "name": "Banyo Hava Temizleyici Aerosol Gleade 10 ml",
+    "name": "Banyo Hava Temizleyici Aerosol Glade 10 ml",
     "price": null,
     "image": "images/006383.jpg",
     "embIndex": 6383,
-    "confidence": 0.9441410303115845,
-    "addedAt": "2026-04-04T08:15:30+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/924.jpg",
+    "confidence": 0.9172483086585999,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      349,
-      1140,
-      507,
-      1242
+      580,
+      1038,
+      721,
+      1181
     ]
   },
   {
@@ -104849,18 +104849,18 @@
   },
   {
     "code": "1715190",
-    "name": "Protein Topu Çeşitleri (9 Nutties 729 Kurabiye renal “inis Cerizl",
+    "name": "Yaş Kedi Maması li Spelly 400 i petiy 9 Yeri",
     "price": null,
     "image": "images/006756.jpg",
     "embIndex": 6756,
-    "confidence": 0.9105371236801147,
-    "addedAt": "2025-12-26T07:09:31+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/790.jpg",
+    "confidence": 0.9287322759628296,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      517,
-      1096,
-      822,
-      1248
+      657,
+      733,
+      820,
+      863
     ]
   },
   {
@@ -112929,18 +112929,18 @@
   },
   {
     "code": "1710724",
-    "name": "IZIZ Keten Tohumu Çiya Tohumu Duru 10x89 Duru 10x89 ma Pa",
+    "name": "Mısır Yağı F N Orkide 5 L",
     "price": null,
     "image": "images/007262.jpg",
     "embIndex": 7262,
-    "confidence": 0.6994160413742065,
-    "addedAt": "2025-08-01T17:20:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/588.jpg",
+    "confidence": 0.9139975905418396,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
     "bbox": [
-      609,
-      671,
-      822,
-      891
+      670,
+      1041,
+      855,
+      1236
     ]
   },
   {
@@ -153265,18 +153265,18 @@
   },
   {
     "code": "1714302",
-    "name": "Sıvı Çamaşır Deterjanı Bingo 31. Renk» Onan koruma g“",
+    "name": "Sıvı Çamaşır Deterjanı Bingo 3 L",
     "price": null,
     "image": "images/009783.jpg",
     "embIndex": 9783,
-    "confidence": 0.8649504780769348,
-    "addedAt": "2026-05-24T08:35:50+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1009.jpg",
+    "confidence": 0.9049472212791443,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      330,
-      1048,
-      500,
-      1220
+      64,
+      1023,
+      260,
+      1191
     ]
   },
   {
@@ -170657,18 +170657,18 @@
   },
   {
     "code": "1710625",
-    "name": "e Meyveli Sos Dr. Oetker",
+    "name": "a Meyveli Sos",
     "price": null,
     "image": "images/010870.jpg",
     "embIndex": 10870,
-    "confidence": 0.882217288017273,
-    "addedAt": "2025-09-22T15:13:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/670.jpg",
+    "confidence": 0.8967042565345764,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
     "bbox": [
-      21,
-      659,
-      145,
-      921
+      620,
+      622,
+      803,
+      800
     ]
   },
   {
@@ -184373,14 +184373,14 @@
     "price": null,
     "image": "images/011727.jpg",
     "embIndex": 11727,
-    "confidence": 0.9260973334312439,
-    "addedAt": "2026-06-21T06:38:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1043.jpg",
+    "confidence": 0.8666329383850098,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
     "bbox": [
-      34,
-      673,
-      152,
-      849
+      186,
+      1053,
+      346,
+      1271
     ]
   },
   {
@@ -192033,18 +192033,18 @@
   },
   {
     "code": "1713488",
-    "name": "Şekerli Vanilin",
+    "name": "sh Şekerli",
     "price": null,
     "image": "images/012206.jpg",
     "embIndex": 12206,
-    "confidence": 0.943045437335968,
-    "addedAt": "2026-02-20T13:29:26+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/866.jpg",
+    "confidence": 0.9011675119400024,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
     "bbox": [
-      269,
-      1116,
-      378,
-      1235
+      314,
+      1108,
+      473,
+      1228
     ]
   },
   {
@@ -205857,18 +205857,18 @@
   },
   {
     "code": "1712993",
-    "name": "Kavrulmuş Kaju Keyifçe 300 g",
+    "name": "Kavrulmuş l , Kaju l l i > z Keyifçe 300 g",
     "price": null,
     "image": "images/013070.jpg",
     "embIndex": 13070,
-    "confidence": 0.8975428938865662,
-    "addedAt": "2025-11-06T09:34:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/727.jpg",
+    "confidence": 0.9269893765449524,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      265,
-      1401,
-      497,
-      1563
+      241,
+      1343,
+      440,
+      1478
     ]
   },
   {
@@ -209809,18 +209809,18 @@
   },
   {
     "code": "1712679",
-    "name": "Jel Bitkisel Çilek Aromalı Dr.Oetker 100 g a Jel",
+    "name": "Bitkisel Jel Çilek Aromalı Dr. Oetker",
     "price": null,
     "image": "images/013317.jpg",
     "embIndex": 13317,
-    "confidence": 0.9397193789482117,
-    "addedAt": "2025-09-22T15:13:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/670.jpg",
+    "confidence": 0.8968759179115295,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
     "bbox": [
-      20,
-      937,
-      164,
-      1181
+      278,
+      862,
+      388,
+      1106
     ]
   },
   {
@@ -209937,18 +209937,18 @@
   },
   {
     "code": "1711310",
-    "name": "nedi Maması Sıgır Etli Whiskas e 14kg o iği LİST",
+    "name": "Kuru Kedi Mamasi Whiskas 1,4 kg",
     "price": null,
     "image": "images/013325.jpg",
     "embIndex": 13325,
-    "confidence": 0.4996742904186249,
-    "addedAt": "2025-03-31T12:04:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/403.jpg",
+    "confidence": 0.8761501908302307,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      439,
-      921,
-      623,
-      1039
+      608,
+      576,
+      820,
+      718
     ]
   },
   {
@@ -218417,18 +218417,18 @@
   },
   {
     "code": "1712173",
-    "name": "Biberiye Lavanta Saç Suyu Mara ii İsorrivel",
+    "name": "Saç Bakım Suyu Mara 200 eği",
     "price": null,
     "image": "images/013855.jpg",
     "embIndex": 13855,
-    "confidence": 0.8892475962638855,
-    "addedAt": "2025-06-22T05:51:47+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/529.jpg",
+    "confidence": 0.6855133175849915,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
     "bbox": [
-      555,
-      796,
-      677,
-      932
+      176,
+      1195,
+      298,
+      1316
     ]
   },
   {
@@ -219537,18 +219537,18 @@
   },
   {
     "code": "1711856",
-    "name": "Çözünebilir Hindiba Detox Kahvesi Moliendo 150 g",
+    "name": "d ui Hindiba Kahvesi",
     "price": null,
     "image": "images/013925.jpg",
     "embIndex": 13925,
-    "confidence": 0.9092172384262085,
-    "addedAt": "2025-06-05T06:50:52+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/506.jpg",
+    "confidence": 0.9030112624168396,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
     "bbox": [
-      224,
-      1142,
-      439,
-      1238
+      808,
+      587,
+      1025,
+      728
     ]
   },
   {
@@ -248952,5 +248952,549 @@
     "confidence": 0.9499140381813049,
     "addedAt": "2026-09-24T23:50:51.622Z",
     "approvedManually": true
+  },
+  {
+    "code": "1715119",
+    "name": "MKAKAOLU, BOT İROR.BİSKÜVİ",
+    "price": null,
+    "image": "images/015763.jpg",
+    "embIndex": 15763,
+    "confidence": 0.9587454199790955,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      58,
+      122,
+      556,
+      543
+    ]
+  },
+  {
+    "code": "1715220",
+    "name": "BEYAZ/PUL ÇİKOLATA",
+    "price": null,
+    "image": "images/015764.jpg",
+    "embIndex": 15764,
+    "confidence": 0.9500166177749634,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      569,
+      124,
+      1055,
+      548
+    ]
+  },
+  {
+    "code": "1714912",
+    "name": "Tereyağı Yörsan 700 g",
+    "price": null,
+    "image": "images/015765.jpg",
+    "embIndex": 15765,
+    "confidence": 0.9374015927314758,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      866,
+      1042,
+      1003,
+      1222
+    ]
+  },
+  {
+    "code": "1713483",
+    "name": "Hamur Kabartma Tozu ii Dr. Oetker",
+    "price": null,
+    "image": "images/015766.jpg",
+    "embIndex": 15766,
+    "confidence": 0.9291649460792542,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      110,
+      1103,
+      308,
+      1230
+    ]
+  },
+  {
+    "code": "1714991",
+    "name": "Pasta Tabanı Keki Baysan 320g ade",
+    "price": null,
+    "image": "images/015767.jpg",
+    "embIndex": 15767,
+    "confidence": 0.909574568271637,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      555,
+      1260,
+      730,
+      1479
+    ]
+  },
+  {
+    "code": "1715037",
+    "name": "Pasta Süsü Çeşitleri Dr. Oetker 10g",
+    "price": null,
+    "image": "images/015768.jpg",
+    "embIndex": 15768,
+    "confidence": 0.7792275547981262,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
+    "bbox": [
+      430,
+      1032,
+      665,
+      1238
+    ]
+  },
+  {
+    "code": "1714936",
+    "name": "Meyveli Yoğurt Süprix Toy Story Danone 90 g iri #5",
+    "price": null,
+    "image": "images/015769.jpg",
+    "embIndex": 15769,
+    "confidence": 0.9244006872177124,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
+    "bbox": [
+      876,
+      816,
+      1013,
+      1043
+    ]
+  },
+  {
+    "code": "1714938",
+    "name": "Yarım Yağlı Üçgen Peynir Karper 16x12,5 g",
+    "price": null,
+    "image": "images/015770.jpg",
+    "embIndex": 15770,
+    "confidence": 0.9146624207496643,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
+    "bbox": [
+      616,
+      575,
+      758,
+      799
+    ]
+  },
+  {
+    "code": "1714426",
+    "name": "PASTÖRİZE MOCHA mi DOSTIL N SR a İSTER Sy e",
+    "price": null,
+    "image": "images/015771.jpg",
+    "embIndex": 15771,
+    "confidence": 0.9024645090103149,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1202.jpg",
+    "bbox": [
+      35,
+      122,
+      533,
+      528
+    ]
+  },
+  {
+    "code": "1713678",
+    "name": "Kedi Kumu iğ Nicky 10 L",
+    "price": null,
+    "image": "images/015772.jpg",
+    "embIndex": 15772,
+    "confidence": 0.9481104016304016,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      231,
+      579,
+      395,
+      717
+    ]
+  },
+  {
+    "code": "1715093",
+    "name": "SIVI BULAŞIK",
+    "price": null,
+    "image": "images/015773.jpg",
+    "embIndex": 15773,
+    "confidence": 0.9456970691680908,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      53,
+      123,
+      523,
+      556
+    ]
+  },
+  {
+    "code": "205279",
+    "name": "Dudak Kalemi",
+    "price": null,
+    "image": "images/015774.jpg",
+    "embIndex": 15774,
+    "confidence": 0.9266245365142822,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      790,
+      1328,
+      889,
+      1475
+    ]
+  },
+  {
+    "code": "1712910",
+    "name": "Kulak Çubuğu",
+    "price": null,
+    "image": "images/015775.jpg",
+    "embIndex": 15775,
+    "confidence": 0.924289882183075,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      240,
+      1326,
+      443,
+      1477
+    ]
+  },
+  {
+    "code": "1715186",
+    "name": "Kuru Kedi Mamasi Patiği 800g",
+    "price": null,
+    "image": "images/015776.jpg",
+    "embIndex": 15776,
+    "confidence": 0.9214386343955994,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      469,
+      733,
+      651,
+      861
+    ]
+  },
+  {
+    "code": "1715211",
+    "name": "EE? Maskara — © ni İla",
+    "price": null,
+    "image": "images/015777.jpg",
+    "embIndex": 15777,
+    "confidence": 0.9170346856117249,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      704,
+      1200,
+      840,
+      1321
+    ]
+  },
+  {
+    "code": "1712909",
+    "name": "Makyaj Temizleme Pedi Naturalove",
+    "price": null,
+    "image": "images/015778.jpg",
+    "embIndex": 15778,
+    "confidence": 0.9132089614868164,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      69,
+      1327,
+      243,
+      1475
+    ]
+  },
+  {
+    "code": "1715105",
+    "name": "Yaş Kedi Maması lb İ Whiskas 340 g aslana EEE",
+    "price": null,
+    "image": "images/015779.jpg",
+    "embIndex": 15779,
+    "confidence": 0.9101793766021729,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      270,
+      727,
+      471,
+      873
+    ]
+  },
+  {
+    "code": "1715229",
+    "name": "Saç Yağı Dabur 180 mi",
+    "price": null,
+    "image": "images/015780.jpg",
+    "embIndex": 15780,
+    "confidence": 0.907459557056427,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      549,
+      1195,
+      700,
+      1316
+    ]
+  },
+  {
+    "code": "1715092",
+    "name": "Konsantre Çamaşır © Yumuşatıcısı , Viking 1440 ml",
+    "price": null,
+    "image": "images/015781.jpg",
+    "embIndex": 15781,
+    "confidence": 0.8675246834754944,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      845,
+      875,
+      1021,
+      1040
+    ]
+  },
+  {
+    "code": "1714016",
+    "name": "Saç Maskesi Mara 25 mi",
+    "price": null,
+    "image": "images/015782.jpg",
+    "embIndex": 15782,
+    "confidence": 0.8554106950759888,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      421,
+      1195,
+      549,
+      1310
+    ]
+  },
+  {
+    "code": "1715212",
+    "name": "Bize)",
+    "price": null,
+    "image": "images/015783.jpg",
+    "embIndex": 15783,
+    "confidence": 0.8480075597763062,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      841,
+      1205,
+      1004,
+      1321
+    ]
+  },
+  {
+    "code": "1715213",
+    "name": "Toz Allık",
+    "price": null,
+    "image": "images/015784.jpg",
+    "embIndex": 15784,
+    "confidence": 0.5222558379173279,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      548,
+      1331,
+      640,
+      1478
+    ]
+  },
+  {
+    "code": "1715214",
+    "name": "Makyaj , Sabitleyici Sprey | 2 ml",
+    "price": null,
+    "image": "images/015785.jpg",
+    "embIndex": 15785,
+    "confidence": 0.49315348267555237,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1201.jpg",
+    "bbox": [
+      643,
+      1328,
+      774,
+      1474
+    ]
+  },
+  {
+    "code": "1715006",
+    "name": "i Filtre Kahve i Jacobs 200 g",
+    "price": null,
+    "image": "images/015786.jpg",
+    "embIndex": 15786,
+    "confidence": 0.9392583966255188,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      270,
+      776,
+      436,
+      906
+    ]
+  },
+  {
+    "code": "1715156",
+    "name": "Soslu Cips Fıstık Master Crunch",
+    "price": null,
+    "image": "images/015787.jpg",
+    "embIndex": 15787,
+    "confidence": 0.9314142465591431,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      801,
+      1349,
+      1023,
+      1483
+    ]
+  },
+  {
+    "code": "1714670",
+    "name": "Soğuk Kahve Karamel Macchiato , Vip 250 ml",
+    "price": null,
+    "image": "images/015788.jpg",
+    "embIndex": 15788,
+    "confidence": 0.9282559156417847,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      441,
+      770,
+      638,
+      910
+    ]
+  },
+  {
+    "code": "1715143",
+    "name": "Vanilya Aromalı Gofret Miskos 1 kg N KY rt DR",
+    "price": null,
+    "image": "images/015789.jpg",
+    "embIndex": 15789,
+    "confidence": 0.927177906036377,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      192,
+      933,
+      336,
+      1168
+    ]
+  },
+  {
+    "code": "1715053",
+    "name": "Muzlu Kremalı Kakaolu Bisküvi Eti Petit Beurre",
+    "price": null,
+    "image": "images/015790.jpg",
+    "embIndex": 15790,
+    "confidence": 0.925247848033905,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      342,
+      935,
+      488,
+      1154
+    ]
+  },
+  {
+    "code": "1715002",
+    "name": "ÇEKİRDEK KAHVE MOLİENDO 250 g",
+    "price": null,
+    "image": "images/015791.jpg",
+    "embIndex": 15791,
+    "confidence": 0.9065164923667908,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      85,
+      120,
+      484,
+      560
+    ]
+  },
+  {
+    "code": "1715032",
+    "name": "Kırmızı Meyve & Vanilya Aromalı Ube Latte Cafe Crown 8g “diğ",
+    "price": null,
+    "image": "images/015792.jpg",
+    "embIndex": 15792,
+    "confidence": 0.9047842621803284,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      634,
+      751,
+      813,
+      912
+    ]
+  },
+  {
+    "code": "1714794",
+    "name": "lead ww, Çözünebilir Kahve eli 14 Nescafe 200g eca ai",
+    "price": null,
+    "image": "images/015793.jpg",
+    "embIndex": 15793,
+    "confidence": 0.9028734564781189,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      584,
+      610,
+      817,
+      747
+    ]
+  },
+  {
+    "code": "1715175",
+    "name": "Protein Bar Fellas 50g",
+    "price": null,
+    "image": "images/015794.jpg",
+    "embIndex": 15794,
+    "confidence": 0.8993418216705322,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      756,
+      1152,
+      882,
+      1347
+    ]
+  },
+  {
+    "code": "1715157",
+    "name": "Beyaz Leblebi ei Master Nut 8 Nut",
+    "price": null,
+    "image": "images/015795.jpg",
+    "embIndex": 15795,
+    "confidence": 0.8952797055244446,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      609,
+      1353,
+      802,
+      1482
+    ]
+  },
+  {
+    "code": "1715115",
+    "name": "Antep Fıstıklı Baklava Güllüoğlu 80 g",
+    "price": null,
+    "image": "images/015796.jpg",
+    "embIndex": 15796,
+    "confidence": 0.8849155306816101,
+    "addedAt": "2026-09-26T12:57:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1200.jpg",
+    "bbox": [
+      489,
+      933,
+      653,
+      1163
+    ]
   }
 ]
