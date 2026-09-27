@@ -4,6 +4,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BİMKOD — Onay Ekranı</title>
+<script>
+// ==================== Basit şifre kapısı ====================
+// ÖNEMLİ SINIR: Bu repo/site PUBLIC olduğu için bu GERÇEK bir güvenlik önlemi
+// DEĞİL — kararlı biri sayfa kaynağından hash'i görüp deneme-yanılma ile
+// aşabilir, ya da data/ ve pipeline/ klasörlerindeki dosyalara doğrudan link
+// ile ulaşabilir (onlar zaten public). Bunun tek amacı: rastgele linke denk
+// gelen birinin admin panelini kurcalamasını engellemek. Gerçek koruma zaten
+// var olan şeyde: yazma işlemleri (onayla/sil) GitHub kişisel erişim token'ı
+// gerektiriyor, o olmadan hiçbir değişiklik yapılamıyor.
+(function () {
+  var ADMIN_PASSWORD_HASH = "99b58b7c885d450157c69781fc50435bb4c831e9284398387b43427ca483f8b4";
+
+  function toHex(buf) {
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+  async function checkAuth() {
+    if (sessionStorage.getItem("bimkod_admin_ok") === "1") return true;
+    var pw = prompt("Admin şifresi:");
+    if (pw === null) return false;
+    var digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+    if (toHex(digest) === ADMIN_PASSWORD_HASH) {
+      sessionStorage.setItem("bimkod_admin_ok", "1");
+      return true;
+    }
+    return false;
+  }
+
+  document.documentElement.style.visibility = "hidden";
+  checkAuth().then(function (ok) {
+    if (!ok) {
+      document.documentElement.innerHTML =
+        "<body style=\"font-family:sans-serif; text-align:center; margin-top:120px; color:#B96666;\">" +
+        "<h2>🔒 Yetkisiz erişim</h2><p>Bu sayfayı görüntülemek için doğru şifre gerekiyor. Yenilemek için sayfayı tekrar aç.</p>" +
+        "</body>";
+    }
+    document.documentElement.style.visibility = "visible";
+  });
+})();
+</script>
 <style>
   :root{
     --bg:#FAF9F5; --surface:#FFFFFF; --border:#E8E4DA; --text:#2C2A26;
