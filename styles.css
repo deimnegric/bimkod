@@ -2,19 +2,25 @@
   --bg: #F4F6F8;
   --surface: #FFFFFF;
   --border: #E3E7EC;
+
   --text: #171B21;
   --text-soft: #667085;
+
   --navy: #16324A;
-  --navy-soft: #0D2033;
-  --navy-dark: #9BAFBF;
-  --blue: #16324A;      /* eski kodla uyum için "blue" adı korunuyor, artık lacivert */
-  --blue-soft: #0D2033;
-  --blue-dark: #9BAFBF;
+  --navy-soft: #E7EDF2;
+  --navy-dark: #0D2033;
+
+  --blue: #16324A;
+  --blue-soft: #E7EDF2;
+  --blue-dark: #0D2033;
+
   --red: #D6293E;
   --red-soft: #FBE9EC;
   --red-dark: #A11F2F;
+
   --green: #2F855A;
   --green-soft: #E6F4EC;
+
   --radius: 14px;
   --shadow: 0 2px 10px rgba(23,27,33,0.06);
   --shadow-lg: 0 12px 32px rgba(23,27,33,0.14);
