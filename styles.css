@@ -133,7 +133,7 @@ body{
   transition:transform .12s ease, opacity .12s ease;
 }
 .scan-btn:active{ transform:scale(0.97); }
-.scan-btn--blue{ background:var(--blue-soft); color:var(--blue-dark); }
+.scan-btn--blue{ background:var(--blue-dark); color:var(--blue-soft); }
 .scan-btn--red{ background:var(--red-soft); color:var(--red-dark); }
 
 /* ---------- Main ---------- */
