@@ -124,5 +124,55 @@
   <script type="module" src="firebase-config.js"></script>
   <!-- Transformers.js: tarayıcıda CLIP embedding çıkarımı (coldstart yok, statik hosting) -->
   <script type="module" src="app.js"></script>
+  <!-- ===== BİMKOD: ziyaretçi sayacı ===== -->
+<!-- 1) index.html'de </body>'den hemen önce, sayfanın en altına yapıştır -->
+<footer id="ziyaretciFooter" style="text-align:center;padding:18px 0;margin-top:24px;border-top:1px solid rgba(128,128,128,.25);font:800 11px system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#64748b;user-select:none">
+  <span style="display:inline-flex;align-items:center;gap:14px;padding:8px 16px;border-radius:999px;border:1px solid rgba(128,128,128,.25)">
+    <span style="display:inline-flex;align-items:center;gap:7px">
+      <span style="width:9px;height:9px;border-radius:50%;background:#10b981;box-shadow:0 0 0 0 rgba(16,185,129,.6);animation:zvPulse 1.6s infinite"></span>
+      Canlı: <b id="zvCanli">–</b>
+    </span>
+    <span style="width:1px;height:14px;background:rgba(128,128,128,.3)"></span>
+    <span>Toplam: <b id="zvToplam">–</b></span>
+  </span>
+</footer>
+<style>@keyframes zvPulse{70%{box-shadow:0 0 0 8px rgba(16,185,129,0)}100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}}</style>
+
+<script type="module">
+import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, onDisconnect, runTransaction }
+  from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+// Kampanya ile AYNI Firebase projesi (sayaçlar ziyaretci/bimkod altında ayrı tutulur)
+const cfg = {
+  apiKey: "AIzaSyCbx9rpPH3IGpdfgn-79GLL7o0Aa2ovAzw",
+  authDomain: "kampanya-80c2a.firebaseapp.com",
+  databaseURL: "https://kampanya-80c2a-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "kampanya-80c2a",
+  appId: "1:665592400645:web:4ebc93aa4060e76862c56c"
+};
+// BİMKOD'da zaten bir Firebase app varsa onu kullan, yoksa "zvApp" adıyla ayrı başlat
+const app = getApps().find(a => a.name === "zvApp") || initializeApp(cfg, "zvApp");
+const db = getDatabase(app);
+
+const SITE = 'bimkod';
+const base = 'ziyaretci/' + SITE;
+const fmt = n => Number(n || 0).toLocaleString('tr-TR');
+try {
+  const sid = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  onValue(ref(db, '.info/connected'), s => {
+    if (s.val() === true) {
+      const me = ref(db, base + '/canli/' + sid);
+      onDisconnect(me).remove().then(() => set(me, Date.now()));
+    }
+  });
+  onValue(ref(db, base + '/canli'), s => { document.getElementById('zvCanli').textContent = fmt(s.size); });
+  if (!sessionStorage.getItem('zv_' + SITE)) {
+    sessionStorage.setItem('zv_' + SITE, '1');
+    runTransaction(ref(db, base + '/toplam'), c => (c || 0) + 1).catch(() => {});
+  }
+  onValue(ref(db, base + '/toplam'), s => { document.getElementById('zvToplam').textContent = fmt(s.val()); });
+} catch (e) { console.warn('Sayaç başlatılamadı', e); }
+</script>
 </body>
 </html>
