@@ -179,13 +179,13 @@
 
   <div class="panel" id="workerRequestsPanel">
     <h3 style="margin:0 0 8px; font-size:14px;">👷 Çalışan İsteği</h3>
-    <p class="sub" style="margin:0;">
-      Sitedeki "Aradığınız ürünü bulamadınız mı?" formundan gelen bildirimler burada,
-      OCR kuyruğundaki kartlarla aynı görünümde (büyük görsel + Kod/İsim + Onayla/Reddet)
-      listelenecek. <b>Henüz Firebase bağlantısı kurulmadı</b> — form şu an sadece
-      kullanıcıya "alındı" gösteriyor, hiçbir yere kaydetmiyor. Firebase projesine
-      karar verilince buraya bağlanacak.
+    <p class="sub" style="margin:0 0 10px;">
+      Sitedeki "Aradığınız ürünü bulamadınız mı?" formundan gelen bildirimler (Firebase).
+      Onaylarsan görsel + kod + isimle doğrudan sisteme (GitHub) eklenir. Reddedersen kuyruktan kalkar.
     </p>
+    <button class="btn-primary" id="loadWorkerRequestsBtn">Bekleyen İstekleri Yükle</button>
+    <div id="workerRequestsStatus" style="font-size:12px; color:var(--text-soft); margin:8px 0;"></div>
+    <div id="workerRequestsList"></div>
   </div>
 
   <div class="panel" id="liveSearchPanel">
@@ -268,6 +268,22 @@
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+import {
+  getFirestore, collection, query, where, getDocs, updateDoc, doc,
+} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
+
+// Not: BİMKOD'un kendi, ayrı Firebase projesi (bkz. firebase-config.js'teki not).
+const firebaseApp = initializeApp({
+  apiKey: "AIzaSyDP_l3Ef4ba9N9bFWlwP2ACVIkvfsiHyzs",
+  authDomain: "bimkod-8afef.firebaseapp.com",
+  databaseURL: "https://bimkod-8afef-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "bimkod-8afef",
+  storageBucket: "bimkod-8afef.firebasestorage.app",
+  messagingSenderId: "556797618371",
+  appId: "1:556797618371:web:82a6de4f45498cc61c9a76",
+});
+const firestoreDb = getFirestore(firebaseApp);
 
 const el = {
   repo: document.getElementById("repoInput"),
@@ -924,6 +940,86 @@ async function fastReject() {
 el.fastApproveBtn.addEventListener("click", fastApprove);
 el.fastRejectBtn.addEventListener("click", fastReject);
 el.fastExitBtn.addEventListener("click", exitFastMode);
+
+// ==================== Çalışan İsteği (Firebase pending_reports) ====================
+document.getElementById("loadWorkerRequestsBtn").addEventListener("click", loadWorkerRequests);
+
+async function loadWorkerRequests() {
+  const statusEl = document.getElementById("workerRequestsStatus");
+  const listEl = document.getElementById("workerRequestsList");
+  statusEl.textContent = "Yükleniyor…";
+  try {
+    const q = query(collection(firestoreDb, "pending_reports"), where("status", "==", "pending"));
+    const snap = await getDocs(q);
+    const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    if (!items.length) {
+      statusEl.textContent = "Bekleyen istek yok.";
+      listEl.innerHTML = "";
+      return;
+    }
+    statusEl.textContent = `${items.length} bekleyen istek.`;
+    listEl.innerHTML = items.map((item) => `
+      <div class="card" data-id="${item.id}">
+        ${item.imageUrl ? `<img src="${item.imageUrl}" alt="bildirim">` : `<div style="width:180px;height:220px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
+        <div class="card-body">
+          <label>Kod</label>
+          <input type="text" class="wr-code" placeholder="örn. 1714999">
+          <label>İsim</label>
+          <input type="text" class="wr-name" value="${(item.name || "").replace(/"/g, "&quot;")}">
+          <div class="card-actions">
+            <button class="btn-approve wr-approve">Onayla ve Ekle</button>
+            <button class="btn-reject wr-reject">Reddet</button>
+          </div>
+          <div class="wr-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
+        </div>
+      </div>
+    `).join("");
+
+    [...listEl.children].forEach((card, i) => {
+      const item = items[i];
+      card.querySelector(".wr-approve").addEventListener("click", () => approveWorkerRequest(item, card));
+      card.querySelector(".wr-reject").addEventListener("click", () => rejectWorkerRequest(item, card));
+    });
+  } catch (err) {
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+}
+
+async function approveWorkerRequest(item, card) {
+  const code = card.querySelector(".wr-code").value.trim();
+  const name = card.querySelector(".wr-name").value.trim();
+  const statusEl = card.querySelector(".wr-status");
+  if (!code || !name) { statusEl.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
+  if (!item.imageUrl) { statusEl.textContent = "⚠️ Bu istekte görsel yok, elle ekleyemeyiz."; return; }
+
+  card.classList.add("done");
+  try {
+    statusEl.textContent = "Görsel indiriliyor…";
+    const imageBase64 = await fetchImageAsBase64(item.imageUrl);
+    await commitNewProduct({
+      code, name, price: null, confidence: null,
+      embedSource: item.imageUrl, imageBase64,
+      onProgress: (msg) => { statusEl.textContent = msg; },
+    });
+    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "approved" });
+    card.remove();
+  } catch (err) {
+    card.classList.remove("done");
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+}
+
+async function rejectWorkerRequest(item, card) {
+  const statusEl = card.querySelector(".wr-status");
+  card.classList.add("done");
+  try {
+    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "rejected" });
+    card.remove();
+  } catch (err) {
+    card.classList.remove("done");
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+}
 
 // ==================== Canlı Ürünlerde Ara + Sil & Yeniden Tara ====================
 let liveProducts = null; // data/products.json (ilk aramada yüklenip belllekte tutulur)

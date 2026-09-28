@@ -8,6 +8,7 @@
 // ============================================================
 
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
+import { submitProductReport } from "./firebase-config.js";
 
 const PAGE_SIZE = 10;
 const DATA_VERSION_KEY = "bimkod_data_version";
@@ -70,7 +71,7 @@ function renderNewArrivals() {
 
   el.newArrivals.hidden = false;
   el.newArrivalsList.innerHTML = recent.map((p) => `
-    <div class="new-arrival-card" data-code="${p.code}">
+    <div class="new-arrival-card" data-code="${escapeHtml(p.code)}">
       <span class="badge-new">YENİ</span>
       <button class="share-btn share-btn--card" data-share aria-label="Paylaş">
         <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
@@ -78,8 +79,8 @@ function renderNewArrivals() {
           <line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/>
         </svg>
       </button>
-      <div class="thumb" data-thumb>${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : ""}</div>
-      <div class="name">${p.name}</div>
+      <div class="thumb" data-thumb>${p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">` : ""}</div>
+      <div class="name">${escapeHtml(p.name)}</div>
     </div>
   `).join("");
 
@@ -177,16 +178,29 @@ function hideStatus() {
 }
 
 // ---------- Render ----------
+// OCR'dan gelen isimlerde ara sıra < > " gibi karakterler sızabiliyor (bozuk
+// karakterlerin OCR tarafından yanlış okunmasından). Bunlar escape edilmeden
+// innerHTML'e basılırsa HTML yapısını kırıp o karttan sonraki HER ŞEYİN
+// içine "yutulmasına" sebep olabiliyor -> tek bir dev kart + altında üst üste
+// binen diğer kartlar görüntüsü. Bu yüzden HER ürün adı/kodu innerHTML'e
+// girmeden önce mutlaka escape edilmeli.
+function escapeHtml(str) {
+  return String(str ?? "").replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  }[c]));
+}
+
 function highlightMatch(name, query) {
-  if (!query) return name;
-  const normName = trNormalize(name);
+  const safeName = escapeHtml(name);
+  if (!query) return safeName;
+  const normName = trNormalize(safeName);
   const normQuery = trNormalize(query);
   const idx = normName.indexOf(normQuery);
-  if (idx === -1) return name;
+  if (idx === -1) return safeName;
   return (
-    name.slice(0, idx) +
-    "<mark>" + name.slice(idx, idx + query.length) + "</mark>" +
-    name.slice(idx + query.length)
+    safeName.slice(0, idx) +
+    "<mark>" + safeName.slice(idx, idx + query.length) + "</mark>" +
+    safeName.slice(idx + query.length)
   );
 }
 
@@ -228,15 +242,15 @@ function render() {
       : (isVisual ? "Benzer ürün bulunamadı" : "Sonuç bulunamadı");
 
   el.resultsList.innerHTML = pageItems.map((p) => `
-    <div class="result-row" data-code="${p.code}">
+    <div class="result-row" data-code="${escapeHtml(p.code)}">
       <div class="result-thumb" data-thumb data-src="${p.image || ""}">
-        ${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy">` : "Görsel"}
+        ${p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">` : "Görsel"}
       </div>
       <div class="result-content">
-        <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? p.name : highlightMatch(p.name, state.query)}</div>
+        <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? escapeHtml(p.name) : highlightMatch(p.name, state.query)}</div>
         <div class="result-meta">
-          <span class="result-code">${p.code}</span>
-          ${p.price ? `<span class="result-price">${p.price} ₺</span>` : ""}
+          <span class="result-code">${escapeHtml(p.code)}</span>
+          ${p.price ? `<span class="result-price">${escapeHtml(p.price)} ₺</span>` : ""}
           <button class="share-btn" data-share aria-label="Paylaş">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
@@ -488,15 +502,11 @@ function showToast(msg) {
 
 // ==================== Ürün Bildirim Formu ====================
 // Kullanıcı kodunu bulamadığı bir ürünü (görsel + varsa isim) bildirebiliyor.
-// TODO(Firebase): Şu an gönderim sadece yerel bir onay mesajı gösteriyor,
-// hiçbir yere kaydetmiyor. Firebase projesi hazır olunca:
-//   1) Burada gerçek bir "pending_reports" koleksiyonuna (görsel base64/Storage
-//      URL + isim + tarih) yazan bir SDK çağrısı eklenecek.
-//   2) admin.html'e aynı koleksiyonu okuyup "Çalışan İsteği" bölümünde
-//      (ocr_review.json kartlarıyla aynı görünümde: büyük görsel + kod/isim
-//      kutucukları + Onayla/Reddet) listeleyen bir bölüm eklenecek.
-// Public sitede GitHub yazma token'ı ASLA bulunamayacağı için (güvenlik açığı
-// olur), bu akış GitHub API değil Firebase üzerinden gidecek.
+// Gönderim firebase-config.js'teki submitProductReport() ile Firebase'in
+// "pending_reports" koleksiyonuna gidiyor. admin.html aynı koleksiyonu okuyup
+// "Çalışan İsteği" panelinde listeliyor. Public sitede GitHub yazma token'ı
+// ASLA bulunamayacağı için (güvenlik açığı olur) bu akış GitHub API değil
+// Firebase üzerinden gidiyor.
 const reportModal = document.getElementById("reportModal");
 const reportStatus = document.getElementById("reportStatus");
 
@@ -520,18 +530,22 @@ document.getElementById("reportSubmitBtn").addEventListener("click", async () =>
   }
 
   reportStatus.textContent = "Gönderiliyor…";
+  const submitBtn = document.getElementById("reportSubmitBtn");
+  submitBtn.disabled = true;
 
-  // TODO(Firebase): gerçek gönderim burada olacak. Şimdilik sadece
-  // kullanıcıya "alındı" hissi veriyoruz.
-  await new Promise((r) => setTimeout(r, 500));
-
-  reportStatus.textContent = "✅ Alındı, teşekkürler! Ekibimiz en kısa sürede inceleyip ekleyecek.";
-  setTimeout(() => {
-    reportModal.hidden = true;
-    reportStatus.textContent = "";
-    document.getElementById("reportImageInput").value = "";
-    document.getElementById("reportNameInput").value = "";
-  }, 1900);
+  try {
+    await submitProductReport({ imageFile: file, name });
+    reportStatus.textContent = "✅ Alındı, teşekkürler! Ekibimiz en kısa sürede inceleyip ekleyecek.";
+    setTimeout(() => {
+      reportModal.hidden = true;
+      reportStatus.textContent = "";
+      document.getElementById("reportImageInput").value = "";
+      document.getElementById("reportNameInput").value = "";
+    }, 1900);
+  } catch (err) {
+    reportStatus.textContent = "❌ Gönderilemedi: " + err.message;
+  }
+  submitBtn.disabled = false;
 });
 
 // ---------- Service worker kaydı ----------
