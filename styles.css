@@ -56,9 +56,9 @@ body{
 }
 .brand img{ height:48px; width:320px; }
 .brand-logo{
-  height:48px;
+  height:68px;
   width:auto;
-  max-width:320px;
+  max-width:450px;
   object-fit:contain;
 }
 .brand-text{
