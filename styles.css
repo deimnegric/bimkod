@@ -54,11 +54,11 @@ body{
   gap:9px;
   margin-bottom:14px;
 }
-.brand img{ height:30px; width:auto; }
+.brand img{ height:48px; width:320px; }
 .brand-logo{
-  height:38px;
+  height:48px;
   width:auto;
-  max-width:220px;
+  max-width:320px;
   object-fit:contain;
 }
 .brand-text{
