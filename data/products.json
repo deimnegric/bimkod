@@ -19114,18 +19114,18 @@
   },
   {
     "code": "1622250",
-    "name": "Lüx Kapitoneli Vi pa v im",
+    "name": "Lüx & Kapitoneli Yastık",
     "price": null,
     "image": "images/001216.jpg",
     "embIndex": 1216,
-    "confidence": 0.7011827230453491,
-    "addedAt": "2025-09-26T13:44:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/674.jpg",
+    "confidence": 0.8888403177261353,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      247,
-      715,
-      531,
-      832
+      350,
+      848,
+      576,
+      999
     ]
   },
   {
@@ -28325,18 +28325,18 @@
   },
   {
     "code": "1641637",
-    "name": "em; ov ş Nakışlı Havlu",
+    "name": "EL Havlusu Yüz Havlusu",
     "price": null,
     "image": "images/001807.jpg",
     "embIndex": 1807,
-    "confidence": 0.6729347109794617,
-    "addedAt": "2024-12-14T12:21:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/264.jpg",
+    "confidence": 0.5299904942512512,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      595,
-      573,
-      844,
-      662
+      614,
+      607,
+      864,
+      844
     ]
   },
   {
@@ -30987,18 +30987,18 @@
   },
   {
     "code": "1646781",
-    "name": "PARTHENON EVCİL HAYVAN TAŞIMA ARABASI",
+    "name": "PARTHENON Evcil. o JUST HAYVAN ARABASI",
     "price": null,
     "image": "images/001976.jpg",
     "embIndex": 1976,
-    "confidence": 0.931904673576355,
-    "addedAt": "2026-04-13T10:27:52+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/938.jpg",
+    "confidence": 0.9256836175918579,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
     "bbox": [
-      606,
-      975,
-      832,
-      1244
+      55,
+      140,
+      443,
+      357
     ]
   },
   {
@@ -33327,18 +33327,18 @@
   },
   {
     "code": "1643367",
-    "name": "ÇAYDANLIK EMAYE KIZARTMA . e gi TENCERESİ",
+    "name": "Çaydanlık",
     "price": null,
     "image": "images/002124.jpg",
     "embIndex": 2124,
-    "confidence": 0.4796341359615326,
-    "addedAt": "2025-05-31T10:46:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/499.jpg",
+    "confidence": 0.4563732147216797,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
     "bbox": [
-      0,
-      101,
-      825,
-      468
+      62,
+      488,
+      285,
+      573
     ]
   },
   {
@@ -33503,18 +33503,18 @@
   },
   {
     "code": "1642548",
-    "name": "MEAN ras rirerma Gana",
+    "name": "ERKEK PATLI PİJAMA TAKIMI",
     "price": null,
     "image": "images/002135.jpg",
     "embIndex": 2135,
-    "confidence": 0.9150110483169556,
-    "addedAt": "2025-03-18T17:51:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/385.jpg",
+    "confidence": 0.8767167329788208,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      688,
-      124,
-      824,
-      402
+      48,
+      129,
+      451,
+      572
     ]
   },
   {
@@ -33551,18 +33551,18 @@
   },
   {
     "code": "1641632",
-    "name": "DAGI Tek Kişilik Sm Geçirmez Alez",
+    "name": "Tek Kişilik ' Çift Kişilik Sıvı Geçirmez Alez ' Sıvı Geçirmez Alez Gine) Gm) Gi",
     "price": null,
     "image": "images/002138.jpg",
     "embIndex": 2138,
-    "confidence": 0.9360060691833496,
-    "addedAt": "2025-09-26T13:44:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/674.jpg",
+    "confidence": 0.9417663812637329,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      13,
-      606,
-      126,
-      788
+      45,
+      601,
+      318,
+      837
     ]
   },
   {
@@ -33647,18 +33647,18 @@
   },
   {
     "code": "1646060",
-    "name": "3'lü Kapaklı | Saklama Kabı Set",
+    "name": "i Kapaklı Kase Seti",
     "price": null,
     "image": "images/002144.jpg",
     "embIndex": 2144,
-    "confidence": 0.9108990430831909,
-    "addedAt": "2026-03-25T12:34:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/908.jpg",
+    "confidence": 0.94245445728302,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      647,
-      845,
-      826,
-      983
+      393,
+      1004,
+      611,
+      1190
     ]
   },
   {
@@ -46161,18 +46161,18 @@
   },
   {
     "code": "1635856",
-    "name": "İemmiamamnaka? J Wondero Otomatik Temizlik Seti",
+    "name": "GATA Werder G5 Mu",
     "price": null,
     "image": "images/002948.jpg",
     "embIndex": 2948,
-    "confidence": 0.9172037839889526,
-    "addedAt": "2025-10-17T15:55:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/703.jpg",
+    "confidence": 0.8989480137825012,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      15,
-      1402,
-      315,
-      1570
+      36,
+      1189,
+      352,
+      1359
     ]
   },
   {
@@ -52324,18 +52324,18 @@
   },
   {
     "code": "1642409",
-    "name": "Okyanus px",
+    "name": "Okyanus Banyo Seti Blm em",
     "price": null,
     "image": "images/003345.jpg",
     "embIndex": 3345,
-    "confidence": 0.9319431185722351,
-    "addedAt": "2026-01-02T08:35:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/805.jpg",
+    "confidence": 0.9090867638587952,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      35,
-      923,
-      248,
-      1270
+      268,
+      1359,
+      473,
+      1483
     ]
   },
   {
@@ -52388,18 +52388,18 @@
   },
   {
     "code": "1628664",
-    "name": "Premium Ütü Masası 240 ka ama Kapasitesi Aluminyum Kurutmalık * Kapalı Kanum Ölçüleri: -61x107475 cm, 2 Açık Konum Ölçüler: -61x491x127 cm yı Asma Kapasiesi; 32",
+    "name": "Alüminyum Kurutmalık",
     "price": null,
     "image": "images/003349.jpg",
     "embIndex": 3349,
-    "confidence": 0.5672315955162048,
-    "addedAt": "2025-06-17T05:27:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/527.jpg",
+    "confidence": 0.8761593699455261,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      4,
-      105,
-      821,
-      481
+      783,
+      1088,
+      1018,
+      1346
     ]
   },
   {
@@ -52436,18 +52436,18 @@
   },
   {
     "code": "1627251",
-    "name": "a, o Aluminyum Kurutmalık dk",
+    "name": "Te Premium Ütü Masası",
     "price": null,
     "image": "images/003352.jpg",
     "embIndex": 3352,
-    "confidence": 0.5672313570976257,
-    "addedAt": "2025-06-17T05:27:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/527.jpg",
+    "confidence": 0.9122963547706604,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      4,
-      105,
-      821,
-      481
+      615,
+      1004,
+      779,
+      1356
     ]
   },
   {
@@ -57554,18 +57554,18 @@
   },
   {
     "code": "1633812",
-    "name": "Koltuk Örtüsü ı",
+    "name": "ME SİK vet önüsü",
     "price": null,
     "image": "images/003685.jpg",
     "embIndex": 3685,
-    "confidence": 0.8982882499694824,
-    "addedAt": "2025-06-17T05:27:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/526.jpg",
+    "confidence": 0.9034066796302795,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      329,
-      692,
-      504,
-      826
+      573,
+      843,
+      776,
+      970
     ]
   },
   {
@@ -93153,18 +93153,18 @@
   },
   {
     "code": "1646288",
-    "name": ") Swiss Crystal Sahan",
+    "name": "ul #wiaoryetci TT TT e Tencere G AN YAPIŞMAZ YUZEY | 4 ( lı “ f 3",
     "price": null,
     "image": "images/006025.jpg",
     "embIndex": 6025,
-    "confidence": 0.7753191590309143,
-    "addedAt": "2026-06-04T11:50:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1014.jpg",
+    "confidence": 0.866316556930542,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
     "bbox": [
-      339,
-      1180,
-      508,
-      1242
+      534,
+      1088,
+      1041,
+      1458
     ]
   },
   {
@@ -94337,18 +94337,18 @@
   },
   {
     "code": "1632788",
-    "name": "Çok Amaç lı Sepet",
+    "name": "Çok Amaçlı Sepet izm",
     "price": null,
     "image": "images/006099.jpg",
     "embIndex": 6099,
-    "confidence": 0.9516919851303101,
-    "addedAt": "2025-02-13T10:31:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/331.jpg",
+    "confidence": 0.9127930402755737,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      272,
-      841,
-      536,
-      978
+      678,
+      1363,
+      879,
+      1477
     ]
   },
   {
@@ -99489,18 +99489,18 @@
   },
   {
     "code": "1645545",
-    "name": "Diamond Ayaklı “4 Kahve Yanı Su Bardağı gi -170 cc 4",
+    "name": "W/ ”p Paşabahçe vir araf 1 GASGAS Diamond Ayaklı Yahuo Yanı Su Dardağı",
     "price": null,
     "image": "images/006421.jpg",
     "embIndex": 6421,
-    "confidence": 0.9265048503875732,
-    "addedAt": "2026-03-25T12:34:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/912.jpg",
+    "confidence": 0.44079598784446716,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
     "bbox": [
-      558,
-      634,
-      813,
-      782
+      844,
+      114,
+      1028,
+      171
     ]
   },
   {
@@ -99553,18 +99553,18 @@
   },
   {
     "code": "1642565",
-    "name": "ıp Ga) Oi Oem 1632717 GE 164513 379.“ Gi > 319.",
+    "name": "m 2 ÖNEM Ote 0) oi ufak bçap va 2 il 3aŞ",
     "price": null,
     "image": "images/006425.jpg",
     "embIndex": 6425,
-    "confidence": 0.9067987203598022,
-    "addedAt": "2026-03-25T12:34:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/912.jpg",
+    "confidence": 0.7804959416389465,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
     "bbox": [
-      98,
-      730,
-      487,
-      934
+      278,
+      910,
+      706,
+      1087
     ]
   },
   {
@@ -102945,18 +102945,18 @@
   },
   {
     "code": "37383940",
-    "name": "Kadın < gi ii kel",
+    "name": "Fiyonk Aksesuarlı Terlik",
     "price": null,
     "image": "images/006637.jpg",
     "embIndex": 6637,
-    "confidence": 0.8681288957595825,
-    "addedAt": "2024-08-02T08:55:18+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/56.jpg",
+    "confidence": 0.8943767547607422,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      74,
-      683,
-      268,
-      775
+      695,
+      1295,
+      820,
+      1482
     ]
   },
   {
@@ -114257,18 +114257,18 @@
   },
   {
     "code": "1630991",
-    "name": "Patates İÇ Dilimleyici e",
+    "name": "Okyanus Patates Dilimleyici o",
     "price": null,
     "image": "images/007345.jpg",
     "embIndex": 7345,
-    "confidence": 0.8862324953079224,
-    "addedAt": "2025-01-17T15:13:25+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/309.jpg",
+    "confidence": 0.8644111752510071,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      49,
-      1011,
-      222,
-      1107
+      629,
+      823,
+      773,
+      1004
     ]
   },
   {
@@ -156113,18 +156113,18 @@
   },
   {
     "code": "1645544",
-    "name": "Diamond  Yinsatakce. Ayaklı b Su Bardağı 219: 245 cr Bp az",
+    "name": "Diamond Ayaklı (o Su Bardağı 2990 A giL/ser",
     "price": null,
     "image": "images/009961.jpg",
     "embIndex": 9961,
-    "confidence": 0.9069567322731018,
-    "addedAt": "2026-03-25T12:34:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/912.jpg",
+    "confidence": 0.8122115135192871,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
     "bbox": [
-      649,
-      394,
-      823,
-      614
+      825,
+      398,
+      1033,
+      675
     ]
   },
   {
@@ -169505,18 +169505,18 @@
   },
   {
     "code": "140260",
-    "name": "etek",
+    "name": "Blackout Süet Fon Perde",
     "price": null,
     "image": "images/010798.jpg",
     "embIndex": 10798,
-    "confidence": 0.8705313205718994,
-    "addedAt": "2024-08-02T08:55:18+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/56.jpg",
+    "confidence": 0.8889545202255249,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      280,
-      469,
-      520,
-      685
+      776,
+      843,
+      1013,
+      981
     ]
   },
   {
@@ -183441,18 +183441,18 @@
   },
   {
     "code": "140180",
-    "name": "Pvc Masa Örtüsü",
+    "name": "Masa Örtüsü",
     "price": null,
     "image": "images/011669.jpg",
     "embIndex": 11669,
-    "confidence": 0.947172224521637,
-    "addedAt": "2025-05-31T10:46:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/502.jpg",
+    "confidence": 0.9086852669715881,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      26,
-      1079,
-      390,
-      1245
+      772,
+      984,
+      1047,
+      1095
     ]
   },
   {
@@ -188113,18 +188113,18 @@
   },
   {
     "code": "200220",
-    "name": "ay ar ei Bi 2380 tt Kişilik Pike #5cm",
+    "name": "Üçift Kişilik ” Deluxia Battaniye",
     "price": null,
     "image": "images/011961.jpg",
     "embIndex": 11961,
-    "confidence": 0.919328510761261,
-    "addedAt": "2025-05-03T05:56:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/454.jpg",
+    "confidence": 0.8902740478515625,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      398,
-      730,
-      612,
-      846
+      63,
+      990,
+      351,
+      1137
     ]
   },
   {
@@ -188161,18 +188161,18 @@
   },
   {
     "code": "16020030",
-    "name": "viTt RIŞINIK SIVI —i Geçirmez Alez Gal eği",
+    "name": "DAGİ Çift Kişilik Lastikli (li Penye Çarşaf iN",
     "price": null,
     "image": "images/011964.jpg",
     "embIndex": 11964,
-    "confidence": 0.9445647597312927,
-    "addedAt": "2025-11-23T06:18:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/754.jpg",
+    "confidence": 0.8935737609863281,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      20,
-      168,
-      495,
-      601
+      461,
+      593,
+      630,
+      835
     ]
   },
   {
@@ -200113,18 +200113,18 @@
   },
   {
     "code": "41474344",
-    "name": "Argestagpparm",
+    "name": "Ekose Desenli Gondol Terlik Erkek dE",
     "price": null,
     "image": "images/012711.jpg",
     "embIndex": 12711,
-    "confidence": 0.8071178793907166,
-    "addedAt": "2024-09-30T20:26:59+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/149.jpg",
+    "confidence": 0.8974641561508179,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      672,
-      925,
-      850,
-      1021
+      571,
+      1293,
+      690,
+      1471
     ]
   },
   {
@@ -206737,18 +206737,18 @@
   },
   {
     "code": "1644020",
-    "name": "Organizer (Www Saklama Kutusu | Şe”. t",
+    "name": "COkyadı uğ ai sebiği",
     "price": null,
     "image": "images/013125.jpg",
     "embIndex": 13125,
-    "confidence": 0.919410765171051,
-    "addedAt": "2025-10-26T10:12:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/712.jpg",
+    "confidence": 0.9271296858787537,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
     "bbox": [
-      825,
-      1273,
-      1026,
-      1400
+      479,
+      1354,
+      669,
+      1485
     ]
   },
   {
@@ -225937,18 +225937,18 @@
   },
   {
     "code": "155215",
-    "name": "ek Kişilik Mikrofiber Yorgan",
+    "name": "TekkKişilik ...... Mikrofiber Yorgan",
     "price": null,
     "image": "images/014325.jpg",
     "embIndex": 14325,
-    "confidence": 0.9553043842315674,
-    "addedAt": "2025-04-12T20:39:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/423.jpg",
+    "confidence": 0.8972898721694946,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      14,
-      262,
+      27,
+      1137,
       314,
-      403
+      1284
     ]
   },
   {
@@ -225969,18 +225969,18 @@
   },
   {
     "code": "195215",
-    "name": "Aloevera Yorgan Çift Kişilik",
+    "name": "Çift Kişilik çal 363. Mikrofiber Yorgan Hinam -195x215 cm # > İ",
     "price": null,
     "image": "images/014327.jpg",
     "embIndex": 14327,
-    "confidence": 0.9024468660354614,
-    "addedAt": "2025-03-18T17:51:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/385.jpg",
+    "confidence": 0.9510327577590942,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
     "bbox": [
-      29,
-      338,
-      277,
-      485
+      304,
+      1135,
+      573,
+      1283
     ]
   },
   {
@@ -249495,6 +249495,470 @@
       933,
       653,
       1163
+    ]
+  },
+  {
+    "code": "1646281",
+    "name": "Colorinz Yaprak Model Cam Tabak Çeşitleri",
+    "price": null,
+    "image": "images/015797.jpg",
+    "embIndex": 15797,
+    "confidence": 0.9362563490867615,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      37,
+      594,
+      239,
+      816
+    ]
+  },
+  {
+    "code": "35356075",
+    "name": "ENGLİSH HOME Bambu Dikdörtgen ır Sepeti la Gr",
+    "price": null,
+    "image": "images/015798.jpg",
+    "embIndex": 15798,
+    "confidence": 0.9310082793235779,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      359,
+      1195,
+      611,
+      1353
+    ]
+  },
+  {
+    "code": "1646519",
+    "name": "Zenan Balıksırtı Desen (rm Göze | Bambu Kesme & Tahtası Çeşitleri Ek",
+    "price": null,
+    "image": "images/015799.jpg",
+    "embIndex": 15799,
+    "confidence": 0.918881893157959,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      251,
+      816,
+      487,
+      994
+    ]
+  },
+  {
+    "code": "041081",
+    "name": "Clip Saklama p Kabı Seti MD > ye",
+    "price": null,
+    "image": "images/015800.jpg",
+    "embIndex": 15800,
+    "confidence": 0.9175917506217957,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      197,
+      1004,
+      398,
+      1185
+    ]
+  },
+  {
+    "code": "1644724",
+    "name": "Çelik Çok Amaçlı Süzgeç",
+    "price": null,
+    "image": "images/015801.jpg",
+    "embIndex": 15801,
+    "confidence": 0.912234365940094,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      785,
+      947,
+      1066,
+      1086
+    ]
+  },
+  {
+    "code": "1647882",
+    "name": "Çizgili Kaşıklı Baharatlık Seti CD en gi e",
+    "price": null,
+    "image": "images/015802.jpg",
+    "embIndex": 15802,
+    "confidence": 0.9063284397125244,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      488,
+      818,
+      620,
+      1007
+    ]
+  },
+  {
+    "code": "1647465",
+    "name": "Tek Fiyat Çelik Servis Ürünleri",
+    "price": null,
+    "image": "images/015803.jpg",
+    "embIndex": 15803,
+    "confidence": 0.9052351713180542,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      782,
+      786,
+      1055,
+      944
+    ]
+  },
+  {
+    "code": "272275",
+    "name": "Yunan Kapaklı Hasır Organizer Çeşitleri",
+    "price": null,
+    "image": "images/015804.jpg",
+    "embIndex": 15804,
+    "confidence": 0.9011906385421753,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      47,
+      814,
+      245,
+      1003
+    ]
+  },
+  {
+    "code": "231616",
+    "name": "Döner Standlı < Cam Baharatlık Gla is love",
+    "price": null,
+    "image": "images/015805.jpg",
+    "embIndex": 15805,
+    "confidence": 0.8968991637229919,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1208.jpg",
+    "bbox": [
+      797,
+      598,
+      1019,
+      789
+    ]
+  },
+  {
+    "code": "994687",
+    "name": "SYDNEY EVCİL HAYVAN TAŞIMA ARABASI",
+    "price": null,
+    "image": "images/015806.jpg",
+    "embIndex": 15806,
+    "confidence": 0.9605394601821899,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      58,
+      350,
+      427,
+      569
+    ]
+  },
+  {
+    "code": "1648457",
+    "name": "gam AN “e CLİMA MAX EVE TESLİMAT ÇİFT KİŞİLİK YORGAN",
+    "price": null,
+    "image": "images/015807.jpg",
+    "embIndex": 15807,
+    "confidence": 0.9566459059715271,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      410,
+      1297,
+      777,
+      1493
+    ]
+  },
+  {
+    "code": "1648465",
+    "name": "KENWOOD CHEF XL MUTFAK ŞEFİ",
+    "price": null,
+    "image": "images/015808.jpg",
+    "embIndex": 15808,
+    "confidence": 0.9531909823417664,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      790,
+      294,
+      1016,
+      597
+    ]
+  },
+  {
+    "code": "1648369",
+    "name": "ck ambalajda gönderilir RELAX 7/24",
+    "price": null,
+    "image": "images/015809.jpg",
+    "embIndex": 15809,
+    "confidence": 0.9388228058815002,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      607,
+      966,
+      1025,
+      1177
+    ]
+  },
+  {
+    "code": "1648466",
+    "name": "Ürdün. PARTY TIME WAFFLE MAKİNESİ",
+    "price": null,
+    "image": "images/015810.jpg",
+    "embIndex": 15810,
+    "confidence": 0.9337597489356995,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      688,
+      799,
+      989,
+      958
+    ]
+  },
+  {
+    "code": "1648364",
+    "name": "ELEGANT PRIME",
+    "price": null,
+    "image": "images/015811.jpg",
+    "embIndex": 15811,
+    "confidence": 0.9243160486221313,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      54,
+      847,
+      383,
+      1022
+    ]
+  },
+  {
+    "code": "1648038",
+    "name": "PASLANMAZ ÇELİK Kablolu Çelik OTOMATİK SU PINARI",
+    "price": null,
+    "image": "images/015812.jpg",
+    "embIndex": 15812,
+    "confidence": 0.9216921925544739,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      431,
+      375,
+      762,
+      559
+    ]
+  },
+  {
+    "code": "1648467",
+    "name": "KENWOOD IZGARA VE TOST MAKİNESİ HGM3O",
+    "price": null,
+    "image": "images/015813.jpg",
+    "embIndex": 15813,
+    "confidence": 0.9066033959388733,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      688,
+      598,
+      1009,
+      788
+    ]
+  },
+  {
+    "code": "6553077",
+    "name": "PETRONAS EVCİL HAYVAN TAŞIMA ARABASI",
+    "price": null,
+    "image": "images/015814.jpg",
+    "embIndex": 15814,
+    "confidence": 0.9065181612968445,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      443,
+      145,
+      771,
+      362
+    ]
+  },
+  {
+    "code": "1648455",
+    "name": "w dü JAKARLI",
+    "price": null,
+    "image": "images/015815.jpg",
+    "embIndex": 15815,
+    "confidence": 0.9031482338905334,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      145,
+      1365,
+      410,
+      1494
+    ]
+  },
+  {
+    "code": "1648365",
+    "name": "ELEGANT PRIME yi ğ ROLL PACK PAKET & YAYLI YATAK",
+    "price": null,
+    "image": "images/015816.jpg",
+    "embIndex": 15816,
+    "confidence": 0.7493112683296204,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      46,
+      1021,
+      539,
+      1210
+    ]
+  },
+  {
+    "code": "1648367",
+    "name": "RELAX 7/24 Peşin Piyarma (G5 asi ORTOPEDİK va ROLL PACK PAKET 6.950: YAYLI YATAK",
+    "price": null,
+    "image": "images/015817.jpg",
+    "embIndex": 15817,
+    "confidence": 0.7436542510986328,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      513,
+      1171,
+      782,
+      1293
+    ]
+  },
+  {
+    "code": "1648454",
+    "name": "il othello",
+    "price": null,
+    "image": "images/015818.jpg",
+    "embIndex": 15818,
+    "confidence": 0.7410563230514526,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      112,
+      1209,
+      522,
+      1368
+    ]
+  },
+  {
+    "code": "1648366",
+    "name": "Duff yarra Gis",
+    "price": null,
+    "image": "images/015819.jpg",
+    "embIndex": 15819,
+    "confidence": 0.5004420280456543,
+    "addedAt": "2026-09-29T08:37:15+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1204.jpg",
+    "bbox": [
+      334,
+      572,
+      687,
+      772
+    ]
+  },
+  {
+    "code": "1636174",
+    "name": "arça Odin , ÇaySeti-170cc gaz her",
+    "price": null,
+    "image": "images/015820.jpg",
+    "embIndex": 15820,
+    "confidence": 0.6388722658157349,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1206.jpg",
+    "bbox": [
+      809,
+      699,
+      1044,
+      933
+    ]
+  },
+  {
+    "code": "1643602",
+    "name": "Yastık Kılıfı UZ",
+    "price": null,
+    "image": "images/015821.jpg",
+    "embIndex": 15821,
+    "confidence": 0.9490200281143188,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
+    "bbox": [
+      360,
+      1007,
+      568,
+      1126
+    ]
+  },
+  {
+    "code": "16425359",
+    "name": "Ayak Havlusu",
+    "price": null,
+    "image": "images/015822.jpg",
+    "embIndex": 15822,
+    "confidence": 0.9155063629150391,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
+    "bbox": [
+      870,
+      625,
+      1004,
+      845
+    ]
+  },
+  {
+    "code": "1646025",
+    "name": "pa Masa Örtüsü",
+    "price": null,
+    "image": "images/015823.jpg",
+    "embIndex": 15823,
+    "confidence": 0.90142422914505,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
+    "bbox": [
+      572,
+      974,
+      776,
+      1099
+    ]
+  },
+  {
+    "code": "1646975",
+    "name": "Dantelli Bato Külot ve Atlet Seti",
+    "price": null,
+    "image": "images/015824.jpg",
+    "embIndex": 15824,
+    "confidence": 0.8844307661056519,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
+    "bbox": [
+      816,
+      1306,
+      1027,
+      1471
+    ]
+  },
+  {
+    "code": "9695965",
+    "name": "KI DynamiC€ Boxer Erkek",
+    "price": null,
+    "image": "images/015825.jpg",
+    "embIndex": 15825,
+    "confidence": 0.8401108980178833,
+    "addedAt": "2026-09-29T08:37:40+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1205.jpg",
+    "bbox": [
+      56,
+      1289,
+      200,
+      1474
     ]
   }
 ]

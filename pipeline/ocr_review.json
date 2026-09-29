@@ -150499,5 +150499,668 @@
     "price": null,
     "raw_ocr": "Aromalı\n) Yİ Türk Kahvesi Çeşitleri | ı\nAbdullah Efendi 100 9g! i\n— *Çilek » Çikolata\nNY ya l",
     "review_image": "review/9c825a7a7ee8d83f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000002.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      655,
+      595,
+      798,
+      821
+    ],
+    "confidence": 0.9318174123764038,
+    "code": null,
+    "name": "Milan in lan Gravürlü Cam Şekerlik/Lokumluk fm",
+    "price": null,
+    "raw_ocr": "Milan in lan\nGravürlü Cam\nŞekerlik/Lokumluk\n-700 ml\nfm |\n1646817\n(\nbü\nNE\n/",
+    "review_image": "review/90a5614ce231936c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000005.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      234,
+      598,
+      379,
+      815
+    ],
+    "confidence": 0.9257729053497314,
+    "code": null,
+    "name": "Colorina Renkli Desenli",
+    "price": null,
+    "raw_ocr": "Colorina\nRenkli Desenli",
+    "review_image": "review/a46936d1138cc3db.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000014.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      518,
+      604,
+      665,
+      810
+    ],
+    "confidence": 0.9039615988731384,
+    "code": null,
+    "name": "Ün im love Gravürlü Cam Çerezlik ektiği. Ki Lg KL VÜ Kizi",
+    "price": null,
+    "raw_ocr": "Ün im love\nGravürlü\nCam Çerezlik\n-140 ml\nektiği.\n#\nKi Lg KL VÜ\nKizi”",
+    "review_image": "review/26c278bc6a6ca99e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000018.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      35,
+      1008,
+      193,
+      1188
+    ],
+    "confidence": 0.8955028653144836,
+    "code": null,
+    "name": "Yumurta Saklama Kabı",
+    "price": null,
+    "raw_ocr": "Yumurta\nSaklama Kabı\n1618089",
+    "review_image": "review/3fe07feeafcbddae.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000019.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      374,
+      600,
+      522,
+      813
+    ],
+    "confidence": 0.8805870413780212,
+    "code": null,
+    "name": "Rimli Desenli ' , Kahve Fincan Takımı",
+    "price": null,
+    "raw_ocr": "Rimli Desenli\n' , Kahve Fincan Takımı\n-90 ml",
+    "review_image": "review/f3b26c19c6a8d0a2.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000022.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      68,
+      1366,
+      262,
+      1480
+    ],
+    "confidence": 0.8511052131652832,
+    "code": null,
+    "name": "Pedallı Çöp Kovası -10L mi mmm",
+    "price": null,
+    "raw_ocr": "Pedallı Çöp Kovası\n-10L mi\nmmm &\n239. K",
+    "review_image": "review/dfca17e356ec4508.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000023.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      61,
+      133,
+      1043,
+      590
+    ],
+    "confidence": 0.8487799763679504,
+    "code": "41614082",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/842020191020bdca.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000024.jpg",
+    "source_flyer": "pipeline/raw_flyers/1208.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      888,
+      1323,
+      1048,
+      1483
+    ],
+    "confidence": 0.8430638909339905,
+    "code": null,
+    "name": "Ayarlanabilir Organizer Set",
+    "price": null,
+    "raw_ocr": "” — Ayarlanabilir\nOrganizer Set",
+    "review_image": "review/837e519299fa30e8.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000036.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      778,
+      1346,
+      1017,
+      1489
+    ],
+    "confidence": 0.8922229409217834,
+    "code": "1642015",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/bcf95e05180da867.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000037.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      777,
+      1155,
+      1024,
+      1348
+    ],
+    "confidence": 0.8225114345550537,
+    "code": null,
+    "name": "ÇANTALI BIÇAK SETİ",
+    "price": null,
+    "raw_ocr": "1642012\nÇANTALI\nBIÇAK SETİ\n« 304 Kalite Paslanmaz Çelik\n» Şef Biçağı “21 cm\n« Dilimleme Bıçağı “18 cm\n» Peynir Bıçağı “17 cm\n» Sebze Bıçağı - 12 cm\n* Soyacak - Rulo Çantası",
+    "review_image": "review/a2a6ea0a355cef30.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000038.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      385,
+      847,
+      657,
+      1126
+    ],
+    "confidence": 0.8164465427398682,
+    "code": null,
+    "name": "RELAX 7/24 KLİMA : ROLL PACK PAKET 7.450. ! YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "RELAX 7/24 KLİMA\n: ROLL PACK PAKET 7.450.\n! YAYLI YATAK",
+    "review_image": "review/9b86d365b6d717de.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000039.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      59,
+      1362,
+      159,
+      1490
+    ],
+    "confidence": 0.8093975782394409,
+    "code": null,
+    "name": "JAKARLI YASTIK rma Gia)",
+    "price": null,
+    "raw_ocr": "JAKARLI\nYASTIK\n-50x70 cm\n680: |\nrma Gia)",
+    "review_image": "review/fb612b82bab020e9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000043.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      53,
+      571,
+      350,
+      769
+    ],
+    "confidence": 0.6570550799369812,
+    "code": "1648363",
+    "name": "90x190 cm şi p ELEGANT PRIME $ ROLL PACK PAKET 5 . 750. YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "“90x190 cm şi p\nELEGANT PRIME $\nROLL PACK PAKET 5 . 750.\nYAYLI YATAK\n« Yatak Yüksekliği: »28 cm\n1648363",
+    "review_image": "review/93f875995247b3bc.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000045.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      777,
+      139,
+      1014,
+      287
+    ],
+    "confidence": 0.5383274555206299,
+    "code": null,
+    "name": "NASIL SATIN ALIRIM? Gireüye Tabietten Ürünü. almak gösterin ve satediğiniz Ödemenizi ürünü Berrin wer SİPARİŞİNİZ ADRESİNİZE GELSİN",
+    "price": null,
+    "raw_ocr": "NASIL SATIN ALIRIM?\nGireüye Tabietten Ürünü.\nalmak gösterin ve\nsatediğiniz Ödemenizi\nürünü Berrin wer\nSİPARİŞİNİZ ADRESİNİZE GELSİN",
+    "review_image": "review/edaa227f4dbb7ce9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000047.jpg",
+    "source_flyer": "pipeline/raw_flyers/1207.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      49,
+      1020,
+      384,
+      1208
+    ],
+    "confidence": 0.4335014224052429,
+    "code": "1648365",
+    "name": "1 ELEGANT PRIME > ROLL PACK PAKET | YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "-160x200 cm\n1 ELEGANT PRIME\n> ROLL PACK PAKET\n| YAYLI YATAK\n* Yatak Yüksekliği: “28 cm\nPEŞİN FİYATINA (G5 Taksi\n8.450.\n1648365",
+    "review_image": "review/a1a9e33c742d79f6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000050.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      706,
+      937,
+      1020,
+      1088
+    ],
+    "confidence": 0.7820201516151428,
+    "code": null,
+    "name": "ALACACA",
+    "price": null,
+    "raw_ocr": "ALACACA",
+    "review_image": "review/628509bd04d5dbde.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      80,
+      825,
+      282,
+      1084
+    ],
+    "confidence": 0.747947633266449,
+    "code": null,
+    "name": "Kek Kalıbı -26 cm",
+    "price": null,
+    "raw_ocr": "Tefal 16449785\nKek Kalıbı -26 cm »\n* Yanmaz yapışmaz 00\nLİ 499 yg /aper\ni n",
+    "review_image": "review/c771e8b45abdc23b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000053.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      67,
+      156,
+      269,
+      197
+    ],
+    "confidence": 0.7463172674179077,
+    "code": "1645829",
+    "name": "30 Parça Çatal Kaşık i Bıcak Takımı",
+    "price": null,
+    "raw_ocr": "30 Parça Çatal Kaşık i\nBıcak Takımı 1645829",
+    "review_image": "review/f74f43e7232d35e4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000056.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      541,
+      170,
+      765,
+      234
+    ],
+    "confidence": 0.4563167691230774,
+    "code": null,
+    "name": "r 2 PARÇA KONİ — PORSELEN YEMEK TAKIMI",
+    "price": null,
+    "raw_ocr": "r 2 PARÇA KONİ\n— PORSELEN YEMEK TAKIMI",
+    "review_image": "review/d9797c9cda1f768d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000057.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      86,
+      1175,
+      177,
+      1219
+    ],
+    "confidence": 0.4422807991504669,
+    "code": null,
+    "name": "İndüksiyon dahil kullanıma uygundur",
+    "price": null,
+    "raw_ocr": "İndüksiyon dahil\nkullanıma uygundur.",
+    "review_image": "review/4ba83839a5bc163e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000058.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      811,
+      189,
+      1039,
+      386
+    ],
+    "confidence": 0.44199979305267334,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/d11e5215e44d6f1d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000060.jpg",
+    "source_flyer": "pipeline/raw_flyers/1206.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      548,
+      260,
+      761,
+      322
+    ],
+    "confidence": 0.43718746304512024,
+    "code": "319022",
+    "name": "wi",
+    "price": null,
+    "raw_ocr": "K N i 190,0...\nwi\n3",
+    "review_image": "review/f9a4784f560e44e1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000063.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      317,
+      601,
+      464,
+      841
+    ],
+    "confidence": 0.9469649195671082,
+    "code": null,
+    "name": "Tek Kişilik Lastikli Penye Çarşaf Lemi Ge)",
+    "price": null,
+    "raw_ocr": "Tek Kişilik Lastikli\nPenye Çarşaf\n-100x200*30 cm\nLemi Ge)\n1641634",
+    "review_image": "review/7d987678ea5392ac.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000065.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      646,
+      135,
+      1034,
+      569
+    ],
+    "confidence": 0.9275980591773987,
+    "code": "164553",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/8ed46e3c18739f0b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000066.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      200,
+      1284,
+      349,
+      1479
+    ],
+    "confidence": 0.9209339618682861,
+    "code": null,
+    "name": "Kiğı DynamiC Atlet Erkek",
+    "price": null,
+    "raw_ocr": "Kiğı\nDynamiC\nAtlet Erkek\n*MLXL",
+    "review_image": "review/3f8578857a3002ee.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000068.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      894,
+      1095,
+      1051,
+      1285
+    ],
+    "confidence": 0.9126578569412231,
+    "code": null,
+    "name": "Bubble Tüylü Papas",
+    "price": null,
+    "raw_ocr": "Bubble\nTüylü Papas\n-60x90 cm\n* Nubuk Tabanlı\n1648022",
+    "review_image": "review/a0bd7050b1d21659.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000069.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      576,
+      1095,
+      749,
+      1285
+    ],
+    "confidence": 0.9096697568893433,
+    "code": null,
+    "name": "2'li Kapitoneli Banyo Paspas Seti",
+    "price": null,
+    "raw_ocr": "2'li Kapitoneli\nBanyo Paspas Seti\n* 60x100 cm* -50x60 cm\n* Kısa tüylü post\n* Kaydırmazlı keçe taban",
+    "review_image": "review/c6dec41e9169ca7d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000072.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      451,
+      1291,
+      561,
+      1473
+    ],
+    "confidence": 0.9058457612991333,
+    "code": null,
+    "name": "Soket Çorap Erkek",
+    "price": "8",
+    "raw_ocr": "Soket Çorap\nErkek\n8 t\nsor\n1646961",
+    "review_image": "review/c6eef06f76876112.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000083.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      753,
+      1099,
+      879,
+      1285
+    ],
+    "confidence": 0.8795456886291504,
+    "code": null,
+    "name": "Mutfak Havlusu",
+    "price": null,
+    "raw_ocr": "Mutfak Havlusu\n-40x60 cm",
+    "review_image": "review/09000b658cee4c94.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000085.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      349,
+      1290,
+      448,
+      1482
+    ],
+    "confidence": 0.8470532298088074,
+    "code": null,
+    "name": "Kğ DynamiC Soket Çorap Erkek",
+    "price": null,
+    "raw_ocr": "Kğ\nDynamiC\nSoket Çorap\nErkek\n» Pamuklu",
+    "review_image": "review/7d96ad5e060570bc.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000088.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      619,
+      607,
+      861,
+      748
+    ],
+    "confidence": 0.5451420545578003,
+    "code": null,
+    "name": "v © EL Havlusu Yüz Havlusu",
+    "price": null,
+    "raw_ocr": "795\nv\n© EL Havlusu\n-30x50 cm\n1641636.\nYüz Havlusu",
+    "review_image": "review/122b340a4d88bfd4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000089.jpg",
+    "source_flyer": "pipeline/raw_flyers/1205.jpg",
+    "flyer_date": "2026-09-29T08:37:40+00:00",
+    "bbox": [
+      692,
+      627,
+      856,
+      745
+    ],
+    "confidence": 0.5380726456642151,
+    "code": null,
+    "name": "ww 5 © El Havlusu Vit Liana ses 2",
+    "price": null,
+    "raw_ocr": "ww 5\n— ”\n© El Havlusu\n-30x50 cm\nİs| 119:\nge 36.\nVit Liana ses 2",
+    "review_image": "review/4dd06358a903d848.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000102.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      778,
+      1346,
+      1017,
+      1489
+    ],
+    "confidence": 0.8922229409217834,
+    "code": "1642015",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/bcf95e05180da867.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000103.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      777,
+      1155,
+      1024,
+      1348
+    ],
+    "confidence": 0.8225114345550537,
+    "code": null,
+    "name": "ÇANTALI BIÇAK SETİ",
+    "price": null,
+    "raw_ocr": "1642012\nÇANTALI\nBIÇAK SETİ\n« 304 Kalite Paslanmaz Çelik\n» Şef Biçağı “21 cm\n« Dilimleme Bıçağı “18 cm\n» Peynir Bıçağı “17 cm\n» Sebze Bıçağı - 12 cm\n* Soyacak - Rulo Çantası",
+    "review_image": "review/a2a6ea0a355cef30.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000104.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      385,
+      847,
+      657,
+      1126
+    ],
+    "confidence": 0.8164465427398682,
+    "code": null,
+    "name": "RELAX 7/24 KLİMA : ROLL PACK PAKET 7.450. ! YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "RELAX 7/24 KLİMA\n: ROLL PACK PAKET 7.450.\n! YAYLI YATAK",
+    "review_image": "review/9b86d365b6d717de.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000105.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      59,
+      1362,
+      159,
+      1490
+    ],
+    "confidence": 0.8093975782394409,
+    "code": null,
+    "name": "JAKARLI YASTIK rma Gia)",
+    "price": null,
+    "raw_ocr": "JAKARLI\nYASTIK\n-50x70 cm\n680: |\nrma Gia)",
+    "review_image": "review/fb612b82bab020e9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000109.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      53,
+      571,
+      350,
+      769
+    ],
+    "confidence": 0.6570550799369812,
+    "code": "1648363",
+    "name": "90x190 cm şi p ELEGANT PRIME $ ROLL PACK PAKET 5 . 750. YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "“90x190 cm şi p\nELEGANT PRIME $\nROLL PACK PAKET 5 . 750.\nYAYLI YATAK\n« Yatak Yüksekliği: »28 cm\n1648363",
+    "review_image": "review/93f875995247b3bc.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000111.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      777,
+      139,
+      1014,
+      287
+    ],
+    "confidence": 0.5383274555206299,
+    "code": null,
+    "name": "NASIL SATIN ALIRIM? Gireüye Tabietten Ürünü. almak gösterin ve satediğiniz Ödemenizi ürünü Berrin wer SİPARİŞİNİZ ADRESİNİZE GELSİN",
+    "price": null,
+    "raw_ocr": "NASIL SATIN ALIRIM?\nGireüye Tabietten Ürünü.\nalmak gösterin ve\nsatediğiniz Ödemenizi\nürünü Berrin wer\nSİPARİŞİNİZ ADRESİNİZE GELSİN",
+    "review_image": "review/edaa227f4dbb7ce9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000113.jpg",
+    "source_flyer": "pipeline/raw_flyers/1204.jpg",
+    "flyer_date": "2026-09-29T08:37:15+00:00",
+    "bbox": [
+      49,
+      1020,
+      384,
+      1208
+    ],
+    "confidence": 0.4335014224052429,
+    "code": "1648365",
+    "name": "1 ELEGANT PRIME > ROLL PACK PAKET | YAYLI YATAK",
+    "price": null,
+    "raw_ocr": "-160x200 cm\n1 ELEGANT PRIME\n> ROLL PACK PAKET\n| YAYLI YATAK\n* Yatak Yüksekliği: “28 cm\nPEŞİN FİYATINA (G5 Taksi\n8.450.\n1648365",
+    "review_image": "review/a1a9e33c742d79f6.jpg"
   }
 ]
