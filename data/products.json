@@ -5723,18 +5723,18 @@
   },
   {
     "code": "1639128",
-    "name": "Saç Kurutma",
+    "name": "Fakir",
     "price": null,
     "image": "images/000362.jpg",
     "embIndex": 362,
-    "confidence": 0.9199114441871643,
-    "addedAt": "2025-09-26T13:44:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/672.jpg",
+    "confidence": 0.9580912590026855,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
     "bbox": [
-      216,
-      927,
-      343,
-      1127
+      50,
+      1126,
+      251,
+      1476
     ]
   },
   {
@@ -9619,18 +9619,18 @@
   },
   {
     "code": "1645979",
-    "name": "SAMSUNG Cep Telefonu",
+    "name": "A16 Cep Telefonu",
     "price": null,
     "image": "images/000609.jpg",
     "embIndex": 609,
-    "confidence": 0.9161252379417419,
-    "addedAt": "2026-02-08T16:22:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/851.jpg",
+    "confidence": 0.9497479796409607,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
     "bbox": [
-      34,
-      648,
-      268,
-      1177
+      384,
+      588,
+      684,
+      846
     ]
   },
   {
@@ -18357,14 +18357,14 @@
     "price": null,
     "image": "images/001168.jpg",
     "embIndex": 1168,
-    "confidence": 0.8001522421836853,
-    "addedAt": "2026-02-16T16:47:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/860.jpg",
+    "confidence": 0.8937788605690002,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
     "bbox": [
-      420,
-      671,
-      638,
-      952
+      501,
+      865,
+      714,
+      1149
     ]
   },
   {
@@ -20462,18 +20462,18 @@
   },
   {
     "code": "1645998",
-    "name": "F Fakir Spinmix. Di ğray ıcı iz Ayan:Tek Şeffaf Hazne Hazne Kapasitesi 14 * Paslanmaz Çelik Doğrayıcı Biçak » Emniyet Sistemi « Kaymayı Önleyen Plastik Altlık ea ira (vir",
+    "name": "f Fakir",
     "price": null,
     "image": "images/001302.jpg",
     "embIndex": 1302,
-    "confidence": 0.9150732159614563,
-    "addedAt": "2026-02-08T16:22:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/851.jpg",
+    "confidence": 0.9382568001747131,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
     "bbox": [
-      549,
-      947,
-      820,
-      1166
+      44,
+      1171,
+      273,
+      1475
     ]
   },
   {
@@ -23034,18 +23034,18 @@
   },
   {
     "code": "1640185",
-    "name": "THeifer POWER X ŞARJLI SÜPÜRGE",
+    "name": "Şarjlı Süpürge",
     "price": null,
     "image": "images/001468.jpg",
     "embIndex": 1468,
-    "confidence": 0.822507381439209,
-    "addedAt": "2024-11-16T12:20:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/228.jpg",
+    "confidence": 0.8785820007324219,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
     "bbox": [
-      33,
-      104,
-      243,
-      617
+      302,
+      860,
+      500,
+      1156
     ]
   },
   {
@@ -28469,18 +28469,18 @@
   },
   {
     "code": "1642846",
-    "name": "Zi Buharlı Ütü Azur",
+    "name": "PHILIPS Buharlı Ütü Azur",
     "price": null,
     "image": "images/001816.jpg",
     "embIndex": 1816,
-    "confidence": 0.906108558177948,
-    "addedAt": "2026-04-28T06:51:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/966.jpg",
+    "confidence": 0.8541113138198853,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
     "bbox": [
-      30,
-      998,
-      430,
-      1227
+      551,
+      584,
+      753,
+      844
     ]
   },
   {
@@ -33359,18 +33359,18 @@
   },
   {
     "code": "1638087",
-    "name": "MİNİ FIRIN KUR",
+    "name": "KUMTEL Mini Fırın",
     "price": null,
     "image": "images/002126.jpg",
     "embIndex": 2126,
-    "confidence": 0.9224040508270264,
-    "addedAt": "2024-10-05T16:01:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/157.jpg",
+    "confidence": 0.9472215175628662,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
     "bbox": [
-      81,
-      108,
-      438,
-      369
+      49,
+      841,
+      278,
+      1120
     ]
   },
   {
@@ -35874,18 +35874,18 @@
   },
   {
     "code": "1621566",
-    "name": "Oyuncak Meyveli Gitar",
+    "name": "glmşeleley Oyuncak Meyveli Gitar",
     "price": null,
     "image": "images/002288.jpg",
     "embIndex": 2288,
-    "confidence": 0.8858481049537659,
-    "addedAt": "2025-02-13T10:31:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/332.jpg",
+    "confidence": 0.9310394525527954,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      437,
-      113,
-      541,
-      317
+      53,
+      581,
+      185,
+      839
     ]
   },
   {
@@ -42818,34 +42818,34 @@
   },
   {
     "code": "1645499",
-    "name": "THeifer Şömine Görünümlü Elektrikli Isıtıcı",
+    "name": "iHeifer ŞÖMİNE GÖRÜNÜMLÜ ELEKTİRİKLİ ISITICI",
     "price": null,
     "image": "images/002736.jpg",
     "embIndex": 2736,
-    "confidence": 0.9493448138237,
-    "addedAt": "2025-12-14T11:58:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/778.jpg",
+    "confidence": 0.9701758623123169,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
     "bbox": [
-      12,
-      651,
-      341,
-      1233
+      536,
+      129,
+      1007,
+      543
     ]
   },
   {
     "code": "1635325",
-    "name": "GAZ LAMBASI yaşa rtravmA Taksir A May",
+    "name": "Buzlu Cam Dekoratif Gi) Lambası db. Lig",
     "price": null,
     "image": "images/002737.jpg",
     "embIndex": 2737,
-    "confidence": 0.9376444816589355,
-    "addedAt": "2024-12-21T11:50:52+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/271.jpg",
+    "confidence": 0.945686936378479,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
     "bbox": [
-      488,
-      821,
-      641,
-      1055
+      726,
+      1306,
+      1028,
+      1468
     ]
   },
   {
@@ -45222,18 +45222,18 @@
   },
   {
     "code": "1638298",
-    "name": "Neon Simli gg 45",
+    "name": "Neon Simli Oyun Hamuru",
     "price": null,
     "image": "images/002888.jpg",
     "embIndex": 2888,
-    "confidence": 0.8667055368423462,
-    "addedAt": "2024-11-08T17:25:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/216.jpg",
+    "confidence": 0.9454959034919739,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      507,
-      1132,
-      677,
-      1238
+      385,
+      578,
+      550,
+      802
     ]
   },
   {
@@ -57068,18 +57068,18 @@
   },
   {
     "code": "1625679",
-    "name": "Oyuncak Arabalar",
+    "name": "ay Üçlü Arabalar",
     "price": null,
     "image": "images/003652.jpg",
     "embIndex": 3652,
-    "confidence": 0.5103361010551453,
-    "addedAt": "2024-11-23T13:03:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/236.jpg",
+    "confidence": 0.92952561378479,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      47,
-      298,
-      225,
-      463
+      182,
+      580,
+      370,
+      816
     ]
   },
   {
@@ -85633,18 +85633,18 @@
   },
   {
     "code": "1646945",
-    "name": "Toz Torbasız Süpürge FC9332/07 KD topl l",
+    "name": "PHILIPS Toz Torbasız Süpürge",
     "price": null,
     "image": "images/005555.jpg",
     "embIndex": 5555,
-    "confidence": 0.9523044228553772,
-    "addedAt": "2026-08-28T15:53:50+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1142.jpg",
+    "confidence": 0.9289446473121643,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
     "bbox": [
-      654,
-      588,
-      987,
-      897
+      695,
+      868,
+      1028,
+      1171
     ]
   },
   {
@@ -167089,18 +167089,18 @@
   },
   {
     "code": "1641968",
-    "name": "Oyuncak Araba Farkı Çeşilerde e > Bö",
+    "name": "Oyuncak Araba e ri",
     "price": null,
     "image": "images/010647.jpg",
     "embIndex": 10647,
-    "confidence": 0.5985617637634277,
-    "addedAt": "2025-03-31T12:04:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/407.jpg",
+    "confidence": 0.9057549834251404,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      468,
-      321,
-      587,
-      516
+      716,
+      591,
+      868,
+      806
     ]
   },
   {
@@ -168337,18 +168337,18 @@
   },
   {
     "code": "1641105",
-    "name": "RŞA Kr2 ; KEZA ie #orticolo",
+    "name": "garicolo Gold Çiçekli Poem dan vesi",
     "price": null,
     "image": "images/010725.jpg",
     "embIndex": 10725,
-    "confidence": 0.9111929535865784,
-    "addedAt": "2025-03-03T19:06:10+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/366.jpg",
+    "confidence": 0.933490514755249,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      211,
-      112,
-      435,
-      267
+      855,
+      1063,
+      1023,
+      1294
     ]
   },
   {
@@ -194433,18 +194433,18 @@
   },
   {
     "code": "1639076",
-    "name": "OYUNCAK | MUTFAK SETİ",
+    "name": "OYUNCAK MUTFAK SETİ",
     "price": null,
     "image": "images/012356.jpg",
     "embIndex": 12356,
-    "confidence": 0.4145384430885315,
-    "addedAt": "2025-10-26T10:12:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/714.jpg",
+    "confidence": 0.43845468759536743,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
     "bbox": [
-      534,
-      127,
-      1069,
-      617
+      56,
+      114,
+      460,
+      566
     ]
   },
   {
@@ -249959,6 +249959,358 @@
       1289,
       200,
       1474
+    ]
+  },
+  {
+    "code": "1647390",
+    "name": "PiranTech Halı ve Koltuk Yıkama Makinesi KT-503",
+    "price": null,
+    "image": "images/015826.jpg",
+    "embIndex": 15826,
+    "confidence": 0.9714446067810059,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
+    "bbox": [
+      683,
+      572,
+      1026,
+      875
+    ]
+  },
+  {
+    "code": "1646756",
+    "name": "Hoparlörlü ENE Telefon Tutucu",
+    "price": null,
+    "image": "images/015827.jpg",
+    "embIndex": 15827,
+    "confidence": 0.9322102665901184,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
+    "bbox": [
+      728,
+      1107,
+      1064,
+      1315
+    ]
+  },
+  {
+    "code": "1646874",
+    "name": "Rat a n Konsolu",
+    "price": null,
+    "image": "images/015828.jpg",
+    "embIndex": 15828,
+    "confidence": 0.8903952836990356,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
+    "bbox": [
+      524,
+      847,
+      709,
+      1130
+    ]
+  },
+  {
+    "code": "1648295",
+    "name": "MALTUS Saç Düzleştirici",
+    "price": null,
+    "image": "images/015829.jpg",
+    "embIndex": 15829,
+    "confidence": 0.7836365699768066,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
+    "bbox": [
+      249,
+      1132,
+      390,
+      1463
+    ]
+  },
+  {
+    "code": "1124348",
+    "name": "İz (O polasmort İki Mikrofonlu | Gi Karaoke Set",
+    "price": null,
+    "image": "images/015830.jpg",
+    "embIndex": 15830,
+    "confidence": 0.6010746955871582,
+    "addedAt": "2026-09-30T15:12:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1211.jpg",
+    "bbox": [
+      711,
+      887,
+      1029,
+      1033
+    ]
+  },
+  {
+    "code": "1648479",
+    "name": "f- Fakir Türk Kahve Makinesi Fakir Miva",
+    "price": null,
+    "image": "images/015831.jpg",
+    "embIndex": 15831,
+    "confidence": 0.9484648108482361,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      296,
+      1172,
+      557,
+      1489
+    ]
+  },
+  {
+    "code": "2200171",
+    "name": "PHILIPS Su Isıtıcı HD9314/90",
+    "price": null,
+    "image": "images/015832.jpg",
+    "embIndex": 15832,
+    "confidence": 0.9470657110214233,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      578,
+      1181,
+      787,
+      1491
+    ]
+  },
+  {
+    "code": "1646380",
+    "name": "iHeifer Saç Şekillendirici Set",
+    "price": null,
+    "image": "images/015833.jpg",
+    "embIndex": 15833,
+    "confidence": 0.9191584587097168,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      746,
+      588,
+      1050,
+      852
+    ]
+  },
+  {
+    "code": "1648259",
+    "name": "Heifer| CHEF'S PRO Mega Blender Set",
+    "price": null,
+    "image": "images/015834.jpg",
+    "embIndex": 15834,
+    "confidence": 0.9014391303062439,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      60,
+      868,
+      299,
+      1162
+    ]
+  },
+  {
+    "code": "1642943",
+    "name": "xHeifer|ciers El Mikseri",
+    "price": null,
+    "image": "images/015835.jpg",
+    "embIndex": 15835,
+    "confidence": 0.8966321349143982,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      804,
+      1183,
+      1002,
+      1481
+    ]
+  },
+  {
+    "code": "1100700",
+    "name": "Mikrodalga Fırın AR2093",
+    "price": null,
+    "image": "images/015836.jpg",
+    "embIndex": 15836,
+    "confidence": 0.8916690945625305,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      330,
+      589,
+      556,
+      857
+    ]
+  },
+  {
+    "code": "1646772",
+    "name": "emsan XL Çay Makinesi",
+    "price": null,
+    "image": "images/015837.jpg",
+    "embIndex": 15837,
+    "confidence": 0.8907560706138611,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1210.jpg",
+    "bbox": [
+      65,
+      586,
+      328,
+      839
+    ]
+  },
+  {
+    "code": "1646569",
+    "name": "RAGOKOYA Dekoratif 2 Katlı Hasır Sepet",
+    "price": null,
+    "image": "images/015838.jpg",
+    "embIndex": 15838,
+    "confidence": 0.9361987113952637,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      418,
+      1052,
+      646,
+      1294
+    ]
+  },
+  {
+    "code": "1646075",
+    "name": "Tünmive YS, Barası Küür Yayınları Hikaye Kitapları",
+    "price": null,
+    "image": "images/015839.jpg",
+    "embIndex": 15839,
+    "confidence": 0.9337840676307678,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      309,
+      819,
+      469,
+      1052
+    ]
+  },
+  {
+    "code": "1644763",
+    "name": "ğorticolo Lastikli Zarflı Not Defteri",
+    "price": null,
+    "image": "images/015840.jpg",
+    "embIndex": 15840,
+    "confidence": 0.9322878122329712,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      733,
+      1313,
+      1021,
+      1474
+    ]
+  },
+  {
+    "code": "1645952",
+    "name": "sG DECO Çocuk Etkinlik Arşiv Çerçevesi",
+    "price": null,
+    "image": "images/015841.jpg",
+    "embIndex": 15841,
+    "confidence": 0.9307119250297546,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      372,
+      1290,
+      566,
+      1475
+    ]
+  },
+  {
+    "code": "1648324",
+    "name": "Oyuncak Güzellik Valizi o a",
+    "price": null,
+    "image": "images/015842.jpg",
+    "embIndex": 15842,
+    "confidence": 0.9279976487159729,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      682,
+      809,
+      843,
+      1094
+    ]
+  },
+  {
+    "code": "1645253",
+    "name": "Taşıma Çantalı Evcil Hayvanım",
+    "price": null,
+    "image": "images/015843.jpg",
+    "embIndex": 15843,
+    "confidence": 0.9237074851989746,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      561,
+      579,
+      705,
+      839
+    ]
+  },
+  {
+    "code": "100616",
+    "name": "PICCOLO MONDİ Ahşap Mıknatıslı Yakamala Oyunu AM",
+    "price": null,
+    "image": "images/015844.jpg",
+    "embIndex": 15844,
+    "confidence": 0.9184785485267639,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      854,
+      838,
+      1006,
+      1040
+    ]
+  },
+  {
+    "code": "1646568",
+    "name": "RASOLOYA Dekoratif Duvara Asılabilir Sepet",
+    "price": null,
+    "image": "images/015845.jpg",
+    "embIndex": 15845,
+    "confidence": 0.9178386330604553,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      660,
+      1095,
+      813,
+      1319
+    ]
+  },
+  {
+    "code": "1646627",
+    "name": "Balfoonint Metal Renkli Balon",
+    "price": null,
+    "image": "images/015846.jpg",
+    "embIndex": 15846,
+    "confidence": 0.9079839587211609,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      566,
+      1305,
+      732,
+      1482
+    ]
+  },
+  {
+    "code": "1645618",
+    "name": "ULA",
+    "price": null,
+    "image": "images/015847.jpg",
+    "embIndex": 15847,
+    "confidence": 0.8998106718063354,
+    "addedAt": "2026-09-30T15:12:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1209.jpg",
+    "bbox": [
+      866,
+      590,
+      1016,
+      822
     ]
   }
 ]

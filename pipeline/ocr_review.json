@@ -151162,5 +151162,192 @@
     "price": null,
     "raw_ocr": "-160x200 cm\n1 ELEGANT PRIME\n> ROLL PACK PAKET\n| YAYLI YATAK\n* Yatak Yüksekliği: “28 cm\nPEŞİN FİYATINA (G5 Taksi\n8.450.\n1648365",
     "review_image": "review/a1a9e33c742d79f6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000002.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      57,
+      129,
+      543,
+      535
+    ],
+    "confidence": 0.9594373106956482,
+    "code": "38402160",
+    "name": "65 İNÇ FRAMELESS #eİGOOGLE TV 65UG9500F SENNA 1 MADA",
+    "price": null,
+    "raw_ocr": "PEŞİN FİYATINA GÖ TAKSİT -\n65 İNÇ FRAMELESS\n227.500 Za)\n#eİGOOGLE TV 65UG9500F\nSENNA 1\nMADA »\nDADolby,\n# YouTube\n© OkGoogle\nm” “ Stok: 7000 a\n20n0 X 21601 <öyuüescipiği' 000 “\nN",
+    "review_image": "review/f0c5b8558d8d87ce.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000008.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      47,
+      569,
+      389,
+      847
+    ],
+    "confidence": 0.9301260709762573,
+    "code": "1645020",
+    "name": "32İNÇFULLHD m m)",
+    "price": null,
+    "raw_ocr": "> 32İNÇFULLHD m m)\nGLED ANDROİD TV 0.000* B\n1645020 32S5K ” e\nA — i\nStok: 5.000",
+    "review_image": "review/1d22382272119b75.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000009.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      272,
+      846,
+      532,
+      1122
+    ],
+    "confidence": 0.9090459942817688,
+    "code": "1645690",
+    "name": "9 polasmort Retro Nostaljik Radyo",
+    "price": null,
+    "raw_ocr": "(9 polasmort\nRetro Nostaljik Radyo\n* Kablosuz bağlantı versiyonu: V5.3\n* Harici Güç: 2x UM-1\n* Çalışma süresi (Radyo): 5 saate kadar\n* Çalışma süresi\n(Harici bağlantı): 3 saate kadar\n* Şarj dolum süresi: 4 - 5 saat 1645690\n» Flash bellek ve TF kart girişi\n* Hafıza desteği: 12868 GR.\n© e halan\nİl a iz)",
+    "review_image": "review/74519c2bcc3f7e82.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000010.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      391,
+      1136,
+      543,
+      1480
+    ],
+    "confidence": 0.9086116552352905,
+    "code": null,
+    "name": "O polasmart Erkek Vücut Bakım Tıraş Makinesi",
+    "price": null,
+    "raw_ocr": "(O polasmart\nErkek Vücut Bakım\nTıraş Makinesi",
+    "review_image": "review/c664c828194ddc58.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      530,
+      1142,
+      710,
+      1468
+    ],
+    "confidence": 0.8829491138458252,
+    "code": null,
+    "name": "İMEX LCD Yazı Tahtası Büyük Boy Pil Dahildir. ep — ese",
+    "price": null,
+    "raw_ocr": "İMEX\nLCD Yazı Tahtası\nBüyük Boy\nPil Dahildir.\nep\nv5\n6z95y91 £ Ş\n«\n— ese",
+    "review_image": "review/2a212fcb98ad7564.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000013.jpg",
+    "source_flyer": "pipeline/raw_flyers/1211.jpg",
+    "flyer_date": "2026-09-30T15:12:35+00:00",
+    "bbox": [
+      705,
+      886,
+      1033,
+      1112
+    ],
+    "confidence": 0.8595754504203796,
+    "code": "1643852",
+    "name": "2n) (9 polasmort İki Mikrofonlu Karaoke Set",
+    "price": null,
+    "raw_ocr": "(2n) (9 polasmort\nİki Mikrofonlu\nKaraoke Set\n* Kablosuz bağlantı: V5.3\n* Şarj girişi: Type-C\n* Hoparlör çapı: 57mm\n* Hassasiyet: 112*3dB\n» Güç: SW\n* Harici bağlantılar: TF kart, AUX\n1643852",
+    "review_image": "review/2950692788b16b4b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1210.jpg",
+    "flyer_date": "2026-09-30T15:12:34+00:00",
+    "bbox": [
+      27,
+      126,
+      1037,
+      562
+    ],
+    "confidence": 0.948483407497406,
+    "code": null,
+    "name": "w ÇEYİZ SETİ /2v0 (- Fakir “ HAUSGERÂTE . SET ş iğ wv Tosty - Tost Makinası Multi Blend - Blender Set Miva - Türk Kahve Makinası Steel N More - Çay Makinası",
+    "price": null,
+    "raw_ocr": "w\nÇEYİZ SETİ /2v0\n(- Fakir\nPEŞİN FİYATINA TAKSİT\nStok: 9.000 va\n“ HAUSGERÂTE\n. SET\nş iğ\nwv\nTosty - Tost Makinası Multi Blend - Blender Set Miva - Türk Kahve Makinası Steel N More - Çay Makinası",
+    "review_image": "review/db3d107300169340.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000030.jpg",
+    "source_flyer": "pipeline/raw_flyers/1209.jpg",
+    "flyer_date": "2026-09-30T15:12:34+00:00",
+    "bbox": [
+      40,
+      841,
+      296,
+      1057
+    ],
+    "confidence": 0.9451537132263184,
+    "code": null,
+    "name": "Şakacı Penguen / Duvar Denge Oyunu",
+    "price": null,
+    "raw_ocr": "Şakacı Penguen\n/ Duvar Denge Oyunu",
+    "review_image": "review/758218bfe2f23ded.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000031.jpg",
+    "source_flyer": "pipeline/raw_flyers/1209.jpg",
+    "flyer_date": "2026-09-30T15:12:34+00:00",
+    "bbox": [
+      477,
+      841,
+      678,
+      1054
+    ],
+    "confidence": 0.9447569251060486,
+    "code": null,
+    "name": "Boyama Kitapları",
+    "price": null,
+    "raw_ocr": "Boyama Kitapları\n* Farklı çeşitlerde\n29:\n—\nGaomm\nör\nSak",
+    "review_image": "review/4958b4b735e7c9a9.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000045.jpg",
+    "source_flyer": "pipeline/raw_flyers/1209.jpg",
+    "flyer_date": "2026-09-30T15:12:34+00:00",
+    "bbox": [
+      57,
+      1073,
+      410,
+      1213
+    ],
+    "confidence": 0.9026676416397095,
+    "code": "1646570",
+    "name": "3: Dekoratif Hasır > Ürün Çeşitleri",
+    "price": null,
+    "raw_ocr": "3: Dekoratif Hasır\n> Ürün Çeşitleri\n1646570",
+    "review_image": "review/941ba80938ccbb75.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000047.jpg",
+    "source_flyer": "pipeline/raw_flyers/1209.jpg",
+    "flyer_date": "2026-09-30T15:12:34+00:00",
+    "bbox": [
+      33,
+      1219,
+      365,
+      1472
+    ],
+    "confidence": 0.889733612537384,
+    "code": null,
+    "name": "ça",
+    "price": null,
+    "raw_ocr": "G -40x60cm\nça\ni Payla Piva, \"a (Gan\n679:\n”\n/",
+    "review_image": "review/840671997dff7c13.jpg"
   }
 ]
