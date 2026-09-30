@@ -268,22 +268,13 @@
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 import {
   getFirestore, collection, query, where, getDocs, updateDoc, doc,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-
-// Not: BİMKOD'un kendi, ayrı Firebase projesi (bkz. firebase-config.js'teki not).
-const firebaseApp = initializeApp({
-  apiKey: "AIzaSyDP_l3Ef4ba9N9bFWlwP2ACVIkvfsiHyzs",
-  authDomain: "bimkod-8afef.firebaseapp.com",
-  databaseURL: "https://bimkod-8afef-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "bimkod-8afef",
-  storageBucket: "bimkod-8afef.firebasestorage.app",
-  messagingSenderId: "556797618371",
-  appId: "1:556797618371:web:82a6de4f45498cc61c9a76",
-});
-const firestoreDb = getFirestore(firebaseApp);
+// firebase-config.js'teki TEK app/storage örneğini kullan (aynı config'i iki
+// kez initializeApp ile başlatmak bu sayfada çakışma hatası verir).
+import { storage, ref, deleteObject } from "./firebase-config.js";
+const firestoreDb = getFirestore(storage.app);
 
 const el = {
   repo: document.getElementById("repoInput"),
@@ -941,6 +932,15 @@ el.fastApproveBtn.addEventListener("click", fastApprove);
 el.fastRejectBtn.addEventListener("click", fastReject);
 el.fastExitBtn.addEventListener("click", exitFastMode);
 
+// Onay/red sonrası Firebase Storage'daki kopyayı temizler (5GB ücretsiz
+// kotayı boşa doldurmamak için). Dosya zaten yoksa/silinmişse sessizce geçer.
+async function deleteStorageFileSafe(storagePath) {
+  if (!storagePath) return;
+  try {
+    await deleteObject(ref(storage, storagePath));
+  } catch { /* zaten silinmiş olabilir, önemli değil */ }
+}
+
 // ==================== Çalışan İsteği (Firebase pending_reports) ====================
 document.getElementById("loadWorkerRequestsBtn").addEventListener("click", loadWorkerRequests);
 
@@ -1002,6 +1002,7 @@ async function approveWorkerRequest(item, card) {
       onProgress: (msg) => { statusEl.textContent = msg; },
     });
     await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "approved" });
+    await deleteStorageFileSafe(item.storagePath); // artık GitHub'da duruyor, çift depolamaya gerek yok
     card.remove();
   } catch (err) {
     card.classList.remove("done");
@@ -1014,6 +1015,7 @@ async function rejectWorkerRequest(item, card) {
   card.classList.add("done");
   try {
     await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "rejected" });
+    await deleteStorageFileSafe(item.storagePath); // reddedilen görseli de Storage'da tutmaya gerek yok
     card.remove();
   } catch (err) {
     card.classList.remove("done");
@@ -1054,15 +1056,120 @@ function renderLiveSearchResults(results) {
       <div class="card-body">
         <div style="font-weight:600; font-size:13.5px; margin-bottom:4px;">${p.name}</div>
         <div style="font-size:12px; color:var(--text-soft); margin-bottom:8px;">Kod: ${p.code}${p.price ? ` · ${p.price} ₺` : ""}</div>
-        <div class="card-actions"><button class="btn-reject btn-rescan-live">Sil ve Yeniden Tara</button></div>
+        <div class="card-actions">
+          <button class="btn-secondary btn-edit-live">Düzenle</button>
+          <button class="btn-reject btn-rescan-live">Sil ve Yeniden Tara</button>
+        </div>
         <div class="live-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
+        <div class="live-edit-form hidden" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
+          <label>Yeni görsel (opsiyonel — boş bırakırsan mevcut görsel kalır)</label>
+          <input type="file" class="live-edit-image" accept="image/*">
+          <div class="field-row" style="margin-top:8px;">
+            <div><label>Kod</label><input type="text" class="live-edit-code" value="${p.code}"></div>
+            <div><label>İsim</label><input type="text" class="live-edit-name" value="${p.name.replace(/"/g, "&quot;")}"></div>
+            <div><label>Fiyat</label><input type="text" class="live-edit-price" value="${p.price || ""}"></div>
+          </div>
+          <div class="card-actions" style="margin-top:8px;">
+            <button class="btn-approve live-edit-save">Kaydet</button>
+            <button class="btn-secondary live-edit-cancel">Vazgeç</button>
+          </div>
+        </div>
       </div>
     </div>
   `).join("");
 
   [...el.liveSearchResults.children].forEach((card, i) => {
-    card.querySelector(".btn-rescan-live").addEventListener("click", () => rescanLiveProduct(results[i], card));
+    const product = results[i];
+    const editForm = card.querySelector(".live-edit-form");
+    card.querySelector(".btn-rescan-live").addEventListener("click", () => rescanLiveProduct(product, card));
+    card.querySelector(".btn-edit-live").addEventListener("click", () => editForm.classList.toggle("hidden"));
+    card.querySelector(".live-edit-cancel").addEventListener("click", () => editForm.classList.add("hidden"));
+    card.querySelector(".live-edit-save").addEventListener("click", () => saveLiveProductEdit(product, card));
   });
+}
+
+// ---- Düzenle: canlı bir ürünü (isteğe bağlı yeni görsel + isim/kod/fiyat) günceller ----
+// Yeni görsel verilirse AYNI embIndex'teki dosya/embedding üzerine yazılır (yeni satır
+// EKLEMEZ) -> index kaymaz, eski kayıt yetim kalmaz. "Manuel Ürün Ekle"den farkı bu:
+// o panel hep YENİ bir ürün ekler, bu ise VAR OLAN bir kaydı yerinde düzeltir.
+async function saveLiveProductEdit(product, card) {
+  const editForm = card.querySelector(".live-edit-form");
+  const statusEl = card.querySelector(".live-status");
+  const file = editForm.querySelector(".live-edit-image").files[0];
+  const code = editForm.querySelector(".live-edit-code").value.trim();
+  const name = editForm.querySelector(".live-edit-name").value.trim();
+  const price = editForm.querySelector(".live-edit-price").value.trim();
+
+  if (!code || !name) { statusEl.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
+
+  card.classList.add("done");
+  try {
+    let imageBase64 = null, embedSource = null;
+    if (file) {
+      const buf = await file.arrayBuffer();
+      imageBase64 = arrayBufferToBase64(buf);
+      embedSource = URL.createObjectURL(file);
+    }
+
+    await updateExistingProduct({
+      originalCode: product.code, code, name, price,
+      imageBase64, embedSource,
+      onProgress: (msg) => { statusEl.textContent = msg; },
+    });
+
+    // bellekteki kopyayı da güncelle
+    const idx = liveProducts.findIndex((p) => p.code === product.code);
+    if (idx !== -1) liveProducts[idx] = { ...liveProducts[idx], code, name, price: price || null };
+
+    statusEl.textContent = "✅ Güncellendi ve yayında.";
+    editForm.classList.add("hidden");
+  } catch (err) {
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
+  card.classList.remove("done");
+}
+
+async function updateExistingProduct({ originalCode, code, name, price, imageBase64, embedSource, onProgress }) {
+  onProgress?.("products.json okunuyor…");
+  const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
+  const products = JSON.parse(productsText);
+  const idx = products.findIndex((p) => p.code === originalCode);
+  if (idx === -1) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
+  const product = products[idx];
+
+  if (imageBase64) {
+    onProgress?.("Yeni görsel embedding hesaplanıyor…");
+    const embedding = await embedImage(embedSource);
+
+    const imageFilename = product.image.split("/").pop();
+    onProgress?.("Mevcut görselin sürüm bilgisi (sha) alınıyor…");
+    const imgMetaRes = await fetch(`${apiBase()}/contents/images/${imageFilename}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
+    const imgSha = imgMetaRes.ok ? (await imgMetaRes.json()).sha : undefined;
+
+    onProgress?.("Görsel images/ klasörüne yükleniyor (üzerine yazılıyor)…");
+    if (imgSha) {
+      await ghPutBinaryFileWithSha(`images/${imageFilename}`, imageBase64, imgSha, `Admin: ${code} görseli güncellendi`);
+    } else {
+      await ghPutBinaryFile(`images/${imageFilename}`, imageBase64, `Admin: ${code} görseli eklendi`);
+    }
+
+    onProgress?.("embeddings.bin okunuyor…");
+    const { buf: embBuf, sha: embBinSha } = await ghGetBinaryFile("data/embeddings.bin");
+    const dim = 512;
+    const floatArr = new Float32Array(embBuf.slice(0)); // kopya üzerinde çalış
+    floatArr.set(new Float32Array(embedding), product.embIndex * dim); // AYNI slotun üzerine yaz
+
+    onProgress?.("embeddings.bin güncelleniyor…");
+    await ghPutBinaryFileWithSha("data/embeddings.bin", arrayBufferToBase64(floatArr.buffer), embBinSha, `Admin: ${code} embedding güncellendi`);
+  }
+
+  products[idx] = { ...product, code, name, price: price || null };
+
+  onProgress?.("products.json güncelleniyor…");
+  await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin: ${code} güncellendi`);
+
+  onProgress?.("corrections.csv güncelleniyor…");
+  await appendCorrection(code, name);
 }
 
 // Kaynağı bilinen (sourceFlyer dolu) bir ürünü: rescan_queue.json'a ekler, products.json'dan siler.
