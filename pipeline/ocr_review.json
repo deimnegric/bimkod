@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000000.jpg",
-    "source_flyer": "pipeline/raw_flyers/1195.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      836,
-      1166,
-      1032,
-      1582
-    ],
-    "confidence": 0.9499140381813049,
-    "code": null,
-    "name": "arnica Hydra Rain Su Filtreli Halı Yıkama Makinesi",
-    "price": null,
-    "raw_ocr": "arnica\nHydra Rain Su Filtreli\nHalı Yıkama Makinesi\n* 2400 W Max\n* Hepa 153 Filtre\n* Koltuk Temizleme Aparatı\n* Özel Halı Şampuanı\n* Kablo: 6,5 m\n* Temiz Su Tankı: 10L\n* Kirli Su Tankı: 8,5 L\nStok: 9.000",
-    "review_image": "review/35b0889d533b5471.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000003.jpg",
     "source_flyer": "pipeline/raw_flyers/1195.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
