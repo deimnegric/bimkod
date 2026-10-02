@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000003.jpg",
-    "source_flyer": "pipeline/raw_flyers/1195.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      0,
-      1190,
-      182,
-      1579
-    ],
-    "confidence": 0.9391646385192871,
-    "code": "1644253",
-    "name": "f",
-    "price": null,
-    "raw_ocr": "f« Fakir\nMAYEGRMATE\nEl Mikseri\n» Güç:700 W\n* Hız Kademesi:7 Kademe\n* Çırpma Aparatı: 2 Adet\n* Yoğurma Aparatı:2 Adet\n»* Paslanmaz Çelik\nartar Gri\nStok adedi: 0.000\ne\nu,\n1644253",
-    "review_image": "review/b6141ff39d3e7ee2.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000009.jpg",
     "source_flyer": "pipeline/raw_flyers/1195.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
