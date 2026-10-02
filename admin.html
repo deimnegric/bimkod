@@ -40,6 +40,11 @@
         "</body>";
     }
     document.documentElement.style.visibility = "visible";
+  }).catch(function (err) {
+    // crypto.subtle vb. bir sebeple çalışmazsa sayfa sonsuza kadar görünmez
+    // kalmasın -> hatayı göster, en azından ne olduğunu anlayabilelim.
+    document.documentElement.style.visibility = "visible";
+    console.error("Şifre kapısı hatası:", err);
   });
 })();
 </script>
@@ -269,12 +274,11 @@
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
 import {
-  getFirestore, collection, query, where, getDocs, updateDoc, doc,
+  collection, query, where, getDocs, updateDoc, doc,
 } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore.js";
-// firebase-config.js'teki TEK app/storage örneğini kullan (aynı config'i iki
-// kez initializeApp ile başlatmak bu sayfada çakışma hatası verir).
-import { storage, ref, deleteObject } from "./firebase-config.js";
-const firestoreDb = getFirestore(storage.app);
+// firebase-config.js'teki TEK app/db/storage örneğini kullan (aynı config'i
+// iki kez initializeApp ile başlatmak bu sayfada çakışma hatası verir).
+import { db as firestoreDb, storage, ref, deleteObject } from "./firebase-config.js";
 
 const el = {
   repo: document.getElementById("repoInput"),
