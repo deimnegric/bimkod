@@ -5723,7 +5723,7 @@
   },
   {
     "code": "1639128",
-    "name": "Fakir",
+    "name": "Fakir noble ac motor profesyonel saç kurutma",
     "price": null,
     "image": "images/000362.jpg",
     "embIndex": 362,
@@ -250321,16 +250321,6 @@
     "embIndex": 15848,
     "confidence": 0.9499140381813049,
     "addedAt": "2026-10-02T19:54:08.556Z",
-    "approvedManually": true
-  },
-  {
-    "code": "1644253",
-    "name": "fakir el mikseri",
-    "price": null,
-    "image": "images/015849.jpg",
-    "embIndex": 15849,
-    "confidence": 0.9391646385192871,
-    "addedAt": "2026-10-02T21:44:22.651Z",
     "approvedManually": true
   }
 ]
