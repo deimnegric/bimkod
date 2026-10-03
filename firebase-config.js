@@ -35,21 +35,53 @@ export const storage = getStorage(app);
 // 1000px'e indirip JPEG %80 kalitede yeniden sıkıştırıyoruz (~100-300 KB'a
 // düşer). admin onayladığında görsel zaten GitHub'a (images/) kopyalanıyor,
 // o yüzden Storage'daki bu kopyanın "arşiv kalitesinde" olmasına gerek yok.
-async function compressImage(file, maxDim = 1000, quality = 0.8) {
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height));
-  const w = Math.round(bitmap.width * scale);
-  const h = Math.round(bitmap.height * scale);
-  const canvas = document.createElement("canvas");
-  canvas.width = w; canvas.height = h;
-  canvas.getContext("2d").drawImage(bitmap, 0, 0, w, h);
-  return new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
+function compressImage(file, maxDim = 1000, quality = 0.8) {
+  // createImageBitmap bazı eski mobil tarayıcılarda (özellikle iOS Safari'nin
+  // eski sürümleri) desteklenmiyor/sessizce takılıyor olabiliyordu -> daha
+  // geniş desteğe sahip <img> + canvas yöntemine geçtik.
+  return new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const img = new Image();
+    const timeout = setTimeout(() => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Görsel yüklenemedi (zaman aşımı)."));
+    }, 15000);
+
+    img.onload = () => {
+      clearTimeout(timeout);
+      const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+      const w = Math.round(img.width * scale);
+      const h = Math.round(img.height * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(objectUrl);
+      canvas.toBlob(
+        (blob) => (blob ? resolve(blob) : reject(new Error("Görsel sıkıştırılamadı."))),
+        "image/jpeg",
+        quality
+      );
+    };
+    img.onerror = () => {
+      clearTimeout(timeout);
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Görsel okunamadı (bozuk dosya olabilir)."));
+    };
+    img.src = objectUrl;
+  });
 }
 
 // Kullanıcının "ürün bildirimi"ni pending_reports koleksiyonuna yazar.
 // Görsel önce küçültülüp Storage'a yüklenir, sonra dokümana indirme linki
 // (ve admin onay/red sonrası temizleyebilsin diye Storage yolu) eklenir.
 // admin.html bu koleksiyonu "Çalışan İsteği" panelinde okuyup listeler.
+function withTimeout(promise, ms, message) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(message)), ms)),
+  ]);
+}
+
 export async function submitProductReport({ imageFile, name }) {
   let imageUrl = null;
   let storagePath = null;
@@ -57,7 +89,13 @@ export async function submitProductReport({ imageFile, name }) {
     const compressed = await compressImage(imageFile);
     storagePath = `pending_reports/${Date.now()}.jpg`;
     const storageRef = ref(storage, storagePath);
-    await uploadBytes(storageRef, compressed, { contentType: "image/jpeg" });
+    // Storage kuralları henüz yayılmamışsa ya da ağ sorunu varsa bazen istek
+    // sessizce asılı kalabiliyor -> 25sn'de pes edip net bir hata gösteriyoruz.
+    await withTimeout(
+      uploadBytes(storageRef, compressed, { contentType: "image/jpeg" }),
+      25000,
+      "Görsel yüklenemedi (zaman aşımı) — internet bağlantını ya da birkaç dakika sonra tekrar denemeyi kontrol et."
+    );
     imageUrl = await getDownloadURL(storageRef);
   }
   await addDoc(collection(db, "pending_reports"), {

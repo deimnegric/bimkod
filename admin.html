@@ -98,6 +98,18 @@
   .card img{ width:180px; height:220px; object-fit:contain; border-radius:8px; background:var(--bg); flex-shrink:0; }
   .card img.small{ width:90px; height:110px; }
   .card-body{ flex:1; min-width:200px; }
+
+  /* Çalışan İsteği: yan yana 3 kart, dikey düzen (görsel üstte, alanlar altta) */
+  .worker-requests-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:12px;
+  }
+  .worker-requests-grid .card{ flex-direction:column; margin-bottom:0; }
+  .worker-requests-grid .card img{ width:100%; height:160px; }
+  .worker-requests-grid .card-body{ min-width:0; }
+  @media (max-width:760px){ .worker-requests-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:480px){ .worker-requests-grid{ grid-template-columns:1fr; } }
   .raw-ocr{
     font-family:ui-monospace,monospace; font-size:11px; color:var(--text-soft);
     background:var(--bg); padding:6px 8px; border-radius:6px; margin-bottom:8px;
@@ -185,12 +197,12 @@
   <div class="panel" id="workerRequestsPanel">
     <h3 style="margin:0 0 8px; font-size:14px;">👷 Çalışan İsteği</h3>
     <p class="sub" style="margin:0 0 10px;">
-      Sitedeki "Aradığınız ürünü bulamadınız mı?" formundan gelen bildirimler (Firebase).
+      Sitedeki "Aradığınız ürünü bulamadınız mı?" formundan gelen bildirimler (Firebase), sayfa açılır açılmaz otomatik yüklenir.
       Onaylarsan görsel + kod + isimle doğrudan sisteme (GitHub) eklenir. Reddedersen kuyruktan kalkar.
     </p>
-    <button class="btn-primary" id="loadWorkerRequestsBtn">Bekleyen İstekleri Yükle</button>
-    <div id="workerRequestsStatus" style="font-size:12px; color:var(--text-soft); margin:8px 0;"></div>
-    <div id="workerRequestsList"></div>
+    <div id="workerRequestsStatus" style="font-size:12px; color:var(--text-soft); margin:0 0 10px;"></div>
+    <div id="workerRequestsList" class="worker-requests-grid"></div>
+    <button class="btn-secondary hidden" id="workerRequestsNextBtn" style="margin-top:10px;">Sonraki 3'ü Göster</button>
   </div>
 
   <div class="panel" id="liveSearchPanel">
@@ -242,35 +254,6 @@
     </div>
   </div>
 
-  <div class="panel" id="sandboxPanel">
-    <h3 style="margin:0 0 8px; font-size:14px;">🧪 Test Sandbox: Afiş Yükle, Kırp, OCR Dene</h3>
-    <p class="sub" style="margin:0 0 10px;">Tüm pipeline'ı (~2 saat) çalıştırmadan tek bir görsel üzerinde dene: YOLO'nun bulacağı kutuyu elle çiz, güncel payı (padding) uygula, OCR + isim temizleme mantığının sonucunu anında gör. Not: tarayıcı OCR'ı (Tesseract.js) ile Python'daki (pytesseract) motor biraz farklı olabilir, ama kırpma sınırlarını ve isim temizleme mantığını test etmek için birebir yeterli.</p>
-    <input type="file" id="sandboxImageInput" accept="image/*">
-    <div id="sandboxCropWrap" class="hidden" style="margin-top:10px;">
-      <p class="sub" style="margin:0 0 6px;">Ürünün (YOLO'nun bulacağı) çekirdek kutusunu fareyle/parmakla seç:</p>
-      <canvas id="sandboxCanvas" style="max-width:100%; touch-action:none; cursor:crosshair; border-radius:8px; border:1px solid var(--border);"></canvas>
-      <div class="field-row" style="margin-top:8px;">
-        <div><label>Üst pay (%)</label><input type="number" id="sbPadTop" value="0" step="5"></div>
-        <div><label>Yan pay (%)</label><input type="number" id="sbPadSide" value="2" step="5"></div>
-        <div><label>Alt pay (%)</label><input type="number" id="sbPadBottom" value="2" step="5"></div>
-      </div>
-      <div class="row" style="margin-top:8px;">
-        <button class="btn-secondary" id="sbPreviewBtn">Payı Önizle</button>
-        <button class="btn-approve" id="sbOcrBtn">Bu Alanda OCR Dene</button>
-      </div>
-    </div>
-    <div id="sandboxResult" class="hidden" style="margin-top:12px;">
-      <label>Kırpılan alan (gerçek pipeline'a giden görüntü budur)</label>
-      <img id="sbCroppedPreview" style="max-width:220px; max-height:270px; border-radius:8px; border:1px solid var(--border); display:block; margin:6px 0 10px;">
-      <label>Ham OCR metni</label>
-      <div class="raw-ocr" id="sbRawOcr" style="margin-bottom:10px;"></div>
-      <label>Temizlenmiş sonuç (yeni isim mantığıyla)</label>
-      <div id="sbParsed" style="font-size:13.5px; background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px;"></div>
-    </div>
-    <div id="sandboxStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
-  </div>
-
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script type="module">
 import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
 import {
@@ -308,12 +291,6 @@ const el = {
   liveSearchBtn: document.getElementById("liveSearchBtn"),
   liveSearchStatus: document.getElementById("liveSearchStatus"),
   liveSearchResults: document.getElementById("liveSearchResults"),
-  sandboxCropWrap: document.getElementById("sandboxCropWrap"),
-  sandboxResult: document.getElementById("sandboxResult"),
-  sandboxStatus: document.getElementById("sandboxStatus"),
-  sbCroppedPreview: document.getElementById("sbCroppedPreview"),
-  sbRawOcr: document.getElementById("sbRawOcr"),
-  sbParsed: document.getElementById("sbParsed"),
 };
 
 let fastQueue = [];
@@ -946,7 +923,12 @@ async function deleteStorageFileSafe(storagePath) {
 }
 
 // ==================== Çalışan İsteği (Firebase pending_reports) ====================
-document.getElementById("loadWorkerRequestsBtn").addEventListener("click", loadWorkerRequests);
+// Sayfa açılır açılmaz (aşağıda çağrılıyor) otomatik yüklenir, 3'erli gösterilir.
+let workerRequestItems = [];
+let workerRequestsShown = 0;
+const WORKER_REQUESTS_PAGE_SIZE = 3;
+
+document.getElementById("workerRequestsNextBtn").addEventListener("click", renderWorkerRequestsPage);
 
 async function loadWorkerRequests() {
   const statusEl = document.getElementById("workerRequestsStatus");
@@ -955,38 +937,51 @@ async function loadWorkerRequests() {
   try {
     const q = query(collection(firestoreDb, "pending_reports"), where("status", "==", "pending"));
     const snap = await getDocs(q);
-    const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-    if (!items.length) {
+    workerRequestItems = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    workerRequestsShown = 0;
+    listEl.innerHTML = "";
+    if (!workerRequestItems.length) {
       statusEl.textContent = "Bekleyen istek yok.";
-      listEl.innerHTML = "";
+      document.getElementById("workerRequestsNextBtn").classList.add("hidden");
       return;
     }
-    statusEl.textContent = `${items.length} bekleyen istek.`;
-    listEl.innerHTML = items.map((item) => `
-      <div class="card" data-id="${item.id}">
-        ${item.imageUrl ? `<img src="${item.imageUrl}" alt="bildirim">` : `<div style="width:180px;height:220px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
-        <div class="card-body">
-          <label>Kod</label>
-          <input type="text" class="wr-code" placeholder="örn. 1714999">
-          <label>İsim</label>
-          <input type="text" class="wr-name" value="${(item.name || "").replace(/"/g, "&quot;")}">
-          <div class="card-actions">
-            <button class="btn-approve wr-approve">Onayla ve Ekle</button>
-            <button class="btn-reject wr-reject">Reddet</button>
-          </div>
-          <div class="wr-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
-        </div>
-      </div>
-    `).join("");
-
-    [...listEl.children].forEach((card, i) => {
-      const item = items[i];
-      card.querySelector(".wr-approve").addEventListener("click", () => approveWorkerRequest(item, card));
-      card.querySelector(".wr-reject").addEventListener("click", () => rejectWorkerRequest(item, card));
-    });
+    statusEl.textContent = `${workerRequestItems.length} bekleyen istek.`;
+    renderWorkerRequestsPage();
   } catch (err) {
     statusEl.textContent = "❌ Hata: " + err.message;
   }
+}
+
+function renderWorkerRequestsPage() {
+  const listEl = document.getElementById("workerRequestsList");
+  const nextBtn = document.getElementById("workerRequestsNextBtn");
+  const page = workerRequestItems.slice(workerRequestsShown, workerRequestsShown + WORKER_REQUESTS_PAGE_SIZE);
+
+  page.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.dataset.id = item.id;
+    card.innerHTML = `
+      ${item.imageUrl ? `<img src="${item.imageUrl}" alt="bildirim">` : `<div style="width:100%;height:160px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
+      <div class="card-body">
+        <label>Kod</label>
+        <input type="text" class="wr-code" placeholder="örn. 1714999">
+        <label>İsim</label>
+        <input type="text" class="wr-name" value="${(item.name || "").replace(/"/g, "&quot;")}">
+        <div class="card-actions">
+          <button class="btn-approve wr-approve">Onayla ve Ekle</button>
+          <button class="btn-reject wr-reject">Reddet</button>
+        </div>
+        <div class="wr-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
+      </div>
+    `;
+    card.querySelector(".wr-approve").addEventListener("click", () => approveWorkerRequest(item, card));
+    card.querySelector(".wr-reject").addEventListener("click", () => rejectWorkerRequest(item, card));
+    listEl.appendChild(card);
+  });
+
+  workerRequestsShown += page.length;
+  nextBtn.classList.toggle("hidden", workerRequestsShown >= workerRequestItems.length);
 }
 
 async function approveWorkerRequest(item, card) {
@@ -1206,298 +1201,6 @@ async function rescanLiveProduct(product, card) {
   }
 }
 
-// ==================== Test Sandbox: manuel kutu + pay önizleme + OCR ====================
-// pipeline/ocr_extract.py'daki clean_name mantığının BİREBİR JS karşılığı — artık
-// bullet aramak yerine YAZI BOYUTUNA (font yüksekliği) bakıyor. Tesseract.js'in
-// recognize() sonucundaki data.lines dizisi zaten her satırın bbox'ını (dolayısıyla
-// yüksekliğini) veriyor, ayrıca image_to_data'ya gerek yok.
-// Python tarafı değişirse burayı da güncellemek gerekir.
-const CODE_RE_JS = /\b\d{6,8}\b/;
-const PRICE_RE_JS = /\b(\d{1,4})\s?[t₺]\b/i;
-const NOISE_RE_JS = /peşin\s*fiyat|taksit|adet|stok|garanti|kart\s*ile|nakit|^\d+\s*(yil|yıl)$/i;
-const BULLET_RE_JS = /[•*·»«]/;
-const LEADING_CODE_RE_JS = /^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?/i;
-const TITLE_HEIGHT_RATIO_JS = 0.5;
-
-function isMostlyNumericJS(t) {
-  const letters = (t.match(/[a-zA-ZÇĞİÖŞÜçğıöşü]/g) || []).length;
-  const digits = (t.match(/[0-9]/g) || []).length;
-  return digits > 0 && digits >= letters;
-}
-function isSuspiciousNameJS(name) {
-  if (!name) return true;
-  const letters = (name.match(/[a-zA-ZÇĞİÖŞÜçğıöşü]/g) || []).length;
-  if (letters < 3) return true;
-  const firstAlnum = [...name].find((c) => /[a-zA-Z0-9ÇĞİÖŞÜçğıöşü]/.test(c)) || "";
-  if (!/[a-zA-ZÇĞİÖŞÜçğıöşü]/.test(firstAlnum)) return true;
-  return false;
-}
-
-function cleanNameJS(ocrLines) {
-  // ocrLines: [{text, height}], üstten alta sıralı
-  let price = null, priceText = null;
-  for (const l of ocrLines) {
-    const m = PRICE_RE_JS.exec(l.text);
-    if (m) { price = m[1]; priceText = l.text; break; }
-  }
-
-  const candidates = [];
-  for (const l of ocrLines) {
-    const t = l.text.trim();
-    if (!t || t === priceText) continue;
-    if (NOISE_RE_JS.test(t)) continue;
-    if (/^[\d\W]+$/.test(t)) continue;
-    if (isMostlyNumericJS(t)) continue; // örn. OCR "699₺"yi "699t" gibi kaçırmışsa da yakala
-    candidates.push({ text: t, height: l.height });
-  }
-
-  const nameLines = [];
-  if (candidates.length) {
-    // Çıpa: global max yerine İLK satır (bazı tasarımlarda fiyat/logo başlıktan
-    // daha büyük punto olabiliyor; global max o zaman gerçek başlığı da eler).
-    const threshold = candidates[0].height * TITLE_HEIGHT_RATIO_JS;
-    for (const c of candidates) {
-      if (c.height < threshold) break; // küçük punto -> detay/özellik başladı, dur
-      let t = c.text;
-      const cm = CODE_RE_JS.exec(t);
-      // Kod bazen başlıkla aynı satırda oluyor -> sadece kod kısmını isimden çıkar
-      // (kodun KENDİSİ ayrı bir tüm-görsel rakam-only geçişten geliyor, burada değil)
-      if (cm) { t = (t.slice(0, cm.index) + t.slice(cm.index + cm[0].length)).replace(/^[\s|:\-–—.]+|[\s|:\-–—.]+$/g, ""); }
-      if (!t) continue;
-      const bm = BULLET_RE_JS.exec(t);
-      if (bm) {
-        const before = t.slice(0, bm.index).replace(/^[\s\-:|.]+|[\s\-:|.]+$/g, "");
-        if (before) nameLines.push(before);
-        break;
-      }
-      nameLines.push(t);
-    }
-  }
-
-  let name = nameLines.join(" ").trim();
-  if (!name && candidates.length) name = candidates[0].text; // tamamen boş kalmaktansa en azından ilk adayı kullan
-  name = name.replace(LEADING_CODE_RE_JS, "").trim();
-  name = name.replace(/^[^a-zA-ZÇĞİÖŞÜçğıöşü0-9]+/, "");
-  name = name.replace(/[^a-zA-ZÇĞİÖŞÜçğıöşü0-9)"'%]+$/, "");
-  name = name.replace(/\s{2,}/g, " ");
-  return { name, price };
-}
-
-const sbCanvas = document.getElementById("sandboxCanvas");
-const sbCtx = sbCanvas.getContext("2d");
-let sbSourceImg = null, sbRect = null, sbPaddedRect = null, sbDragging = false, sbStart = null;
-
-document.getElementById("sandboxImageInput").addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  el.sandboxResult.classList.add("hidden");
-  el.sandboxStatus.textContent = "";
-
-  const img = new Image();
-  img.onload = () => {
-    sbSourceImg = img;
-    const maxW = 480;
-    const scale = Math.min(1, maxW / img.width);
-    sbCanvas.width = img.width * scale;
-    sbCanvas.height = img.height * scale;
-    sbCtx.drawImage(img, 0, 0, sbCanvas.width, sbCanvas.height);
-    sbRect = null; sbPaddedRect = null;
-    el.sandboxCropWrap.classList.remove("hidden");
-  };
-  img.src = URL.createObjectURL(file);
-});
-
-function sbPointerPos(e) {
-  const rect = sbCanvas.getBoundingClientRect();
-  const cx = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-  const cy = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
-  return { x: cx * (sbCanvas.width / rect.width), y: cy * (sbCanvas.height / rect.height) };
-}
-function sbRedraw() {
-  sbCtx.drawImage(sbSourceImg, 0, 0, sbCanvas.width, sbCanvas.height);
-  if (sbPaddedRect) {
-    sbCtx.strokeStyle = "#7FA8C9";
-    sbCtx.lineWidth = 2;
-    sbCtx.setLineDash([4, 3]);
-    sbCtx.strokeRect(sbPaddedRect.x, sbPaddedRect.y, sbPaddedRect.w, sbPaddedRect.h);
-  }
-  if (sbRect) {
-    sbCtx.strokeStyle = "#D98A8A";
-    sbCtx.lineWidth = 2;
-    sbCtx.setLineDash([6, 4]);
-    sbCtx.strokeRect(sbRect.x, sbRect.y, sbRect.w, sbRect.h);
-  }
-}
-function sbStartDrag(e) { e.preventDefault(); sbDragging = true; sbStart = sbPointerPos(e); sbPaddedRect = null; }
-function sbMoveDrag(e) {
-  if (!sbDragging) return;
-  e.preventDefault();
-  const p = sbPointerPos(e);
-  sbRect = { x: Math.min(sbStart.x, p.x), y: Math.min(sbStart.y, p.y), w: Math.abs(p.x - sbStart.x), h: Math.abs(p.y - sbStart.y) };
-  sbRedraw();
-}
-function sbEndDrag() { sbDragging = false; }
-sbCanvas.addEventListener("mousedown", sbStartDrag);
-sbCanvas.addEventListener("mousemove", sbMoveDrag);
-window.addEventListener("mouseup", sbEndDrag);
-sbCanvas.addEventListener("touchstart", sbStartDrag, { passive: false });
-sbCanvas.addEventListener("touchmove", sbMoveDrag, { passive: false });
-window.addEventListener("touchend", sbEndDrag);
-
-// Kırmızı = senin seçtiğin çekirdek kutu (YOLO'nun bulacağı gibi düşün).
-// Mavi = pipeline'ın uyguladığı pay ile GERÇEKTE kırpılacak alan.
-document.getElementById("sbPreviewBtn").addEventListener("click", () => {
-  if (!sbRect || sbRect.w < 5 || sbRect.h < 5) { alert("Önce fareyle bir ürünün üstünden çekirdek kutuyu seç."); return; }
-  const padTop = Number(document.getElementById("sbPadTop").value) / 100;
-  const padSide = Number(document.getElementById("sbPadSide").value) / 100;
-  const padBottom = Number(document.getElementById("sbPadBottom").value) / 100;
-  const w = sbRect.w, h = sbRect.h;
-  sbPaddedRect = {
-    x: Math.max(0, sbRect.x - w * padSide),
-    y: Math.max(0, sbRect.y - h * padTop),
-    w: Math.min(sbCanvas.width, sbRect.x + w + w * padSide) - Math.max(0, sbRect.x - w * padSide),
-    h: Math.min(sbCanvas.height, sbRect.y + h + h * padBottom) - Math.max(0, sbRect.y - h * padTop),
-  };
-  sbRedraw();
-});
-
-async function sbGetCroppedBlob() {
-  const useRect = sbPaddedRect || sbRect;
-  if (!useRect || useRect.w < 5 || useRect.h < 5) return null;
-  const scaleX = sbSourceImg.width / sbCanvas.width;
-  const scaleY = sbSourceImg.height / sbCanvas.height;
-  const outCanvas = document.createElement("canvas");
-  outCanvas.width = Math.round(useRect.w * scaleX);
-  outCanvas.height = Math.round(useRect.h * scaleY);
-  outCanvas.getContext("2d").drawImage(
-    sbSourceImg,
-    useRect.x * scaleX, useRect.y * scaleY, useRect.w * scaleX, useRect.h * scaleY,
-    0, 0, outCanvas.width, outCanvas.height
-  );
-  return new Promise((resolve) => outCanvas.toBlob(resolve, "image/jpeg", 0.92));
-}
-
-// Bir canvas'ı belirli bir kat büyütüp (upscale) gri tonlamaya çevirir —
-// pipeline/ocr_extract.py'daki preprocess_for_ocr ile aynı mantık, Tesseract'ın
-// küçük/düşük çözünürlüklü kırpımlarda rakam karıştırmasını (9<->8 gibi) azaltır.
-function upscaleCanvas(sourceCanvas, scale) {
-  const out = document.createElement("canvas");
-  out.width = sourceCanvas.width * scale;
-  out.height = sourceCanvas.height * scale;
-  const ctx = out.getContext("2d");
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = "high";
-  ctx.drawImage(sourceCanvas, 0, 0, out.width, out.height);
-  return out;
-}
-function blobToCanvas(blob) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => {
-      const c = document.createElement("canvas");
-      c.width = img.width; c.height = img.height;
-      c.getContext("2d").drawImage(img, 0, 0);
-      resolve(c);
-    };
-    img.src = URL.createObjectURL(blob);
-  });
-}
-// Gri tonlama + karanlıksa ters çevirme (invert) — koyu rozet üzerine beyaz
-// yazılarda (örn. siyah kod rozeti) Tesseract çok daha iyi sonuç veriyor.
-function grayscaleWithMean(sourceCanvas) {
-  const out = document.createElement("canvas");
-  out.width = sourceCanvas.width; out.height = sourceCanvas.height;
-  const ctx = out.getContext("2d");
-  ctx.drawImage(sourceCanvas, 0, 0);
-  const imgData = ctx.getImageData(0, 0, out.width, out.height);
-  const d = imgData.data;
-  let sum = 0;
-  for (let i = 0; i < d.length; i += 4) {
-    const g = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-    d[i] = d[i + 1] = d[i + 2] = g;
-    sum += g;
-  }
-  ctx.putImageData(imgData, 0, 0);
-  return { canvas: out, mean: sum / (d.length / 4) };
-}
-function invertCanvas(sourceCanvas) {
-  const out = document.createElement("canvas");
-  out.width = sourceCanvas.width; out.height = sourceCanvas.height;
-  const ctx = out.getContext("2d");
-  ctx.drawImage(sourceCanvas, 0, 0);
-  const imgData = ctx.getImageData(0, 0, out.width, out.height);
-  const d = imgData.data;
-  for (let i = 0; i < d.length; i += 4) { d[i] = 255 - d[i]; d[i + 1] = 255 - d[i + 1]; d[i + 2] = 255 - d[i + 2]; }
-  ctx.putImageData(imgData, 0, 0);
-  return out;
-}
-// pipeline/ocr_extract.py'daki preprocess_for_ocr ile aynı mantık: büyüt + gri
-// tonlama + karanlıksa ters çevir.
-function preprocessForOcrJS(sourceCanvas, scale) {
-  const up = upscaleCanvas(sourceCanvas, scale);
-  const { canvas: gray, mean } = grayscaleWithMean(up);
-  return mean < 110 ? invertCanvas(gray) : gray;
-}
-
-document.getElementById("sbOcrBtn").addEventListener("click", async () => {
-  const blob = await sbGetCroppedBlob();
-  if (!blob) { el.sandboxStatus.textContent = "⚠️ Önce fareyle bir alan seç (istersen 'Payı Önizle' ile genişlet)."; return; }
-
-  el.sbCroppedPreview.src = URL.createObjectURL(blob);
-  el.sandboxResult.classList.remove("hidden");
-  el.sandboxStatus.textContent = "OCR çalışıyor (ilk seferde Türkçe dil paketi indiriliyor, biraz sürebilir)…";
-
-  let worker;
-  try {
-    const baseCanvas = await blobToCanvas(blob);
-    const mainProcessed = preprocessForOcrJS(baseCanvas, 2);
-
-    worker = await Tesseract.createWorker("tur");
-    const { data } = await worker.recognize(mainProcessed);
-    el.sbRawOcr.textContent = data.text || "(OCR metni yok)";
-
-    // Satır + yükseklik bilgisini al (Python'daki get_ocr_lines karşılığı).
-    // Tesseract.js sürümüne göre data.lines gelmeyebilir -> düz metne düş (fallback),
-    // o durumda tüm satırlar eşit yükseklik varsayılır (eski bullet-only davranışı).
-    let ocrLines;
-    if (data.lines && data.lines.length) {
-      ocrLines = data.lines.map((l) => ({ text: (l.text || "").trim(), height: Math.max(1, (l.bbox?.y1 ?? 0) - (l.bbox?.y0 ?? 0)) })).filter((l) => l.text);
-    } else {
-      ocrLines = (data.text || "").split("\n").map((t) => ({ text: t.trim(), height: 1 })).filter((l) => l.text);
-    }
-    const { name, price } = cleanNameJS(ocrLines);
-
-    // Kod: konumu karta göre değiştiği için TÜM görseli, sadece rakam izniyle ayrı okuyoruz.
-    // Küçük koyu rozetler genel parlaklığı değiştirmeyebiliyor -> normal VE ters
-    // çevrilmiş halde deniyoruz, hangisi bulursa onu kullanıyoruz.
-    await worker.setParameters({ tessedit_char_whitelist: "0123456789" });
-    const codeProcessed = preprocessForOcrJS(baseCanvas, 3);
-    let { data: { text: codeText } } = await worker.recognize(codeProcessed);
-    let codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
-    let usedInverted = false;
-    if (!codeMatches.length) {
-      const inverted = invertCanvas(codeProcessed);
-      const r2 = await worker.recognize(inverted);
-      codeText = r2.data.text;
-      codeMatches = (codeText || "").match(/\b\d{6,8}\b/g) || [];
-      usedInverted = true;
-    }
-    const code = codeMatches.length ? codeMatches[codeMatches.length - 1] : null;
-
-    const suspicious = isSuspiciousNameJS(name);
-    el.sbParsed.innerHTML = `
-      <div><b>Kod:</b> ${code || "<i>bulunamadı</i>"}${codeMatches.length ? ` <span style="color:var(--text-soft); font-size:12px;">(rakam geçişi${usedInverted ? ", ters çevrilmiş" : ""}: "${codeText.trim()}")</span>` : ""}</div>
-      <div><b>İsim:</b> ${name || "<i>bulunamadı</i>"}${suspicious ? ` <span style="color:var(--red-dark); font-size:12px;">(şüpheli — gerçek pipeline bunu admin kuyruğuna gönderirdi)</span>` : ""}</div>
-      <div><b>Fiyat:</b> ${price ? price + " ₺" : "<i>bulunamadı</i>"}</div>
-    `;
-    el.sandboxStatus.textContent = "✅ Tamamlandı. Beğenmediysen payı değiştirip 'OCR Dene'ye tekrar bas.";
-  } catch (err) {
-    el.sandboxStatus.textContent = "❌ Hata: " + err.message;
-  } finally {
-    if (worker) await worker.terminate();
-  }
-});
-
 // Klavye kısayolları: Enter=onayla, Esc=listeye dön, (yazı alanı dışındayken) Delete/Backspace=reddet
 // NOT: Delete/Backspace sadece bir input'a odaklanılmamışken çalışır -> Kod/İsim düzenlerken
 // yanlışlıkla ürünü reddetmeyi önler.
@@ -1508,6 +1211,11 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === "Escape") { e.preventDefault(); exitFastMode(); }
   else if (!isTyping && (e.key === "Delete" || e.key === "Backspace")) { e.preventDefault(); fastReject(); }
 });
+
+// ==================== Başlangıç ====================
+// Çalışan İsteği (Firebase) GitHub token gerektirmediği için sayfa açılır
+// açılmaz otomatik yüklenir (diğer panellerin aksine elle "yükle" denmesine gerek yok).
+loadWorkerRequests();
 </script>
 </body>
 </html>
