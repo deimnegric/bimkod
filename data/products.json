@@ -20462,7 +20462,7 @@
   },
   {
     "code": "1645998",
-    "name": "f Fakir",
+    "name": "fakir spinmix doğrayıcı",
     "price": null,
     "image": "images/001302.jpg",
     "embIndex": 1302,
@@ -42834,7 +42834,7 @@
   },
   {
     "code": "1635325",
-    "name": "Buzlu Cam Dekoratif Gi) Lambası db. Lig",
+    "name": "Buzlu Cam Dekoratif Gaz Lambası",
     "price": null,
     "image": "images/002737.jpg",
     "embIndex": 2737,
@@ -104209,7 +104209,7 @@
   },
   {
     "code": "1644896",
-    "name": "! 7e KUMTEL Çift Yönlü Şömine, İstıcı 00 un",
+    "name": "KUMTEL Çift Yönlü Şömine",
     "price": null,
     "image": "images/006716.jpg",
     "embIndex": 6716,
@@ -250312,5 +250312,25 @@
       1016,
       822
     ]
+  },
+  {
+    "code": "1644260",
+    "name": "Arnica Hydra Rain Su Filtreli Halı Yıkama Makinesi",
+    "price": null,
+    "image": "images/015848.jpg",
+    "embIndex": 15848,
+    "confidence": 0.9499140381813049,
+    "addedAt": "2026-10-02T19:54:08.556Z",
+    "approvedManually": true
+  },
+  {
+    "code": "1647429",
+    "name": "50 İnç 4K Ultra HD Qled Google TV",
+    "price": null,
+    "image": "images/015850.jpg",
+    "embIndex": 15850,
+    "confidence": 0.8803510665893555,
+    "addedAt": "2026-10-02T21:58:53.461Z",
+    "approvedManually": true
   }
 ]

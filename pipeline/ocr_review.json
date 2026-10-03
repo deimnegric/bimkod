@@ -1,39 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000000.jpg",
-    "source_flyer": "pipeline/raw_flyers/1195.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      836,
-      1166,
-      1032,
-      1582
-    ],
-    "confidence": 0.9499140381813049,
-    "code": null,
-    "name": "arnica Hydra Rain Su Filtreli Halı Yıkama Makinesi",
-    "price": null,
-    "raw_ocr": "arnica\nHydra Rain Su Filtreli\nHalı Yıkama Makinesi\n* 2400 W Max\n* Hepa 153 Filtre\n* Koltuk Temizleme Aparatı\n* Özel Halı Şampuanı\n* Kablo: 6,5 m\n* Temiz Su Tankı: 10L\n* Kirli Su Tankı: 8,5 L\nStok: 9.000",
-    "review_image": "review/35b0889d533b5471.jpg"
-  },
-  {
-    "full_crop": "pipeline/crops_full/000003.jpg",
-    "source_flyer": "pipeline/raw_flyers/1195.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      0,
-      1190,
-      182,
-      1579
-    ],
-    "confidence": 0.9391646385192871,
-    "code": "1644253",
-    "name": "f",
-    "price": null,
-    "raw_ocr": "f« Fakir\nMAYEGRMATE\nEl Mikseri\n» Güç:700 W\n* Hız Kademesi:7 Kademe\n* Çırpma Aparatı: 2 Adet\n* Yoğurma Aparatı:2 Adet\n»* Paslanmaz Çelik\nartar Gri\nStok adedi: 0.000\ne\nu,\n1644253",
-    "review_image": "review/b6141ff39d3e7ee2.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000009.jpg",
     "source_flyer": "pipeline/raw_flyers/1195.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
@@ -321,23 +287,6 @@
     "price": null,
     "raw_ocr": "55 İnç Frameless\nUltra HD Gled Google TV\n55U09500F\nGg e)\n1643647 Pa: li",
     "review_image": "review/c179cf33f38d87f0.jpg"
-  },
-  {
-    "full_crop": "pipeline/crops_full/000045.jpg",
-    "source_flyer": "pipeline/raw_flyers/1193.jpg",
-    "flyer_date": "2026-09-23T06:15:14+00:00",
-    "bbox": [
-      26,
-      1045,
-      669,
-      1318
-    ],
-    "confidence": 0.8803510665893555,
-    "code": "1647429",
-    "name": "3 NANE BAZLAR 50 İnç 4K Ultra HD Gled Google TV LED TV Üç Le 3x ca",
-    "price": null,
-    "raw_ocr": "3 NANE BAZLAR 50 İnç 4K Ultra HD\nGled Google TV\n500040000\n16474729 LED TV Üç Le\n18.990:.\n© © ) Stok: 5000\n3x ca\nKom 2xUSB",
-    "review_image": "review/6355a6949c346dba.jpg"
   },
   {
     "full_crop": "pipeline/crops_full/000047.jpg",
