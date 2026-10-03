@@ -151281,5 +151281,702 @@
     "price": null,
     "raw_ocr": "G -40x60cm\nça\ni Payla Piva, \"a (Gan\n679:\n”\n/",
     "review_image": "review/840671997dff7c13.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000005.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      710,
+      1023,
+      867,
+      1264
+    ],
+    "confidence": 0.9342924356460571,
+    "code": null,
+    "name": "Kırmızı Mercimek Saban 2,5 kg",
+    "price": null,
+    "raw_ocr": "Kırmızı Mercimek\nSaban 2,5 kg\n1700038",
+    "review_image": "review/653916695d0eb8a7.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      300,
+      1027,
+      446,
+      1263
+    ],
+    "confidence": 0.9326769113540649,
+    "code": null,
+    "name": "Gönen Zenginleştirilmiş Baldo Pirinç Yayla 1 kg",
+    "price": null,
+    "raw_ocr": "Gönen\nZenginleştirilmiş\nBaldo Pirinç\nYayla 1 kg\n1715189",
+    "review_image": "review/88e3d0c3d7e9d5f3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      883,
+      1022,
+      1026,
+      1261
+    ],
+    "confidence": 0.9223079085350037,
+    "code": null,
+    "name": "Nohut Saban 2,5 kg",
+    "price": null,
+    "raw_ocr": "Nohut\nSaban 2,5 kg\n140:",
+    "review_image": "review/e8e9f2c26cef9d49.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000013.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      39,
+      142,
+      532,
+      564
+    ],
+    "confidence": 0.9201415777206421,
+    "code": null,
+    "name": "ZN AYÇIÇEK YAĞI 4 , ABALI S5L",
+    "price": null,
+    "raw_ocr": "1709430 a\nZN AYÇIÇEK YAĞI\n4 , ABALI S5L",
+    "review_image": "review/a39ab4a29d65cc05.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      713,
+      1268,
+      828,
+      1492
+    ],
+    "confidence": 0.9120935201644897,
+    "code": null,
+    "name": "Yumurtalı Uzun Erişte Filiz 350g",
+    "price": null,
+    "raw_ocr": "Yumurtalı\nUzun Erişte\nFiliz 350g\n1711714",
+    "review_image": "review/2830000a33e74458.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000020.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      707,
+      592,
+      834,
+      809
+    ],
+    "confidence": 0.8976899981498718,
+    "code": null,
+    "name": "Geleneksel Çilek Reçeli Gesaş 1 kg",
+    "price": null,
+    "raw_ocr": "! Geleneksel\nÇilek Reçeli\nGesaş 1 kg\n|\n1710651",
+    "review_image": "review/d6499d2bf25480a4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000022.jpg",
+    "source_flyer": "pipeline/raw_flyers/1214.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      672,
+      812,
+      820,
+      1018
+    ],
+    "confidence": 0.8906974196434021,
+    "code": null,
+    "name": "Tortilla Lavaş Unlüx 720g",
+    "price": null,
+    "raw_ocr": "Tortilla Lavaş\nUnlüx 720g",
+    "review_image": "review/25636602b8628b62.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      254,
+      1300,
+      441,
+      1399
+    ],
+    "confidence": 0.9512142539024353,
+    "code": null,
+    "name": "Mini Puf es ö birle Sünger Seti",
+    "price": null,
+    "raw_ocr": "Mini Puf\nes ö birle\nSünger Seti\n2 0",
+    "review_image": "review/f970bb36e7e1b7ea.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000026.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      889,
+      584,
+      1028,
+      802
+    ],
+    "confidence": 0.9453941583633423,
+    "code": null,
+    "name": "Tuvalet Temizleme Tableti Activ Blok 16x20 g",
+    "price": null,
+    "raw_ocr": "Tuvalet\nTemizleme Tableti\nActiv Blok 16x20 g\n1714027",
+    "review_image": "review/ce781ed04d959510.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000027.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      611,
+      583,
+      760,
+      810
+    ],
+    "confidence": 0.9383574724197388,
+    "code": null,
+    "name": "Sıvı Bulaşık Deterjanı Peros 4 kg",
+    "price": null,
+    "raw_ocr": "Sıvı\nBulaşık Deterjanı\nPeros 4 kg",
+    "review_image": "review/edc4a867030747f8.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000028.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      397,
+      821,
+      538,
+      991
+    ],
+    "confidence": 0.9339689016342163,
+    "code": null,
+    "name": "Tuvalet Kağıdı Agua Bambu",
+    "price": null,
+    "raw_ocr": "Tuvalet Kağıdı\nAgua Bambu",
+    "review_image": "review/1b16d47d3ad54317.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000029.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      277,
+      1393,
+      464,
+      1484
+    ],
+    "confidence": 0.9298672080039978,
+    "code": null,
+    "name": "sai l Küçük Mum ip",
+    "price": null,
+    "raw_ocr": "sai\nl Küçük Mum\nip « Naturalove\ne ç\n2 g İ « Matcha * Kahve\ne\n171333”",
+    "review_image": "review/222ab9d6c544e9d6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000033.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      591,
+      1099,
+      791,
+      1205
+    ],
+    "confidence": 0.9113573431968689,
+    "code": null,
+    "name": "5 Şampuan Çocuk : Aplus Kids",
+    "price": null,
+    "raw_ocr": "“ 5 Şampuan Çocuk\n: Aplus Kids ©\nMi — » 500m1 S\n!\n!\n!",
+    "review_image": "review/a11c1ac6248d011c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000037.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      172,
+      572,
+      359,
+      820
+    ],
+    "confidence": 0.8938970565795898,
+    "code": null,
+    "name": "Çamaşır Yumuşatıcısı Bingo Soft 5L",
+    "price": null,
+    "raw_ocr": "Çamaşır Yumuşatıcısı\nBingo Soft 5L\n* Sensitive * Lovely\n199:\n1708571 EA 1709151",
+    "review_image": "review/56924e22ed520e8f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000039.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      40,
+      1394,
+      288,
+      1483
+    ],
+    "confidence": 0.8841506242752075,
+    "code": null,
+    "name": "Charmlı Tarak , ©. Naturalove",
+    "price": null,
+    "raw_ocr": "Charmlı Tarak\n, ©. Naturalove\n1714180\n* Fırça temizleme aparatlı",
+    "review_image": "review/d6e18a83f84de2af.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000040.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      50,
+      584,
+      173,
+      814
+    ],
+    "confidence": 0.8828194737434387,
+    "code": null,
+    "name": "Çamaşır Suyu Güldal 4 L e",
+    "price": null,
+    "raw_ocr": "Çamaşır Suyu\nGüldal 4 L\n89:\n1703243\ne”",
+    "review_image": "review/b7d0f3a3752067ff.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000044.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      603,
+      1002,
+      787,
+      1096
+    ],
+    "confidence": 0.8632023930549622,
+    "code": null,
+    "name": "Şampuan Tresan 300 ml © cı",
+    "price": null,
+    "raw_ocr": "Şampuan\nTresan 300 ml ©\ncı\n189: 5\nA K",
+    "review_image": "review/e73716d84a101cdb.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000048.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      351,
+      573,
+      507,
+      819
+    ],
+    "confidence": 0.8507945537567139,
+    "code": null,
+    "name": "i Konsantre , Çamaşır Yumuşatıcısı ı Yumoş",
+    "price": null,
+    "raw_ocr": "i Konsantre\n, Çamaşır Yumuşatıcısı\nı Yumoş\n» Manolya 1440 ml -\nAçık Hava Nergis 1200 mi\nii\n1713533",
+    "review_image": "review/f6c50e3d03f3d545.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000049.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      168,
+      998,
+      308,
+      1197
+    ],
+    "confidence": 0.8490989804267883,
+    "code": null,
+    "name": "Hindistan Cevizi Yağlı Islak Mendil Uni Baby Soft Care Tİ eğ baby",
+    "price": null,
+    "raw_ocr": "Hindistan Cevizi\nYağlı Islak Mendil\nUni Baby Soft Care\n3x90'lı\n109:\nTİ\neğ\nbaby\n|",
+    "review_image": "review/bc3eff0c1e445594.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000050.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      531,
+      818,
+      674,
+      991
+    ],
+    "confidence": 0.8473374843597412,
+    "code": null,
+    "name": "Kağıt Havlu i Agua Bambu",
+    "price": null,
+    "raw_ocr": "© Kağıt Havlu\ni Agua Bambu",
+    "review_image": "review/1c85641cfc378b31.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000051.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      423,
+      1100,
+      590,
+      1203
+    ],
+    "confidence": 0.8417352437973022,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/17ab2734796859b6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      621,
+      1207,
+      786,
+      1296
+    ],
+    "confidence": 0.8315339684486389,
+    "code": null,
+    "name": "KİZ in Balm <0",
+    "price": null,
+    "raw_ocr": "KİZ in Balm <0\nwa Naturalove",
+    "review_image": "review/9323ee514c6d14f0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000053.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      447,
+      1208,
+      625,
+      1306
+    ],
+    "confidence": 0.825204074382782,
+    "code": null,
+    "name": "El Kremi 50 ml Krem",
+    "price": null,
+    "raw_ocr": "El Kremi 50 ml\nKrem*Törpü\nGirly Talk\nİ71En0K",
+    "review_image": "review/c99751345ff6bb5d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000054.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      45,
+      1027,
+      159,
+      1116
+    ],
+    "confidence": 0.8248914480209351,
+    "code": null,
+    "name": "cila Udoni Peçete Naturalove",
+    "price": null,
+    "raw_ocr": "cila Udoni\nPeçete\n1714152\nNaturalove",
+    "review_image": "review/6e90802eaf55bdef.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000057.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      637,
+      1296,
+      784,
+      1484
+    ],
+    "confidence": 0.7811238765716553,
+    "code": null,
+    "name": "Aynalı Kutulu Mini : Makyaj Fırçası Seti",
+    "price": null,
+    "raw_ocr": ". , Aynalı Kutulu Mini\n: Makyaj Fırçası Seti\nİl\nNaturalove &\nı\nl\n>\nı\nı\nl\nı\nl",
+    "review_image": "review/49cb6664956e0ef4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000058.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      906,
+      809,
+      1019,
+      1001
+    ],
+    "confidence": 0.7784810066223145,
+    "code": null,
+    "name": "Günlük Ped ı ! HijyenMax Molped",
+    "price": null,
+    "raw_ocr": ", Günlük Ped\nı ! HijyenMax\nMolped",
+    "review_image": "review/627bde14448129c4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000060.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      41,
+      135,
+      543,
+      573
+    ],
+    "confidence": 0.703004002571106,
+    "code": null,
+    "name": "BEBEK BEZİ MEGA FIRSAT PAKETİ MOLA 100'ü Junior MEGA sayi a 7 — AN 128'1 Maxi MİS li MEGA PAKET 100 y A moli Lİ 7 80'li X b geze Daki 7S Â öe > SM e İK",
+    "price": null,
+    "raw_ocr": "BEBEK BEZİ\nMEGA FIRSAT PAKETİ\nMOLA 100'ü Junior\nMEGA sayi\na 7 — AN\n1712430\ne 5 6)\n128'1 Maxi MİS li\nMEGA PAKET 100 y A\nmoli\nLİ 7 80'li X\nb geze Daki 7S\n1712431\n: İ 6\nÂ öe > SM e İK\n— (gi\nDİ EZ di a\nA CN\n128 80 (A\nAdet: 4,29 Adet: 6,86",
+    "review_image": "review/f5ed33eb30660b90.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000061.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      904,
+      910,
+      1017,
+      1001
+    ],
+    "confidence": 0.6913857460021973,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/a346a7aea4b2defd.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000062.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      793,
+      815,
+      914,
+      918
+    ],
+    "confidence": 0.6827808618545532,
+    "code": null,
+    "name": "Hijyenik Ped ' Pure&Soft Gece Molped ze",
+    "price": null,
+    "raw_ocr": "' Hijyenik Ped\n' Pure&Soft Gece\nMolped\nze",
+    "review_image": "review/66b2377f9dbd70ba.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000063.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      64,
+      320,
+      253,
+      568
+    ],
+    "confidence": 0.6514651775360107,
+    "code": null,
+    "name": "MEGA PAKET molfix Ni GTPTILI SS pi hat ks LAS Lai A",
+    "price": null,
+    "raw_ocr": "MEGA PAKET\n!\n/\nmolfix\nNi\n7$\nGTPTILI\nSS\npi\nhat\n0\nks\nLAS\nLai\nA\n—\nAdet: 4,29",
+    "review_image": "review/1aacea2dea25625c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000065.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      792,
+      814,
+      917,
+      1000
+    ],
+    "confidence": 0.5557313561439514,
+    "code": null,
+    "name": "Hijyenik Ped ' Pure&Soft Gece Molped l l l l J l l adi l l",
+    "price": null,
+    "raw_ocr": "' Hijyenik Ped\n' Pure&Soft Gece\nMolped\nl\nl\nl\nl\n1710646\nJ\nl\nl\nadi\nl\nl\nPp\nmem > <0)\nl a >",
+    "review_image": "review/2393079d33cadd84.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000066.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      659,
+      1489,
+      823,
+      1519
+    ],
+    "confidence": 0.4955500662326813,
+    "code": null,
+    "name": "BG vimturkiye",
+    "price": null,
+    "raw_ocr": "BG vimturkiye",
+    "review_image": "review/5abef77ed7bc5eff.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000067.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      631,
+      1391,
+      780,
+      1482
+    ],
+    "confidence": 0.4954379200935364,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/b6250bd95b6cb7cd.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000068.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      56,
+      1114,
+      179,
+      1214
+    ],
+    "confidence": 0.4234158992767334,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/a93114e69687ff40.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000069.jpg",
+    "source_flyer": "pipeline/raw_flyers/1213.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      643,
+      1296,
+      781,
+      1400
+    ],
+    "confidence": 0.4147242605686188,
+    "code": null,
+    "name": "Aynalı Kutulu Mini Makyaj Fırçası Seti Naturalove i",
+    "price": null,
+    "raw_ocr": "Aynalı Kutulu Mini\nMakyaj Fırçası Seti\n1704405\nNaturalove\ni",
+    "review_image": "review/ec3ca07c739d7933.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000073.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      54,
+      1277,
+      207,
+      1473
+    ],
+    "confidence": 0.9319122433662415,
+    "code": null,
+    "name": "Kakaolu Krema Ülker Hobby bike",
+    "price": null,
+    "raw_ocr": "Kakaolu Krema\nÜlker Hobby\n1710766 650g\nbike",
+    "review_image": "review/9226703b25182721.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000076.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      24,
+      584,
+      227,
+      835
+    ],
+    "confidence": 0.9238379001617432,
+    "code": null,
+    "name": "Kurabiye & Krema Aromalı Protein Tozu g",
+    "price": null,
+    "raw_ocr": "Kurabiye & Krema\nAromalı Protein Tozu\ng\n«9674 Protein « 5g BCAA\n1.900:",
+    "review_image": "review/79dcf17dfc66b81d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000080.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      723,
+      1281,
+      850,
+      1473
+    ],
+    "confidence": 0.9180521368980408,
+    "code": null,
+    "name": "Yumuşak Şeker Bebeto Party Mix 400 g m",
+    "price": null,
+    "raw_ocr": "Yumuşak Şeker\nBebeto Party\nMix 400 g\nm\n5 1711061",
+    "review_image": "review/5914687f9ceee142.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000082.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      52,
+      1049,
+      220,
+      1280
+    ],
+    "confidence": 0.9136178493499756,
+    "code": null,
+    "name": "Gofret Çeşitleri Oylum 400 g",
+    "price": null,
+    "raw_ocr": "Gofret Çeşitleri\nOylum 400 g\n« Vanilyalı Kremalı\n» Kakao Kremalı\n1710805",
+    "review_image": "review/ffa300984cf7b336.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000093.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      373,
+      638,
+      549,
+      842
+    ],
+    "confidence": 0.8366668820381165,
+    "code": null,
+    "name": "Karışık Meyve Aromalı Pre-Supreme",
+    "price": null,
+    "raw_ocr": "Karışık Meyve Aromalı\nPre-Supreme\n99",
+    "review_image": "review/43e475b0d2e9cc64.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000094.jpg",
+    "source_flyer": "pipeline/raw_flyers/1212.jpg",
+    "flyer_date": "2026-10-03T14:13:09+00:00",
+    "bbox": [
+      38,
+      169,
+      502,
+      549
+    ],
+    "confidence": 0.7785799503326416,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/ce371ab23eeb0335.jpg"
   }
 ]
