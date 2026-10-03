@@ -250332,5 +250332,15 @@
     "confidence": 0.8803510665893555,
     "addedAt": "2026-10-02T21:58:53.461Z",
     "approvedManually": true
+  },
+  {
+    "code": "1647086",
+    "name": "hikaye kitapları tdv",
+    "price": null,
+    "image": "images/015851.jpg",
+    "embIndex": 15851,
+    "confidence": 0.9560173749923706,
+    "addedAt": "2026-10-03T10:06:24.294Z",
+    "approvedManually": true
   }
 ]
