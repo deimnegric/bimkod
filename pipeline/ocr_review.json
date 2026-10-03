@@ -34,23 +34,6 @@
     "review_image": "review/4de97607e410ea85.jpg"
   },
   {
-    "full_crop": "pipeline/crops_full/000013.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      545,
-      1307,
-      716,
-      1570
-    ],
-    "confidence": 0.9560173749923706,
-    "code": null,
-    "name": "gi <o NE ama e — Ep | il99",
-    "price": null,
-    "raw_ocr": "gi <o NE\nama e —\nIr 980/491 1k\nEp | il99\n3",
-    "review_image": "review/6fc577b70a450c7a.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000019.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
