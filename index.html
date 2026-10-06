@@ -23,7 +23,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="BİMKOD">
 <title>BİMKOD</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="preload" href="data/products.json" as="fetch" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -74,7 +76,8 @@
     </section>
 
     <section id="newArrivals" class="new-arrivals" hidden>
-      <h2><span class="new-icon">NEW</span> Yeni Eklenenler</h2>
+      <h2><span class="new-icon">NEW</span> Yeni Eklenenler <span id="newArrivalsCount" class="new-count"></span>
+        <button id="newArrivalsToggle" class="new-toggle" type="button">Tümünü gör</button></h2>
       <div id="newArrivalsList" class="new-arrivals-list"></div>
     </section>
 
@@ -96,9 +99,21 @@
   <button id="reportMissingBtn" class="report-missing-btn">🔍 Aradığınız ürünü bulamadınız mı? Bildirin</button>
 
   <footer class="site-footer">
-    <p>PROJE ÜRÜNÜDÜR. GELİŞTİRİLMEKTEDİR. BİLGİ VE DESTEK İÇİN İLETİŞİM:</p>
-    <a href="https://instagram.com/h_seyinn" target="_blank" rel="noopener noreferrer">@h_seyinn</a>
+    <nav class="footer-links" aria-label="Yasal">
+      <a href="#" data-policy="privacy">Gizlilik Politikası</a>
+      <a href="#" data-policy="kvkk">KVKK / GDPR</a>
+      <a href="#" data-policy="cookies">Çerez Politikası</a>
+    </nav>
+    <p>Bilgi ve destek için iletişim: <a href="https://instagram.com/h_seyinn" target="_blank" rel="noopener noreferrer">@h_seyinn</a></p>
+    <p class="copyright">© BİMKOD 2026</p>
   </footer>
+
+  <div id="policyModal" class="report-modal" hidden>
+    <div class="report-modal-inner policy-inner">
+      <button id="policyModalClose" class="image-modal-close" aria-label="Kapat">&times;</button>
+      <div id="policyContent" class="policy-content"></div>
+    </div>
+  </div>
 
   <div id="reportModal" class="report-modal" hidden>
     <div class="report-modal-inner">
@@ -124,7 +139,6 @@
   <!-- Fuse.js: metin arama için fuzzy search -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <!-- Firebase: ürün bildirim formu için (pending_reports koleksiyonu) -->
-  <script type="module" src="firebase-config.js"></script>
   <!-- Transformers.js: tarayıcıda CLIP embedding çıkarımı (coldstart yok, statik hosting) -->
   <script type="module" src="app.js"></script>
   <!-- ===== BİMKOD: ziyaretçi sayacı ===== -->

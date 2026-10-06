@@ -332,27 +332,49 @@ function rawBase() {
 // pratikte güvenilir davranmadığı için, sha'yı Contents API'den, gerçek
 // içeriği ise raw.githubusercontent.com'dan (dosya boyutundan bağımsız,
 // her zaman ham içerik döner) alıyoruz.
-async function ghGetFile(path) {
-  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
+// ÖNEMLİ (eski düzenlemelerin geri dönmesi hatasının kök nedeni): önceden sha Contents
+// API'den (taze), içerik raw.githubusercontent.com'dan (CDN önbelleği, ~5 dk eski olabilir)
+// alınıyordu. Eski içerik + taze sha ile yazılınca bir önceki düzenleme ezilip geri
+// alınıyordu. Artık içerik, sha'nın kendi blob'undan (git/blobs/{sha}) okunuyor: sha ve
+// içerik HER ZAMAN birbiriyle tutarlı, boyut sınırı 100MB.
+async function ghGetBlob(path) {
+  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, {
+    headers: ghHeaders(), cache: "no-store",
+  });
   if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
   const meta = await metaRes.json();
 
-  const rawRes = await fetch(`${rawBase()}/${path}?_=${Date.now()}`);
-  if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
-  const text = await rawRes.text();
-  return { text, sha: meta.sha };
+  const blobRes = await fetch(`${apiBase()}/git/blobs/${meta.sha}`, {
+    headers: { ...ghHeaders(), "Accept": "application/vnd.github.raw+json" }, cache: "no-store",
+  });
+  if (!blobRes.ok) throw new Error(`${path} içeriği okunamadı (${blobRes.status})`);
+  return { buf: await blobRes.arrayBuffer(), sha: meta.sha };
+}
+
+async function ghGetFile(path) {
+  const { buf, sha } = await ghGetBlob(path);
+  return { text: new TextDecoder("utf-8").decode(buf), sha };
 }
 
 // Binary dosya (embeddings.bin gibi) için: içerik ArrayBuffer olarak döner.
 async function ghGetBinaryFile(path) {
-  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
-  if (!metaRes.ok) throw new Error(`${path} okunamadı (${metaRes.status})`);
-  const meta = await metaRes.json();
+  return ghGetBlob(path);
+}
 
-  const rawRes = await fetch(`${rawBase()}/${path}?_=${Date.now()}`);
-  if (!rawRes.ok) throw new Error(`${path} içeriği okunamadı (${rawRes.status})`);
-  const buf = await rawRes.arrayBuffer();
-  return { buf, sha: meta.sha };
+// ---- Yazma kilidi: GitHub'a yazan tüm işlemler SIRAYLA çalışır ----
+// Aynı anda iki onay/düzenleme başlarsa ikisi de aynı eski sha/sayaçla yazmaya
+// çalışıyordu (422 "sha wasn't supplied" + kayıp güncelleme). Artık kuyruğa girerler.
+let ghQueue = Promise.resolve();
+function withGhLock(fn, onQueued) {
+  onQueued?.("Sırada bekliyor (önceki işlem bitince başlayacak)…");
+  const run = ghQueue.then(fn, fn);
+  ghQueue = run.catch(() => {});
+  return run;
+}
+
+// Türkçe baş harfleri büyüt: ilk harf + boşluktan sonraki her kelimenin ilk harfi
+function trTitleCase(s) {
+  return String(s || "").trim().replace(/(^|\s)(\S)/g, (m, sp, ch) => sp + ch.toLocaleUpperCase("tr"));
 }
 
 async function ghPutFile(path, contentStr, sha, message) {
@@ -367,11 +389,19 @@ async function ghPutFile(path, contentStr, sha, message) {
 }
 
 async function ghPutBinaryFile(path, base64Content, message) {
-  // Yeni dosya oluşturuyoruz -> sha gerekmez (dosya yoksa)
+  // "Upsert": dosya zaten varsa (önceki yarım kalmış deneme, sayaç kayması vb.) güncel
+  // sha'sını alıp onunla yazar -> 422 "sha wasn't supplied" artık oluşmaz.
+  let sha;
+  const metaRes = await fetch(`${apiBase()}/contents/${path}?ref=${el.branch.value.trim()}&_=${Date.now()}`, {
+    headers: ghHeaders(), cache: "no-store",
+  });
+  if (metaRes.ok) sha = (await metaRes.json()).sha;
+  else if (metaRes.status !== 404) throw new Error(`${path} kontrol edilemedi (${metaRes.status})`);
+
   const res = await fetch(`${apiBase()}/contents/${path}`, {
     method: "PUT",
     headers: { ...ghHeaders(), "Content-Type": "application/json" },
-    body: JSON.stringify({ message, content: base64Content, branch: el.branch.value.trim() }),
+    body: JSON.stringify({ message, content: base64Content, sha, branch: el.branch.value.trim() }),
   });
   if (!res.ok) throw new Error(`${path} yazılamadı (${res.status}): ${await res.text()}`);
   return res.json();
@@ -521,7 +551,15 @@ async function rejectItem(item, card) {
 // ---- Ortak: bir görseli (URL veya base64) products.json + embeddings.json'a ekler ----
 // embedSource: CLIP'in okuyabileceği bir URL (http/https ya da blob:)
 // imageBase64: images/ klasörüne yüklenecek ham görsel (base64)
-async function commitNewProduct({ code, name, price, confidence, embedSource, imageBase64, onProgress }) {
+async function commitNewProduct(args) {
+  return withGhLock(() => commitNewProductInner(args), args.onProgress);
+}
+
+// Yayın sırası: görsel -> embeddings.bin -> embeddings.json -> products.json (EN SON).
+// Ürün ancak her şey yazıldıktan sonra products.json'a girer; arada hata olursa sitede
+// yarım/bozuk ürün görünmez, sadece kullanılmayan görsel/vektör kalır (zararsız).
+async function commitNewProductInner({ code, name, price, confidence, embedSource, imageBase64, onProgress }) {
+  name = trTitleCase(name);
   onProgress?.("Görsel embedding hesaplanıyor…");
   const embedding = await embedImage(embedSource); // Float32 sayı dizisi, 512 boyut
 
@@ -541,7 +579,8 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
   onProgress?.("embeddings.bin okunuyor (biraz sürebilir, birkaç MB)…");
   const { buf: embBuf, sha: embBinSha } = await ghGetBinaryFile("data/embeddings.bin");
 
-  const embIndex = embMeta.count;
+  // Sıradaki slot = binary'deki gerçek vektör sayısı (sayaçla uyuşmasa bile güvenli)
+  const embIndex = Math.max(embMeta.count, Math.floor(embBuf.byteLength / (dim * 4)));
   const imageFilename = `${String(embIndex).padStart(6, "0")}.jpg`;
 
   onProgress?.("Görsel images/ klasörüne yükleniyor…");
@@ -549,9 +588,15 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
 
   // Yeni vektörü mevcut binary'nin SONUNA ekle (float32, little-endian)
   const newVecBytes = new Float32Array(embedding).buffer;
-  const combined = new Uint8Array(embBuf.byteLength + newVecBytes.byteLength);
-  combined.set(new Uint8Array(embBuf), 0);
-  combined.set(new Uint8Array(newVecBytes), embBuf.byteLength);
+  const combined = new Uint8Array(embIndex * dim * 4 + newVecBytes.byteLength);
+  combined.set(new Uint8Array(embBuf).subarray(0, embIndex * dim * 4), 0);
+  combined.set(new Uint8Array(newVecBytes), embIndex * dim * 4);
+
+  onProgress?.("embeddings.bin güncelleniyor…");
+  await ghPutBinaryFileWithSha("data/embeddings.bin", arrayBufferToBase64(combined.buffer), embBinSha, `Admin: ${code} embedding eklendi`);
+
+  onProgress?.("embeddings.json (metadata) güncelleniyor…");
+  await ghPutFile("data/embeddings.json", JSON.stringify({ ...embMeta, count: embIndex + 1 }), embMetaSha, `Admin: embedding sayacı güncellendi`);
 
   products.push({
     code, name,
@@ -563,14 +608,8 @@ async function commitNewProduct({ code, name, price, confidence, embedSource, im
     approvedManually: true,
   });
 
-  onProgress?.("products.json güncelleniyor…");
+  onProgress?.("products.json güncelleniyor (yayına alınıyor)…");
   await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin: ${code} eklendi`);
-
-  onProgress?.("embeddings.bin güncelleniyor…");
-  await ghPutBinaryFileWithSha("data/embeddings.bin", arrayBufferToBase64(combined.buffer), embBinSha, `Admin: ${code} embedding eklendi`);
-
-  onProgress?.("embeddings.json (metadata) güncelleniyor…");
-  await ghPutFile("data/embeddings.json", JSON.stringify({ ...embMeta, count: embIndex + 1 }), embMetaSha, `Admin: embedding sayacı güncellendi`);
 
   onProgress?.("corrections.csv güncelleniyor…");
   await appendCorrection(code, name);
@@ -744,6 +783,9 @@ async function appendCorrection(code, name) {
 }
 
 async function removeFromReviewQueue(item) {
+  return withGhLock(() => removeFromReviewQueueInner(item));
+}
+async function removeFromReviewQueueInner(item) {
   const { text, sha } = await ghGetFile("pipeline/ocr_review.json");
   const current = JSON.parse(text);
   const filtered = current.filter((x) => {
@@ -962,7 +1004,7 @@ function renderWorkerRequestsPage() {
     card.className = "card";
     card.dataset.id = item.id;
     card.innerHTML = `
-      ${item.imageUrl ? `<img src="${item.imageUrl}" alt="bildirim">` : `<div style="width:100%;height:160px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
+      ${(item.imageData || item.imageUrl) ? `<img src="${item.imageData || item.imageUrl}" alt="bildirim">` : `<div style="width:100%;height:160px;background:var(--bg);border-radius:8px;flex-shrink:0;"></div>`}
       <div class="card-body">
         <label>Kod</label>
         <input type="text" class="wr-code" placeholder="örn. 1714999">
@@ -989,18 +1031,19 @@ async function approveWorkerRequest(item, card) {
   const name = card.querySelector(".wr-name").value.trim();
   const statusEl = card.querySelector(".wr-status");
   if (!code || !name) { statusEl.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
-  if (!item.imageUrl) { statusEl.textContent = "⚠️ Bu istekte görsel yok, elle ekleyemeyiz."; return; }
+  if (!(item.imageData || item.imageUrl)) { statusEl.textContent = "⚠️ Bu istekte görsel yok, elle ekleyemeyiz."; return; }
 
   card.classList.add("done");
   try {
     statusEl.textContent = "Görsel indiriliyor…";
-    const imageBase64 = await fetchImageAsBase64(item.imageUrl);
+    const reportImg = item.imageData || item.imageUrl;
+    const imageBase64 = await fetchImageAsBase64(reportImg);
     await commitNewProduct({
       code, name, price: null, confidence: null,
-      embedSource: item.imageUrl, imageBase64,
+      embedSource: reportImg, imageBase64,
       onProgress: (msg) => { statusEl.textContent = msg; },
     });
-    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "approved" });
+    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "approved", imageData: null }); // görsel artık GitHub'da; Firestore'dan temizle
     await deleteStorageFileSafe(item.storagePath); // artık GitHub'da duruyor, çift depolamaya gerek yok
     card.remove();
   } catch (err) {
@@ -1013,7 +1056,7 @@ async function rejectWorkerRequest(item, card) {
   const statusEl = card.querySelector(".wr-status");
   card.classList.add("done");
   try {
-    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "rejected" });
+    await updateDoc(doc(firestoreDb, "pending_reports", item.id), { status: "rejected", imageData: null });
     await deleteStorageFileSafe(item.storagePath); // reddedilen görseli de Storage'da tutmaya gerek yok
     card.remove();
   } catch (err) {
@@ -1118,7 +1161,10 @@ async function saveLiveProductEdit(product, card) {
 
     // bellekteki kopyayı da güncelle
     const idx = liveProducts.findIndex((p) => p.code === product.code);
-    if (idx !== -1) liveProducts[idx] = { ...liveProducts[idx], code, name, price: price || null };
+    const niceName = trTitleCase(name);
+    if (idx !== -1) liveProducts[idx] = { ...liveProducts[idx], code, name: niceName, price: price || null };
+    product.code = code; product.name = niceName; product.price = price || null; // aynı kartta tekrar düzenlemede güncel kod kullanılsın
+    editForm.querySelector(".live-edit-name").value = niceName;
 
     statusEl.textContent = "✅ Güncellendi ve yayında.";
     editForm.classList.add("hidden");
@@ -1128,41 +1174,44 @@ async function saveLiveProductEdit(product, card) {
   card.classList.remove("done");
 }
 
-async function updateExistingProduct({ originalCode, code, name, price, imageBase64, embedSource, onProgress }) {
-  onProgress?.("products.json okunuyor…");
-  const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
-  const products = JSON.parse(productsText);
-  const idx = products.findIndex((p) => p.code === originalCode);
-  if (idx === -1) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
-  const product = products[idx];
+async function updateExistingProduct(args) {
+  return withGhLock(() => updateExistingProductInner(args), args.onProgress);
+}
 
+async function updateExistingProductInner({ originalCode, code, name, price, imageBase64, embedSource, onProgress }) {
+  name = trTitleCase(name);
+
+  // Önce (varsa) görsel + embedding; products.json EN SON ve taze okunur, böylece
+  // aradaki uzun işlemler sırasında yapılmış başka değişiklikler ezilmez.
   if (imageBase64) {
+    onProgress?.("Mevcut ürün bilgisi okunuyor…");
+    const { text: t0 } = await ghGetFile("data/products.json");
+    const p0 = JSON.parse(t0).find((p) => p.code === originalCode);
+    if (!p0) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
+
     onProgress?.("Yeni görsel embedding hesaplanıyor…");
     const embedding = await embedImage(embedSource);
 
-    const imageFilename = product.image.split("/").pop();
-    onProgress?.("Mevcut görselin sürüm bilgisi (sha) alınıyor…");
-    const imgMetaRes = await fetch(`${apiBase()}/contents/images/${imageFilename}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders() });
-    const imgSha = imgMetaRes.ok ? (await imgMetaRes.json()).sha : undefined;
-
+    const imageFilename = p0.image.split("/").pop();
     onProgress?.("Görsel images/ klasörüne yükleniyor (üzerine yazılıyor)…");
-    if (imgSha) {
-      await ghPutBinaryFileWithSha(`images/${imageFilename}`, imageBase64, imgSha, `Admin: ${code} görseli güncellendi`);
-    } else {
-      await ghPutBinaryFile(`images/${imageFilename}`, imageBase64, `Admin: ${code} görseli eklendi`);
-    }
+    await ghPutBinaryFile(`images/${imageFilename}`, imageBase64, `Admin: ${code} görseli güncellendi`);
 
     onProgress?.("embeddings.bin okunuyor…");
     const { buf: embBuf, sha: embBinSha } = await ghGetBinaryFile("data/embeddings.bin");
     const dim = 512;
     const floatArr = new Float32Array(embBuf.slice(0)); // kopya üzerinde çalış
-    floatArr.set(new Float32Array(embedding), product.embIndex * dim); // AYNI slotun üzerine yaz
+    floatArr.set(new Float32Array(embedding), p0.embIndex * dim); // AYNI slotun üzerine yaz
 
     onProgress?.("embeddings.bin güncelleniyor…");
     await ghPutBinaryFileWithSha("data/embeddings.bin", arrayBufferToBase64(floatArr.buffer), embBinSha, `Admin: ${code} embedding güncellendi`);
   }
 
-  products[idx] = { ...product, code, name, price: price || null };
+  onProgress?.("products.json taze okunuyor…");
+  const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
+  const products = JSON.parse(productsText);
+  const idx = products.findIndex((p) => p.code === originalCode);
+  if (idx === -1) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
+  products[idx] = { ...products[idx], code, name, price: price || null };
 
   onProgress?.("products.json güncelleniyor…");
   await ghPutFile("data/products.json", JSON.stringify(products, null, 2), productsSha, `Admin: ${code} güncellendi`);
@@ -1187,12 +1236,15 @@ async function rescanLiveProduct(product, card) {
   card.classList.add("done");
   statusEl.textContent = "Yeniden tarama kuyruğuna ekleniyor…";
   try {
-    await queueForRescan([{ source_flyer: product.sourceFlyer }]);
-    statusEl.textContent = "data/products.json güncelleniyor…";
-    const { text, sha } = await ghGetFile("data/products.json");
-    const current = JSON.parse(text);
-    const filtered = current.filter((p) => p.code !== product.code);
-    await ghPutFile("data/products.json", JSON.stringify(filtered, null, 2), sha, `Admin: ${product.code} silindi, yeniden taramaya eklendi`);
+    const filtered = await withGhLock(async () => {
+      await queueForRescan([{ source_flyer: product.sourceFlyer }]);
+      statusEl.textContent = "data/products.json güncelleniyor…";
+      const { text, sha } = await ghGetFile("data/products.json");
+      const current = JSON.parse(text);
+      const out = current.filter((p) => p.code !== product.code);
+      await ghPutFile("data/products.json", JSON.stringify(out, null, 2), sha, `Admin: ${product.code} silindi, yeniden taramaya eklendi`);
+      return out;
+    }, (m) => { statusEl.textContent = m; });
     liveProducts = filtered;
     statusEl.textContent = "✅ Silindi ve yeniden tarama kuyruğuna eklendi. Bir sonraki taramada doğru görselle geri gelecek.";
   } catch (err) {

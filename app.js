@@ -7,8 +7,19 @@
 // indirilir, sonra tarayıcı cache'i (+service worker) sayesinde anında yüklenir.
 // ============================================================
 
-import { pipeline, cos_sim } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0";
-import { submitProductReport } from "./firebase-config.js";
+// HIZ: Transformers.js (büyük) ve Firebase (firebase-config.js) artık sayfa açılışında
+// DEĞİL, yalnızca gerektiğinde (ilk görsel arama / ürün bildirimi) dinamik yüklenir.
+// Önceden statik import oldukları için uygulama bunlar inene kadar hiç başlamıyordu.
+let transformersMod = null;
+async function getTransformers() {
+  if (!transformersMod) transformersMod = import("https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0");
+  return transformersMod;
+}
+function cosSim(a, b) {
+  let dot = 0, na = 0, nb = 0;
+  for (let i = 0; i < a.length; i++) { dot += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
+  return dot / (Math.sqrt(na) * Math.sqrt(nb) || 1);
+}
 
 const PAGE_SIZE = 10;
 const DATA_VERSION_KEY = "bimkod_data_version";
@@ -58,18 +69,32 @@ function isRecentlyAdded(product) {
   return hours <= NEW_BADGE_HOURS;
 }
 
+// "Yeni Eklenenler" = EN SON taramada eklenen TÜM ürünler (sabit 20 sınırı yok).
+// Son tarama: elle onaylananlar hariç en yeni addedAt'in 1 saat öncesinden itibaren
+// eklenenler (bir tarama çalışması dakikalar içinde biter). Bu zamandan sonra elle
+// eklenen ürünler de listeye dahil olur.
+function getLatestArrivals() {
+  const dated = PRODUCTS.filter((p) => p.addedAt);
+  if (!dated.length) return [];
+  const scraped = dated.filter((p) => !p.approvedManually);
+  const ref = scraped.length ? scraped : dated;
+  const newest = Math.max(...ref.map((p) => new Date(p.addedAt).getTime()));
+  const cutoff = newest - 60 * 60 * 1000;
+  return dated
+    .filter((p) => new Date(p.addedAt).getTime() >= cutoff)
+    .sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt));
+}
+
 function renderNewArrivals() {
   const hasQuery = state.mode === "text" ? state.query.trim().length > 0 : true;
   if (hasQuery) { el.newArrivals.hidden = true; return; }
 
-  const recent = [...PRODUCTS]
-    .filter((p) => p.addedAt)
-    .sort((a, b) => new Date(b.addedAt) - new Date(a.addedAt))
-    .slice(0, 20);
-
+  const recent = getLatestArrivals();
   if (recent.length === 0) { el.newArrivals.hidden = true; return; }
 
   el.newArrivals.hidden = false;
+  const countEl = document.getElementById("newArrivalsCount");
+  if (countEl) countEl.textContent = `(${recent.length})`;
   el.newArrivalsList.innerHTML = recent.map((p) => `
     <div class="new-arrival-card" data-code="${escapeHtml(p.code)}">
       <span class="badge-new">YENİ</span>
@@ -89,6 +114,12 @@ function renderNewArrivals() {
   });
 }
 
+// "Tümünü gör" / "Daralt": şerit <-> çok satırlı ızgara
+document.getElementById("newArrivalsToggle")?.addEventListener("click", (e) => {
+  const expanded = el.newArrivalsList.classList.toggle("expanded");
+  e.currentTarget.textContent = expanded ? "Daralt" : "Tümünü gör";
+});
+
 // ---------- Türkçe normalize ----------
 function trNormalize(str) {
   return str
@@ -105,22 +136,10 @@ function trNormalize(str) {
 // Eski JSON-vektör formatına göre ~5.5 kat daha az veri indirilir.
 async function loadData() {
   showStatus("Ürün verisi yükleniyor…");
-  const [productsRes, embMeta, embBuf] = await Promise.all([
-    fetch("data/products.json").then((r) => r.json()).catch(() => []),
-    fetch("data/embeddings.json").then((r) => r.json()).catch(() => null),
-    fetch("data/embeddings.bin").then((r) => r.arrayBuffer()).catch(() => null),
-  ]);
-
+  // Sadece products.json beklenir -> ilk ekran hemen gelir. 32 MB'lık embeddings.bin
+  // yalnızca görsel arama için gerekli, arka planda / ihtiyaç anında indirilir.
+  const productsRes = await fetch("data/products.json").then((r) => r.json()).catch(() => []);
   PRODUCTS = productsRes.map((p) => ({ ...p, normName: trNormalize(p.name) }));
-
-  if (embMeta && embBuf) {
-    const dim = embMeta.dim;
-    const bytesPerVec = dim * 4; // float32 = 4 byte
-    EMBEDDINGS = [];
-    for (let i = 0; i < embMeta.count; i++) {
-      EMBEDDINGS.push(new Float32Array(embBuf, i * bytesPerVec, dim));
-    }
-  }
 
   fuse = new Fuse(PRODUCTS, {
     keys: ["normName"],
@@ -129,6 +148,36 @@ async function loadData() {
   });
 
   hideStatus();
+}
+
+let embeddingsPromise = null;
+function ensureEmbeddings() {
+  if (!embeddingsPromise) {
+    embeddingsPromise = (async () => {
+      const embMeta = await fetch("data/embeddings.json", { cache: "no-cache" }).then((r) => r.json()).catch(() => null);
+      if (!embMeta) return;
+      // ?c=count -> yeni ürün eklenince URL değişir (güncel indirilir), değişmediyse
+      // service worker önbelleğinden anında gelir.
+      const embBuf = await fetch(`data/embeddings.bin?c=${embMeta.count}`).then((r) => r.arrayBuffer()).catch(() => null);
+      if (!embBuf) return;
+      const dim = embMeta.dim;
+      const bytesPerVec = dim * 4; // float32 = 4 byte
+      const n = Math.min(embMeta.count, Math.floor(embBuf.byteLength / bytesPerVec));
+      EMBEDDINGS = [];
+      for (let i = 0; i < n; i++) EMBEDDINGS.push(new Float32Array(embBuf, i * bytesPerVec, dim));
+    })().catch(() => { embeddingsPromise = null; });
+  }
+  return embeddingsPromise;
+}
+
+// Hızlı + kotası bol bağlantıda (4g, veri tasarrufu kapalı) boşta iken önceden indir;
+// aksi halde sadece kullanıcı kamera/yükle'ye dokununca indirilir.
+function maybePrefetchEmbeddings() {
+  const c = navigator.connection;
+  if (c && (c.saveData || c.effectiveType !== "4g")) return;
+  const run = () => ensureEmbeddings();
+  if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 8000 });
+  else setTimeout(run, 3000);
 }
 
 // ---------- Metin arama (Fuse.js fuzzy search) ----------
@@ -140,8 +189,10 @@ function runTextSearch(query) {
 
 // ---------- Görsel arama (CLIP embedding + cosine similarity) ----------
 async function runVisualSearch(imageDataUrl) {
+  const embReady = ensureEmbeddings(); // paralel indir
   if (!clipExtractor) {
     showStatus("Görsel arama motoru ilk kez hazırlanıyor (~30sn)…");
+    const { pipeline } = await getTransformers();
     // Xenova/clip-vit-base-patch32: quantized ONNX, tarayıcıda WASM ile çalışır
     clipExtractor = await pipeline("image-feature-extraction", "Xenova/clip-vit-base-patch32", {
       quantized: true,
@@ -152,6 +203,7 @@ async function runVisualSearch(imageDataUrl) {
   const output = await clipExtractor(imageDataUrl, { pooling: "mean", normalize: true });
   const queryVec = Float32Array.from(output.data);
 
+  if (!EMBEDDINGS) { showStatus("Görsel arşivi yükleniyor…"); await embReady; }
   hideStatus();
 
   if (!EMBEDDINGS || EMBEDDINGS.length === 0) {
@@ -161,7 +213,7 @@ async function runVisualSearch(imageDataUrl) {
   const scored = PRODUCTS.map((p, i) => {
     const vec = EMBEDDINGS[p.embIndex ?? i];
     if (!vec) return null;
-    return { ...p, score: cos_sim(queryVec, vec) };
+    return { ...p, score: cosSim(queryVec, vec) };
   }).filter(Boolean);
 
   scored.sort((a, b) => b.score - a.score);
@@ -534,6 +586,7 @@ document.getElementById("reportSubmitBtn").addEventListener("click", async () =>
   submitBtn.disabled = true;
 
   try {
+    const { submitProductReport } = await import("./firebase-config.js");
     await submitProductReport({ imageFile: file, name });
     reportStatus.textContent = "✅ Alındı, teşekkürler! Ekibimiz en kısa sürede inceleyip ekleyecek.";
     setTimeout(() => {
@@ -548,6 +601,53 @@ document.getElementById("reportSubmitBtn").addEventListener("click", async () =>
   submitBtn.disabled = false;
 });
 
+// ==================== Yasal Metinler (Gizlilik / KVKK-GDPR / Çerez) ====================
+const POLICIES = {
+  privacy: `
+    <h3>Gizlilik Politikası</h3>
+    <p><em>Son güncelleme: Ekim 2026</em></p>
+    <p>BİMKOD, ürün kodlarını ve görsellerini aramanıza yardımcı olan bağımsız bir bilgilendirme aracıdır. Bu site herhangi bir market zinciri ile resmî bir bağı olduğunu iddia etmez; marka ve ürün adları ilgili sahiplerine aittir.</p>
+    <h4>Hangi verileri işliyoruz?</h4>
+    <p><strong>Arama:</strong> Yazdığınız arama metni ve görsel arama için seçtiğiniz fotoğraf cihazınızda işlenir; sunucularımıza gönderilmez.</p>
+    <p><strong>Ürün bildirimi:</strong> "Ürün Bildir" formunu kullanırsanız gönderdiğiniz fotoğraf ve (varsa) yazdığınız ürün adı, inceleme amacıyla Google Firebase altyapısında saklanır. Lütfen fotoğrafta kişi, yüz veya kişisel bilgi bulunmamasına dikkat edin. Fotoğraf, inceleme sonrasında (onay veya ret) bildirim kaydından silinir.</p>
+    <p><strong>Ziyaretçi sayacı:</strong> Anlık ve toplam ziyaretçi sayısını göstermek için rastgele oluşturulan, sizi tanımlamayan bir oturum kimliği kullanılır; ad, e-posta veya IP adresi tutulmaz.</p>
+    <h4>Üçüncü taraflar</h4>
+    <p>Site; Google Firebase (barındırma ve veri), GitHub Pages (yayın) ve Google AdSense (reklam) hizmetlerini kullanır. Bu hizmetler kendi gizlilik politikalarına tabidir.</p>
+    <h4>İletişim</h4>
+    <p>Sorularınız için Instagram: <strong>@h_seyinn</strong></p>`,
+  kvkk: `
+    <h3>KVKK / GDPR Aydınlatma Metni</h3>
+    <p><em>Son güncelleme: Ekim 2026</em></p>
+    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve Avrupa Birliği Genel Veri Koruma Tüzüğü (GDPR) kapsamında, veri sorumlusu sıfatıyla BİMKOD aşağıdaki bilgileri paylaşır.</p>
+    <h4>İşlenen veriler ve amaç</h4>
+    <p>Ürün bildirimi formunda paylaştığınız görsel ve ürün adı; yalnızca eksik ürünün kataloğa eklenmesi amacıyla işlenir. Hukuki sebep: meşru menfaat ve açık rızanız (formu kendi isteğinizle göndermeniz). Sizi doğrudan tanımlayan kimlik bilgisi talep edilmez.</p>
+    <h4>Saklama ve aktarım</h4>
+    <p>Veriler, inceleme tamamlanana kadar Google Firebase (AB/ABD veri merkezleri) üzerinde tutulur; onay veya ret sonrasında görsel kayıttan silinir. Verileriniz satılmaz ve reklam amacıyla üçüncü kişilerle paylaşılmaz.</p>
+    <h4>Haklarınız</h4>
+    <p>Verilerinize erişme, düzeltme, silme, işlemeye itiraz etme, veri taşınabilirliği ve rızanızı geri çekme haklarına sahipsiniz (KVKK m.11, GDPR m.15–22). Talepleriniz için Instagram üzerinden <strong>@h_seyinn</strong> hesabına yazabilirsiniz. Ayrıca yetkili denetim makamına (KVKK Kurulu / ilgili AB veri koruma otoritesi) şikâyette bulunma hakkınız saklıdır.</p>`,
+  cookies: `
+    <h3>Çerez Politikası</h3>
+    <p><em>Son güncelleme: Ekim 2026</em></p>
+    <p>Çerezler ve benzeri teknolojiler, sitenin çalışması ve reklamların gösterilmesi için kullanılır.</p>
+    <h4>Zorunlu / işlevsel</h4>
+    <p>Tarayıcı depolaması (localStorage/sessionStorage) ve önbellek (service worker): veri sürümünü hatırlamak, siteyi hızlı açmak ve çevrimdışı çalışmasını sağlamak içindir. Ziyaretçi sayacı için oturum depolamasında "bu oturumda sayıldı" işareti tutulur.</p>
+    <h4>Reklam</h4>
+    <p>Google AdSense, reklam göstermek ve ölçmek için çerez kullanabilir. Reklam kişiselleştirmesini <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google Reklam Ayarları</a> üzerinden yönetebilir veya kapatabilirsiniz; AB/EEA ve Birleşik Krallık'taki ziyaretçilerden gerekli onay, Google'ın onay mekanizması üzerinden alınır.</p>
+    <h4>Çerezleri yönetme</h4>
+    <p>Tarayıcı ayarlarınızdan çerezleri silebilir veya engelleyebilirsiniz; bu durumda sitenin bazı özellikleri beklenen şekilde çalışmayabilir.</p>`,
+};
+
+const policyModal = document.getElementById("policyModal");
+document.querySelectorAll("[data-policy]").forEach((a) => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("policyContent").innerHTML = POLICIES[a.dataset.policy] || "";
+    policyModal.hidden = false;
+  });
+});
+document.getElementById("policyModalClose")?.addEventListener("click", () => { policyModal.hidden = true; });
+policyModal?.addEventListener("click", (e) => { if (e.target === policyModal) policyModal.hidden = true; });
+
 // ---------- Service worker kaydı ----------
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -556,4 +656,6 @@ if ("serviceWorker" in navigator) {
 }
 
 // ---------- Başlat ----------
-loadData().then(render);
+el.btnCamera.addEventListener("click", ensureEmbeddings);
+el.btnUpload.addEventListener("click", ensureEmbeddings);
+loadData().then(() => { render(); maybePrefetchEmbeddings(); });

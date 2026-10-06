@@ -82,27 +82,42 @@ function withTimeout(promise, ms, message) {
   ]);
 }
 
-export async function submitProductReport({ imageFile, name }) {
-  let imageUrl = null;
-  let storagePath = null;
-  if (imageFile) {
-    const compressed = await compressImage(imageFile);
-    storagePath = `pending_reports/${Date.now()}.jpg`;
-    const storageRef = ref(storage, storagePath);
-    // Storage kuralları henüz yayılmamışsa ya da ağ sorunu varsa bazen istek
-    // sessizce asılı kalabiliyor -> 25sn'de pes edip net bir hata gösteriyoruz.
-    await withTimeout(
-      uploadBytes(storageRef, compressed, { contentType: "image/jpeg" }),
-      25000,
-      "Görsel yüklenemedi (zaman aşımı) — internet bağlantını ya da birkaç dakika sonra tekrar denemeyi kontrol et."
-    );
-    imageUrl = await getDownloadURL(storageRef);
-  }
-  await addDoc(collection(db, "pending_reports"), {
-    name: name || null,
-    imageUrl,
-    storagePath, // admin onay/red sonrası Storage'dan silmek için
-    status: "pending", // admin onaylayınca "approved", reddedince "rejected" yapacağız
-    createdAt: serverTimestamp(),
+function blobToDataUrl(blob) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = () => reject(new Error("Görsel okunamadı."));
+    r.readAsDataURL(blob);
   });
+}
+
+// NOT: Görsel artık Firebase Storage'a YÜKLENMİYOR. Storage'a tarayıcıdan yapılan
+// istekler CORS/ön-kontrol (preflight) hatasıyla engelleniyordu (kova/plan/kural
+// ayarlarına bağlı). Bunun yerine küçültülmüş görsel (~50-150 KB) data-URL olarak
+// doğrudan Firestore dokümanına (imageData) yazılıyor: aynı çalışan Firestore
+// bağlantısını kullandığı için CORS sorunu yok, ek kurulum gerekmiyor.
+// Firestore doküman sınırı 1 MiB -> gerekirse daha da küçültüp kalite düşürüyoruz.
+export async function submitProductReport({ imageFile, name }) {
+  let imageData = null;
+  if (imageFile) {
+    const tries = [[900, 0.75], [700, 0.65], [520, 0.55]];
+    for (const [dim, q] of tries) {
+      const blob = await compressImage(imageFile, dim, q);
+      imageData = await blobToDataUrl(blob);
+      if (imageData.length < 700000) break; // base64 ~700KB altı -> 1MiB sınırının güvenle altında
+    }
+    if (imageData.length >= 900000) throw new Error("Görsel çok büyük, lütfen daha küçük bir fotoğraf deneyin.");
+  }
+  await withTimeout(
+    addDoc(collection(db, "pending_reports"), {
+      name: name || null,
+      imageData,       // data:image/jpeg;base64,... (Storage kullanılmıyor)
+      imageUrl: null,
+      storagePath: null,
+      status: "pending", // admin onaylayınca "approved", reddedince "rejected"
+      createdAt: serverTimestamp(),
+    }),
+    25000,
+    "Gönderilemedi (zaman aşımı) — internet bağlantını kontrol edip tekrar dene."
+  );
 }
