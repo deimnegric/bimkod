@@ -61,6 +61,19 @@ const el = {
   newArrivalsList: document.getElementById("newArrivalsList"),
 };
 
+// Afiş tarihi: products.json'daki addedAt = ürünün geldiği afişin (Telegram mesajı) tarihi.
+// "26.10.2025" biçiminde, İstanbul saatine göre gösterilir.
+function fmtDate(iso) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d)) return "";
+  return d.toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul", day: "2-digit", month: "2-digit", year: "numeric" });
+}
+function dateChip(p) {
+  const t = fmtDate(p.addedAt);
+  return t ? `<span class="date-chip" title="Afişin geldiği tarih">${t}</span>` : "";
+}
+
 const NEW_BADGE_HOURS = 72; // bu süreden yeni ise "YENİ" rozeti gösterilir
 
 function isRecentlyAdded(product) {
@@ -104,7 +117,7 @@ function renderNewArrivals() {
           <line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/>
         </svg>
       </button>
-      <div class="thumb" data-thumb>${p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">` : ""}</div>
+      <div class="thumb" data-thumb>${p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">` : ""}${dateChip(p)}</div>
       <div class="name">${escapeHtml(p.name)}</div>
     </div>
   `).join("");
@@ -297,6 +310,7 @@ function render() {
     <div class="result-row" data-code="${escapeHtml(p.code)}">
       <div class="result-thumb" data-thumb data-src="${p.image || ""}">
         ${p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">` : "Görsel"}
+        ${dateChip(p)}
       </div>
       <div class="result-content">
         <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? escapeHtml(p.name) : highlightMatch(p.name, state.query)}</div>
@@ -475,6 +489,14 @@ async function sharedProductCard(product) {
   ctx.fillStyle = "#8A8578";
   ctx.font = "500 20px ui-monospace, monospace";
   ctx.fillText("Ürün Kodu: " + product.code, 40, 555);
+  const shareDate = fmtDate(product.addedAt);
+  if (shareDate) {
+    ctx.fillStyle = "#8A8578";
+    ctx.font = "500 15px -apple-system, sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText("Afiş tarihi: " + shareDate, 600, 555);
+    ctx.textAlign = "left";
+  }
 
   if (product.price) {
     ctx.fillStyle = "#B96666";

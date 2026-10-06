@@ -513,6 +513,16 @@ main{ padding:14px 16px 0; max-width:680px; margin:0 auto; }
 .site-footer .copyright{ margin-top:8px; font-size:10.5px; }
 .site-footer p a{ font-size:inherit; }
 
+/* Afiş tarihi rozeti (küçük, görselin sağ alt köşesi) */
+.result-thumb, .new-arrival-card .thumb{ position:relative; }
+.date-chip{
+  position:absolute; right:3px; bottom:3px;
+  background:rgba(13,32,51,0.72); color:#fff;
+  font-size:9px; font-weight:600; letter-spacing:0.01em; line-height:1;
+  padding:3px 5px; border-radius:5px;
+  pointer-events:none;
+}
+
 /* Yeni Eklenenler: sayaç + tümünü gör */
 .new-count{ font-weight:500; color:var(--text-soft); font-size:12px; }
 .new-toggle{
