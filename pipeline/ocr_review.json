@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000009.jpg",
-    "source_flyer": "pipeline/raw_flyers/1195.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      373,
-      1176,
-      578,
-      1566
-    ],
-    "confidence": 0.8849456906318665,
-    "code": null,
-    "name": "Fakir Mega Blender | ( Posiatnaz e Büyük Set)",
-    "price": null,
-    "raw_ocr": "( Fakir\nMega Blender |\n( Posiatnaz e Büyük Set) |\n» Paslanmaz ci 2 eğe Kanştıncı | I\n* Paslanmaz Çelik Blender ve Mikser ,\n* Doğrayıcı Aparatı /\n1647059",
-    "review_image": "review/1a5e321a5dd95dbc.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000012.jpg",
     "source_flyer": "pipeline/raw_flyers/1195.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
