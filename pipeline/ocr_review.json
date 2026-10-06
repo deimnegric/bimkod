@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000019.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      40,
-      1329,
-      174,
-      1574
-    ],
-    "confidence": 0.9318484663963318,
-    "code": null,
-    "name": "A TENNO Boyama Kitapları",
-    "price": null,
-    "raw_ocr": "A TENNO\nBoyama\nKitapları\n1645266\n* Farklı çeşitlerde",
-    "review_image": "review/2c6a280bd19081ec.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000020.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
