@@ -179157,22 +179157,6 @@
     ]
   },
   {
-    "code": "1647059",
-    "name": "F Fakir , Mega Blender : ( Paslanmaz Büyük Set)",
-    "price": null,
-    "image": "images/011401.jpg",
-    "embIndex": 11401,
-    "confidence": 0.8559847474098206,
-    "addedAt": "2026-05-01T07:06:36+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/975.jpg",
-    "bbox": [
-      819,
-      928,
-      1058,
-      1223
-    ]
-  },
-  {
     "code": "1644533",
     "name": "PiCCOLO MONDİ Oyuncak Parlak Motosiklet",
     "price": null,
