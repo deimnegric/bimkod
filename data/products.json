@@ -248949,32 +248949,6 @@
     ]
   },
   {
-    "code": "1644260",
-    "name": "arnica Hydra Rain Su Filtreli Halı Yıkama Makinesi",
-    "price": null,
-    "image": "images/015763.jpg",
-    "embIndex": 15763,
-    "confidence": 0.9499140381813049,
-    "addedAt": "2026-09-24T23:50:51.622Z",
-    "approvedManually": true
-  },
-  {
-    "code": "1715119",
-    "name": "MKAKAOLU, BOT İROR.BİSKÜVİ",
-    "price": null,
-    "image": "images/015763.jpg",
-    "embIndex": 15763,
-    "confidence": 0.9587454199790955,
-    "addedAt": "2026-09-26T12:57:57+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1203.jpg",
-    "bbox": [
-      58,
-      122,
-      556,
-      543
-    ]
-  },
-  {
     "code": "1715220",
     "name": "BEYAZ/PUL ÇİKOLATA",
     "price": null,
