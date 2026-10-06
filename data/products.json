@@ -179221,22 +179221,6 @@
     ]
   },
   {
-    "code": "1645266",
-    "name": "A TENNO Boyama Kitapları",
-    "price": null,
-    "image": "images/011405.jpg",
-    "embIndex": 11405,
-    "confidence": 0.9318484663963318,
-    "addedAt": "2026-09-23T06:15:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1194.jpg",
-    "bbox": [
-      40,
-      1329,
-      174,
-      1574
-    ]
-  },
-  {
     "code": "1621252",
     "name": "Kelime Oyunu",
     "price": null,
