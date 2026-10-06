@@ -2684,50 +2684,50 @@
   },
   {
     "code": "1643754",
-    "name": "i 8KG ÇAMAŞIR MAKİNESİ KEY 810 CM <P",
+    "name": "e ÇAMAŞIR MAKİNESİ | Mi",
     "price": null,
     "image": "images/000169.jpg",
     "embIndex": 169,
-    "confidence": 0.9303008317947388,
-    "addedAt": "2025-07-21T06:33:23+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/570.jpg",
+    "confidence": 0.8605660796165466,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
     "bbox": [
-      457,
-      1056,
-      814,
-      1243
+      540,
+      304,
+      840,
+      498
     ]
   },
   {
     "code": "1639187",
-    "name": "NOFROST BUZDOLABI rucu bölme 1S0L",
+    "name": "O NOFROST © BUZDOLABI | Tail med",
     "price": null,
     "image": "images/000170.jpg",
     "embIndex": 170,
-    "confidence": 0.5709599256515503,
-    "addedAt": "2024-09-09T10:38:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/115.jpg",
+    "confidence": 0.8479772210121155,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
     "bbox": [
-      47,
-      202,
-      346,
-      573
+      62,
+      123,
+      333,
+      399
     ]
   },
   {
     "code": "1640308",
-    "name": "DZDOLAN",
+    "name": "BUZDOLABI",
     "price": null,
     "image": "images/000171.jpg",
     "embIndex": 171,
-    "confidence": 0.7114052772521973,
-    "addedAt": "2024-10-05T16:01:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/156.jpg",
+    "confidence": 0.9229937791824341,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
     "bbox": [
-      342,
-      582,
-      631,
-      903
+      56,
+      400,
+      332,
+      669
     ]
   },
   {
@@ -11554,18 +11554,18 @@
   },
   {
     "code": "1637755",
-    "name": "Oyuncak",
+    "name": "MASONETTE Yüz Havlusu",
     "price": null,
     "image": "images/000733.jpg",
     "embIndex": 733,
-    "confidence": 0.9220573902130127,
-    "addedAt": "2024-11-16T12:20:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/223.jpg",
+    "confidence": 0.9335137605667114,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      348,
-      888,
-      528,
-      1018
+      502,
+      1057,
+      776,
+      1213
     ]
   },
   {
@@ -16877,18 +16877,18 @@
   },
   {
     "code": "1636428",
-    "name": "Yastık Kılıfı",
+    "name": "MOLİNELLA Yastık Kılıfı",
     "price": null,
     "image": "images/001074.jpg",
     "embIndex": 1074,
-    "confidence": 0.93790203332901,
-    "addedAt": "2024-08-02T08:55:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/50.jpg",
+    "confidence": 0.9280033111572266,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      90,
-      574,
-      355,
-      690
+      795,
+      924,
+      990,
+      1196
     ]
   },
   {
@@ -18047,18 +18047,18 @@
   },
   {
     "code": "1627987",
-    "name": "Katlanabilir Su Kovası e EE",
+    "name": "Katlanır Su Kovası a Ge",
     "price": null,
     "image": "images/001148.jpg",
     "embIndex": 1148,
-    "confidence": 0.9125279188156128,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/297.jpg",
+    "confidence": 0.8717473149299622,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      55,
-      107,
-      285,
-      239
+      245,
+      589,
+      383,
+      800
     ]
   },
   {
@@ -18131,14 +18131,14 @@
     "price": null,
     "image": "images/001153.jpg",
     "embIndex": 1153,
-    "confidence": 0.6001330614089966,
-    "addedAt": "2025-06-25T05:57:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/535.jpg",
+    "confidence": 0.9287506937980652,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      167,
-      885,
-      261,
-      1030
+      351,
+      884,
+      544,
+      1098
     ]
   },
   {
@@ -20277,18 +20277,18 @@
   },
   {
     "code": "1632001",
-    "name": "tey",
+    "name": "Bebek Penye Lastikli Çarşaf",
     "price": null,
     "image": "images/001290.jpg",
     "embIndex": 1290,
-    "confidence": 0.9195085763931274,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/301.jpg",
+    "confidence": 0.9142882823944092,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      49,
-      502,
-      322,
-      664
+      443,
+      785,
+      688,
+      971
     ]
   },
   {
@@ -23715,18 +23715,18 @@
   },
   {
     "code": "1634313",
-    "name": "a 4 Çiğ",
+    "name": "Kapaklı Desenli mİ ii il, ii om Pipetli Bardak",
     "price": null,
     "image": "images/001511.jpg",
     "embIndex": 1511,
-    "confidence": 0.8751694560050964,
-    "addedAt": "2025-04-06T10:51:57+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/410.jpg",
+    "confidence": 0.8705632090568542,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      21,
-      1108,
-      220,
-      1241
+      129,
+      1299,
+      570,
+      1478
     ]
   },
   {
@@ -31661,18 +31661,18 @@
   },
   {
     "code": "1637743",
-    "name": "MAMSONETTE El Havlusu",
+    "name": "M.MSONETTE El Havlusu",
     "price": null,
     "image": "images/002019.jpg",
     "embIndex": 2019,
-    "confidence": 0.9232274293899536,
-    "addedAt": "2026-01-02T08:35:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/804.jpg",
+    "confidence": 0.8846408128738403,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      231,
-      877,
-      421,
-      1106
+      519,
+      928,
+      774,
+      1055
     ]
   },
   {
@@ -32630,18 +32630,18 @@
   },
   {
     "code": "1641597",
-    "name": "Oyuncak/Saklama Be Kutusu -S0L bi Ra amm m Yakiy Mig MR 2 eld Si) 5",
+    "name": "e | İANLI ER OYUNCAK: KUTUSU SOL",
     "price": null,
     "image": "images/002080.jpg",
     "embIndex": 2080,
-    "confidence": 0.9327229261398315,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/297.jpg",
+    "confidence": 0.935900092124939,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      55,
-      904,
-      242,
-      1095
+      63,
+      126,
+      512,
+      556
     ]
   },
   {
@@ -32662,18 +32662,18 @@
   },
   {
     "code": "1641083",
-    "name": "Bebek Yastık Kılıfı",
+    "name": "Bebek ax ham ği a G Yastık Kılıfı Hm) ğe ,) 35x45 cm © ği NN el 5",
     "price": null,
     "image": "images/002082.jpg",
     "embIndex": 2082,
-    "confidence": 0.8943619728088379,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/301.jpg",
+    "confidence": 0.9510812759399414,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      336,
-      552,
-      515,
-      682
+      693,
+      816,
+      999,
+      963
     ]
   },
   {
@@ -32694,34 +32694,34 @@
   },
   {
     "code": "1636240",
-    "name": "BEBEK GÜVENLİK ÜRÜNLERİ",
+    "name": "arama",
     "price": null,
     "image": "images/002084.jpg",
     "embIndex": 2084,
-    "confidence": 0.8466027975082397,
-    "addedAt": "2025-01-17T15:13:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/306.jpg",
+    "confidence": 0.880048930644989,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      274,
-      723,
-      736,
-      907
+      603,
+      850,
+      827,
+      1004
     ]
   },
   {
     "code": "1623499",
-    "name": "baby? Melamin Mama",
+    "name": "Yuvarlak Mama Tabağı",
     "price": null,
     "image": "images/002085.jpg",
     "embIndex": 2085,
-    "confidence": 0.8786886930465698,
-    "addedAt": "2026-03-29T09:55:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/922.jpg",
+    "confidence": 0.8473445773124695,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      161,
-      650,
-      317,
-      789
+      541,
+      171,
+      1017,
+      567
     ]
   },
   {
@@ -32742,18 +32742,18 @@
   },
   {
     "code": "1629038",
-    "name": "Porselen sap",
+    "name": "toby",
     "price": null,
     "image": "images/002087.jpg",
     "embIndex": 2087,
-    "confidence": 0.9123324751853943,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/297.jpg",
+    "confidence": 0.910270631313324,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      430,
-      749,
-      546,
-      903
+      808,
+      1128,
+      1001,
+      1311
     ]
   },
   {
@@ -34415,18 +34415,18 @@
   },
   {
     "code": "1644880",
-    "name": "Çok Amaçlı Saklama Kutusu",
+    "name": "Şeffaf Organizer Kutu Seti 59 Pul",
     "price": null,
     "image": "images/002192.jpg",
     "embIndex": 2192,
-    "confidence": 0.9147823452949524,
-    "addedAt": "2026-03-15T13:15:43+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/900.jpg",
+    "confidence": 0.8839845657348633,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      696,
-      935,
-      827,
-      1096
+      718,
+      802,
+      868,
+      995
     ]
   },
   {
@@ -38339,18 +38339,18 @@
   },
   {
     "code": "1644572",
-    "name": "O Olanı in love Boncuk Kulplu Kalpli Kupa",
+    "name": "Boncuk Kulplu Kalp Desenli Kupa GEL)",
     "price": null,
     "image": "images/002446.jpg",
     "embIndex": 2446,
-    "confidence": 0.9207699298858643,
-    "addedAt": "2026-01-31T15:19:42+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/836.jpg",
+    "confidence": 0.9010759592056274,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      647,
-      627,
-      804,
-      922
+      711,
+      565,
+      861,
+      797
     ]
   },
   {
@@ -40820,18 +40820,18 @@
   },
   {
     "code": "1645629",
-    "name": "5'li Slip Kadın terini",
+    "name": "z Baskılı Slip Kadın di",
     "price": null,
     "image": "images/002605.jpg",
     "embIndex": 2605,
-    "confidence": 0.9195012450218201,
-    "addedAt": "2026-01-02T08:35:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/801.jpg",
+    "confidence": 0.9337177276611328,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      26,
-      756,
-      212,
-      932
+      598,
+      1232,
+      854,
+      1475
     ]
   },
   {
@@ -44804,18 +44804,18 @@
   },
   {
     "code": "1625658",
-    "name": "çemeğ",
+    "name": "Petek Kurutmalık",
     "price": null,
     "image": "images/002861.jpg",
     "embIndex": 2861,
-    "confidence": 0.9254077076911926,
-    "addedAt": "2025-11-14T19:48:39+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/746.jpg",
+    "confidence": 0.9451094269752502,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      40,
-      1278,
-      478,
-      1442
+      751,
+      1341,
+      1024,
+      1473
     ]
   },
   {
@@ -46188,14 +46188,14 @@
     "price": null,
     "image": "images/002949.jpg",
     "embIndex": 2949,
-    "confidence": 0.943543553352356,
-    "addedAt": "2025-02-17T21:05:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/341.jpg",
+    "confidence": 0.9266069531440735,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      165,
-      816,
-      470,
-      933
+      752,
+      1208,
+      1022,
+      1339
     ]
   },
   {
@@ -46529,18 +46529,18 @@
   },
   {
     "code": "1640063",
-    "name": "Bebek Çamaşır/Oyuncak Sepeti",
+    "name": "Desenli Bebek Çamaşır/Oyuncak Sepeti",
     "price": null,
     "image": "images/002971.jpg",
     "embIndex": 2971,
-    "confidence": 0.8464226722717285,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/159.jpg",
+    "confidence": 0.9172834157943726,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      324,
-      1017,
-      502,
-      1236
+      27,
+      589,
+      419,
+      778
     ]
   },
   {
@@ -46657,28 +46657,35 @@
   },
   {
     "code": "1638970",
-    "name": "Mini Boy Hurç E",
+    "name": "A a. Mini Boy Hurç a biz 3 -30x23x18 cm risi",
     "price": null,
     "image": "images/002979.jpg",
     "embIndex": 2979,
-    "confidence": 0.7952266931533813,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/159.jpg",
+    "confidence": 0.9576075077056885,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      58,
-      1154,
-      349,
-      1233
+      436,
+      977,
+      786,
+      1107
     ]
   },
   {
     "code": "1638923",
-    "name": "Yumak t : * Farklı Renklerde 13 e EİN A 1020375 -© p <p m, EEG",
+    "name": "Kitty Baby - vE İl: Magic Baby “i. Kadife pa",
     "price": null,
     "image": "images/002980.jpg",
     "embIndex": 2980,
-    "confidence": 0.6100724339485168,
-    "addedAt": "2025-10-12T08:35:26+00:00"
+    "confidence": 0.8091612458229065,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
+    "bbox": [
+      54,
+      154,
+      1023,
+      563
+    ]
   },
   {
     "code": "1615850",
@@ -52411,18 +52418,18 @@
   },
   {
     "code": "1627986",
-    "name": "Katlanabilir Maşrapa",
+    "name": "Katlanır Maşrapa iz A bin",
     "price": null,
     "image": "images/003350.jpg",
     "embIndex": 3350,
-    "confidence": 0.8709267377853394,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/297.jpg",
+    "confidence": 0.8342054486274719,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      54,
-      269,
-      280,
-      350
+      35,
+      589,
+      237,
+      810
     ]
   },
   {
@@ -66122,18 +66129,18 @@
   },
   {
     "code": "1636242",
-    "name": "EMZİK KUTUSU",
+    "name": "Saplı Emzik Kutusu had",
     "price": null,
     "image": "images/004252.jpg",
     "embIndex": 4252,
-    "confidence": 0.921340823173523,
-    "addedAt": "2025-01-17T15:13:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/306.jpg",
+    "confidence": 0.909838080406189,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      67,
-      475,
-      291,
-      578
+      850,
+      816,
+      997,
+      1017
     ]
   },
   {
@@ -66154,18 +66161,18 @@
   },
   {
     "code": "1636244",
-    "name": "e Meyve Süzgeci",
+    "name": "beb$? eyve Süzgeci 6 NM Ali İçin Uygundur",
     "price": null,
     "image": "images/004254.jpg",
     "embIndex": 4254,
-    "confidence": 0.800410807132721,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/163.jpg",
+    "confidence": 0.9226215481758118,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      28,
-      756,
-      262,
-      902
+      231,
+      799,
+      394,
+      1031
     ]
   },
   {
@@ -75717,18 +75724,18 @@
   },
   {
     "code": "1638969",
-    "name": "Küçük Boy Hurç",
+    "name": "YON 3 Küçük Boy Hurç",
     "price": null,
     "image": "images/004888.jpg",
     "embIndex": 4888,
-    "confidence": 0.909529983997345,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/159.jpg",
+    "confidence": 0.9558126926422119,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      50,
-      1068,
-      344,
-      1155
+      69,
+      979,
+      447,
+      1106
     ]
   },
   {
@@ -89423,18 +89430,18 @@
   },
   {
     "code": "1606856",
-    "name": "Yanmaz Yapışmaz. ) | Soft Touch Sap Kızartma Tenceresi -22 cm",
+    "name": "YYU 2 chef's Kızartma Tenceresi PEŞ irarma Ğ, ir",
     "price": null,
     "image": "images/005791.jpg",
     "embIndex": 5791,
-    "confidence": 0.7506362199783325,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/162.jpg",
+    "confidence": 0.9287683367729187,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      82,
-      113,
-      475,
-      290
+      42,
+      871,
+      342,
+      1072
     ]
   },
   {
@@ -99103,18 +99110,18 @@
   },
   {
     "code": "1636584",
-    "name": "boy",
+    "name": "Bebek Nevresim Seti",
     "price": null,
     "image": "images/006396.jpg",
     "embIndex": 6396,
-    "confidence": 0.8676937222480774,
-    "addedAt": "2025-01-11T13:27:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/301.jpg",
+    "confidence": 0.9161864519119263,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      42,
-      332,
-      344,
-      495
+      63,
+      785,
+      454,
+      977
     ]
   },
   {
@@ -103999,18 +104006,18 @@
   },
   {
     "code": "1624699",
-    "name": "Desenli Bebek Basamağı ız - yg",
+    "name": "Bebek Basamağı",
     "price": null,
     "image": "images/006702.jpg",
     "embIndex": 6702,
-    "confidence": 0.8855769038200378,
-    "addedAt": "2026-01-10T17:01:23+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/812.jpg",
+    "confidence": 0.833774745464325,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      876,
-      628,
-      1029,
-      906
+      857,
+      587,
+      999,
+      780
     ]
   },
   {
@@ -114687,18 +114694,18 @@
   },
   {
     "code": "1637827",
-    "name": "CUMA 9 ire 27 Hazlran'dan İtibaren, Aktüel TI KARŞIL/ PP VALİZ ÇEŞİTLERİ « Şok darbelere ve ezilmeye karşı dayanıklı kırılmaz kabuk. ri - Suya dayanıklı iç star » 3 Kademeli teleskopik çekçek * Geek, Öze iç mekanizması ve yayı sayesinde kolayca açılır kapanır. BÜYÜK BOY ORTA BOY -50x79x31 cm O <45x69x26cm KÜÇÜK BOY -38x58x23 cm",
+    "name": "Esse gi",
     "price": null,
     "image": "images/007371.jpg",
     "embIndex": 7371,
-    "confidence": 0.9106491804122925,
-    "addedAt": "2025-06-25T05:57:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/534.jpg",
+    "confidence": 0.4124338626861572,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      0,
-      0,
-      743,
-      504
+      46,
+      476,
+      425,
+      580
     ]
   },
   {
@@ -138863,18 +138870,18 @@
   },
   {
     "code": "1639555",
-    "name": "Sulu Diş Kaşıyıcı Ni Kg, — zag",
+    "name": "Sulu Diş Kaşıyıcı",
     "price": null,
     "image": "images/008882.jpg",
     "embIndex": 8882,
-    "confidence": 0.9378325939178467,
-    "addedAt": "2025-07-21T06:35:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/577.jpg",
+    "confidence": 0.7981855869293213,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      317,
-      1055,
-      542,
-      1220
+      308,
+      1043,
+      460,
+      1237
     ]
   },
   {
@@ -139119,18 +139126,18 @@
   },
   {
     "code": "1626181",
-    "name": "ga Biberon Süt Şişesi ye cc Fırçası > YER",
+    "name": "m AD Üğlninler Dm Desenli Cam Süt Şişesi el",
     "price": null,
     "image": "images/008898.jpg",
     "embIndex": 8898,
-    "confidence": 0.6320781707763672,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/159.jpg",
+    "confidence": 0.8793858289718628,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      512,
-      997,
-      737,
-      1128
+      787,
+      968,
+      1027,
+      1124
     ]
   },
   {
@@ -152559,18 +152566,18 @@
   },
   {
     "code": "1640963",
-    "name": "Nakışlı Keçe Anne Bebek Çantası",
+    "name": "Keçe Anne Bebek Çantası",
     "price": null,
     "image": "images/009738.jpg",
     "embIndex": 9738,
-    "confidence": 0.9178307056427002,
-    "addedAt": "2026-06-09T15:13:34+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1029.jpg",
+    "confidence": 0.9323407411575317,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      711,
-      743,
-      822,
-      951
+      719,
+      600,
+      1028,
+      786
     ]
   },
   {
@@ -155855,18 +155862,18 @@
   },
   {
     "code": "1645474",
-    "name": "Desenli Mama / Saklama Kabi",
+    "name": "Olan im lor S Desenli Cam Mama/ Saklama Kavanozu İk",
     "price": null,
     "image": "images/009944.jpg",
     "embIndex": 9944,
-    "confidence": 0.8735517263412476,
-    "addedAt": "2026-03-29T09:55:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/922.jpg",
+    "confidence": 0.887479305267334,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      22,
-      498,
-      165,
-      626
+      589,
+      1312,
+      1033,
+      1483
     ]
   },
   {
@@ -173007,18 +173014,18 @@
   },
   {
     "code": "1634406",
-    "name": "Polar Yelek Çocuk",
+    "name": "Fermuarlı Polar Yelek ocuk yane",
     "price": null,
     "image": "images/011016.jpg",
     "embIndex": 11016,
-    "confidence": 0.873807430267334,
-    "addedAt": "2024-10-20T06:12:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/184.jpg",
+    "confidence": 0.914216935634613,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      408,
-      252,
-      577,
-      371
+      371,
+      922,
+      493,
+      1231
     ]
   },
   {
@@ -187487,18 +187494,18 @@
   },
   {
     "code": "1646223",
-    "name": "Hastane Çıkışı",
+    "name": "GN) ann çimi",
     "price": null,
     "image": "images/011921.jpg",
     "embIndex": 11921,
-    "confidence": 0.8607156872749329,
-    "addedAt": "2026-06-09T15:13:34+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1029.jpg",
+    "confidence": 0.8468872308731079,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
     "bbox": [
-      449,
-      600,
-      701,
-      733
+      32,
+      1006,
+      303,
+      1270
     ]
   },
   {
@@ -207311,18 +207318,18 @@
   },
   {
     "code": "1644278",
-    "name": "Tepsi Çeşitleri",
+    "name": "Desenli Deri Kaplamalı Tepsi Çeşitleri",
     "price": null,
     "image": "images/013160.jpg",
     "embIndex": 13160,
-    "confidence": 0.925823986530304,
-    "addedAt": "2025-10-17T15:55:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/702.jpg",
+    "confidence": 0.9707123637199402,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
     "bbox": [
-      10,
-      1345,
-      298,
-      1532
+      538,
+      877,
+      708,
+      1156
     ]
   },
   {
@@ -209647,18 +209654,18 @@
   },
   {
     "code": "1643206",
-    "name": "KİĞILI Yarım Dynami€ Oo Fermuarlı Polar",
+    "name": "KiGILI DynamiC Yarım Fermuarlı Polar Erkek",
     "price": null,
     "image": "images/013306.jpg",
     "embIndex": 13306,
-    "confidence": 0.9468326568603516,
-    "addedAt": "2025-09-26T13:44:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/672.jpg",
+    "confidence": 0.9416298270225525,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      279,
-      1130,
-      426,
-      1256
+      69,
+      590,
+      354,
+      894
     ]
   },
   {
@@ -210111,18 +210118,18 @@
   },
   {
     "code": "1627009",
-    "name": "Polar Yelek",
+    "name": "Fermuarlı Polar Yelek Erkek",
     "price": null,
     "image": "images/013335.jpg",
     "embIndex": 13335,
-    "confidence": 0.9512405395507812,
-    "addedAt": "2025-09-20T17:21:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/665.jpg",
+    "confidence": 0.9551424980163574,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      517,
-      824,
-      799,
-      1002
+      79,
+      920,
+      208,
+      1250
     ]
   },
   {
@@ -210175,18 +210182,18 @@
   },
   {
     "code": "1634405",
-    "name": "Polar Yelek Kadın",
+    "name": "Fermuarlı Polar Yelek Kadın",
     "price": null,
     "image": "images/013339.jpg",
     "embIndex": 13339,
-    "confidence": 0.9410586357116699,
-    "addedAt": "2024-10-20T06:12:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/184.jpg",
+    "confidence": 0.8591928482055664,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
     "bbox": [
-      634,
-      113,
-      850,
-      252
+      237,
+      921,
+      358,
+      1240
     ]
   },
   {
@@ -217763,14 +217770,14 @@
     "price": null,
     "image": "images/013813.jpg",
     "embIndex": 13813,
-    "confidence": 0.9345846176147461,
-    "addedAt": "2025-06-25T05:57:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/535.jpg",
+    "confidence": 0.951836347579956,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
     "bbox": [
-      284,
-      495,
-      499,
-      652
+      504,
+      1125,
+      791,
+      1301
     ]
   },
   {
@@ -250883,6 +250890,422 @@
       602,
       873,
       834
+    ]
+  },
+  {
+    "code": "1646538",
+    "name": "Bambu Tabanlı Saklama Kutusu",
+    "price": null,
+    "image": "images/015885.jpg",
+    "embIndex": 15885,
+    "confidence": 0.9424907565116882,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      702,
+      994,
+      862,
+      1222
+    ]
+  },
+  {
+    "code": "1646837",
+    "name": "Glacis Su Bardağı Yeni Ürün İ, Jİ ğ I Ta",
+    "price": null,
+    "image": "images/015886.jpg",
+    "embIndex": 15886,
+    "confidence": 0.9400623440742493,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      50,
+      605,
+      217,
+      875
+    ]
+  },
+  {
+    "code": "1646657",
+    "name": "Yunan Kabartmalı Desenli Sıvı Sabunluk Çeşitleri",
+    "price": null,
+    "image": "images/015887.jpg",
+    "embIndex": 15887,
+    "confidence": 0.9343125820159912,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      561,
+      1193,
+      729,
+      1472
+    ]
+  },
+  {
+    "code": "1646861",
+    "name": "Timeless Cam Kase ur Gs",
+    "price": null,
+    "image": "images/015888.jpg",
+    "embIndex": 15888,
+    "confidence": 0.9192435145378113,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      551,
+      584,
+      700,
+      871
+    ]
+  },
+  {
+    "code": "1646537",
+    "name": "i Akasya",
+    "price": null,
+    "image": "images/015889.jpg",
+    "embIndex": 15889,
+    "confidence": 0.9166815876960754,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      865,
+      1000,
+      1026,
+      1191
+    ]
+  },
+  {
+    "code": "1646521",
+    "name": "Tek Fiyat Hasır Sepet Çeşitleri",
+    "price": null,
+    "image": "images/015890.jpg",
+    "embIndex": 15890,
+    "confidence": 0.9114290475845337,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      61,
+      1276,
+      316,
+      1466
+    ]
+  },
+  {
+    "code": "1631578",
+    "name": "BONERİ GŞL) Kapaklı Balık Tavası b",
+    "price": null,
+    "image": "images/015891.jpg",
+    "embIndex": 15891,
+    "confidence": 0.9093314409255981,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      56,
+      1068,
+      332,
+      1266
+    ]
+  },
+  {
+    "code": "1646860",
+    "name": "Timeless Cam Tatlı Tabağı n",
+    "price": null,
+    "image": "images/015892.jpg",
+    "embIndex": 15892,
+    "confidence": 0.885491132736206,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      380,
+      621,
+      540,
+      872
+    ]
+  },
+  {
+    "code": "1647912",
+    "name": "Renkli Porselen Kahve Fincan Takımı",
+    "price": null,
+    "image": "images/015893.jpg",
+    "embIndex": 15893,
+    "confidence": 0.8824354410171509,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      854,
+      570,
+      1034,
+      800
+    ]
+  },
+  {
+    "code": "1646838",
+    "name": "Glacis Meşrubat Bardağı! 3lü Yeni Ürün",
+    "price": null,
+    "image": "images/015894.jpg",
+    "embIndex": 15894,
+    "confidence": 0.8603885173797607,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1219.jpg",
+    "bbox": [
+      212,
+      624,
+      402,
+      884
+    ]
+  },
+  {
+    "code": "1646796",
+    "name": "Fanila Çeşitleri Ek",
+    "price": null,
+    "image": "images/015895.jpg",
+    "embIndex": 15895,
+    "confidence": 0.9376757740974426,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "bbox": [
+      635,
+      592,
+      992,
+      894
+    ]
+  },
+  {
+    "code": "1646774",
+    "name": "Mandal Toka Çeşitleri CE",
+    "price": null,
+    "image": "images/015896.jpg",
+    "embIndex": 15896,
+    "confidence": 0.9209036231040955,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "bbox": [
+      867,
+      1226,
+      1000,
+      1476
+    ]
+  },
+  {
+    "code": "1647161",
+    "name": "Soket Çorap Çeşitleri 1 EE",
+    "price": null,
+    "image": "images/015897.jpg",
+    "embIndex": 15897,
+    "confidence": 0.9062804579734802,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "bbox": [
+      405,
+      1245,
+      586,
+      1477
+    ]
+  },
+  {
+    "code": "1644485",
+    "name": "Boyunluklu Bere a",
+    "price": null,
+    "image": "images/015898.jpg",
+    "embIndex": 15898,
+    "confidence": 0.8833176493644714,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "bbox": [
+      70,
+      1247,
+      249,
+      1468
+    ]
+  },
+  {
+    "code": "552435",
+    "name": "Şifreli Kilit Sistemi ii",
+    "price": null,
+    "image": "images/015899.jpg",
+    "embIndex": 15899,
+    "confidence": 0.46997013688087463,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "bbox": [
+      60,
+      289,
+      392,
+      381
+    ]
+  },
+  {
+    "code": "1646948",
+    "name": "Bebek Çorap e Kız / Erkek",
+    "price": null,
+    "image": "images/015900.jpg",
+    "embIndex": 15900,
+    "confidence": 0.9259030222892761,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
+    "bbox": [
+      859,
+      1266,
+      1051,
+      1485
+    ]
+  },
+  {
+    "code": "16481511",
+    "name": "Antikolik Akıtmaz Alıştırma Bardağı e Gi",
+    "price": null,
+    "image": "images/015901.jpg",
+    "embIndex": 15901,
+    "confidence": 0.8551702499389648,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
+    "bbox": [
+      633,
+      1060,
+      816,
+      1241
+    ]
+  },
+  {
+    "code": "1633920",
+    "name": "Biberon",
+    "price": null,
+    "image": "images/015902.jpg",
+    "embIndex": 15902,
+    "confidence": 0.807066023349762,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1217.jpg",
+    "bbox": [
+      475,
+      1051,
+      627,
+      1260
+    ]
+  },
+  {
+    "code": "1648280",
+    "name": "ği e",
+    "price": null,
+    "image": "images/015903.jpg",
+    "embIndex": 15903,
+    "confidence": 0.942433774471283,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
+    "bbox": [
+      412,
+      600,
+      725,
+      777
+    ]
+  },
+  {
+    "code": "1647875",
+    "name": "perillağğ o Vakumlu Bölmeli “> Silikon Mama Tabağı cla",
+    "price": null,
+    "image": "images/015904.jpg",
+    "embIndex": 15904,
+    "confidence": 0.8626159429550171,
+    "addedAt": "2026-10-05T19:43:25+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1216.jpg",
+    "bbox": [
+      122,
+      1117,
+      499,
+      1292
+    ]
+  },
+  {
+    "code": "08507250",
+    "name": "İmam ik. İN MET isa Tecna Çağrı Merk",
+    "price": null,
+    "image": "images/015905.jpg",
+    "embIndex": 15905,
+    "confidence": 0.9399147033691406,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      68,
+      882,
+      574,
+      1150
+    ]
+  },
+  {
+    "code": "1648492",
+    "name": "LENA KAHVE ÜNİTESİ",
+    "price": null,
+    "image": "images/015906.jpg",
+    "embIndex": 15906,
+    "confidence": 0.9283187985420227,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      54,
+      1144,
+      352,
+      1352
+    ]
+  },
+  {
+    "code": "1648500",
+    "name": "KATLI ORTA SEHPA TRAVERTEN DESEN",
+    "price": null,
+    "image": "images/015907.jpg",
+    "embIndex": 15907,
+    "confidence": 0.905695915222168,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      616,
+      1063,
+      853,
+      1330
+    ]
+  },
+  {
+    "code": "1648494",
+    "name": "LOTUS MAKYAJ MASASI",
+    "price": null,
+    "image": "images/015908.jpg",
+    "embIndex": 15908,
+    "confidence": 0.8957089185714722,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      349,
+      1150,
+      625,
+      1341
+    ]
+  },
+  {
+    "code": "164849",
+    "name": "We YAN SEHPA TRAVERTEN DESEN",
+    "price": null,
+    "image": "images/015909.jpg",
+    "embIndex": 15909,
+    "confidence": 0.8841947913169861,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      613,
+      1328,
+      868,
+      1485
+    ]
+  },
+  {
+    "code": "1648499",
+    "name": "eN AÇILABİLİR ÇOCUK KOLTUĞU",
+    "price": null,
+    "image": "images/015910.jpg",
+    "embIndex": 15910,
+    "confidence": 0.48339441418647766,
+    "addedAt": "2026-10-05T19:40:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1215.jpg",
+    "bbox": [
+      565,
+      876,
+      763,
+      1058
     ]
   }
 ]

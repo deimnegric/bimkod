@@ -151978,5 +151978,515 @@
     "price": null,
     "raw_ocr": "",
     "review_image": "review/ce371ab23eeb0335.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000001.jpg",
+    "source_flyer": "pipeline/raw_flyers/1219.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      330,
+      1111,
+      567,
+      1479
+    ],
+    "confidence": 0.9459452033042908,
+    "code": "1647800",
+    "name": "4'lü Katlanır Tekerlekli Dolap",
+    "price": null,
+    "raw_ocr": "4'lü Katlanır\nTekerlekli Dolap\n« Geniş depolama kapasitesi\n« Manyetik kapak\n» Çok amaçlı ve kolay kurulum\n» Portatif ürün » -30 1 (her bir raf)\nStok Adedi 7000",
+    "review_image": "review/77a376b6f2572acf.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000006.jpg",
+    "source_flyer": "pipeline/raw_flyers/1219.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      55,
+      121,
+      387,
+      584
+    ],
+    "confidence": 0.9310392737388611,
+    "code": "1628663",
+    "name": "m",
+    "price": null,
+    "raw_ocr": "m\ni\nMİNİ ÜTÜ MASASI\n-30X74 CM\n* Isıya dayanıklı kumaş\nPEŞİN FİYATINA e TAKSİT",
+    "review_image": "review/e19881d1971ae57d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000018.jpg",
+    "source_flyer": "pipeline/raw_flyers/1219.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      865,
+      791,
+      1043,
+      1001
+    ],
+    "confidence": 0.8690589666366577,
+    "code": "1636930",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/da44353797f91f8f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/1218.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      384,
+      586,
+      595,
+      895
+    ],
+    "confidence": 0.9326898455619812,
+    "code": null,
+    "name": "KiĞILI DynamiC Atlet ve Boxer Seti ç ocuk",
+    "price": null,
+    "raw_ocr": "KiĞILI\nDynamiC\nAtlet ve Boxer Seti\nç\nocuk\n* 6,8 Yaş\n* #95 pamuk #5 elastan\non\n2)\n9649v9T",
+    "review_image": "review/14bc3eb37fce8117.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000028.jpg",
+    "source_flyer": "pipeline/raw_flyers/1218.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      256,
+      1246,
+      393,
+      1476
+    ],
+    "confidence": 0.9152965545654297,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/7b2a9d62b64cec82.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000033.jpg",
+    "source_flyer": "pipeline/raw_flyers/1218.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      462,
+      129,
+      983,
+      569
+    ],
+    "confidence": 0.8695359230041504,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/ac5a70b2b3e8397b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000035.jpg",
+    "source_flyer": "pipeline/raw_flyers/1218.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      55,
+      377,
+      423,
+      483
+    ],
+    "confidence": 0.662741482257843,
+    "code": null,
+    "name": "a",
+    "price": null,
+    "raw_ocr": "PEŞİN FİYATINA . TAKSİT\na",
+    "review_image": "review/43049e93f1793764.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000038.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      638,
+      1263,
+      837,
+      1483
+    ],
+    "confidence": 0.9428381323814392,
+    "code": null,
+    "name": "Nakışlı ge mam yy",
+    "price": null,
+    "raw_ocr": "Nakışlı ge mam\nLE 489:\nyy\n1647140",
+    "review_image": "review/5e6bf30499cb3411.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000039.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      437,
+      1264,
+      620,
+      1483
+    ],
+    "confidence": 0.9311281442642212,
+    "code": null,
+    "name": "Müslin Emzirme Örtüsü roya tara 6 vasi",
+    "price": null,
+    "raw_ocr": "9\nMüslin Emzirme Örtüsü\nroya tara 6 vasi",
+    "review_image": "review/da6e932ced28566b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000040.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      374,
+      603,
+      623,
+      793
+    ],
+    "confidence": 0.926856279373169,
+    "code": "1627985",
+    "name": "br... 5",
+    "price": null,
+    "raw_ocr": "br... 5...\nKatlanır Çocuk Küveti b\natlanır Çocu\n.*\nX\nw\n1627985",
+    "review_image": "review/1a82e28e77e3087d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000042.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      819,
+      1056,
+      1019,
+      1257
+    ],
+    "confidence": 0.9256538152694702,
+    "code": null,
+    "name": "Ortodontik Silikon Emzik",
+    "price": null,
+    "raw_ocr": "Ortodontik Silikon\nEmzik\n* 6 ayt » Gece&Gündüz\n* Sterilizasyon& Saklama Kutusu\n1648153",
+    "review_image": "review/7b9398c3f16d4767.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000044.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      263,
+      1259,
+      424,
+      1476
+    ],
+    "confidence": 0.9162627458572388,
+    "code": null,
+    "name": "bebyl9 Kisa Kollu Bebek Body",
+    "price": null,
+    "raw_ocr": "bebyl9\nKisa Kollu Bebek Body\n© 5g\nO e\n(on\n1646\nvr ER\n“100\nPAMUK",
+    "review_image": "review/abaf11366593d057.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000046.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      413,
+      815,
+      578,
+      1029
+    ],
+    "confidence": 0.8984595537185669,
+    "code": null,
+    "name": "İni Pipetli Bardak imi Sl PEŞ rar (5, var İ he baml",
+    "price": null,
+    "raw_ocr": "İni\nPipetli Bardak\nimi\nSl\n-300 ml\n©\nPEŞ rar (5, var\nİ\nhe\nbaml",
+    "review_image": "review/c60ddebde0bfa069.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000049.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      30,
+      816,
+      204,
+      986
+    ],
+    "confidence": 0.8625392913818359,
+    "code": null,
+    "name": "Renkli Çocuk Askı Seti",
+    "price": null,
+    "raw_ocr": "Renkli Çocuk\n1638663\nAskı Seti\n©\nv",
+    "review_image": "review/22c33ec10a17d384.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      630,
+      587,
+      834,
+      795
+    ],
+    "confidence": 0.846123993396759,
+    "code": null,
+    "name": "Katlanır Çamaşır Selesi en Gi)",
+    "price": null,
+    "raw_ocr": "Katlanır Çamaşır Selesi\n-38L\nen Gi)\n1627959\n379.",
+    "review_image": "review/85d07727bc51a020.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000053.jpg",
+    "source_flyer": "pipeline/raw_flyers/1217.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      29,
+      1275,
+      230,
+      1483
+    ],
+    "confidence": 0.8394252061843872,
+    "code": null,
+    "name": "Bebek Ağız Mendili ME Y yi j p Mp",
+    "price": null,
+    "raw_ocr": "Bebek\nAğız Mendili\n-25x25 cm\n, 1642537\nME Y yi j p\n/ n100)\nMp!",
+    "review_image": "review/fb14c9d272018a46.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000075.jpg",
+    "source_flyer": "pipeline/raw_flyers/1216.jpg",
+    "flyer_date": "2026-10-05T19:43:25+00:00",
+    "bbox": [
+      993,
+      1293,
+      1057,
+      1384
+    ],
+    "confidence": 0.7521529197692871,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/d635d999ae22bc1d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000076.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      835,
+      1068,
+      1051,
+      1470
+    ],
+    "confidence": 0.959040105342865,
+    "code": "473577",
+    "name": "4 SANDALYELİ MASA TAKIMI",
+    "price": null,
+    "raw_ocr": "4 SANDALYELİ\nMASA TAKIMI\n» Masa Ölçüsü: “110x -70x-72 cm\n» Sandalye Ölçüsü: »42x- 35x77 cm\n» Keten Kumaş Sandalye\n* Metal Profil Sandalye Ve Masa Ayakları\n» Suntalam Masa\n* Demonte Olarak Gönderilir\n1648497\nderili",
+    "review_image": "review/78fea60e05863b26.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000077.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      839,
+      307,
+      1020,
+      639
+    ],
+    "confidence": 0.944058358669281,
+    "code": "1644357",
+    "name": "9 KG ÇAMAŞIR MAKİNES",
+    "price": null,
+    "raw_ocr": "9 KG ÇAMAŞIR\nMAKİNES\n« Program takibi « İnverter motor\n* Çocuk kilidi » Taşma emniyeti\npe\n20.900:\nG)\n:\n<B\n1644357",
+    "review_image": "review/3103fec451b5e9e5.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000079.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      504,
+      494,
+      842,
+      680
+    ],
+    "confidence": 0.9351001977920532,
+    "code": "1647410",
+    "name": "9 KG ÇAMAŞIR KURUTMA MAKİNESİ a Ga",
+    "price": null,
+    "raw_ocr": "9 KG ÇAMAŞIR\nKURUTMA MAKİNESİ\na Ga\n17.900:\n1647410",
+    "review_image": "review/174216e702cf26e6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000083.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      51,
+      1342,
+      350,
+      1484
+    ],
+    "confidence": 0.9053675532341003,
+    "code": null,
+    "name": "soLo —— TV ÜNİTESİ",
+    "price": null,
+    "raw_ocr": "soLo ——\nTV ÜNİTESİ\n» Beyaz suntalam\n* Demonte Olarak Gönderilir\n» Derinlik: -40 cm\nm Gs\n12.490:\n164849,",
+    "review_image": "review/94df9cbfffde9a52.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000084.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      326,
+      125,
+      602,
+      388
+    ],
+    "confidence": 0.9034445285797119,
+    "code": "1647409",
+    "name": "v",
+    "price": null,
+    "raw_ocr": "*v\nNOFROST\nBUZDOLABI\n« Kapı açık alarmı\n« Eco-Tatil modu\n* E enerji sarufı\n“1649 em\nDondurucu bölme 591\nSoğutucu bölme 206\nKarlie kem\n22.900:.\n1647409\n(Gs)",
+    "review_image": "review/eef65a8a6462e163.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000086.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      66,
+      669,
+      375,
+      878
+    ],
+    "confidence": 0.8849140405654907,
+    "code": "1639188",
+    "name": "4 PROGRAMLI BULAŞIK MAKİNESİ",
+    "price": null,
+    "raw_ocr": "4 PROGRAMLI BULAŞIK\nMAKİNESİ\n» Paslanmaz çelik gövde\n» Ayarlanabilir fincan raflar\n« Su taşma ernniyet sistemi\n« Tuz/Parkatıcı uyarı eğığı\nCŞL\n17.900:\n1639188",
+    "review_image": "review/6b35394b0b3e219e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000088.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      390,
+      678,
+      671,
+      875
+    ],
+    "confidence": 0.8831592798233032,
+    "code": "1625719",
+    "name": "4 PROGRAMLI BULAŞIK MAKİNESİ Paslanmaz çelik gövde () yalan anan alanı Su taşma emniyet sistemi a SADA Li iğ z Gn) © e",
+    "price": null,
+    "raw_ocr": "4 PROGRAMLI BULAŞIK\nMAKİNESİ\nPaslanmaz çelik gövde ()\nyalan anan alanı\nSu taşma emniyet sistemi a\nSADA Li iğ z\nGn) ©\n15.900: ©\ne",
+    "review_image": "review/a5c28cc522f76b22.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000089.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      698,
+      674,
+      990,
+      884
+    ],
+    "confidence": 0.8608365058898926,
+    "code": "1645350",
+    "name": "8 KG ÇAMAŞIR KURUTMA MAKİNESİ Gl",
+    "price": null,
+    "raw_ocr": "8 KG ÇAMAŞIR\nKURUTMA\nMAKİNESİ\nGl\n15.900:\n1645350",
+    "review_image": "review/1538a6b2fb34f83d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000091.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      334,
+      1320,
+      627,
+      1482
+    ],
+    "confidence": 0.8580703139305115,
+    "code": null,
+    "name": "EROSE KONSOL",
+    "price": null,
+    "raw_ocr": "EROSE\n648493\nKONSOL\n» Beyaz suntalam,\nmdf profil ayak\n* Demonte Olarak\nGönderilir\n1\n* Derinlik: -35 em",
+    "review_image": "review/ae3a7d3e2fb6659a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000093.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      319,
+      381,
+      516,
+      679
+    ],
+    "confidence": 0.7902912497520447,
+    "code": null,
+    "name": "7 KG ÇAMAŞIR MAKİNESİ",
+    "price": null,
+    "raw_ocr": "7 KG ÇAMAŞIR MAKİNESİ\n« Çocuk kilidi « Taşma emniyeti « Dengesiz yük\nkontrolü * İnverter motor » Buhar seçeneği\n» Koli yıkama programı",
+    "review_image": "review/76e7a4b335df4331.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000094.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      566,
+      876,
+      1023,
+      1073
+    ],
+    "confidence": 0.7032291293144226,
+    "code": null,
+    "name": "Ge AÇILABİLİR ÇOCUK KOLTUĞU",
+    "price": null,
+    "raw_ocr": "Ge\nAÇILABİLİR\nÇOCUK KOLTUĞU\nEVE TESUMAY\n* Alcantara kumaş ve sünger kullanılarak\nüretilmiştir.\n* Çocuk koltuğu açılabilir özelliğe sahiptir,\naçılarak yatağa dönüşmektedir.\n1.25\n1648499",
+    "review_image": "review/e38bcb6b6d34ad93.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000095.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      605,
+      109,
+      1042,
+      282
+    ],
+    "confidence": 0.68580561876297,
+    "code": null,
+    "name": "NASIL SATIN ALIRIM",
+    "price": null,
+    "raw_ocr": "NASIL SATIN ALIRIM?\nEVE TESLİMAT\nMONTAJ\nTÜM ÜRÜNLER\n2 YIL GARANTİLİDİR SİPARİŞİNİZ ADRESİNİZE GELSİN",
+    "review_image": "review/be76526bca8d99ce.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000096.jpg",
+    "source_flyer": "pipeline/raw_flyers/1215.jpg",
+    "flyer_date": "2026-10-05T19:40:14+00:00",
+    "bbox": [
+      677,
+      879,
+      1011,
+      1064
+    ],
+    "confidence": 0.6786730289459229,
+    "code": null,
+    "name": "UĞU",
+    "price": null,
+    "raw_ocr": "9\nUĞU\nEVE TESUMAY\nünger kullanılarak\nilir özelliğe sahiptir,\nnektedir.\nDECOLOVE",
+    "review_image": "review/f046cfd95fb92b31.jpg"
   }
 ]
