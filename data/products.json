@@ -11265,22 +11265,6 @@
     ]
   },
   {
-    "code": "1634661",
-    "name": "MAJA NE. SİYAH CAM mü ANKASTRE SET",
-    "price": null,
-    "image": "images/000715.jpg",
-    "embIndex": 715,
-    "confidence": 0.4190302789211273,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/33.jpg",
-    "bbox": [
-      66,
-      432,
-      854,
-      824
-    ]
-  },
-  {
     "code": "1638647",
     "name": "Penanlz",
     "price": null,
