@@ -211,6 +211,7 @@
     <div class="row">
       <input type="text" id="liveSearchInput" placeholder="Ürün adı ya da kod ara…">
       <button class="btn-primary" id="liveSearchBtn">Ara</button>
+      <button class="btn-secondary" id="liveDupBtn" title="Aynı kodla birden fazla kez eklenmiş ürünleri listele">Çift Kayıtları Bul</button>
     </div>
     <div id="liveSearchStatus" style="font-size:12px; color:var(--text-soft); margin-bottom:8px;"></div>
     <div id="liveSearchResults"></div>
@@ -1091,16 +1092,40 @@ el.liveSearchBtn.addEventListener("click", async () => {
 });
 el.liveSearchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") el.liveSearchBtn.click(); });
 
+// Aynı kodla 2+ kez eklenmiş kayıtları listeler (kopyaları kalıcı silmek için)
+document.getElementById("liveDupBtn").addEventListener("click", async () => {
+  el.liveSearchStatus.textContent = "Çift kayıtlar aranıyor…";
+  try {
+    if (!liveProducts) {
+      const { text } = await ghGetFile("data/products.json");
+      liveProducts = JSON.parse(text);
+    }
+    const counts = new Map();
+    liveProducts.forEach((p) => counts.set(p.code, (counts.get(p.code) || 0) + 1));
+    const dups = liveProducts
+      .filter((p) => counts.get(p.code) > 1)
+      .sort((a, b) => String(a.code).localeCompare(String(b.code)) || (a.embIndex ?? 0) - (b.embIndex ?? 0));
+    renderLiveSearchResults(dups.slice(0, 60));
+    const codes = new Set(dups.map((p) => p.code)).size;
+    el.liveSearchStatus.textContent = dups.length
+      ? `${codes} kodda toplam ${dups.length} çift kayıt bulundu${dups.length > 60 ? " (ilk 60 gösteriliyor)" : ""}. Kopyaları "Kalıcı Sil" ile kaldır, birini bırak.`
+      : "Çift kayıt yok.";
+  } catch (err) {
+    el.liveSearchStatus.textContent = "❌ Hata: " + err.message;
+  }
+});
+
 function renderLiveSearchResults(results) {
   el.liveSearchResults.innerHTML = results.map((p) => `
     <div class="card" data-code="${p.code}">
       <img class="small" src="${rawBase()}/${p.image}" alt="${p.name}" onerror="this.style.opacity=0.15">
       <div class="card-body">
         <div style="font-weight:600; font-size:13.5px; margin-bottom:4px;">${p.name}</div>
-        <div style="font-size:12px; color:var(--text-soft); margin-bottom:8px;">Kod: ${p.code}${p.price ? ` · ${p.price} ₺` : ""}</div>
+        <div style="font-size:12px; color:var(--text-soft); margin-bottom:8px;">Kod: ${p.code}${p.price ? ` · ${p.price} ₺` : ""} · kayıt #${p.embIndex ?? "?"}</div>
         <div class="card-actions">
           <button class="btn-secondary btn-edit-live">Düzenle</button>
           <button class="btn-reject btn-rescan-live">Sil ve Yeniden Tara</button>
+          <button class="btn-reject btn-perm-delete-live" style="background:#7a1f1f;">Kalıcı Sil</button>
         </div>
         <div class="live-status" style="font-size:12px; margin-top:6px; color:var(--text-soft);"></div>
         <div class="live-edit-form hidden" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
@@ -1124,6 +1149,7 @@ function renderLiveSearchResults(results) {
     const product = results[i];
     const editForm = card.querySelector(".live-edit-form");
     card.querySelector(".btn-rescan-live").addEventListener("click", () => rescanLiveProduct(product, card));
+    card.querySelector(".btn-perm-delete-live").addEventListener("click", () => permanentDeleteLiveProduct(product, card));
     card.querySelector(".btn-edit-live").addEventListener("click", () => editForm.classList.toggle("hidden"));
     card.querySelector(".live-edit-cancel").addEventListener("click", () => editForm.classList.add("hidden"));
     card.querySelector(".live-edit-save").addEventListener("click", () => saveLiveProductEdit(product, card));
@@ -1154,13 +1180,13 @@ async function saveLiveProductEdit(product, card) {
     }
 
     await updateExistingProduct({
-      originalCode: product.code, code, name, price,
+      originalCode: product.code, originalEntry: product, code, name, price,
       imageBase64, embedSource,
       onProgress: (msg) => { statusEl.textContent = msg; },
     });
 
     // bellekteki kopyayı da güncelle
-    const idx = liveProducts.findIndex((p) => p.code === product.code);
+    const idx = liveProducts.findIndex((p) => sameEntry(p, product));
     const niceName = trTitleCase(name);
     if (idx !== -1) liveProducts[idx] = { ...liveProducts[idx], code, name: niceName, price: price || null };
     product.code = code; product.name = niceName; product.price = price || null; // aynı kartta tekrar düzenlemede güncel kod kullanılsın
@@ -1178,7 +1204,7 @@ async function updateExistingProduct(args) {
   return withGhLock(() => updateExistingProductInner(args), args.onProgress);
 }
 
-async function updateExistingProductInner({ originalCode, code, name, price, imageBase64, embedSource, onProgress }) {
+async function updateExistingProductInner({ originalCode, originalEntry, code, name, price, imageBase64, embedSource, onProgress }) {
   name = trTitleCase(name);
 
   // Önce (varsa) görsel + embedding; products.json EN SON ve taze okunur, böylece
@@ -1186,7 +1212,7 @@ async function updateExistingProductInner({ originalCode, code, name, price, ima
   if (imageBase64) {
     onProgress?.("Mevcut ürün bilgisi okunuyor…");
     const { text: t0 } = await ghGetFile("data/products.json");
-    const p0 = JSON.parse(t0).find((p) => p.code === originalCode);
+    const p0 = JSON.parse(t0).find((p) => originalEntry ? sameEntry(p, originalEntry) : p.code === originalCode);
     if (!p0) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
 
     onProgress?.("Yeni görsel embedding hesaplanıyor…");
@@ -1209,7 +1235,7 @@ async function updateExistingProductInner({ originalCode, code, name, price, ima
   onProgress?.("products.json taze okunuyor…");
   const { text: productsText, sha: productsSha } = await ghGetFile("data/products.json");
   const products = JSON.parse(productsText);
-  const idx = products.findIndex((p) => p.code === originalCode);
+  const idx = products.findIndex((p) => originalEntry ? sameEntry(p, originalEntry) : p.code === originalCode);
   if (idx === -1) throw new Error(`Ürün bulunamadı (kod: ${originalCode}) — arada silinmiş olabilir, listeyi yenile.`);
   products[idx] = { ...products[idx], code, name, price: price || null };
 
@@ -1218,6 +1244,62 @@ async function updateExistingProductInner({ originalCode, code, name, price, ima
 
   onProgress?.("corrections.csv güncelleniyor…");
   await appendCorrection(code, name);
+}
+
+
+// Kalıcı sil: ürünü products.json'dan tamamen kaldırır (yeniden taramaya EKLEMEZ).
+// Çift kayıtlarda aynı kod birden fazla satırda olabildiği için tam o satır embIndex ile
+// bulunur (embIndex her kayıtta benzersizdir). Görsel dosyası başka bir kayıt tarafından
+// kullanılmıyorsa repodan silinir; embeddings.bin'deki slot index kaymasın diye kalır.
+function sameEntry(a, b) {
+  if (a.embIndex != null && b.embIndex != null) return a.embIndex === b.embIndex;
+  return a.code === b.code && a.image === b.image;
+}
+
+async function permanentDeleteLiveProduct(product, card) {
+  const statusEl = card.querySelector(".live-status");
+  if (!confirm(`"${product.name}" (${product.code}, kayıt #${product.embIndex ?? "?"}) KALICI olarak silinecek. Yeniden taramaya eklenmez, geri alınamaz. Devam edilsin mi?`)) return;
+
+  card.classList.add("done");
+  try {
+    const result = await withGhLock(async () => {
+      statusEl.textContent = "products.json taze okunuyor…";
+      const { text, sha } = await ghGetFile("data/products.json");
+      const current = JSON.parse(text);
+      const target = current.find((p) => sameEntry(p, product));
+      if (!target) throw new Error("Kayıt bulunamadı — zaten silinmiş olabilir, aramayı yenile.");
+      const remaining = current.filter((p) => !sameEntry(p, target));
+
+      statusEl.textContent = "products.json güncelleniyor…";
+      await ghPutFile("data/products.json", JSON.stringify(remaining, null, 2), sha, `Admin: ${target.code} kalıcı silindi (kayıt #${target.embIndex ?? "?"})`);
+
+      // Görsel başka bir kayıtta kullanılmıyorsa dosyayı da sil (başarısız olursa önemli değil)
+      let imageDeleted = false;
+      if (target.image && !remaining.some((p) => p.image === target.image)) {
+        try {
+          statusEl.textContent = "Görsel dosyası siliniyor…";
+          const meta = await fetch(`${apiBase()}/contents/${target.image}?ref=${el.branch.value.trim()}&_=${Date.now()}`, { headers: ghHeaders(), cache: "no-store" });
+          if (meta.ok) {
+            const { sha: imgSha } = await meta.json();
+            const del = await fetch(`${apiBase()}/contents/${target.image}`, {
+              method: "DELETE",
+              headers: { ...ghHeaders(), "Content-Type": "application/json" },
+              body: JSON.stringify({ message: `Admin: ${target.code} görseli silindi`, sha: imgSha, branch: el.branch.value.trim() }),
+            });
+            imageDeleted = del.ok;
+          }
+        } catch { /* görsel kalsa da ürün zaten yayından kalktı */ }
+      }
+      return { remaining, imageDeleted };
+    }, (m) => { statusEl.textContent = m; });
+
+    liveProducts = result.remaining;
+    statusEl.textContent = "✅ Kalıcı olarak silindi." + (result.imageDeleted ? "" : " (görsel dosyası repoda kaldı, zararsız)");
+    setTimeout(() => card.remove(), 900);
+  } catch (err) {
+    card.classList.remove("done");
+    statusEl.textContent = "❌ Hata: " + err.message;
+  }
 }
 
 // Kaynağı bilinen (sourceFlyer dolu) bir ürünü: rescan_queue.json'a ekler, products.json'dan siler.
@@ -1241,7 +1323,7 @@ async function rescanLiveProduct(product, card) {
       statusEl.textContent = "data/products.json güncelleniyor…";
       const { text, sha } = await ghGetFile("data/products.json");
       const current = JSON.parse(text);
-      const out = current.filter((p) => p.code !== product.code);
+      const out = current.filter((p) => !sameEntry(p, product));
       await ghPutFile("data/products.json", JSON.stringify(out, null, 2), sha, `Admin: ${product.code} silindi, yeniden taramaya eklendi`);
       return out;
     }, (m) => { statusEl.textContent = m; });
