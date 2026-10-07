@@ -200,5 +200,121 @@ try {
   onValue(ref(db, base + '/toplam'), s => { document.getElementById('zvToplam').textContent = fmt(s.val()); });
 } catch (e) { console.warn('Sayaç başlatılamadı', e); }
 </script>
+  <!-- bimkod.online - Sabit Piksel Kalp Efekti -->
+<script>
+(function () {
+  // 1. Ekranı Kaplayan Tuval (Canvas) Oluşturma
+  const canvas = document.createElement('canvas');
+  canvas.id = 'fixed-pixel-hearts';
+  Object.assign(canvas.style, {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100vw',
+    height: '100vh',
+    pointerEvents: 'none', // Sitedeki tıklamaları engellemez
+    zIndex: '99999'
+  });
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    ctx.imageSmoothingEnabled = false;
+  });
+
+  // 2. Ekran Görüntünüzdeki Sabit Ayarlar
+  const CONFIG = {
+    count: 12,       // Kalp Sayısı: 12
+    scale: 2,        // Piksel Ölçeği: 2px Retro
+    speed: 0.7,      // Yükselme Hızı: 0.7x
+    alpha: 0.50,     // Opaklık: 0.50
+    colors: ['#ff2a55', '#e60039', '#ff5277', '#cc0033'] // Kırmızı Palet
+  };
+
+  // Mikro 5x5 Kalp Matrisi
+  const MICRO_HEART = [
+    [0, 1, 0, 1, 0],
+    [1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 1],
+    [0, 1, 1, 1, 0],
+    [0, 0, 1, 0, 0]
+  ];
+
+  // 3. Kalp Nesnesi & Fiziği
+  class Heart {
+    constructor() {
+      this.reset(true);
+    }
+
+    reset(initial = false) {
+      this.x = Math.random() * width;
+      this.y = initial ? Math.random() * height : height + 20;
+      this.speedY = (0.6 + Math.random() * 0.8) * CONFIG.speed;
+      this.swingSpeed = 0.015 + Math.random() * 0.02;
+      this.swingAmp = 12 + Math.random() * 20;
+      this.angle = Math.random() * Math.PI * 2;
+      this.color = CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)];
+      this.opacity = (0.4 + Math.random() * 0.6) * CONFIG.alpha;
+    }
+
+    update() {
+      this.y -= this.speedY;
+      this.angle += this.swingSpeed;
+      this.currentX = this.x + Math.sin(this.angle) * this.swingAmp;
+
+      if (this.y < -20) {
+        this.reset(false);
+      }
+    }
+
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+
+      const pSize = CONFIG.scale;
+      const startX = Math.round(this.currentX);
+      const startY = Math.round(this.y);
+
+      for (let r = 0; r < 5; r++) {
+        for (let c = 0; c < 5; c++) {
+          if (MICRO_HEART[r][c] === 1) {
+            // Sol üst piksele minik 1px parlama detayı
+            if (r === 1 && c === 1) {
+              ctx.fillStyle = '#ffffff';
+            } else {
+              ctx.fillStyle = this.color;
+            }
+            ctx.fillRect(startX + c * pSize, startY + r * pSize, pSize, pSize);
+          }
+        }
+      }
+      ctx.restore();
+    }
+  }
+
+  // Kalp Dizisi Oluşturma
+  const hearts = Array.from({ length: CONFIG.count }, () => new Heart());
+
+  // Animasyon Döngüsü
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    for (let i = 0; i < hearts.length; i++) {
+      hearts[i].update();
+      hearts[i].draw();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+</script>
+  
 </body>
 </html>
