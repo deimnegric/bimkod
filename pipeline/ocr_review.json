@@ -17,23 +17,6 @@
     "review_image": "review/051cc52f8801fd2d.jpg"
   },
   {
-    "full_crop": "pipeline/crops_full/000037.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      511,
-      147,
-      1060,
-      582
-    ],
-    "confidence": 0.5968819260597229,
-    "code": "646132",
-    "name": "",
-    "price": null,
-    "raw_ocr": "",
-    "review_image": "review/a2887c5b26591917.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000038.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
