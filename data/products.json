@@ -214053,22 +214053,6 @@
     ]
   },
   {
-    "code": "1612119",
-    "name": "Farklı Çeşitlerde",
-    "price": null,
-    "image": "images/013589.jpg",
-    "embIndex": 13589,
-    "confidence": 0.9274695515632629,
-    "addedAt": "2025-07-26T17:58:45+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/583.jpg",
-    "bbox": [
-      45,
-      1092,
-      257,
-      1237
-    ]
-  },
-  {
     "code": "16343885",
     "name": "o—<> Ew wp",
     "price": null,
