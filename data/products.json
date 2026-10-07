@@ -251245,5 +251245,15 @@
     "confidence": 0.9052146673202515,
     "addedAt": "2026-10-07T18:55:37.899Z",
     "approvedManually": true
+  },
+  {
+    "code": "1634161",
+    "name": "Hışırtılı Bez Kitap",
+    "price": null,
+    "image": "images/015920.jpg",
+    "embIndex": 15920,
+    "confidence": 0.8989560008049011,
+    "addedAt": "2026-10-07T18:57:08.617Z",
+    "approvedManually": true
   }
 ]
