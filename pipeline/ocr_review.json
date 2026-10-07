@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000024.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      190,
-      1326,
-      346,
-      1582
-    ],
-    "confidence": 0.9248730540275574,
-    "code": null,
-    "name": "İİ ima Ap İnno Hikaye Kitapları",
-    "price": null,
-    "raw_ocr": "İİ ima Ap\nİnno\nHikaye Kitapları\n»* Farklı çeşitlerde\n1645486",
-    "review_image": "review/55c1f168cc1df5a4.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000029.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
