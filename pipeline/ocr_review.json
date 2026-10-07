@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000029.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      766,
-      855,
-      1080,
-      1034
-    ],
-    "confidence": 0.9105087518692017,
-    "code": null,
-    "name": "",
-    "price": null,
-    "raw_ocr": "1639061",
-    "review_image": "review/9172ff06642e64b5.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000030.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
