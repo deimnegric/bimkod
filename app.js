@@ -61,17 +61,31 @@ const el = {
   newArrivalsList: document.getElementById("newArrivalsList"),
 };
 
-// Afiş tarihi: products.json'daki addedAt = ürünün geldiği afişin (Telegram mesajı) tarihi.
-// "26.10.2025" biçiminde, İstanbul saatine göre gösterilir.
-function fmtDate(iso) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (isNaN(d)) return "";
-  return d.toLocaleDateString("tr-TR", { timeZone: "Europe/Istanbul", day: "2-digit", month: "2-digit", year: "numeric" });
+// Satış tarihi: afişin üzerinde yazan tarih (pipeline/flyer_dates.py OCR ile okur,
+// data/flyer_dates.json'a yazar). Telegram'daki paylaşım tarihi DEĞİLDİR (Cuma'nın
+// ürünleri bir gün önce paylaşılabilir). Tarihi okunamayan afişte rozet gösterilmez.
+let FLYER_DATES = {};
+const DAY_SHORT = ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"];
+function fmtSaleDate(ymd) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd || "");
+  if (!m) return "";
+  const [, y, mo, d] = m;
+  const wd = DAY_SHORT[new Date(Date.UTC(+y, +mo - 1, +d)).getUTCDay()];
+  return `${wd} ${d}.${mo}.${y}`;
+}
+function saleDateOf(p) {
+  const id = String(p.sourceFlyer || "").replace(/^.*\//, "").replace(/\.jpg$/i, "");
+  return FLYER_DATES[id] || "";
 }
 function dateChip(p) {
-  const t = fmtDate(p.addedAt);
-  return t ? `<span class="date-chip" title="Afişin geldiği tarih">${t}</span>` : "";
+  const t = fmtSaleDate(saleDateOf(p));
+  return t ? `<span class="date-chip" title="Ürünün satışa çıktığı tarih (afişten)">${t}</span>` : "";
+}
+async function loadSaleDates() {
+  try {
+    const r = await fetch("data/flyer_dates.json");
+    if (r.ok) FLYER_DATES = await r.json();
+  } catch { /* tarih dosyası yoksa rozet gösterilmez */ }
 }
 
 const NEW_BADGE_HOURS = 72; // bu süreden yeni ise "YENİ" rozeti gösterilir
@@ -489,12 +503,12 @@ async function sharedProductCard(product) {
   ctx.fillStyle = "#8A8578";
   ctx.font = "500 20px ui-monospace, monospace";
   ctx.fillText("Ürün Kodu: " + product.code, 40, 555);
-  const shareDate = fmtDate(product.addedAt);
+  const shareDate = fmtSaleDate(saleDateOf(product));
   if (shareDate) {
     ctx.fillStyle = "#8A8578";
     ctx.font = "500 15px -apple-system, sans-serif";
     ctx.textAlign = "right";
-    ctx.fillText("Afiş tarihi: " + shareDate, 600, 555);
+    ctx.fillText("Satış tarihi: " + shareDate, 600, 555);
     ctx.textAlign = "left";
   }
 
@@ -680,4 +694,8 @@ if ("serviceWorker" in navigator) {
 // ---------- Başlat ----------
 el.btnCamera.addEventListener("click", ensureEmbeddings);
 el.btnUpload.addEventListener("click", ensureEmbeddings);
-loadData().then(() => { render(); maybePrefetchEmbeddings(); });
+loadData().then(() => {
+  render(); maybePrefetchEmbeddings();
+  // Tarihler ilk ekranı geciktirmesin: sonradan gelir, gelince yeniden çizilir.
+  loadSaleDates().then(() => { if (Object.keys(FLYER_DATES).length) render(); });
+});

@@ -13,6 +13,11 @@ on:
 permissions:
   contents: write
 
+# Aynı anda iki iş (günlük tarama + tarih doldurma) çalışmasın: Telegram oturumu ve git push çakışmasın.
+concurrency:
+  group: bimkod-data
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -49,6 +54,10 @@ jobs:
           TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
           TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
         run: python pipeline/scrape_telegram.py
+
+      - name: 1b) Yeni afişlerin satış tarihini oku (OCR)
+        # Tarih okunamazsa tüm akışı durdurmasın; o afiş için "tarih yok" kalır.
+        run: python pipeline/flyer_dates.py --new || echo "Afiş tarihi okuma atlandı"
 
       - name: 2) YOLO ile ürün karesi tespiti
         run: python pipeline/detect_products.py
