@@ -251277,5 +251277,15 @@
     "confidence": 0.9105087518692017,
     "addedAt": "2026-10-07T18:52:54.396Z",
     "approvedManually": true
+  },
+  {
+    "code": "1641689",
+    "name": "Tekli Oyun Hamuru Childgen",
+    "price": null,
+    "image": "images/015919.jpg",
+    "embIndex": 15919,
+    "confidence": 0.9052146673202515,
+    "addedAt": "2026-10-07T18:55:37.899Z",
+    "approvedManually": true
   }
 ]
