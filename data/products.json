@@ -251247,5 +251247,15 @@
     "confidence": 0.9294437170028687,
     "addedAt": "2026-10-07T18:42:16.594Z",
     "approvedManually": true
+  },
+  {
+    "code": "1645486",
+    "name": "İnno Hikaye Kitapları İnkılap",
+    "price": null,
+    "image": "images/015916.jpg",
+    "embIndex": 15916,
+    "confidence": 0.9248730540275574,
+    "addedAt": "2026-10-07T18:43:25.718Z",
+    "approvedManually": true
   }
 ]
