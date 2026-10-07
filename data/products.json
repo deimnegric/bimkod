@@ -251237,5 +251237,15 @@
       1061,
       582
     ]
+  },
+  {
+    "code": "1644506",
+    "name": "PICCOLO MONDİ Metal İş Araçları",
+    "price": null,
+    "image": "images/015925.jpg",
+    "embIndex": 15925,
+    "confidence": 0.9094136357307434,
+    "addedAt": "2026-10-07T20:13:49.689Z",
+    "approvedManually": true
   }
 ]
