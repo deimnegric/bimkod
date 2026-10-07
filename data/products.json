@@ -58558,22 +58558,6 @@
     ]
   },
   {
-    "code": "1634161",
-    "name": "Hışırtılı Bez 50 Kitabım 39, ie",
-    "price": null,
-    "image": "images/003751.jpg",
-    "embIndex": 3751,
-    "confidence": 0.9003424644470215,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/31.jpg",
-    "bbox": [
-      655,
-      636,
-      854,
-      776
-    ]
-  },
-  {
     "code": "1634167",
     "name": "El Kuklası",
     "price": null,
