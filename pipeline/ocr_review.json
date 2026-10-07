@@ -17,23 +17,6 @@
     "review_image": "review/051cc52f8801fd2d.jpg"
   },
   {
-    "full_crop": "pipeline/crops_full/000034.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      201,
-      617,
-      348,
-      835
-    ],
-    "confidence": 0.8987387418746948,
-    "code": null,
-    "name": "PiCCOLO MONDİ Oyuncak Parlak | Spor Araba e",
-    "price": null,
-    "raw_ocr": "PiCCOLO MONDİ\nOyuncak Parlak |\nSpor Araba e !\nlı renklerde NN |\n»* Farki\ny1\nPP",
-    "review_image": "review/d264353d002021e1.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000035.jpg",
     "source_flyer": "pipeline/raw_flyers/1194.jpg",
     "flyer_date": "2026-09-23T06:15:15+00:00",
