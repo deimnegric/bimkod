@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000030.jpg",
-    "source_flyer": "pipeline/raw_flyers/1194.jpg",
-    "flyer_date": "2026-09-23T06:15:15+00:00",
-    "bbox": [
-      349,
-      618,
-      505,
-      856
-    ],
-    "confidence": 0.9094136357307434,
-    "code": null,
-    "name": "PICCOLO MONDİ Metal İş Araçları",
-    "price": null,
-    "raw_ocr": "PICCOLO MONDİ\nMetal İş Araçları",
-    "review_image": "review/051cc52f8801fd2d.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000041.jpg",
     "source_flyer": "pipeline/raw_flyers/1193.jpg",
     "flyer_date": "2026-09-23T06:15:14+00:00",
