@@ -179189,22 +179189,6 @@
     ]
   },
   {
-    "code": "1621252",
-    "name": "Kelime Oyunu",
-    "price": null,
-    "image": "images/011406.jpg",
-    "embIndex": 11406,
-    "confidence": 0.9108673930168152,
-    "addedAt": "2024-08-02T08:55:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/51.jpg",
-    "bbox": [
-      741,
-      715,
-      858,
-      912
-    ]
-  },
-  {
     "code": "1645486",
     "name": "İİ ima Ap İnno Hikaye Kitapları",
     "price": null,
