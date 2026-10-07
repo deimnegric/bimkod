@@ -251233,5 +251233,15 @@
     "confidence": 0.8987387418746948,
     "addedAt": "2026-10-07T18:58:58.555Z",
     "approvedManually": true
+  },
+  {
+    "code": "1612119",
+    "name": "Oyuncak Bebek Barbie",
+    "price": null,
+    "image": "images/015922.jpg",
+    "embIndex": 15922,
+    "confidence": 0.8947288990020752,
+    "addedAt": "2026-10-07T19:00:18.156Z",
+    "approvedManually": true
   }
 ]
