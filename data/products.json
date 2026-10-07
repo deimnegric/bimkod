@@ -251237,5 +251237,15 @@
     "confidence": 0.9318484663963318,
     "addedAt": "2026-10-06T20:39:08.837Z",
     "approvedManually": true
+  },
+  {
+    "code": "1621252",
+    "name": "Kelime Oyunu",
+    "price": null,
+    "image": "images/015915.jpg",
+    "embIndex": 15915,
+    "confidence": 0.9294437170028687,
+    "addedAt": "2026-10-07T18:42:16.594Z",
+    "approvedManually": true
   }
 ]
