@@ -179189,22 +179189,6 @@
     ]
   },
   {
-    "code": "1645486",
-    "name": "İİ ima Ap İnno Hikaye Kitapları",
-    "price": null,
-    "image": "images/011407.jpg",
-    "embIndex": 11407,
-    "confidence": 0.9248730540275574,
-    "addedAt": "2026-09-23T06:15:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1194.jpg",
-    "bbox": [
-      190,
-      1326,
-      346,
-      1582
-    ]
-  },
-  {
     "code": "16415972",
     "name": "Özel geen ee Bi r.a m ürü 2",
     "price": null,
