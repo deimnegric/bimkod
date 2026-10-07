@@ -152267,5 +152267,192 @@
     "price": null,
     "raw_ocr": "9\nUĞU\nEVE TESUMAY\nünger kullanılarak\nilir özelliğe sahiptir,\nnektedir.\nDECOLOVE",
     "review_image": "review/f046cfd95fb92b31.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      546,
+      1307,
+      716,
+      1570
+    ],
+    "confidence": 0.9560173749923706,
+    "code": null,
+    "name": "dr ii lag ” “ hi 3",
+    "price": null,
+    "raw_ocr": ">.\ndr ii\n9804491 İl 8\nlag ”\n“ hi 3\nii\nJile",
+    "review_image": "review/376f0a182fe06992.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000006.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      40,
+      1329,
+      174,
+      1574
+    ],
+    "confidence": 0.9318484663963318,
+    "code": null,
+    "name": "A TENNO Boyama Kitapları",
+    "price": null,
+    "raw_ocr": "A TENNO\nBoyama\nKitapları\n1645266\n* Farklı çeşitlerde",
+    "review_image": "review/2c6a280bd19081ec.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      419,
+      870,
+      593,
+      1025
+    ],
+    "confidence": 0.9294436573982239,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "el 199:\n1621252",
+    "review_image": "review/818c6406f64ccfda.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000011.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      190,
+      1326,
+      346,
+      1582
+    ],
+    "confidence": 0.9248730540275574,
+    "code": null,
+    "name": "İİ ima Ap İnno Hikaye Kitapları",
+    "price": null,
+    "raw_ocr": "İİ ima Ap\nİnno\nHikaye Kitapları\n»* Farklı çeşitlerde\n1645486",
+    "review_image": "review/55c1f168cc1df5a4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      767,
+      855,
+      1080,
+      1034
+    ],
+    "confidence": 0.9105085134506226,
+    "code": "1639061",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1639061",
+    "review_image": "review/833fdf48f8e03dea.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000017.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      349,
+      618,
+      506,
+      856
+    ],
+    "confidence": 0.9094135761260986,
+    "code": null,
+    "name": "PICCOLO MONDİ Metal İş Araçları",
+    "price": null,
+    "raw_ocr": "PICCOLO MONDİ\nMetal İş Araçları",
+    "review_image": "review/e124d710fb7caf20.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000018.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      603,
+      1039,
+      728,
+      1308
+    ],
+    "confidence": 0.9052145481109619,
+    "code": "1641689",
+    "name": "",
+    "price": null,
+    "raw_ocr": "1641689",
+    "review_image": "review/877d55152cd04eb3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000020.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      368,
+      1313,
+      530,
+      1584
+    ],
+    "confidence": 0.8989559412002563,
+    "code": null,
+    "name": "ie Hışırtılı Bez Kitap",
+    "price": null,
+    "raw_ocr": "ie\nHışırtılı Bez Kitap\n» Farklı çeşitlerde\nİ\n|\nİ\nlil",
+    "review_image": "review/c56187ec8b585ea1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000021.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      201,
+      617,
+      348,
+      835
+    ],
+    "confidence": 0.8987386226654053,
+    "code": null,
+    "name": "PiCCOLO MONDİ Oyuncak Parlak | Spor Araba e",
+    "price": null,
+    "raw_ocr": "PiCCOLO MONDİ\nOyuncak Parlak |\nSpor Araba e !\nlı renklerde NN |\n»* Farki\ny1\nPP",
+    "review_image": "review/d264353d002021e1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000022.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      701,
+      619,
+      842,
+      855
+    ],
+    "confidence": 0.8947288393974304,
+    "code": null,
+    "name": "Babi Oyuncak Bebek | GEZİ",
+    "price": null,
+    "raw_ocr": "Babi\nOyuncak Bebek |\nGEZİ",
+    "review_image": "review/9bc8b7a765e84601.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000025.jpg",
+    "source_flyer": "pipeline/raw_flyers/1194.jpg",
+    "flyer_date": "2026-09-23T06:15:15+00:00",
+    "bbox": [
+      35,
+      132,
+      505,
+      583
+    ],
+    "confidence": 0.5070573091506958,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/ee0fcdf1a0667421.jpg"
   }
 ]
