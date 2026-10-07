@@ -251239,5 +251239,15 @@
     "confidence": 0.8989560008049011,
     "addedAt": "2026-10-07T18:57:08.617Z",
     "approvedManually": true
+  },
+  {
+    "code": "1646232",
+    "name": "Oyuncak Parlak Spor Araba Piccolo Mondi",
+    "price": null,
+    "image": "images/015921.jpg",
+    "embIndex": 15921,
+    "confidence": 0.8987387418746948,
+    "addedAt": "2026-10-07T18:58:58.555Z",
+    "approvedManually": true
   }
 ]
