@@ -148581,22 +148581,6 @@
     ]
   },
   {
-    "code": "1637707",
-    "name": "Mutfak Bıçağı Ew yp",
-    "price": null,
-    "image": "images/009498.jpg",
-    "embIndex": 9498,
-    "confidence": 0.9262404441833496,
-    "addedAt": "2026-03-15T13:15:43+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/900.jpg",
-    "bbox": [
-      341,
-      777,
-      463,
-      920
-    ]
-  },
-  {
     "code": "1642642",
     "name": "gez e pe Altın Rimli g t Cam Kupa dari BD > Ç Sa",
     "price": null,
