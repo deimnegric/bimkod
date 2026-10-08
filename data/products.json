@@ -41739,22 +41739,6 @@
     ]
   },
   {
-    "code": "1644080",
-    "name": "Dikiş Makinesi İğne Seti",
-    "price": null,
-    "image": "images/002671.jpg",
-    "embIndex": 2671,
-    "confidence": 0.9176296591758728,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      275,
-      1013,
-      388,
-      1190
-    ]
-  },
-  {
     "code": "1641013",
     "name": "Dikiş İğnesi Çeşitleri",
     "price": "50",
