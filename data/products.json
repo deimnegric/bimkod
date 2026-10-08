@@ -48235,22 +48235,6 @@
     ]
   },
   {
-    "code": "1630631",
-    "name": "Altın Rimli 6",
-    "price": null,
-    "image": "images/003081.jpg",
-    "embIndex": 3081,
-    "confidence": 0.7482078671455383,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
-    "bbox": [
-      551,
-      605,
-      842,
-      725
-    ]
-  },
-  {
     "code": "1642840",
     "name": "Çiçek Motifli Kupa NE",
     "price": null,
