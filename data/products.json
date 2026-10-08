@@ -92149,22 +92149,6 @@
     ]
   },
   {
-    "code": "1642564",
-    "name": "Yapışkanlı Duvar Baharatlığı 2 eşim eivay rsi",
-    "price": null,
-    "image": "images/005977.jpg",
-    "embIndex": 5977,
-    "confidence": 0.9376540184020996,
-    "addedAt": "2025-03-31T12:04:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/406.jpg",
-    "bbox": [
-      41,
-      873,
-      286,
-      1012
-    ]
-  },
-  {
     "code": "1646536",
     "name": "Renkli Süzgeçli Badya",
     "price": null,
