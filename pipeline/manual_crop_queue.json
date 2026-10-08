@@ -1,20 +1,5 @@
 [
   {
-    "source_flyer": "pipeline/raw_flyers/1188.jpg",
-    "bbox": [
-      672,
-      148,
-      1003,
-      570
-    ],
-    "name": "Dunes Su Bardağı 335 Cc",
-    "code": "1646839",
-    "reason": "Görsel yarım/kesik",
-    "kind": "review",
-    "seen": 1,
-    "ts": "2026-10-08T21:39:59.918Z"
-  },
-  {
     "source_flyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
       370,
