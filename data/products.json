@@ -179189,22 +179189,6 @@
     ]
   },
   {
-    "code": "1646983",
-    "name": "Hvetostn",
-    "price": null,
-    "image": "images/011413.jpg",
-    "embIndex": 11413,
-    "confidence": 0.6807369589805603,
-    "addedAt": "2026-09-23T06:15:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
-    "bbox": [
-      718,
-      769,
-      1033,
-      983
-    ]
-  },
-  {
     "code": "1648029",
     "name": "(9 polasmert Akıllı Saat PSSW25 m Gi) ABdB cn <>",
     "price": null,
