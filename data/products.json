@@ -252053,5 +252053,260 @@
       1145
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1645059",
+    "name": "Pasaport Kılıfı",
+    "price": null,
+    "image": "images/015978.jpg",
+    "embIndex": 15978,
+    "confidence": 0.49099820852279663,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      109,
+      497,
+      177,
+      624
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1637755",
+    "name": "Yüz Havlusu 50x70 cm Maisonette",
+    "price": null,
+    "image": "images/015979.jpg",
+    "embIndex": 15979,
+    "confidence": 0.4338257908821106,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      454,
+      642,
+      542,
+      812
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714983",
+    "name": "Kırmızı Elma Aromalı Maden Suyu 6x200 ml Karlıtepe",
+    "price": null,
+    "image": "images/015980.jpg",
+    "embIndex": 15980,
+    "confidence": 0.944488525390625,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      475,
+      1247,
+      653,
+      1493
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714443",
+    "name": "Kakao Kaplamalı Karamel Dolgulu Kek 175 g Bifa Keks",
+    "price": null,
+    "image": "images/015981.jpg",
+    "embIndex": 15981,
+    "confidence": 0.9442787766456604,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      66,
+      891,
+      254,
+      1074
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646298",
+    "name": "Patik Çorap Çeşitleri Kadın/Erkek 3'lü",
+    "price": null,
+    "image": "images/015982.jpg",
+    "embIndex": 15982,
+    "confidence": 0.8868950605392456,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      184,
+      855,
+      272,
+      1029
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714955",
+    "name": "Karpuz Çilek Aromalı Soğuk Çay 6x330 ml Tamek",
+    "price": null,
+    "image": "images/015983.jpg",
+    "embIndex": 15983,
+    "confidence": 0.9414870142936707,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      65,
+      1244,
+      240,
+      1483
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715098",
+    "name": "Kurabiye Çeşitleri 80 g Züber",
+    "price": null,
+    "image": "images/015984.jpg",
+    "embIndex": 15984,
+    "confidence": 0.9368299841880798,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      489,
+      751,
+      756,
+      884
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714961",
+    "name": "Ananas Aromalı Maden Suyu 4x250 ml Avoya",
+    "price": null,
+    "image": "images/015985.jpg",
+    "embIndex": 15985,
+    "confidence": 0.932471513748169,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      270,
+      1245,
+      454,
+      1483
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714916",
+    "name": "Kuru Meyve Çeşitleri Dokuru",
+    "price": null,
+    "image": "images/015986.jpg",
+    "embIndex": 15986,
+    "confidence": 0.9302678108215332,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      431,
+      593,
+      630,
+      746
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715030",
+    "name": "Enerji İçeceği 355 ml Redbull",
+    "price": null,
+    "image": "images/015987.jpg",
+    "embIndex": 15987,
+    "confidence": 0.9281385540962219,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      874,
+      1250,
+      1001,
+      1475
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708876",
+    "name": "Muzlu Rulo Pasta 235 g Ülker Dankek",
+    "price": null,
+    "image": "images/015988.jpg",
+    "embIndex": 15988,
+    "confidence": 0.9251903295516968,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      262,
+      889,
+      444,
+      1087
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713585",
+    "name": "Kuru Üzüm Çeşitleri 30 g Otamon",
+    "price": null,
+    "image": "images/015989.jpg",
+    "embIndex": 15989,
+    "confidence": 0.9145268201828003,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      752,
+      751,
+      1026,
+      894
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713465",
+    "name": "Gazlı İçecek Kola 4x1 L Sarıyer",
+    "price": null,
+    "image": "images/015990.jpg",
+    "embIndex": 15990,
+    "confidence": 0.9113277792930603,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      689,
+      1242,
+      848,
+      1488
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714774",
+    "name": "%20 Bitkisel Yağlı Kremsos 330 ml Moova",
+    "price": null,
+    "image": "images/015991.jpg",
+    "embIndex": 15991,
+    "confidence": 0.9388874173164368,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1155.jpg",
+    "bbox": [
+      249,
+      1250,
+      370,
+      1445
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714920",
+    "name": "Kuru Meyve Ruloları 100 g Perfect Delights",
+    "price": null,
+    "image": "images/015992.jpg",
+    "embIndex": 15992,
+    "confidence": 0.8769189715385437,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      35,
+      587,
+      442,
+      754
+    ],
+    "approvedManually": true
   }
 ]

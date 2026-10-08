@@ -118,5 +118,20 @@
     "kind": "review",
     "seen": 1,
     "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      399,
+      95,
+      781,
+      458
+    ],
+    "name": "",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:44:21.210Z"
   }
 ]
