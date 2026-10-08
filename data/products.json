@@ -251254,5 +251254,311 @@
       1668
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1641003",
+    "name": "Şiş Çeşitleri",
+    "price": null,
+    "image": "images/015931.jpg",
+    "embIndex": 15931,
+    "confidence": 0.9238138794898987,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      216,
+      1261,
+      354,
+      1466
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1641008",
+    "name": "Terzi Makası",
+    "price": null,
+    "image": "images/015932.jpg",
+    "embIndex": 15932,
+    "confidence": 0.9194681644439697,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      436,
+      1040,
+      555,
+      1236
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644086",
+    "name": "Tığ Seti 5'li Ören Bayan",
+    "price": null,
+    "image": "images/015933.jpg",
+    "embIndex": 15933,
+    "confidence": 0.8948042392730713,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      98,
+      135,
+      579,
+      566
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644080",
+    "name": "Dikiş Makinesi İğne Seti",
+    "price": null,
+    "image": "images/015934.jpg",
+    "embIndex": 15934,
+    "confidence": 0.8861066102981567,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      557,
+      822,
+      684,
+      1016
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644082",
+    "name": "Dikiş Sökme Ve İlik Açma Aparatı",
+    "price": null,
+    "image": "images/015935.jpg",
+    "embIndex": 15935,
+    "confidence": 0.8769329190254211,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      685,
+      824,
+      836,
+      1019
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1641007",
+    "name": "Dikiş Makası",
+    "price": null,
+    "image": "images/015936.jpg",
+    "embIndex": 15936,
+    "confidence": 0.8487123250961304,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      301,
+      1041,
+      422,
+      1233
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644087",
+    "name": "Mini Ultra Keskin Makas Ören Bayan",
+    "price": null,
+    "image": "images/015937.jpg",
+    "embIndex": 15937,
+    "confidence": 0.5362148284912109,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      623,
+      222,
+      806,
+      521
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1645482",
+    "name": "Askı Seti 10'lu",
+    "price": null,
+    "image": "images/015938.jpg",
+    "embIndex": 15938,
+    "confidence": 0.9495123028755188,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      766,
+      1261,
+      885,
+      1465
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1637707",
+    "name": "Mutfak Bıçağı 26 cm",
+    "price": null,
+    "image": "images/015939.jpg",
+    "embIndex": 15939,
+    "confidence": 0.9358706474304199,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      37,
+      1266,
+      228,
+      1477
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1642642",
+    "name": "Altın Rimli Cam Kupa 275 ml Glass İn Love",
+    "price": null,
+    "image": "images/015940.jpg",
+    "embIndex": 15940,
+    "confidence": 0.9341632723808289,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      345,
+      780,
+      572,
+      916
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646171",
+    "name": "Gold Süzgeçli Çelik Pipet 4'lü 18 cm Benante",
+    "price": null,
+    "image": "images/015941.jpg",
+    "embIndex": 15941,
+    "confidence": 0.9293548464775085,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      36,
+      943,
+      289,
+      1118
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1640593",
+    "name": "Sedef İşlemeli Hasır Tepsi 28x3 cm Benante",
+    "price": null,
+    "image": "images/015942.jpg",
+    "embIndex": 15942,
+    "confidence": 0.9169729351997375,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      786,
+      1084,
+      1029,
+      1257
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647877",
+    "name": "Saklama Kabı Seti 6'lı Okyanus Home",
+    "price": null,
+    "image": "images/015943.jpg",
+    "embIndex": 15943,
+    "confidence": 0.9143726229667664,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      355,
+      1246,
+      482,
+      1471
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1642564",
+    "name": "Yapışkanlı Duvar Baharatlığı 12'li",
+    "price": null,
+    "image": "images/015944.jpg",
+    "embIndex": 15944,
+    "confidence": 0.9039689898490906,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      479,
+      1254,
+      611,
+      1471
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1632773",
+    "name": "Kepçe / Kaşık Altlığı",
+    "price": null,
+    "image": "images/015945.jpg",
+    "embIndex": 15945,
+    "confidence": 0.8301758170127869,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      235,
+      1266,
+      355,
+      1478
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1630631",
+    "name": "Altın Rimli Çay Tabağı 12 cm 6'lı",
+    "price": null,
+    "image": "images/015946.jpg",
+    "embIndex": 15946,
+    "confidence": 0.9430930614471436,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      810,
+      932,
+      954,
+      1096
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1632196",
+    "name": "Tek Fiyat Silikon Ürünler Okyanus Home",
+    "price": null,
+    "image": "images/015947.jpg",
+    "embIndex": 15947,
+    "confidence": 0.8913502097129822,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      523,
+      573,
+      821,
+      729
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1636482",
+    "name": "Desenli Sufle Kabı 10'lu",
+    "price": null,
+    "image": "images/015948.jpg",
+    "embIndex": 15948,
+    "confidence": 0.887247622013092,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      628,
+      739,
+      743,
+      925
+    ],
+    "approvedManually": true
   }
 ]

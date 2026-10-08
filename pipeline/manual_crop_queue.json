@@ -13,5 +13,65 @@
     "kind": "review",
     "seen": 1,
     "ts": "2026-10-08T21:39:08.072Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      59,
+      151,
+      466,
+      569
+    ],
+    "name": "Dunes Meşrubat Bardağı 410 Cc",
+    "code": "1646840",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:39:59.918Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      672,
+      148,
+      1003,
+      570
+    ],
+    "name": "Dunes Su Bardağı 335 Cc",
+    "code": "1646839",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:39:59.918Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      370,
+      1294,
+      560,
+      1379
+    ],
+    "name": "İrem Çay Bardağı 132 Cc Paşabahçe",
+    "code": "1646855",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:39:59.918Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      3,
+      1295,
+      148,
+      1471
+    ],
+    "name": "Porselen Sufle Kabı 3'lü 180 Cc 9 cm",
+    "code": "1647464",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:39:59.918Z"
   }
 ]
