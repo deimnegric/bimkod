@@ -41787,22 +41787,6 @@
     ]
   },
   {
-    "code": "1644082",
-    "name": "Dikiş Sökme ve İlik Açma Aparatı İ",
-    "price": null,
-    "image": "images/002676.jpg",
-    "embIndex": 2676,
-    "confidence": 0.8834497332572937,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      660,
-      1011,
-      764,
-      1206
-    ]
-  },
-  {
     "code": "1641004",
     "name": "Tığ Çeşitleri // ma",
     "price": null,
