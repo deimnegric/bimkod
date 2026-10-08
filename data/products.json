@@ -251274,5 +251274,22 @@
       1039
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1646983",
+    "name": "43 İnç Frameless FHD Whale OS 10 Android 43WF7500FQ",
+    "price": null,
+    "image": "images/015928.jpg",
+    "embIndex": 15928,
+    "confidence": 0.7786579728126526,
+    "addedAt": "2026-09-23T06:15:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
+    "bbox": [
+      715,
+      608,
+      1041,
+      990
+    ],
+    "approvedManually": true
   }
 ]

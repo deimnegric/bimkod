@@ -1,22 +1,5 @@
 [
   {
-    "full_crop": "pipeline/crops_full/000047.jpg",
-    "source_flyer": "pipeline/raw_flyers/1193.jpg",
-    "flyer_date": "2026-09-23T06:15:14+00:00",
-    "bbox": [
-      715,
-      608,
-      1041,
-      990
-    ],
-    "confidence": 0.7786579728126526,
-    "code": "1646983",
-    "name": "43 İnç Frameless FHD Whale OS 10 N Android GledV B el",
-    "price": null,
-    "raw_ocr": "43 İnç Frameless\nFHD Whale OS 10 N\nAndroid GledV B el\n43WF7500FO 4\nPEŞİN FİYATINA İğ TAKSİT YE\n12.990:\nStok: 5000\n1646983",
-    "review_image": "review/25381e63dede2c7c.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000048.jpg",
     "source_flyer": "pipeline/raw_flyers/1193.jpg",
     "flyer_date": "2026-09-23T06:15:14+00:00",
