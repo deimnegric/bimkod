@@ -1,20 +1,5 @@
 [
   {
-    "source_flyer": "pipeline/raw_flyers/1187.jpg",
-    "bbox": [
-      3,
-      1295,
-      148,
-      1471
-    ],
-    "name": "Porselen Sufle Kabı 3'lü 180 Cc 9 cm",
-    "code": "1647464",
-    "reason": "Görsel yarım/kesik",
-    "kind": "review",
-    "seen": 1,
-    "ts": "2026-10-08T21:39:59.918Z"
-  },
-  {
     "source_flyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
       672,
