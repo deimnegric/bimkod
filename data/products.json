@@ -35784,22 +35784,6 @@
     ]
   },
   {
-    "code": "1639320",
-    "name": "GJpaesmert Saç Düzleştirici PSC47",
-    "price": null,
-    "image": "images/002286.jpg",
-    "embIndex": 2286,
-    "confidence": 0.7387819886207581,
-    "addedAt": "2026-03-03T08:17:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/882.jpg",
-    "bbox": [
-      545,
-      699,
-      788,
-      812
-    ]
-  },
-  {
     "code": "1640524",
     "name": "PiCCOLO MONDİ Çek Birak Motosiklet",
     "price": null,
