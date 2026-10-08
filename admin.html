@@ -217,6 +217,27 @@
     <div id="liveSearchResults"></div>
   </div>
 
+
+  <div class="panel" id="geminiPanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">🤖 Gemini ile Otomatik OCR</h3>
+    <p class="sub" style="margin:0 0 10px;">
+      Gemini görseli okur (kod + isim). Emin olduğu ürünler doğrudan arka plan onay kuyruğuna girer (toplu commit), emin olmadıkların listede kalır.
+      API anahtarı sadece bu tarayıcıda (localStorage) tutulur, repoya yazılmaz. Anahtar: aistudio.google.com/apikey
+    </p>
+    <div class="row">
+      <input type="password" id="geminiKey" placeholder="Gemini API anahtarı" autocomplete="off">
+      <input type="text" id="geminiModel" value="gemini-2.5-flash" style="max-width:200px;" title="Model adı">
+      <input type="number" id="geminiConc" value="3" min="1" max="10" style="max-width:70px;" title="Aynı anda kaç istek">
+    </div>
+    <label style="font-size:12px; display:block; margin:6px 0;"><input type="checkbox" id="geminiRemember" checked> Anahtarı bu tarayıcıda hatırla</label>
+    <div class="row">
+      <button class="btn-primary" id="geminiPendingBtn">Bekleyenleri Gemini ile oku + otomatik onayla</button>
+      <button class="btn-primary" id="geminiFixBtn">Hatalı isimli canlı ürünleri düzelt</button>
+      <button class="btn-reject" id="geminiStopBtn" disabled>Durdur</button>
+    </div>
+    <div id="geminiLog" style="font-size:12px; color:var(--text-soft); margin-top:8px; white-space:pre-wrap; max-height:260px; overflow:auto;"></div>
+  </div>
+
   <div id="status"></div>
 
   <div class="panel hidden" id="bulkPanel">
@@ -251,6 +272,7 @@
         <button class="btn-secondary" id="fastExitBtn">Listeye Dön (Esc)</button>
       </div>
       <div id="fastStatus" style="font-size:12px; margin-top:8px; color:var(--text-soft);"></div>
+      <div id="fastBgStatus" style="font-size:12px; margin-top:4px; color:var(--blue-dark); font-weight:600;"></div>
       <div id="fastCounter" style="font-size:12px; color:var(--text-soft); margin-top:4px;"></div>
     </div>
   </div>
@@ -288,6 +310,7 @@ const el = {
   fastExitBtn: document.getElementById("fastExitBtn"),
   fastStatus: document.getElementById("fastStatus"),
   fastCounter: document.getElementById("fastCounter"),
+  fastBgStatus: document.getElementById("fastBgStatus"),
   liveSearchInput: document.getElementById("liveSearchInput"),
   liveSearchBtn: document.getElementById("liveSearchBtn"),
   liveSearchStatus: document.getElementById("liveSearchStatus"),
@@ -488,11 +511,12 @@ el.loadBtn.addEventListener("click", async () => {
 el.loadMore.addEventListener("click", renderMore);
 
 function renderMore() {
-  const slice = reviewItems.slice(shownCount, shownCount + PAGE_SIZE);
+  const visible = reviewItems.filter((x) => !x.__bg);
+  const slice = visible.slice(shownCount, shownCount + PAGE_SIZE);
   slice.forEach((item, idx) => renderCard(item, shownCount + idx));
   shownCount += slice.length;
-  el.counter.textContent = `${shownCount} / ${reviewItems.length} gösteriliyor`;
-  el.loadMore.classList.toggle("hidden", shownCount >= reviewItems.length);
+  el.counter.textContent = `${shownCount} / ${visible.length} gösteriliyor`;
+  el.loadMore.classList.toggle("hidden", shownCount >= visible.length);
 }
 
 function renderCard(item, index) {
@@ -864,10 +888,273 @@ el.bulkDeleteNoImageBtn.addEventListener("click", async () => {
   el.bulkDeleteNoImageBtn.disabled = false;
 });
 
+// ==================== Toplu (atomik) commit altyapısı — Git Data API ====================
+// Eski yöntem her ürün için ayrı ayrı 6-7 dosya yazıyor ve her seferinde ~32 MB embeddings.bin'i
+// indirip geri yüklüyordu (≈1 dk/ürün). Artık N ürün TEK commit'te (görseller + embeddings.bin +
+// embeddings.json + products.json + corrections.csv + ocr_review.json + rescan_queue.json) yazılır:
+// hem çok daha hızlı hem de atomik (yarım/bozuk durum oluşmaz). Başka biri (bot) arada commit
+// atarsa dal ilerlemiş olur, ref güncellemesi reddedilir ve işlem taze veriyle otomatik tekrarlanır.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+let binCache = null; // {sha, buf} — embeddings.bin'i her toplu işlemde yeniden indirmemek için
+
+function bytesToB64(u8) {
+  const parts = [];
+  const CH = 0x8000;
+  for (let i = 0; i < u8.length; i += CH) parts.push(String.fromCharCode.apply(null, u8.subarray(i, i + CH)));
+  return btoa(parts.join(""));
+}
+function textToB64(t) { return bytesToB64(new TextEncoder().encode(t)); }
+
+async function ghHeadSha() {
+  const r = await fetch(`${apiBase()}/git/ref/heads/${el.branch.value.trim()}?_=${Date.now()}`, { headers: ghHeaders(), cache: "no-store" });
+  if (!r.ok) throw new Error(`Dal okunamadı (${r.status})`);
+  return (await r.json()).object.sha;
+}
+
+// Belirli bir commit'teki dosyayı sha-tutarlı okur (yoksa null).
+async function ghReadAt(path, ref, { binary = false } = {}) {
+  const m = await fetch(`${apiBase()}/contents/${path}?ref=${ref}`, { headers: ghHeaders(), cache: "no-store" });
+  if (m.status === 404) return null;
+  if (!m.ok) throw new Error(`${path} okunamadı (${m.status})`);
+  const meta = await m.json();
+  if (binary && binCache && binCache.sha === meta.sha) return { buf: binCache.buf, sha: meta.sha };
+  const b = await fetch(`${apiBase()}/git/blobs/${meta.sha}`, { headers: { ...ghHeaders(), Accept: "application/vnd.github.raw+json" }, cache: "no-store" });
+  if (!b.ok) throw new Error(`${path} içeriği okunamadı (${b.status})`);
+  const buf = await b.arrayBuffer();
+  if (binary) binCache = { sha: meta.sha, buf };
+  return { buf, sha: meta.sha };
+}
+const dec = (buf) => new TextDecoder("utf-8").decode(buf);
+
+async function ghApi(path, method, body) {
+  const res = await fetch(`${apiBase()}${path}`, {
+    method, headers: { ...ghHeaders(), "Content-Type": "application/json" }, body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const e = new Error(`GitHub ${method} ${path.split("/").slice(0, 3).join("/")} (${res.status}): ${(await res.text()).slice(0, 200)}`);
+    e.status = res.status;
+    throw e;
+  }
+  return res.json();
+}
+
+// files: [{path, b64}] -> tek commit, dalı ilerletir. {path: blobSha} döner.
+async function ghCommitFiles(parentSha, files, message) {
+  const shas = {};
+  const entries = [];
+  let i = 0;
+  const workers = Array.from({ length: 4 }, async () => {
+    while (i < files.length) {
+      const f = files[i++];
+      const blob = await ghApi("/git/blobs", "POST", { content: f.b64, encoding: "base64" });
+      shas[f.path] = blob.sha;
+      entries.push({ path: f.path, mode: "100644", type: "blob", sha: blob.sha });
+    }
+  });
+  await Promise.all(workers);
+  const parent = await (await fetch(`${apiBase()}/git/commits/${parentSha}`, { headers: ghHeaders(), cache: "no-store" })).json();
+  const tree = await ghApi("/git/trees", "POST", { base_tree: parent.tree.sha, tree: entries });
+  const commit = await ghApi("/git/commits", "POST", { message, tree: tree.sha, parents: [parentSha] });
+  try {
+    await ghApi(`/git/refs/heads/${el.branch.value.trim()}`, "PATCH", { sha: commit.sha, force: false });
+  } catch (e) {
+    if (e.status === 422 || e.status === 409) e.retryable = true; // dal bu sırada ilerledi
+    throw e;
+  }
+  return shas;
+}
+
+// build(head) -> {files, message, after?}; dal ilerlediyse taze head ile baştan dener.
+async function commitWithRetry(build, tries = 4) {
+  for (let a = 0; a < tries; a++) {
+    const head = await ghHeadSha();
+    const { files, message, after } = await build(head);
+    try {
+      const shas = await ghCommitFiles(head, files, message);
+      after?.(shas);
+      return shas;
+    } catch (e) {
+      if (e.retryable && a < tries - 1) { await sleep(1500 * (a + 1)); continue; }
+      throw e;
+    }
+  }
+}
+
+const reviewKey = (x) => (x.review_image ? "r:" + x.review_image : "f:" + x.full_crop + "|" + x.source_flyer);
+const parseBbox = (b) => { if (Array.isArray(b)) return b; try { const v = JSON.parse(b); return Array.isArray(v) ? v : null; } catch { return null; } };
+
+async function commitBatch(jobs, onProgress) {
+  const approvals = jobs.filter((j) => j.kind === "approve");
+  const rejects = jobs.filter((j) => j.kind === "reject");
+  let newBin = null;
+  await commitWithRetry(async (head) => {
+    const files = [];
+    if (approvals.length) {
+      onProgress?.("products.json / embeddings okunuyor…");
+      const pj = await ghReadAt("data/products.json", head);
+      const products = JSON.parse(dec(pj.buf));
+      if (!Array.isArray(products)) throw new Error("products.json beklenen formatta değil");
+      const em = JSON.parse(dec((await ghReadAt("data/embeddings.json", head)).buf));
+      const dim = em.dim || 512;
+      const bin = await ghReadAt("data/embeddings.bin", head, { binary: true });
+      const base = Math.max(em.count, Math.floor(bin.buf.byteLength / (dim * 4)));
+      const combined = new Uint8Array((base + approvals.length) * dim * 4);
+      combined.set(new Uint8Array(bin.buf).subarray(0, base * dim * 4), 0);
+
+      let csv = "code,name\n";
+      const cr = await ghReadAt("pipeline/catalog_source/corrections.csv", head);
+      if (cr) csv = dec(cr.buf);
+
+      approvals.forEach((j, i) => {
+        const embIndex = base + i;
+        const fn = `${String(embIndex).padStart(6, "0")}.jpg`;
+        const name = trTitleCase(j.name);
+        combined.set(new Uint8Array(new Float32Array(j.embedding).buffer), embIndex * dim * 4);
+        files.push({ path: `images/${fn}`, b64: j.imageB64 });
+        const prod = {
+          code: j.code, name, price: j.item.price && j.item.price !== "None" ? j.item.price : null,
+          image: `images/${fn}`, embIndex,
+          confidence: isNaN(Number(j.item.confidence)) ? null : Number(j.item.confidence),
+          addedAt: j.item.flyer_date || new Date().toISOString(),
+        };
+        if (j.item.source_flyer) prod.sourceFlyer = j.item.source_flyer;
+        const bb = parseBbox(j.item.bbox); if (bb) prod.bbox = bb;
+        prod.approvedManually = true;
+        products.push(prod);
+        if (!csv.includes(`\n${j.code},`) && !csv.startsWith(`${j.code},`)) {
+          csv = csv.replace(/\n?$/, "") + `\n${j.code},${name.includes(",") ? `"${name}"` : name}\n`;
+        }
+      });
+      newBin = combined;
+      files.push({ path: "data/embeddings.bin", b64: bytesToB64(combined) });
+      files.push({ path: "data/embeddings.json", b64: textToB64(JSON.stringify({ ...em, count: base + approvals.length })) });
+      files.push({ path: "data/products.json", b64: textToB64(JSON.stringify(products, null, 2)) });
+      files.push({ path: "pipeline/catalog_source/corrections.csv", b64: textToB64(csv) });
+    }
+    if (rejects.length) {
+      const ids = rejects.map((j) => extractMsgId(j.item)).filter((x) => x !== null);
+      if (ids.length) {
+        const rq = await ghReadAt("pipeline/rescan_queue.json", head);
+        const existing = rq ? JSON.parse(dec(rq.buf)) : [];
+        files.push({ path: "pipeline/rescan_queue.json", b64: textToB64(JSON.stringify(Array.from(new Set([...existing, ...ids])))) });
+      }
+    }
+    onProgress?.("ocr_review.json güncelleniyor…");
+    const rv = await ghReadAt("pipeline/ocr_review.json", head);
+    const gone = new Set(jobs.map((j) => reviewKey(j.item)));
+    const filtered = JSON.parse(dec(rv.buf)).filter((x) => !gone.has(reviewKey(x)));
+    files.push({ path: "pipeline/ocr_review.json", b64: textToB64(JSON.stringify(filtered, null, 2)) });
+    return {
+      files,
+      message: `Admin: ${approvals.length} ürün onaylandı${rejects.length ? `, ${rejects.length} reddedildi` : ""} (toplu)`,
+      after: (shas) => { if (newBin && shas["data/embeddings.bin"]) binCache = { sha: shas["data/embeddings.bin"], buf: newBin.buffer }; },
+    };
+  });
+  liveProducts = null;
+}
+
+// ==================== Arka plan onay kuyruğu ====================
+const BG_BATCH = 80;
+const bgState = { jobs: [], running: false, done: 0, rejected: 0, failed: 0, msg: "" };
+let prepChain = Promise.resolve();
+
+function updateBgStatus(msg) {
+  if (msg !== undefined) bgState.msg = msg;
+  const waiting = bgState.jobs.length;
+  const parts = [];
+  if (waiting || bgState.running) parts.push(`⏳ Arka planda ${waiting} iş sırada${bgState.msg ? " — " + bgState.msg : ""}`);
+  parts.push(`✅ ${bgState.done} onaylandı`);
+  if (bgState.rejected) parts.push(`🗑️ ${bgState.rejected} reddedildi`);
+  if (bgState.failed) parts.push(`⚠️ ${bgState.failed} hata (listenin sonuna eklendi)`);
+  el.fastBgStatus.textContent = parts.join(" · ");
+}
+window.addEventListener("beforeunload", (e) => {
+  if (bgState.jobs.length || bgState.running) { e.preventDefault(); e.returnValue = ""; }
+});
+
+async function prepJob(j) {
+  const url = `${rawBase()}/${j.item.review_image}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Görsel indirilemedi (${res.status})`);
+  j.imageB64 = arrayBufferToBase64(await res.arrayBuffer());
+  j.embedding = await embedImage(url);
+  if (j.embedding.length !== 512) throw new Error("Embedding boyutu beklenmedik");
+}
+
+function removeFromFastQueue(item) {
+  const i = fastQueue.indexOf(item);
+  if (i === -1) return;
+  fastQueue.splice(i, 1);
+  if (i < fastIndex) fastIndex--;
+  if (!el.fastMode.classList.contains("hidden") && i === fastIndex) showFastCard();
+}
+
+function queueApprove(item, code, name) {
+  item.__bg = true; item.__err = null; item.__edit = null;
+  removeFromFastQueue(item);
+  const j = { kind: "approve", item, code, name };
+  const run = prepChain.then(() => prepJob(j));   // CLIP embedding sırayla, onay anında başlar
+  prepChain = run.catch(() => {});
+  j.prep = run; run.catch(() => {});
+  bgState.jobs.push(j);
+  updateBgStatus();
+  bgRun();
+}
+function queueReject(item) {
+  item.__bg = true;
+  removeFromFastQueue(item);
+  bgState.jobs.push({ kind: "reject", item });
+  updateBgStatus();
+  bgRun();
+}
+
+function bgFail(j, msg) {
+  const it = j.item;
+  it.__bg = false; it.__err = msg;
+  if (j.kind === "approve") it.__edit = { code: j.code, name: j.name };
+  if (it.review_image && fastQueue.indexOf(it) === -1) fastQueue.push(it); // listenin SONUNA
+  bgState.failed++;
+  if (!el.fastMode.classList.contains("hidden") && fastIndex >= fastQueue.length - 1) showFastCard();
+}
+
+async function bgRun() {
+  if (bgState.running) return;
+  bgState.running = true;
+  try {
+    while (bgState.jobs.length) {
+      const batch = bgState.jobs.splice(0, BG_BATCH);
+      const ready = [];
+      for (const j of batch) {
+        try { if (j.prep) await j.prep; ready.push(j); }
+        catch (e) { bgFail(j, e.message || String(e)); }
+      }
+      if (!ready.length) { updateBgStatus(); continue; }
+      updateBgStatus(`${ready.length} ürün GitHub'a yazılıyor…`);
+      try {
+        await withGhLock(() => commitBatch(ready, (m) => updateBgStatus(`${ready.length} ürün: ${m}`)));
+        for (const j of ready) {
+          reviewItems = reviewItems.filter((x) => x !== j.item);
+          if (j.kind === "approve") bgState.done++; else bgState.rejected++;
+        }
+      } catch (e) {
+        ready.forEach((j) => bgFail(j, e.message || String(e)));
+      }
+      updateBgStatus("");
+    }
+  } finally {
+    bgState.running = false;
+    updateBgStatus("");
+    updateBulkPanel();
+  }
+}
+
 // ==================== Hızlı Onay Modu (görselli kayıtlar için, klavye kısayollu) ====================
+// Onayla/Reddet -> ürün listeden ANINDA çıkar, işlem arka planda toplu commit ile yapılır.
+// Hata verenler listenin SONUNA geri eklenir (kırmızı hata notuyla).
 
 el.fastModeBtn.addEventListener("click", () => {
-  fastQueue = reviewItems.filter((x) => x.review_image);
+  const avail = reviewItems.filter((x) => x.review_image && !x.__bg);
+  fastQueue = [...avail.filter((x) => !x.__err), ...avail.filter((x) => x.__err)]; // hatalılar en sonda
   if (!fastQueue.length) { setStatus("Görselli bekleyen kayıt yok."); return; }
   fastIndex = 0;
   el.queue.classList.add("hidden");
@@ -875,25 +1162,34 @@ el.fastModeBtn.addEventListener("click", () => {
   el.counter.classList.add("hidden");
   el.bulkPanel.classList.add("hidden");
   el.fastMode.classList.remove("hidden");
+  updateBgStatus();
   showFastCard();
 });
 
 function showFastCard() {
   if (fastIndex >= fastQueue.length) {
-    el.fastStatus.textContent = "🎉 Görselli kuyruk bitti! Listeye dönebilirsin.";
+    el.fastStatus.textContent = bgState.jobs.length || bgState.running
+      ? "Kuyruk bitti — arka plandaki işler tamamlanıyor, hata verenler buraya geri eklenecek."
+      : "🎉 Görselli kuyruk bitti! Listeye dönebilirsin.";
+    el.fastStatus.style.color = "";
     el.fastImg.style.visibility = "hidden";
     el.fastCode.value = ""; el.fastName.value = ""; el.fastRawOcr.textContent = "";
-    el.fastCounter.textContent = `${fastQueue.length} / ${fastQueue.length}`;
+    el.fastCounter.textContent = "0 kaldı";
     return;
   }
   const item = fastQueue[fastIndex];
   el.fastImg.style.visibility = "visible";
   el.fastImg.src = `${rawBase()}/${item.review_image}`;
   el.fastRawOcr.textContent = item.raw_ocr || "(OCR metni yok)";
-  el.fastCode.value = item.code || guessCode(item.raw_ocr);
-  el.fastName.value = guessName(item);
-  el.fastStatus.textContent = "";
-  el.fastCounter.textContent = `${fastIndex + 1} / ${fastQueue.length} (görselli kuyruk)`;
+  const pre = item.__edit || (item.__gem && item.__gem.code ? item.__gem : null);
+  el.fastCode.value = pre ? pre.code : (item.code && item.code !== "None" ? item.code : guessCode(item.raw_ocr));
+  el.fastName.value = pre ? pre.name : guessName(item);
+  if (item.__err) { el.fastStatus.textContent = "⚠️ Önceki deneme hatası: " + item.__err; el.fastStatus.style.color = "var(--red-dark)"; }
+  else { el.fastStatus.textContent = item.__gem && item.__gem.code ? "🤖 Gemini önerisi dolduruldu — kontrol et." : ""; el.fastStatus.style.color = ""; }
+  el.fastCounter.textContent = `${fastQueue.length} kaldı`;
+  // sıradaki görseli önceden yükle
+  const nxt = fastQueue[fastIndex + 1];
+  if (nxt) new Image().src = `${rawBase()}/${nxt.review_image}`;
 }
 
 function exitFastMode() {
@@ -901,60 +1197,242 @@ function exitFastMode() {
   el.queue.classList.remove("hidden");
   el.loadMore.classList.remove("hidden");
   el.counter.classList.remove("hidden");
+  el.queue.innerHTML = ""; shownCount = 0; renderMore();
   updateBulkPanel();
 }
 
-async function fastApprove() {
+function fastApprove() {
   const item = fastQueue[fastIndex];
   if (!item) return;
   const code = el.fastCode.value.trim();
   const name = el.fastName.value.trim();
-  if (!code || !name) { el.fastStatus.textContent = "⚠️ Kod ve isim boş olamaz."; return; }
-
-  el.fastApproveBtn.disabled = true; el.fastRejectBtn.disabled = true;
-  try {
-    const imgUrl = `${rawBase()}/${item.review_image}`;
-    const imageBase64 = await fetchImageAsBase64(imgUrl);
-    await commitNewProduct({
-      code, name, price: item.price, confidence: item.confidence,
-      embedSource: imgUrl, imageBase64,
-      onProgress: (msg) => { el.fastStatus.textContent = msg; },
-    });
-    await removeFromReviewQueue(item);
-    fastQueue.splice(fastIndex, 1);
-    el.fastStatus.textContent = "✅ Eklendi ve yayında.";
-  } catch (err) {
-    el.fastStatus.textContent = "❌ Hata: " + err.message;
-    el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
-    return;
-  }
-  el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+  if (!code || !name) { el.fastStatus.textContent = "⚠️ Kod ve isim boş olamaz."; el.fastStatus.style.color = "var(--red-dark)"; return; }
+  queueApprove(item, code, name);   // anında listeden çıkar, arka planda işlenir
   showFastCard();
 }
 
-async function fastReject() {
+function fastReject() {
   const item = fastQueue[fastIndex];
   if (!item) return;
-
-  el.fastApproveBtn.disabled = true; el.fastRejectBtn.disabled = true;
-  el.fastStatus.textContent = "Reddediliyor, kaynak mesaj yeniden tarama kuyruğuna ekleniyor…";
-  try {
-    await queueForRescan([item]);
-    await removeFromReviewQueue(item);
-    fastQueue.splice(fastIndex, 1);
-    el.fastStatus.textContent = "🗑️ Reddedildi, bir sonraki taramada tekrar denenecek.";
-  } catch (err) {
-    el.fastStatus.textContent = "❌ Hata: " + err.message;
-    el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
-    return;
-  }
-  el.fastApproveBtn.disabled = false; el.fastRejectBtn.disabled = false;
+  queueReject(item);
   showFastCard();
 }
 
 el.fastApproveBtn.addEventListener("click", fastApprove);
 el.fastRejectBtn.addEventListener("click", fastReject);
 el.fastExitBtn.addEventListener("click", exitFastMode);
+
+// ==================== Gemini OCR ====================
+const gem = { stop: false, running: false };
+el.geminiKey = document.getElementById("geminiKey");
+el.geminiModel = document.getElementById("geminiModel");
+el.geminiConc = document.getElementById("geminiConc");
+el.geminiRemember = document.getElementById("geminiRemember");
+el.geminiLog = document.getElementById("geminiLog");
+el.geminiPendingBtn = document.getElementById("geminiPendingBtn");
+el.geminiFixBtn = document.getElementById("geminiFixBtn");
+el.geminiStopBtn = document.getElementById("geminiStopBtn");
+try { el.geminiKey.value = localStorage.getItem("bimkod_gemini_key") || ""; const m = localStorage.getItem("bimkod_gemini_model"); if (m) el.geminiModel.value = m; } catch {}
+
+function gLog(msg) {
+  const lines = (el.geminiLog.textContent ? el.geminiLog.textContent.split("\n") : []);
+  lines.push(msg);
+  el.geminiLog.textContent = lines.slice(-300).join("\n");
+  el.geminiLog.scrollTop = el.geminiLog.scrollHeight;
+}
+function gSetRunning(on) {
+  gem.running = on; gem.stop = false;
+  el.geminiPendingBtn.disabled = on; el.geminiFixBtn.disabled = on; el.geminiStopBtn.disabled = !on;
+}
+el.geminiStopBtn.addEventListener("click", () => { gem.stop = true; gLog("⏹ Durduruluyor (süren istekler bitince)…"); });
+
+const GEMINI_PROMPT =
+  "Bu görsel, bir Türk market (BİM) haftalık afişinden kırpılmış TEK bir ürüne ait. " +
+  "Görselde okunan ürün adını (marka + ürün + varsa önemli özellik/boyut; Türkçe karakterleri doğru yaz, her kelimenin ilk harfi büyük) " +
+  "ve ürüne ait 6-8 haneli ürün kodunu çıkar. Kod yoksa null yaz. Fiyat görünüyorsa price alanına yaz, yoksa null. " +
+  "Okunamayan ya da emin olmadığın alanı UYDURMA, null bırak. Sadece JSON döndür.";
+
+function gemFatal(msg) { const e = new Error(msg); e.fatal = true; return e; }
+
+async function geminiRead(imgB64, hint) {
+  const key = el.geminiKey.value.trim();
+  if (!key) throw gemFatal("Gemini API anahtarı girilmedi");
+  const model = el.geminiModel.value.trim() || "gemini-2.5-flash";
+  const body = {
+    contents: [{ parts: [
+      { text: GEMINI_PROMPT + (hint ? `\n\nTesseract ham OCR çıktısı (hatalı olabilir, sadece ipucu):\n${String(hint).slice(0, 400)}` : "") },
+      { inline_data: { mime_type: "image/jpeg", data: imgB64 } },
+    ] }],
+    generationConfig: {
+      temperature: 0, responseMimeType: "application/json",
+      responseSchema: { type: "OBJECT", properties: {
+        code: { type: "STRING", nullable: true }, name: { type: "STRING", nullable: true }, price: { type: "STRING", nullable: true },
+      } },
+    },
+  };
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
+  for (let attempt = 0; attempt < 6; attempt++) {
+    if (gem.stop) throw gemFatal("durduruldu");
+    let res;
+    try { res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); }
+    catch { await sleep(2000 * (attempt + 1)); continue; }
+    if (res.status === 429 || res.status >= 500) { await sleep(Math.min(60000, 3000 * 2 ** attempt)); continue; }
+    if (res.status === 400 || res.status === 401 || res.status === 403 || res.status === 404) {
+      throw gemFatal(`Gemini ${res.status}: ${(await res.text()).slice(0, 220)}`);
+    }
+    if (!res.ok) throw new Error(`Gemini ${res.status}`);
+    const j = await res.json();
+    const t = (j.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
+    if (!t) return {};
+    try { return JSON.parse(t); }
+    catch { const m = t.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch {} } return {}; }
+  }
+  throw new Error("Gemini kota/sunucu hatası (yeniden denendi)");
+}
+
+function cleanGem(r) {
+  const code = String(r?.code ?? "").replace(/\D/g, "");
+  const name = String(r?.name ?? "").replace(/[|_~^<>{}\[\]\\=*]/g, " ").replace(/\s+/g, " ").trim();
+  return { code, name: name === "null" ? "" : trTitleCase(name), price: r?.price || null };
+}
+
+// Çöp/okunamamış isim sezgisi (hatalı isimleri bulmak ve Gemini çıktısını doğrulamak için)
+function isSuspiciousName(name) {
+  const n = String(name || "").trim();
+  if (n.length < 5) return true;
+  if (/[|_~^<>{}\[\]\\=*@#$€£§¢¦»«]/.test(n)) return true;
+  if (/\d{5,}/.test(n)) return true;
+  const compact = n.replace(/\s/g, "");
+  const letters = (n.match(/\p{L}/gu) || []).length;
+  if (letters / compact.length < 0.6) return true;
+  const toks = n.split(/\s+/).map((t) => t.replace(/[^\p{L}]/gu, "")).filter(Boolean);
+  if (toks.length >= 2 && toks.filter((t) => t.length === 1).length / toks.length > 0.34) return true;
+  if (toks.some((t) => t.length >= 4 && !/[aeıioöuüâîAEIİOÖUÜ]/.test(t))) return true;
+  if (/(.)\1{3,}/.test(n)) return true;
+  return false;
+}
+const validCode = (c) => /^\d{6,8}$/.test(String(c || ""));
+
+async function pool(list, n, fn) {
+  let i = 0;
+  await Promise.all(Array.from({ length: Math.max(1, n) }, async () => {
+    while (i < list.length && !gem.stop) { const it = list[i++]; await fn(it); }
+  }));
+}
+async function fetchB64(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`Görsel indirilemedi (${r.status})`);
+  return arrayBufferToBase64(await r.arrayBuffer());
+}
+function saveGeminiPrefs() {
+  try {
+    if (el.geminiRemember.checked) { localStorage.setItem("bimkod_gemini_key", el.geminiKey.value.trim()); localStorage.setItem("bimkod_gemini_model", el.geminiModel.value.trim()); }
+    else localStorage.removeItem("bimkod_gemini_key");
+  } catch {}
+}
+
+// ---- 1) Bekleyenleri Gemini ile oku + otomatik onay kuyruğuna al ----
+el.geminiPendingBtn.addEventListener("click", async () => {
+  if (!el.token.value.trim()) { gLog("⚠️ Önce GitHub token gir."); return; }
+  if (!el.geminiKey.value.trim()) { gLog("⚠️ Gemini API anahtarı gir."); return; }
+  if (!reviewItems.length) { gLog("⚠️ Önce yukarıdan bekleyen kayıtları yükle."); return; }
+  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = "";
+  const todo = reviewItems.filter((x) => x.review_image && !x.__bg && !x.__gemTried);
+  gLog(`${todo.length} bekleyen kayıt Gemini ile okunacak…`);
+  let ok = 0, manual = 0, err = 0, n = 0;
+  try {
+    await pool(todo, Number(el.geminiConc.value) || 3, async (item) => {
+      while (bgState.jobs.length > 150 && !gem.stop) await sleep(2000); // arka plan kuyruğu şişmesin
+      try {
+        const b64 = await fetchB64(`${rawBase()}/${item.review_image}`);
+        const c = cleanGem(await geminiRead(b64, item.raw_ocr));
+        if (!validCode(c.code)) { const g = guessCode(item.raw_ocr); if (validCode(g)) c.code = g; }
+        item.__gemTried = true;
+        if (validCode(c.code) && c.name.length >= 4 && c.name.length <= 100 && !isSuspiciousName(c.name)) {
+          queueApprove(item, c.code, c.name); ok++;
+        } else { item.__gem = c; manual++; }
+      } catch (e) {
+        if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else err++;
+      }
+      if (++n % 25 === 0) gLog(`${n}/${todo.length} okundu · ${ok} otomatik onay kuyruğunda · ${manual} elle bakılacak · ${err} hata`);
+    });
+    gLog(`✔ Bitti: ${n}/${todo.length} · ${ok} otomatik onaya alındı · ${manual} emin olunamadı (listede, Gemini önerisiyle dolu) · ${err} hata. Arka plan: ${bgState.jobs.length} sırada.`);
+  } catch (e) { gLog("❌ " + e.message); }
+  gSetRunning(false); updateBulkPanel();
+});
+
+// ---- 2) Canlı ürünlerde hatalı isimleri bul, Gemini ile düzelt, toplu commit ----
+async function applyNameFixes(fixes) {
+  if (!fixes.length) return;
+  await withGhLock(() => commitWithRetry(async (head) => {
+    const pj = await ghReadAt("data/products.json", head);
+    const products = JSON.parse(dec(pj.buf));
+    let csv = "code,name\n";
+    const cr = await ghReadAt("pipeline/catalog_source/corrections.csv", head);
+    if (cr) csv = dec(cr.buf);
+    let changed = 0;
+    for (const f of fixes) {
+      const idx = products.findIndex((p) => sameEntry(p, f.p));
+      if (idx === -1) continue;
+      products[idx] = { ...products[idx], name: f.name, code: f.code };
+      changed++;
+      if (!csv.includes(`\n${f.code},`) && !csv.startsWith(`${f.code},`)) csv = csv.replace(/\n?$/, "") + `\n${f.code},${f.name.includes(",") ? `"${f.name}"` : f.name}\n`;
+    }
+    return {
+      files: [
+        { path: "data/products.json", b64: textToB64(JSON.stringify(products, null, 2)) },
+        { path: "pipeline/catalog_source/corrections.csv", b64: textToB64(csv) },
+      ],
+      message: `Admin: Gemini ile ${changed} hatalı ürün ismi düzeltildi`,
+    };
+  }));
+  liveProducts = null;
+}
+
+el.geminiFixBtn.addEventListener("click", async () => {
+  if (!el.token.value.trim()) { gLog("⚠️ Önce GitHub token gir."); return; }
+  if (!el.geminiKey.value.trim()) { gLog("⚠️ Gemini API anahtarı gir."); return; }
+  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = "";
+  try {
+    gLog("data/products.json okunuyor…");
+    const { text } = await ghGetFile("data/products.json");
+    const all = JSON.parse(text);
+    const bad = all.filter((p) => isSuspiciousName(p.name));
+    gLog(`${all.length} üründen ${bad.length} tanesinin ismi şüpheli. Gemini ile okunuyor (100'erlik gruplar halinde otomatik kaydedilir)…`);
+    let n = 0, fixed = 0, same = 0, skipped = 0, err = 0;
+    let pending = [];
+    let flushChain = Promise.resolve();
+    const flush = () => {
+      const chunk = pending; pending = [];
+      if (!chunk.length) return flushChain;
+      flushChain = flushChain.then(async () => {
+        try { await applyNameFixes(chunk); fixed += chunk.length; gLog(`💾 ${chunk.length} düzeltme yayına alındı (toplam ${fixed}).`); }
+        catch (e) { gLog("❌ Kaydedilemedi: " + e.message); }
+      });
+      return flushChain;
+    };
+    await pool(bad, Number(el.geminiConc.value) || 3, async (p) => {
+      try {
+        const b64 = await fetchB64(`${rawBase()}/${p.image}`);
+        const c = cleanGem(await geminiRead(b64, p.name));
+        if (c.name.length < 4 || c.name.length > 100 || isSuspiciousName(c.name)) { skipped++; }
+        else if (validCode(p.code) && validCode(c.code) && c.code !== p.code) { skipped++; gLog(`↷ Atlandı (kod uyuşmuyor ${p.code} ≠ ${c.code}): ${p.name}`); }
+        else if (c.name === p.name) same++;
+        else {
+          const code = validCode(p.code) ? p.code : (validCode(c.code) ? c.code : p.code);
+          pending.push({ p, name: c.name, code });
+          if (n < 40) gLog(`✏️ ${p.name}  →  ${c.name}`);
+          if (pending.length >= 100) flush();
+        }
+      } catch (e) { if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else err++; }
+      if (++n % 25 === 0) gLog(`${n}/${bad.length} işlendi · ${skipped} atlandı · ${err} hata`);
+    });
+    await flush(); await flushChain;
+    gLog(`✔ Bitti: ${n}/${bad.length} · ${fixed} isim düzeltildi · ${same} zaten doğru · ${skipped} atlandı (emin olunamadı) · ${err} hata.`);
+  } catch (e) { gLog("❌ " + e.message); }
+  gSetRunning(false);
+});
+
 
 // Onay/red sonrası Firebase Storage'daki kopyayı temizler (5GB ücretsiz
 // kotayı boşa doldurmamak için). Dosya zaten yoksa/silinmişse sessizce geçer.
