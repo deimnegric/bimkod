@@ -480,56 +480,114 @@ document.addEventListener("keydown", (e) => {
 });
 
 // ---------- Paylaşım kartı üretimi ----------
+// Paylaşım kartı: 1080x1080 standart şablon (üstte satış tarihi, ortada beyaz ürün kutusu,
+// ürün adı, mavi kod hapı, altta BİMKOD.online logosu, etrafta piksel kalpler).
+function drawPixelHeart(ctx, x, y, px, color, alpha) {
+  const H = [[0,1,0,1,0],[1,1,1,1,1],[1,1,1,1,1],[0,1,1,1,0],[0,0,1,0,0]];
+  ctx.save(); ctx.globalAlpha = alpha;
+  for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) {
+    if (!H[r][c]) continue;
+    ctx.fillStyle = (r === 1 && c === 1) ? "#ffffff" : color;
+    ctx.fillRect(Math.round(x + c * px), Math.round(y + r * px), px, px);
+  }
+  ctx.restore();
+}
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+}
+function fitLines(ctx, text, maxW, sizes) {
+  for (const size of sizes) {
+    ctx.font = `700 ${size}px "Segoe UI", -apple-system, Arial, sans-serif`;
+    const words = text.split(" "); const lines = []; let cur = "";
+    for (const w of words) {
+      const t = cur ? cur + " " + w : w;
+      if (ctx.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t;
+    }
+    if (cur) lines.push(cur);
+    if (lines.length <= 2) return { size, lines };
+  }
+  return { size: sizes[sizes.length - 1], lines: [text] };
+}
+
 async function sharedProductCard(product) {
   if (!product) return;
+  const W = 1080;
   const canvas = document.createElement("canvas");
-  canvas.width = 640;
-  canvas.height = 640;
+  canvas.width = W; canvas.height = W;
   const ctx = canvas.getContext("2d");
+  const FONT = '"Segoe UI", -apple-system, Arial, sans-serif';
 
-  ctx.fillStyle = "#FAF9F5";
-  ctx.fillRect(0, 0, 640, 640);
+  // arka plan
+  ctx.fillStyle = "#EFEEEA";
+  ctx.fillRect(0, 0, W, W);
 
+  // piksel kalpler (kod'a göre sabit konumlar -> aynı ürün hep aynı kartı üretir)
+  let seed = 0; for (const ch of String(product.code)) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  const rnd = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
+  const spots = [[530, 120], [440, 190], [850, 200], [60, 440], [800, 470], [790, 790], [240, 870], [880, 830], [150, 250], [940, 560]];
+  spots.forEach(([x, y], i) => {
+    const jx = (rnd() - 0.5) * 70, jy = (rnd() - 0.5) * 60;
+    const strong = i === 6;
+    drawPixelHeart(ctx, x + jx, y + jy, strong ? 11 : 8 + Math.round(rnd() * 3), strong ? "#E60039" : "#F27A86", strong ? 0.95 : 0.55 + rnd() * 0.15);
+  });
+
+  // satış tarihi (varsa)
+  const shareDate = fmtSaleDate(saleDateOf(product));
+  if (shareDate) {
+    ctx.save();
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.font = `500 40px ${FONT}`;
+    ctx.shadowColor = "rgba(0,0,0,0.18)"; ctx.shadowBlur = 8; ctx.shadowOffsetY = 3;
+    ctx.fillStyle = "#8E8E8A";
+    ctx.fillText("Satış tarihi: " + shareDate, W / 2, 80);
+    ctx.restore();
+  }
+
+  // beyaz ürün kutusu + görsel (esnetmeden ortala)
+  const bx = 244, by = 146, bw = 592, bh = 420;
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(bx, by, bw, bh);
+  let drawn = false;
   if (product.image) {
     try {
       const img = await loadImage(product.image);
-      // Görseli esnetmeden (en-boy oranını koruyarak) kutuya ortala — "contain" mantığı
-      const boxX = 40, boxY = 40, boxW = 560, boxH = 340;
-      const scale = Math.min(boxW / img.width, boxH / img.height);
-      const w = img.width * scale, h = img.height * scale;
-      ctx.drawImage(img, boxX + (boxW - w) / 2, boxY + (boxH - h) / 2, w, h);
-    } catch {
-      drawPlaceholderGradient(ctx);
-    }
-  } else {
-    drawPlaceholderGradient(ctx);
+      const sc = Math.min(bw / img.width, bh / img.height);
+      const w = img.width * sc, h = img.height * sc;
+      ctx.drawImage(img, bx + (bw - w) / 2, by + (bh - h) / 2, w, h);
+      drawn = true;
+    } catch { /* görsel yüklenemedi */ }
   }
+  if (!drawn) { ctx.fillStyle = "#B8B4A8"; ctx.font = `500 28px ${FONT}`; ctx.textAlign = "center"; ctx.fillText("Görsel yok", W / 2, by + bh / 2); }
 
-  ctx.fillStyle = "#2C2A26";
-  ctx.font = "600 30px -apple-system, sans-serif";
-  wrapText(ctx, product.name, 40, 430, 560, 36);
+  // ürün adı
+  ctx.textAlign = "center"; ctx.textBaseline = "alphabetic"; ctx.fillStyle = "#111111";
+  const { size, lines } = fitLines(ctx, String(product.name || ""), 940, [60, 52, 46, 40, 34]);
+  ctx.font = `700 ${size}px ${FONT}`;
+  const lh = size * 1.18;
+  const nameBottom = lines.length === 1 ? 690 : 665;
+  lines.forEach((ln, i) => ctx.fillText(ln, W / 2, nameBottom + i * lh));
 
-  ctx.fillStyle = "#8A8578";
-  ctx.font = "500 20px ui-monospace, monospace";
-  ctx.fillText("Ürün Kodu: " + product.code, 40, 555);
-  const shareDate = fmtSaleDate(saleDateOf(product));
-  if (shareDate) {
-    ctx.fillStyle = "#8A8578";
-    ctx.font = "500 15px -apple-system, sans-serif";
-    ctx.textAlign = "right";
-    ctx.fillText("Satış tarihi: " + shareDate, 600, 555);
-    ctx.textAlign = "left";
+  // mavi kod hapı
+  const py = 740, ph = 88, pw = 300;
+  ctx.fillStyle = "#4A7CB6";
+  roundRect(ctx, (W - pw) / 2, py, pw, ph, ph / 2);
+  ctx.fill();
+  ctx.fillStyle = "#FFFFFF"; ctx.textBaseline = "middle";
+  ctx.font = `500 54px ${FONT}`;
+  ctx.fillText(String(product.code), W / 2, py + ph / 2 + 2);
+
+  // alt logo: hazır "BİMKOD.online" görseli (beyaz zemini multiply ile arka planla kaynaştırılır)
+  try {
+    const logo = await loadImage("icons/logo-online.jpg");
+    const lw = 430, lh2 = lw * logo.height / logo.width;
+    ctx.save(); ctx.globalCompositeOperation = "multiply";
+    ctx.drawImage(logo, (W - lw) / 2, 930 - lh2 / 2, lw, lh2);
+    ctx.restore();
+  } catch {
+    ctx.textAlign = "center"; ctx.fillStyle = "#E10613"; ctx.font = `900 40px ${FONT}`; ctx.fillText("BİMKOD.online", W / 2, 940);
   }
-
-  if (product.price) {
-    ctx.fillStyle = "#B96666";
-    ctx.font = "700 22px -apple-system, sans-serif";
-    ctx.fillText(product.price + " ₺", 40, 590);
-  }
-
-  ctx.fillStyle = "#7FA8C9";
-  ctx.font = "800 16px -apple-system, sans-serif";
-  ctx.fillText("BİMKOD", 40, 622);
 
   canvas.toBlob(async (blob) => {
     const file = new File([blob], `${product.code}.png`, { type: "image/png" });

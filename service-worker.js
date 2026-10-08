@@ -18,6 +18,7 @@ const CORE_ASSETS = [
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/logoheader.png",
+  "./icons/logo-online.jpg",
 ];
 
 self.addEventListener("install", (event) => {
