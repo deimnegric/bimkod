@@ -11537,22 +11537,6 @@
     ]
   },
   {
-    "code": "1637755",
-    "name": "MASONETTE Yüz Havlusu",
-    "price": null,
-    "image": "images/000733.jpg",
-    "embIndex": 733,
-    "confidence": 0.9335137605667114,
-    "addedAt": "2026-10-05T19:43:25+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
-    "bbox": [
-      502,
-      1057,
-      776,
-      1213
-    ]
-  },
-  {
     "code": "1640385",
     "name": "Gıda Saklama Torbası",
     "price": null,
