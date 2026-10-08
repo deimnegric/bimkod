@@ -226,7 +226,7 @@
     </p>
     <div class="row">
       <input type="password" id="geminiKey" placeholder="Gemini API anahtarı" autocomplete="off">
-      <input type="text" id="geminiModel" value="gemini-2.5-flash" style="max-width:200px;" title="Model adı">
+      <input type="text" id="geminiModel" value="gemini-3.8-flash" style="max-width:200px;" title="Model adı">
       <input type="number" id="geminiConc" value="3" min="1" max="10" style="max-width:70px;" title="Aynı anda kaç istek">
     </div>
     <label style="font-size:12px; display:block; margin:6px 0;"><input type="checkbox" id="geminiRemember" checked> Anahtarı bu tarayıcıda hatırla</label>
@@ -1232,7 +1232,7 @@ el.geminiLog = document.getElementById("geminiLog");
 el.geminiPendingBtn = document.getElementById("geminiPendingBtn");
 el.geminiFixBtn = document.getElementById("geminiFixBtn");
 el.geminiStopBtn = document.getElementById("geminiStopBtn");
-try { el.geminiKey.value = localStorage.getItem("bimkod_gemini_key") || ""; const m = localStorage.getItem("bimkod_gemini_model"); if (m) el.geminiModel.value = m; } catch {}
+try { el.geminiKey.value = localStorage.getItem("bimkod_gemini_key") || ""; const m = localStorage.getItem("bimkod_gemini_model"); if (m && !/2\.5/.test(m)) el.geminiModel.value = m; } catch {}
 
 function gLog(msg) {
   const lines = (el.geminiLog.textContent ? el.geminiLog.textContent.split("\n") : []);
@@ -1252,12 +1252,26 @@ const GEMINI_PROMPT =
   "ve ürüne ait 6-8 haneli ürün kodunu çıkar. Kod yoksa null yaz. Fiyat görünüyorsa price alanına yaz, yoksa null. " +
   "Okunamayan ya da emin olmadığın alanı UYDURMA, null bırak. Sadece JSON döndür.";
 
+// Model kapatılmış/bulunamazsa: hesabın kullanabildiği en yeni "flash" modelini listeden seç.
+let gemModelFixing = null;
+async function gemPickModel(key) {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key=${encodeURIComponent(key)}`);
+  if (!r.ok) throw gemFatal(`Model listesi alınamadı (${r.status})`);
+  const list = ((await r.json()).models || [])
+    .filter((m) => (m.supportedGenerationMethods || []).includes("generateContent"))
+    .map((m) => m.name.replace(/^models\//, ""))
+    .filter((n) => /^gemini-[\d.]+-flash$/.test(n));
+  if (!list.length) throw gemFatal("Hesabında kullanılabilir gemini-*-flash modeli bulunamadı; model kutusuna elle yaz.");
+  list.sort((a, b) => parseFloat(b.split("-")[1]) - parseFloat(a.split("-")[1]));
+  return list[0];
+}
+
 function gemFatal(msg) { const e = new Error(msg); e.fatal = true; return e; }
 
 async function geminiRead(imgB64, hint) {
   const key = el.geminiKey.value.trim();
   if (!key) throw gemFatal("Gemini API anahtarı girilmedi");
-  const model = el.geminiModel.value.trim() || "gemini-2.5-flash";
+  const model = el.geminiModel.value.trim() || "gemini-3.8-flash";
   const body = {
     contents: [{ parts: [
       { text: GEMINI_PROMPT + (hint ? `\n\nTesseract ham OCR çıktısı (hatalı olabilir, sadece ipucu):\n${String(hint).slice(0, 400)}` : "") },
@@ -1277,6 +1291,13 @@ async function geminiRead(imgB64, hint) {
     try { res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); }
     catch { await sleep(2000 * (attempt + 1)); continue; }
     if (res.status === 429 || res.status >= 500) { await sleep(Math.min(60000, 3000 * 2 ** attempt)); continue; }
+    if (res.status === 404 && attempt < 2) {
+      gemModelFixing = gemModelFixing || gemPickModel(key).finally(() => { setTimeout(() => { gemModelFixing = null; }, 5000); });
+      const nm = await gemModelFixing;
+      if (nm === model) throw gemFatal(`Gemini 404: "${model}" bulunamadı`);
+      if (nm !== model) { el.geminiModel.value = nm; saveGeminiPrefs(); gLog(`ℹ️ Model "${model}" kullanılamıyor, "${nm}" seçildi.`); }
+      return geminiRead(imgB64, hint);
+    }
     if (res.status === 400 || res.status === 401 || res.status === 403 || res.status === 404) {
       throw gemFatal(`Gemini ${res.status}: ${(await res.text()).slice(0, 220)}`);
     }
