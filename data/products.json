@@ -65388,22 +65388,6 @@
     "addedAt": "2025-01-29T08:06:09+00:00"
   },
   {
-    "code": "1641003",
-    "name": "Şiş Çeşitleri 4,5,5 numara",
-    "price": null,
-    "image": "images/004213.jpg",
-    "embIndex": 4213,
-    "confidence": 0.5693824887275696,
-    "addedAt": "2025-01-29T08:06:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/315.jpg",
-    "bbox": [
-      256,
-      795,
-      363,
-      912
-    ]
-  },
-  {
     "code": "1635411",
     "name": "fa Homeo Bi Şal",
     "price": null,
