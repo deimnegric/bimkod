@@ -48059,22 +48059,6 @@
     ]
   },
   {
-    "code": "1638219",
-    "name": "Rulo Satranç Oyunu 832 em <1 det Oyun Zemini 32 At Satranç Oyun Taşı",
-    "price": null,
-    "image": "images/003072.jpg",
-    "embIndex": 3072,
-    "confidence": 0.9103595018386841,
-    "addedAt": "2026-09-15T17:59:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
-    "bbox": [
-      31,
-      784,
-      247,
-      916
-    ]
-  },
-  {
     "code": "1625535",
     "name": "Akordion Midi ği",
     "price": null,
