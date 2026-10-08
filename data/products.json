@@ -41803,22 +41803,6 @@
     ]
   },
   {
-    "code": "1641008",
-    "name": "Terzi Makası e",
-    "price": null,
-    "image": "images/002675.jpg",
-    "embIndex": 2675,
-    "confidence": 0.8836435079574585,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      649,
-      795,
-      750,
-      979
-    ]
-  },
-  {
     "code": "1644082",
     "name": "Dikiş Sökme ve İlik Açma Aparatı İ",
     "price": null,
