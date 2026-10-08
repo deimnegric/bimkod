@@ -1,0 +1,137 @@
+[
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      672,
+      116,
+      961,
+      292
+    ],
+    "name": "NASIL SATIN ALIRIM? Görevliye Tabletten ürünü simak gösterin ve istediğiniz. ödemenizi",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      405,
+      468,
+      628,
+      555
+    ],
+    "name": "Sando Pafu",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      68,
+      713,
+      396,
+      892
+    ],
+    "name": "",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      369,
+      833,
+      519,
+      951
+    ],
+    "name": "Yüzey Temizleyici 2,5 L Asperox",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      371,
+      952,
+      531,
+      1063
+    ],
+    "name": "",
+    "code": "1714929",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      26,
+      1242,
+      205,
+      1358
+    ],
+    "name": "Dolu Dolu Karışık Kuruyemişli Sütlü Çikolata 80 g Ülker",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      50,
+      113,
+      342,
+      219
+    ],
+    "name": "Tasarım Termos Bardak Germ",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1171.jpg",
+    "bbox": [
+      581,
+      193,
+      912,
+      535
+    ],
+    "name": "65 İnç 4k Ultra HD Qled Google TV 65dq40000",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      399,
+      95,
+      781,
+      458
+    ],
+    "name": "",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:44:21.210Z"
+  }
+]

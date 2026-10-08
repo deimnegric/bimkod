@@ -11537,22 +11537,6 @@
     ]
   },
   {
-    "code": "1637755",
-    "name": "MASONETTE Yüz Havlusu",
-    "price": null,
-    "image": "images/000733.jpg",
-    "embIndex": 733,
-    "confidence": 0.9335137605667114,
-    "addedAt": "2026-10-05T19:43:25+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
-    "bbox": [
-      502,
-      1057,
-      776,
-      1213
-    ]
-  },
-  {
     "code": "1640385",
     "name": "Gıda Saklama Torbası",
     "price": null,
@@ -21754,22 +21738,6 @@
     ]
   },
   {
-    "code": "1643647",
-    "name": "yz Ağ ULTRA HD GLED GOOGLE | TV 55UOG95OOR (Ora Âmir ogle TV | KARA Ağ 3ELA A EB GİV max hulu",
-    "price": null,
-    "image": "images/001386.jpg",
-    "embIndex": 1386,
-    "confidence": 0.9253925681114197,
-    "addedAt": "2025-05-03T05:56:59+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/459.jpg",
-    "bbox": [
-      13,
-      112,
-      493,
-      499
-    ]
-  },
-  {
     "code": "1646418",
     "name": "SOUNDBAR S3OA",
     "price": null,
@@ -22087,22 +22055,6 @@
       865,
       447,
       1037
-    ]
-  },
-  {
-    "code": "1636482",
-    "name": "Sufle Kabı",
-    "price": null,
-    "image": "images/001407.jpg",
-    "embIndex": 1407,
-    "confidence": 0.9471054673194885,
-    "addedAt": "2026-02-23T10:22:02+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/871.jpg",
-    "bbox": [
-      400,
-      868,
-      533,
-      999
     ]
   },
   {
@@ -35832,22 +35784,6 @@
     ]
   },
   {
-    "code": "1639320",
-    "name": "GJpaesmert Saç Düzleştirici PSC47",
-    "price": null,
-    "image": "images/002286.jpg",
-    "embIndex": 2286,
-    "confidence": 0.7387819886207581,
-    "addedAt": "2026-03-03T08:17:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/882.jpg",
-    "bbox": [
-      545,
-      699,
-      788,
-      812
-    ]
-  },
-  {
     "code": "1640524",
     "name": "PiCCOLO MONDİ Çek Birak Motosiklet",
     "price": null,
@@ -41803,22 +41739,6 @@
     ]
   },
   {
-    "code": "1644080",
-    "name": "Dikiş Makinesi İğne Seti",
-    "price": null,
-    "image": "images/002671.jpg",
-    "embIndex": 2671,
-    "confidence": 0.9176296591758728,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      275,
-      1013,
-      388,
-      1190
-    ]
-  },
-  {
     "code": "1641013",
     "name": "Dikiş İğnesi Çeşitleri",
     "price": "50",
@@ -41864,54 +41784,6 @@
       798,
       890,
       968
-    ]
-  },
-  {
-    "code": "1641008",
-    "name": "Terzi Makası e",
-    "price": null,
-    "image": "images/002675.jpg",
-    "embIndex": 2675,
-    "confidence": 0.8836435079574585,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      649,
-      795,
-      750,
-      979
-    ]
-  },
-  {
-    "code": "1644082",
-    "name": "Dikiş Sökme ve İlik Açma Aparatı İ",
-    "price": null,
-    "image": "images/002676.jpg",
-    "embIndex": 2676,
-    "confidence": 0.8834497332572937,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/787.jpg",
-    "bbox": [
-      660,
-      1011,
-      764,
-      1206
-    ]
-  },
-  {
-    "code": "1641007",
-    "name": "Mini Makas",
-    "price": null,
-    "image": "images/002677.jpg",
-    "embIndex": 2677,
-    "confidence": 0.8527607917785645,
-    "addedAt": "2025-01-29T08:06:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/315.jpg",
-    "bbox": [
-      317,
-      906,
-      459,
-      1032
     ]
   },
   {
@@ -48107,22 +47979,6 @@
     ]
   },
   {
-    "code": "1638219",
-    "name": "Rulo Satranç Oyunu 832 em <1 det Oyun Zemini 32 At Satranç Oyun Taşı",
-    "price": null,
-    "image": "images/003072.jpg",
-    "embIndex": 3072,
-    "confidence": 0.9103595018386841,
-    "addedAt": "2026-09-15T17:59:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
-    "bbox": [
-      31,
-      784,
-      247,
-      916
-    ]
-  },
-  {
     "code": "1625535",
     "name": "Akordion Midi ği",
     "price": null,
@@ -48248,22 +48104,6 @@
       631,
       695,
       863
-    ]
-  },
-  {
-    "code": "1630631",
-    "name": "Altın Rimli 6",
-    "price": null,
-    "image": "images/003081.jpg",
-    "embIndex": 3081,
-    "confidence": 0.7482078671455383,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
-    "bbox": [
-      551,
-      605,
-      842,
-      725
     ]
   },
   {
@@ -63311,22 +63151,6 @@
     ]
   },
   {
-    "code": "1632773",
-    "name": "Kepçe/Kaşık Altlığı",
-    "price": null,
-    "image": "images/004067.jpg",
-    "embIndex": 4067,
-    "confidence": 0.9042454361915588,
-    "addedAt": "2024-08-02T21:06:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/67.jpg",
-    "bbox": [
-      212,
-      883,
-      378,
-      993
-    ]
-  },
-  {
     "code": "1641885",
     "name": "Çizgi Gravürlü",
     "price": "00",
@@ -65498,22 +65322,6 @@
     "embIndex": 4212,
     "confidence": 0.6044438481330872,
     "addedAt": "2025-01-29T08:06:09+00:00"
-  },
-  {
-    "code": "1641003",
-    "name": "Şiş Çeşitleri 4,5,5 numara",
-    "price": null,
-    "image": "images/004213.jpg",
-    "embIndex": 4213,
-    "confidence": 0.5693824887275696,
-    "addedAt": "2025-01-29T08:06:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/315.jpg",
-    "bbox": [
-      256,
-      795,
-      363,
-      912
-    ]
   },
   {
     "code": "1635411",
@@ -83909,38 +83717,6 @@
     ]
   },
   {
-    "code": "1638133",
-    "name": "Gaakikir. isen Prize 69",
-    "price": null,
-    "image": "images/005448.jpg",
-    "embIndex": 5448,
-    "confidence": 0.9040700197219849,
-    "addedAt": "2025-12-06T06:22:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/771.jpg",
-    "bbox": [
-      474,
-      858,
-      686,
-      1038
-    ]
-  },
-  {
-    "code": "1639080",
-    "name": "EE ME ni > j Oyuncak Bebek Çeşitleri fi iş İk ap re",
-    "price": null,
-    "image": "images/005449.jpg",
-    "embIndex": 5449,
-    "confidence": 0.8989383578300476,
-    "addedAt": "2024-12-21T11:50:53+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/272.jpg",
-    "bbox": [
-      344,
-      338,
-      605,
-      459
-    ]
-  },
-  {
     "code": "1646074",
     "name": "römüre kv",
     "price": null,
@@ -92338,22 +92114,6 @@
       1489,
       526,
       1694
-    ]
-  },
-  {
-    "code": "1642564",
-    "name": "Yapışkanlı Duvar Baharatlığı 2 eşim eivay rsi",
-    "price": null,
-    "image": "images/005977.jpg",
-    "embIndex": 5977,
-    "confidence": 0.9376540184020996,
-    "addedAt": "2025-03-31T12:04:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/406.jpg",
-    "bbox": [
-      41,
-      873,
-      286,
-      1012
     ]
   },
   {
@@ -148645,38 +148405,6 @@
     ]
   },
   {
-    "code": "1637707",
-    "name": "Mutfak Bıçağı Ew yp",
-    "price": null,
-    "image": "images/009498.jpg",
-    "embIndex": 9498,
-    "confidence": 0.9262404441833496,
-    "addedAt": "2026-03-15T13:15:43+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/900.jpg",
-    "bbox": [
-      341,
-      777,
-      463,
-      920
-    ]
-  },
-  {
-    "code": "1642642",
-    "name": "gez e pe Altın Rimli g t Cam Kupa dari BD > Ç Sa",
-    "price": null,
-    "image": "images/009499.jpg",
-    "embIndex": 9499,
-    "confidence": 0.8797153830528259,
-    "addedAt": "2025-10-17T15:55:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/702.jpg",
-    "bbox": [
-      818,
-      1065,
-      1044,
-      1267
-    ]
-  },
-  {
     "code": "1647888",
     "name": "LAV Cam Kahve Mr",
     "price": null,
@@ -148978,22 +148706,6 @@
       1113,
       878,
       1329
-    ]
-  },
-  {
-    "code": "1632196",
-    "name": "YAN i V Silikon Ürün Çeşitleri",
-    "price": null,
-    "image": "images/009519.jpg",
-    "embIndex": 9519,
-    "confidence": 0.6677908301353455,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
-    "bbox": [
-      385,
-      1083,
-      626,
-      1170
     ]
   },
   {
@@ -178821,22 +178533,6 @@
     ]
   },
   {
-    "code": "1638304",
-    "name": "si 7 Yuvarlama Kulesi",
-    "price": null,
-    "image": "images/011384.jpg",
-    "embIndex": 11384,
-    "confidence": 0.9157856702804565,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/8.jpg",
-    "bbox": [
-      350,
-      480,
-      510,
-      620
-    ]
-  },
-  {
     "code": "1656549",
     "name": "PICCOLO MONDİ Banyo Oyuncakları ii ark Çestlerde L 09, >",
     "price": null,
@@ -179157,22 +178853,6 @@
     ]
   },
   {
-    "code": "1648235",
-    "name": "32 İnç Frameless HD Whale OS 10 Android Gled TV 32SO8OF2HA İDE AED 8.990: e bilgisi için Okulunuz.",
-    "price": null,
-    "image": "images/011409.jpg",
-    "embIndex": 11409,
-    "confidence": 0.9416736960411072,
-    "addedAt": "2026-09-23T06:15:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
-    "bbox": [
-      47,
-      609,
-      325,
-      964
-    ]
-  },
-  {
     "code": "1648042",
     "name": "Homend Buhar Kazanlı Ütü 1168H",
     "price": null,
@@ -179218,22 +178898,6 @@
       826,
       504,
       1004
-    ]
-  },
-  {
-    "code": "1646983",
-    "name": "Hvetostn",
-    "price": null,
-    "image": "images/011413.jpg",
-    "embIndex": 11413,
-    "confidence": 0.6807369589805603,
-    "addedAt": "2026-09-23T06:15:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
-    "bbox": [
-      718,
-      769,
-      1033,
-      983
     ]
   },
   {
@@ -251290,6 +250954,1097 @@
       1041,
       990
     ],
+    "approvedManually": true
+  },
+  {
+    "code": "1638304",
+    "name": "Yuvarlama Kulesi Gokidy",
+    "price": null,
+    "image": "images/015929.jpg",
+    "embIndex": 15929,
+    "confidence": null,
+    "addedAt": "2026-10-08T21:28:28.994Z",
+    "approvedManually": true
+  },
+  {
+    "code": "1708407",
+    "name": "Kakaolu Süt 180 ml Yörükoğlu",
+    "price": null,
+    "image": "images/015930.jpg",
+    "embIndex": 15930,
+    "confidence": 0.9252625703811646,
+    "addedAt": "2026-08-24T06:48:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1137.jpg",
+    "bbox": [
+      387,
+      1446,
+      509,
+      1668
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1641003",
+    "name": "Şiş Çeşitleri",
+    "price": null,
+    "image": "images/015931.jpg",
+    "embIndex": 15931,
+    "confidence": 0.9238138794898987,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      216,
+      1261,
+      354,
+      1466
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1641008",
+    "name": "Terzi Makası",
+    "price": null,
+    "image": "images/015932.jpg",
+    "embIndex": 15932,
+    "confidence": 0.9194681644439697,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      436,
+      1040,
+      555,
+      1236
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644086",
+    "name": "Tığ Seti 5'li Ören Bayan",
+    "price": null,
+    "image": "images/015933.jpg",
+    "embIndex": 15933,
+    "confidence": 0.8948042392730713,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      98,
+      135,
+      579,
+      566
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644080",
+    "name": "Dikiş Makinesi İğne Seti",
+    "price": null,
+    "image": "images/015934.jpg",
+    "embIndex": 15934,
+    "confidence": 0.8861066102981567,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      557,
+      822,
+      684,
+      1016
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644082",
+    "name": "Dikiş Sökme Ve İlik Açma Aparatı",
+    "price": null,
+    "image": "images/015935.jpg",
+    "embIndex": 15935,
+    "confidence": 0.8769329190254211,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      685,
+      824,
+      836,
+      1019
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1641007",
+    "name": "Dikiş Makası",
+    "price": null,
+    "image": "images/015936.jpg",
+    "embIndex": 15936,
+    "confidence": 0.8487123250961304,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      301,
+      1041,
+      422,
+      1233
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644087",
+    "name": "Mini Ultra Keskin Makas Ören Bayan",
+    "price": null,
+    "image": "images/015937.jpg",
+    "embIndex": 15937,
+    "confidence": 0.5362148284912109,
+    "addedAt": "2026-09-22T08:04:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1189.jpg",
+    "bbox": [
+      623,
+      222,
+      806,
+      521
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1645482",
+    "name": "Askı Seti 10'lu",
+    "price": null,
+    "image": "images/015938.jpg",
+    "embIndex": 15938,
+    "confidence": 0.9495123028755188,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      766,
+      1261,
+      885,
+      1465
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1637707",
+    "name": "Mutfak Bıçağı 26 cm",
+    "price": null,
+    "image": "images/015939.jpg",
+    "embIndex": 15939,
+    "confidence": 0.9358706474304199,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      37,
+      1266,
+      228,
+      1477
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1642642",
+    "name": "Altın Rimli Cam Kupa 275 ml Glass İn Love",
+    "price": null,
+    "image": "images/015940.jpg",
+    "embIndex": 15940,
+    "confidence": 0.9341632723808289,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      345,
+      780,
+      572,
+      916
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646171",
+    "name": "Gold Süzgeçli Çelik Pipet 4'lü 18 cm Benante",
+    "price": null,
+    "image": "images/015941.jpg",
+    "embIndex": 15941,
+    "confidence": 0.9293548464775085,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      36,
+      943,
+      289,
+      1118
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1640593",
+    "name": "Sedef İşlemeli Hasır Tepsi 28x3 cm Benante",
+    "price": null,
+    "image": "images/015942.jpg",
+    "embIndex": 15942,
+    "confidence": 0.9169729351997375,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      786,
+      1084,
+      1029,
+      1257
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647877",
+    "name": "Saklama Kabı Seti 6'lı Okyanus Home",
+    "price": null,
+    "image": "images/015943.jpg",
+    "embIndex": 15943,
+    "confidence": 0.9143726229667664,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      355,
+      1246,
+      482,
+      1471
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1642564",
+    "name": "Yapışkanlı Duvar Baharatlığı 12'li",
+    "price": null,
+    "image": "images/015944.jpg",
+    "embIndex": 15944,
+    "confidence": 0.9039689898490906,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      479,
+      1254,
+      611,
+      1471
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1632773",
+    "name": "Kepçe / Kaşık Altlığı",
+    "price": null,
+    "image": "images/015945.jpg",
+    "embIndex": 15945,
+    "confidence": 0.8301758170127869,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "bbox": [
+      235,
+      1266,
+      355,
+      1478
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1630631",
+    "name": "Altın Rimli Çay Tabağı 12 cm 6'lı",
+    "price": null,
+    "image": "images/015946.jpg",
+    "embIndex": 15946,
+    "confidence": 0.9430930614471436,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      810,
+      932,
+      954,
+      1096
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1632196",
+    "name": "Tek Fiyat Silikon Ürünler Okyanus Home",
+    "price": null,
+    "image": "images/015947.jpg",
+    "embIndex": 15947,
+    "confidence": 0.8913502097129822,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      523,
+      573,
+      821,
+      729
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1636482",
+    "name": "Desenli Sufle Kabı 10'lu",
+    "price": null,
+    "image": "images/015948.jpg",
+    "embIndex": 15948,
+    "confidence": 0.887247622013092,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
+    "bbox": [
+      628,
+      739,
+      743,
+      925
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713221",
+    "name": "Köpük Sabun 500 ml Pereja",
+    "price": null,
+    "image": "images/015949.jpg",
+    "embIndex": 15949,
+    "confidence": 0.9251367449760437,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      829,
+      1072,
+      939,
+      1239
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1710833",
+    "name": "Şampuan 625 ml Pantene",
+    "price": null,
+    "image": "images/015950.jpg",
+    "embIndex": 15950,
+    "confidence": 0.9130929708480835,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      532,
+      953,
+      743,
+      1061
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714549",
+    "name": "Parfüm 100 ml Kiğılı",
+    "price": null,
+    "image": "images/015951.jpg",
+    "embIndex": 15951,
+    "confidence": 0.8884544968605042,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      113,
+      1257,
+      224,
+      1428
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1707059",
+    "name": "Cımbız 2'li Naturalove",
+    "price": null,
+    "image": "images/015952.jpg",
+    "embIndex": 15952,
+    "confidence": 0.851936399936676,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      595,
+      1255,
+      709,
+      1432
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714786",
+    "name": "Tam Yağlı Tost Peyniri 700 g Pınar",
+    "price": null,
+    "image": "images/015953.jpg",
+    "embIndex": 15953,
+    "confidence": 0.9353999495506287,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      642,
+      550,
+      818,
+      765
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1711054",
+    "name": "Kidy Süt Çeşitleri 180 ml Aynes",
+    "price": "50",
+    "image": "images/015954.jpg",
+    "embIndex": 15954,
+    "confidence": 0.9447907209396362,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      15,
+      105,
+      480,
+      538
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713848",
+    "name": "Çıtır Piliç Topları 1000 g Banvit",
+    "price": null,
+    "image": "images/015955.jpg",
+    "embIndex": 15955,
+    "confidence": 0.9300792813301086,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      305,
+      1095,
+      557,
+      1239
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713849",
+    "name": "Dana Dürüm 180 g Aytaç",
+    "price": null,
+    "image": "images/015956.jpg",
+    "embIndex": 15956,
+    "confidence": 0.9052773714065552,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      848,
+      1195,
+      959,
+      1416
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714894",
+    "name": "Dana Macar Salam 150 g Danet",
+    "price": null,
+    "image": "images/015957.jpg",
+    "embIndex": 15957,
+    "confidence": 0.9038272500038147,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      730,
+      1195,
+      848,
+      1412
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1705296",
+    "name": "Naneli Ayran 300 ml Sek",
+    "price": null,
+    "image": "images/015958.jpg",
+    "embIndex": 15958,
+    "confidence": 0.9024282097816467,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      786,
+      789,
+      963,
+      905
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1710299",
+    "name": "%3 Yağlı Yoğurt 3000 g Torku",
+    "price": null,
+    "image": "images/015959.jpg",
+    "embIndex": 15959,
+    "confidence": 0.6453931927680969,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      21,
+      770,
+      238,
+      1065
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713208",
+    "name": "Karamelli Fındık Kremalı Bütün Fındıklı Çikolata 200 g Toffifee",
+    "price": null,
+    "image": "images/015960.jpg",
+    "embIndex": 15960,
+    "confidence": 0.9436874985694885,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      43,
+      127,
+      474,
+      558
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1702102",
+    "name": "İzmir Bombası 220 g Mixim",
+    "price": null,
+    "image": "images/015961.jpg",
+    "embIndex": 15961,
+    "confidence": 0.9393355846405029,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      429,
+      695,
+      555,
+      849
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715102",
+    "name": "7 Tohumlu Pirinç Patlağı 80 g Yayla",
+    "price": null,
+    "image": "images/015962.jpg",
+    "embIndex": 15962,
+    "confidence": 0.9425653219223022,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      640,
+      852,
+      777,
+      1049
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715013",
+    "name": "Çikolata Parçacıklı Kremalı Gofret 140 g Galbusera",
+    "price": null,
+    "image": "images/015963.jpg",
+    "embIndex": 15963,
+    "confidence": 0.9225520491600037,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      422,
+      1063,
+      616,
+      1235
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708710",
+    "name": "Marshmallow Yumuşak Şekerleme 250 g Bebeto",
+    "price": null,
+    "image": "images/015964.jpg",
+    "embIndex": 15964,
+    "confidence": 0.9215113520622253,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      233,
+      850,
+      390,
+      1059
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708898",
+    "name": "Hindistan Cevizi Kaplamalı Bademli Top Gofret 40 g Raffaello",
+    "price": null,
+    "image": "images/015965.jpg",
+    "embIndex": 15965,
+    "confidence": 0.8864967226982117,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      229,
+      1064,
+      390,
+      1235
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1638133",
+    "name": "2 Lisanslı Puzzle Bir Arada",
+    "price": null,
+    "image": "images/015966.jpg",
+    "embIndex": 15966,
+    "confidence": 0.9281810522079468,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      249,
+      771,
+      535,
+      925
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715137",
+    "name": "Dolu Dolu Çikolata Antep Fıstığı Fındık Badem Ülker",
+    "price": null,
+    "image": "images/015967.jpg",
+    "embIndex": 15967,
+    "confidence": 0.8681437373161316,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      33,
+      1349,
+      213,
+      1438
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647289",
+    "name": "Puzzlelab İlk Renk Eşleştirme Yükselen Zeka",
+    "price": null,
+    "image": "images/015968.jpg",
+    "embIndex": 15968,
+    "confidence": 0.9281299114227295,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      47,
+      543,
+      282,
+      782
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647448",
+    "name": "Pelüş Figürlü Anahtarlık Ve Çanta Aksesuarı Elena",
+    "price": null,
+    "image": "images/015969.jpg",
+    "embIndex": 15969,
+    "confidence": 0.9252180457115173,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      691,
+      925,
+      916,
+      1055
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1638219",
+    "name": "Rulo Satranç Oyunu 32x32 cm Redka",
+    "price": null,
+    "image": "images/015970.jpg",
+    "embIndex": 15970,
+    "confidence": 0.9103595018386841,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      31,
+      784,
+      247,
+      916
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1639080",
+    "name": "Oyuncak Bebek Çeşitleri Uçar Oyuncak",
+    "price": null,
+    "image": "images/015971.jpg",
+    "embIndex": 15971,
+    "confidence": 0.8873418569564819,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      740,
+      769,
+      912,
+      920
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646595",
+    "name": "Sesli Kitaplar Eolo",
+    "price": null,
+    "image": "images/015972.jpg",
+    "embIndex": 15972,
+    "confidence": 0.883688747882843,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      461,
+      1224,
+      675,
+      1346
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646438",
+    "name": "Manikür Seti 5'i 1 Arada Naturelove",
+    "price": null,
+    "image": "images/015973.jpg",
+    "embIndex": 15973,
+    "confidence": 0.9295641183853149,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      26,
+      987,
+      328,
+      1175
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1639320",
+    "name": "Saç Düzleştirici PSC47 Polosmart",
+    "price": null,
+    "image": "images/015974.jpg",
+    "embIndex": 15974,
+    "confidence": 0.9295784831047058,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      233,
+      1190,
+      448,
+      1348
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646448",
+    "name": "Saç Sakal Düzeltme Tıraş Makinesi Psc115 Polosmart",
+    "price": null,
+    "image": "images/015975.jpg",
+    "embIndex": 15975,
+    "confidence": 0.9216180443763733,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      278,
+      790,
+      503,
+      976
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644925",
+    "name": "Topuk Törpüsü Naturalove",
+    "price": null,
+    "image": "images/015976.jpg",
+    "embIndex": 15976,
+    "confidence": 0.9204687476158142,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      34,
+      1205,
+      228,
+      1341
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646449",
+    "name": "Kaş Düzeltme Cihazı Şarjlı Psc119 Polosmart",
+    "price": null,
+    "image": "images/015977.jpg",
+    "embIndex": 15977,
+    "confidence": 0.9145183563232422,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      726,
+      994,
+      915,
+      1145
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1645059",
+    "name": "Pasaport Kılıfı",
+    "price": null,
+    "image": "images/015978.jpg",
+    "embIndex": 15978,
+    "confidence": 0.49099820852279663,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      109,
+      497,
+      177,
+      624
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1637755",
+    "name": "Yüz Havlusu 50x70 cm Maisonette",
+    "price": null,
+    "image": "images/015979.jpg",
+    "embIndex": 15979,
+    "confidence": 0.4338257908821106,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      454,
+      642,
+      542,
+      812
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714983",
+    "name": "Kırmızı Elma Aromalı Maden Suyu 6x200 ml Karlıtepe",
+    "price": null,
+    "image": "images/015980.jpg",
+    "embIndex": 15980,
+    "confidence": 0.944488525390625,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      475,
+      1247,
+      653,
+      1493
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714443",
+    "name": "Kakao Kaplamalı Karamel Dolgulu Kek 175 g Bifa Keks",
+    "price": null,
+    "image": "images/015981.jpg",
+    "embIndex": 15981,
+    "confidence": 0.9442787766456604,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      66,
+      891,
+      254,
+      1074
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646298",
+    "name": "Patik Çorap Çeşitleri Kadın/Erkek 3'lü",
+    "price": null,
+    "image": "images/015982.jpg",
+    "embIndex": 15982,
+    "confidence": 0.8868950605392456,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      184,
+      855,
+      272,
+      1029
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714955",
+    "name": "Karpuz Çilek Aromalı Soğuk Çay 6x330 ml Tamek",
+    "price": null,
+    "image": "images/015983.jpg",
+    "embIndex": 15983,
+    "confidence": 0.9414870142936707,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      65,
+      1244,
+      240,
+      1483
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715098",
+    "name": "Kurabiye Çeşitleri 80 g Züber",
+    "price": null,
+    "image": "images/015984.jpg",
+    "embIndex": 15984,
+    "confidence": 0.9368299841880798,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      489,
+      751,
+      756,
+      884
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714961",
+    "name": "Ananas Aromalı Maden Suyu 4x250 ml Avoya",
+    "price": null,
+    "image": "images/015985.jpg",
+    "embIndex": 15985,
+    "confidence": 0.932471513748169,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      270,
+      1245,
+      454,
+      1483
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714916",
+    "name": "Kuru Meyve Çeşitleri Dokuru",
+    "price": null,
+    "image": "images/015986.jpg",
+    "embIndex": 15986,
+    "confidence": 0.9302678108215332,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      431,
+      593,
+      630,
+      746
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715030",
+    "name": "Enerji İçeceği 355 ml Redbull",
+    "price": null,
+    "image": "images/015987.jpg",
+    "embIndex": 15987,
+    "confidence": 0.9281385540962219,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      874,
+      1250,
+      1001,
+      1475
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708876",
+    "name": "Muzlu Rulo Pasta 235 g Ülker Dankek",
+    "price": null,
+    "image": "images/015988.jpg",
+    "embIndex": 15988,
+    "confidence": 0.9251903295516968,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      262,
+      889,
+      444,
+      1087
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713585",
+    "name": "Kuru Üzüm Çeşitleri 30 g Otamon",
+    "price": null,
+    "image": "images/015989.jpg",
+    "embIndex": 15989,
+    "confidence": 0.9145268201828003,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      752,
+      751,
+      1026,
+      894
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713465",
+    "name": "Gazlı İçecek Kola 4x1 L Sarıyer",
+    "price": null,
+    "image": "images/015990.jpg",
+    "embIndex": 15990,
+    "confidence": 0.9113277792930603,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      689,
+      1242,
+      848,
+      1488
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714774",
+    "name": "%20 Bitkisel Yağlı Kremsos 330 ml Moova",
+    "price": null,
+    "image": "images/015991.jpg",
+    "embIndex": 15991,
+    "confidence": 0.9388874173164368,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1155.jpg",
+    "bbox": [
+      249,
+      1250,
+      370,
+      1445
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714920",
+    "name": "Kuru Meyve Ruloları 100 g Perfect Delights",
+    "price": null,
+    "image": "images/015992.jpg",
+    "embIndex": 15992,
+    "confidence": 0.8769189715385437,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      35,
+      587,
+      442,
+      754
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714377",
+    "name": "Muz Kokulu El Kremi Banana Boo",
+    "price": null,
+    "image": "images/015993.jpg",
+    "embIndex": 15993,
+    "confidence": null,
+    "addedAt": "2026-10-08T23:14:12.129Z",
     "approvedManually": true
   }
 ]
