@@ -133,5 +133,487 @@
     "kind": "review",
     "seen": 1,
     "ts": "2026-10-08T21:44:21.210Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Yüzey Temizleyici 2,5 L Asperox",
+    "code": "1714927",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 13,
+    "image": "images/000013.jpg",
+    "oldCode": "1714927",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/243.jpg",
+    "bbox": [
+      353,
+      1118,
+      476,
+      1232
+    ],
+    "name": "Fırfırlı Dikişsiz Bone",
+    "code": "1634981",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 116,
+    "image": "images/000116.jpg",
+    "oldCode": "1634981",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Dolgulu Kaplamalı Gofret Çeşitleri 170 g Markolato",
+    "code": "1715113",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 122,
+    "image": "images/000122.jpg",
+    "oldCode": "1715113",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/415.jpg",
+    "bbox": [
+      318,
+      673,
+      534,
+      812
+    ],
+    "name": "Abaküslü Yazı Tahtası",
+    "code": "1633866",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 150,
+    "image": "images/000150.jpg",
+    "oldCode": "1633866",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Çatal Kaşıklı Saklama Kabı 3 Katlı 18x10x12 cm",
+    "code": "1647804",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 173,
+    "image": "images/000173.jpg",
+    "oldCode": "1607804",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      18,
+      376,
+      339,
+      485
+    ],
+    "name": "Büyük Boy 75x50x32 cm",
+    "code": "1647549",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 182,
+    "image": "images/000182.jpg",
+    "oldCode": "1647549",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      34,
+      326,
+      334,
+      402
+    ],
+    "name": "Orta Boy 65x43x28 cm",
+    "code": "1647548",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 183,
+    "image": "images/000183.jpg",
+    "oldCode": "1647548",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      479,
+      706,
+      766,
+      888
+    ],
+    "name": "Kurabiye Çeşitleri 80 g Züber",
+    "code": "1715098",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 189,
+    "image": "images/000189.jpg",
+    "oldCode": "1715098",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1156.jpg",
+    "bbox": [
+      19,
+      530,
+      458,
+      759
+    ],
+    "name": "Kuru Meyve Ruloları 100 g Perfect Delights",
+    "code": "1714920",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 200,
+    "image": "images/000200.jpg",
+    "oldCode": "1714920",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/219.jpg",
+    "bbox": [
+      547,
+      882,
+      865,
+      1134
+    ],
+    "name": "Çamaşır Makinesi Üzeri Raf / Organizer Ruum Store",
+    "code": "1641000",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 282,
+    "image": "images/000282.jpg",
+    "oldCode": "1613610",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Topping Sos Çeşitleri 300 g Kent Boringer",
+    "code": "1715780",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 304,
+    "image": "images/000304.jpg",
+    "oldCode": "1715780",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/334.jpg",
+    "bbox": [
+      328,
+      917,
+      612,
+      1048
+    ],
+    "name": "Smart Duvar Şarjı 65w PD+USB PBS122",
+    "code": "1642514",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 350,
+    "image": "images/000350.jpg",
+    "oldCode": "1642514",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/119.jpg",
+    "bbox": [
+      660,
+      370,
+      869,
+      507
+    ],
+    "name": "Masa Örtüsü 140x140 cm",
+    "code": "1632977",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 379,
+    "image": "images/000379.jpg",
+    "oldCode": "1632977",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Çamaşır Suyu 1850 ml Güldal",
+    "code": "1714484",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 434,
+    "image": "images/000434.jpg",
+    "oldCode": "1714484",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/87.jpg",
+    "bbox": [
+      615,
+      422,
+      833,
+      502
+    ],
+    "name": "img",
+    "code": "1629417",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 465,
+    "image": "images/000465.jpg",
+    "oldCode": "1629418",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/87.jpg",
+    "bbox": [
+      231,
+      962,
+      442,
+      1124
+    ],
+    "name": "A4 Spiralli 120 Yaprak Sert Kapaklı Defter Studi",
+    "code": "1629397",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 466,
+    "image": "images/000466.jpg",
+    "oldCode": "1629397",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/87.jpg",
+    "bbox": [
+      237,
+      382,
+      449,
+      509
+    ],
+    "name": "A5 Dikişli Kılavuz Çizgili 40 Yaprak PP Kapak Güzel Yazı Defteri Studi",
+    "code": "1632453",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 468,
+    "image": "images/000468.jpg",
+    "oldCode": "1632453",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/614.jpg",
+    "bbox": [
+      491,
+      943,
+      650,
+      1077
+    ],
+    "name": "Silgi 4'lü Rotring",
+    "code": "1642188",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 489,
+    "image": "images/000489.jpg",
+    "oldCode": "1642188",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/614.jpg",
+    "bbox": [
+      472,
+      1085,
+      661,
+      1239
+    ],
+    "name": "Başlık Kalemi 4'lü",
+    "code": "1642183",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 503,
+    "image": "images/000503.jpg",
+    "oldCode": "1642183",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/89.jpg",
+    "bbox": [
+      156,
+      565,
+      294,
+      690
+    ],
+    "name": "Şeffaf Simli Kalem Kutu Studi",
+    "code": "1633010",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 520,
+    "image": "images/000520.jpg",
+    "oldCode": "1633010",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/89.jpg",
+    "bbox": [
+      609,
+      699,
+      729,
+      833
+    ],
+    "name": "Matara 530 ml Studi",
+    "code": "1621257",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 537,
+    "image": "images/000537.jpg",
+    "oldCode": "1621257",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/90.jpg",
+    "bbox": [
+      451,
+      626,
+      671,
+      731
+    ],
+    "name": "Yapışkanlı Kağıt Studi",
+    "code": "1618939",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 562,
+    "image": "images/000562.jpg",
+    "oldCode": "1618939",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/638.jpg",
+    "bbox": [
+      236,
+      902,
+      567,
+      1043
+    ],
+    "name": "Makarna Çeşitleri 500 g Pastavilla",
+    "code": "1709092",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 598,
+    "image": "images/000598.jpg",
+    "oldCode": "1709092",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/627.jpg",
+    "bbox": [
+      516,
+      1132,
+      679,
+      1287
+    ],
+    "name": "Pervaneli Duş Başlığı Set 5 Fonksiyonlu Latte",
+    "code": "1644375",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 610,
+    "image": "images/000610.jpg",
+    "oldCode": "1644375",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Banyo Paspas Seti",
+    "code": "1633456",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 621,
+    "image": "images/000621.jpg",
+    "oldCode": "1633454",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/119.jpg",
+    "bbox": [
+      482,
+      271,
+      653,
+      367
+    ],
+    "name": "yarı",
+    "code": "1633991",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 622,
+    "image": "images/000622.jpg",
+    "oldCode": "1633991",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "Tek Fiyat Plastik Ürün Çeşitleri Hobby Life",
+    "code": "1614082",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 653,
+    "image": "images/000653.jpg",
+    "oldCode": "1614087",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": null,
+    "bbox": null,
+    "name": "İtalyan Karameli Aromalı Pastörize Süt 1 L Dost",
+    "code": "1719079",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 692,
+    "image": "images/000692.jpg",
+    "oldCode": "1719079",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1117.jpg",
+    "bbox": [
+      419,
+      720,
+      658,
+      885
+    ],
+    "name": "%3 Yağlı Yoğurt 3000 g Yörükoğlu",
+    "code": "1714812",
+    "reason": "Görsel yarım/kesik",
+    "kind": "live",
+    "embIndex": 695,
+    "image": "images/000695.jpg",
+    "oldCode": "1714812",
+    "seen": 1,
+    "ts": "2026-10-08T23:47:00.621Z"
   }
 ]
