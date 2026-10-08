@@ -1266,6 +1266,20 @@ async function gemPickModel(key) {
   return list[0];
 }
 
+// Ortak hız sınırlayıcı: tüm istekler arasında en az gemGap ms; 429'da gap büyür, başarıda yavaşça küçülür.
+let gemGap = 1000, gemNextAt = 0, gemPauseUntil = 0;
+async function gemThrottle() {
+  const now = Date.now();
+  const at = Math.max(gemNextAt, gemPauseUntil, now);
+  gemNextAt = at + gemGap;
+  if (at > now) await sleep(at - now);
+}
+const gErrSeen = new Set();
+function gErr(e, ctx) {
+  const m = String(e?.message || e).slice(0, 160);
+  if (gErrSeen.size < 6 && !gErrSeen.has(m)) { gErrSeen.add(m); gLog(`⚠️ Hata${ctx ? " (" + ctx + ")" : ""}: ${m}`); }
+}
+
 function gemFatal(msg) { const e = new Error(msg); e.fatal = true; return e; }
 
 async function geminiRead(imgB64, hint) {
@@ -1285,12 +1299,22 @@ async function geminiRead(imgB64, hint) {
     },
   };
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
-  for (let attempt = 0; attempt < 6; attempt++) {
+  for (let attempt = 0; attempt < 8; attempt++) {
     if (gem.stop) throw gemFatal("durduruldu");
+    await gemThrottle();
     let res;
     try { res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); }
     catch { await sleep(2000 * (attempt + 1)); continue; }
-    if (res.status === 429 || res.status >= 500) { await sleep(Math.min(60000, 3000 * 2 ** attempt)); continue; }
+    if (res.status === 429 || res.status === 503 || res.status >= 500) {
+      const txt = await res.text();
+      if (/PerDay|per day|daily/i.test(txt) && res.status === 429) throw gemFatal("Gemini günlük kota doldu (429). Yarın devam et ya da faturalandırmayı aç.");
+      const rd = /"retryDelay":\s*"(\d+(?:\.\d+)?)s"/.exec(txt);
+      const wait = rd ? Math.ceil(parseFloat(rd[1])) * 1000 + 500 : Math.min(60000, 4000 * 2 ** attempt);
+      gemPauseUntil = Math.max(gemPauseUntil, Date.now() + wait);
+      gemGap = Math.min(gemGap * 1.6, 15000);
+      if (attempt === 0) gLog(`⏳ Gemini hız sınırı (${res.status}) — yavaşlatıldı, ${Math.round(wait / 1000)} sn bekleniyor, istek aralığı ${(gemGap / 1000).toFixed(1)} sn.`);
+      continue;
+    }
     if (res.status === 404 && attempt < 2) {
       gemModelFixing = gemModelFixing || gemPickModel(key).finally(() => { setTimeout(() => { gemModelFixing = null; }, 5000); });
       const nm = await gemModelFixing;
@@ -1302,13 +1326,14 @@ async function geminiRead(imgB64, hint) {
       throw gemFatal(`Gemini ${res.status}: ${(await res.text()).slice(0, 220)}`);
     }
     if (!res.ok) throw new Error(`Gemini ${res.status}`);
+    gemGap = Math.max(gemGap * 0.97, 700);
     const j = await res.json();
     const t = (j.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
     if (!t) return {};
     try { return JSON.parse(t); }
     catch { const m = t.match(/\{[\s\S]*\}/); if (m) { try { return JSON.parse(m[0]); } catch {} } return {}; }
   }
-  throw new Error("Gemini kota/sunucu hatası (yeniden denendi)");
+  throw new Error("Gemini hız sınırı/sunucu hatası (8 kez denendi)");
 }
 
 function cleanGem(r) {
@@ -1357,7 +1382,7 @@ el.geminiPendingBtn.addEventListener("click", async () => {
   if (!el.token.value.trim()) { gLog("⚠️ Önce GitHub token gir."); return; }
   if (!el.geminiKey.value.trim()) { gLog("⚠️ Gemini API anahtarı gir."); return; }
   if (!reviewItems.length) { gLog("⚠️ Önce yukarıdan bekleyen kayıtları yükle."); return; }
-  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = "";
+  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = ""; gErrSeen.clear();
   const todo = reviewItems.filter((x) => x.review_image && !x.__bg && !x.__gemTried);
   gLog(`${todo.length} bekleyen kayıt Gemini ile okunacak…`);
   let ok = 0, manual = 0, err = 0, n = 0;
@@ -1373,7 +1398,7 @@ el.geminiPendingBtn.addEventListener("click", async () => {
           queueApprove(item, c.code, c.name); ok++;
         } else { item.__gem = c; manual++; }
       } catch (e) {
-        if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else err++;
+        if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else { err++; gErr(e, item.review_image); }
       }
       if (++n % 25 === 0) gLog(`${n}/${todo.length} okundu · ${ok} otomatik onay kuyruğunda · ${manual} elle bakılacak · ${err} hata`);
     });
@@ -1413,7 +1438,7 @@ async function applyNameFixes(fixes) {
 el.geminiFixBtn.addEventListener("click", async () => {
   if (!el.token.value.trim()) { gLog("⚠️ Önce GitHub token gir."); return; }
   if (!el.geminiKey.value.trim()) { gLog("⚠️ Gemini API anahtarı gir."); return; }
-  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = "";
+  saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = ""; gErrSeen.clear();
   try {
     gLog("data/products.json okunuyor…");
     const { text } = await ghGetFile("data/products.json");
@@ -1445,7 +1470,7 @@ el.geminiFixBtn.addEventListener("click", async () => {
           if (n < 40) gLog(`✏️ ${p.name}  →  ${c.name}`);
           if (pending.length >= 100) flush();
         }
-      } catch (e) { if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else err++; }
+      } catch (e) { if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else { err++; gErr(e, p.image); } }
       if (++n % 25 === 0) gLog(`${n}/${bad.length} işlendi · ${skipped} atlandı · ${err} hata`);
     });
     await flush(); await flushChain;
