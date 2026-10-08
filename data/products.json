@@ -41835,22 +41835,6 @@
     ]
   },
   {
-    "code": "1641007",
-    "name": "Mini Makas",
-    "price": null,
-    "image": "images/002677.jpg",
-    "embIndex": 2677,
-    "confidence": 0.8527607917785645,
-    "addedAt": "2025-01-29T08:06:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/315.jpg",
-    "bbox": [
-      317,
-      906,
-      459,
-      1032
-    ]
-  },
-  {
     "code": "1641004",
     "name": "Tığ Çeşitleri // ma",
     "price": null,
