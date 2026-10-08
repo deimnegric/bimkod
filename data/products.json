@@ -63279,22 +63279,6 @@
     ]
   },
   {
-    "code": "1632773",
-    "name": "Kepçe/Kaşık Altlığı",
-    "price": null,
-    "image": "images/004067.jpg",
-    "embIndex": 4067,
-    "confidence": 0.9042454361915588,
-    "addedAt": "2024-08-02T21:06:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/67.jpg",
-    "bbox": [
-      212,
-      883,
-      378,
-      993
-    ]
-  },
-  {
     "code": "1641885",
     "name": "Çizgi Gravürlü",
     "price": "00",
