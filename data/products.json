@@ -178821,22 +178821,6 @@
     ]
   },
   {
-    "code": "1638304",
-    "name": "si 7 Yuvarlama Kulesi",
-    "price": null,
-    "image": "images/011384.jpg",
-    "embIndex": 11384,
-    "confidence": 0.9157856702804565,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/8.jpg",
-    "bbox": [
-      350,
-      480,
-      510,
-      620
-    ]
-  },
-  {
     "code": "1656549",
     "name": "PICCOLO MONDİ Banyo Oyuncakları ii ark Çestlerde L 09, >",
     "price": null,
