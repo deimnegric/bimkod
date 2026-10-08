@@ -251560,5 +251560,209 @@
       925
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1713221",
+    "name": "Köpük Sabun 500 ml Pereja",
+    "price": null,
+    "image": "images/015949.jpg",
+    "embIndex": 15949,
+    "confidence": 0.9251367449760437,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      829,
+      1072,
+      939,
+      1239
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1710833",
+    "name": "Şampuan 625 ml Pantene",
+    "price": null,
+    "image": "images/015950.jpg",
+    "embIndex": 15950,
+    "confidence": 0.9130929708480835,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      532,
+      953,
+      743,
+      1061
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714549",
+    "name": "Parfüm 100 ml Kiğılı",
+    "price": null,
+    "image": "images/015951.jpg",
+    "embIndex": 15951,
+    "confidence": 0.8884544968605042,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      113,
+      1257,
+      224,
+      1428
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1707059",
+    "name": "Cımbız 2'li Naturalove",
+    "price": null,
+    "image": "images/015952.jpg",
+    "embIndex": 15952,
+    "confidence": 0.851936399936676,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      595,
+      1255,
+      709,
+      1432
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714786",
+    "name": "Tam Yağlı Tost Peyniri 700 g Pınar",
+    "price": null,
+    "image": "images/015953.jpg",
+    "embIndex": 15953,
+    "confidence": 0.9353999495506287,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      642,
+      550,
+      818,
+      765
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1711054",
+    "name": "Kidy Süt Çeşitleri 180 ml Aynes",
+    "price": "50",
+    "image": "images/015954.jpg",
+    "embIndex": 15954,
+    "confidence": 0.9447907209396362,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      15,
+      105,
+      480,
+      538
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713848",
+    "name": "Çıtır Piliç Topları 1000 g Banvit",
+    "price": null,
+    "image": "images/015955.jpg",
+    "embIndex": 15955,
+    "confidence": 0.9300792813301086,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      305,
+      1095,
+      557,
+      1239
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713849",
+    "name": "Dana Dürüm 180 g Aytaç",
+    "price": null,
+    "image": "images/015956.jpg",
+    "embIndex": 15956,
+    "confidence": 0.9052773714065552,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      848,
+      1195,
+      959,
+      1416
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1714894",
+    "name": "Dana Macar Salam 150 g Danet",
+    "price": null,
+    "image": "images/015957.jpg",
+    "embIndex": 15957,
+    "confidence": 0.9038272500038147,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      730,
+      1195,
+      848,
+      1412
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1705296",
+    "name": "Naneli Ayran 300 ml Sek",
+    "price": null,
+    "image": "images/015958.jpg",
+    "embIndex": 15958,
+    "confidence": 0.9024282097816467,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      786,
+      789,
+      963,
+      905
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1710299",
+    "name": "%3 Yağlı Yoğurt 3000 g Torku",
+    "price": null,
+    "image": "images/015959.jpg",
+    "embIndex": 15959,
+    "confidence": 0.6453931927680969,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1178.jpg",
+    "bbox": [
+      21,
+      770,
+      238,
+      1065
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1713208",
+    "name": "Karamelli Fındık Kremalı Bütün Fındıklı Çikolata 200 g Toffifee",
+    "price": null,
+    "image": "images/015960.jpg",
+    "embIndex": 15960,
+    "confidence": 0.9436874985694885,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      43,
+      127,
+      474,
+      558
+    ],
+    "approvedManually": true
   }
 ]

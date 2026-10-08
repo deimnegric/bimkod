@@ -73,5 +73,80 @@
     "kind": "review",
     "seen": 1,
     "ts": "2026-10-08T21:39:59.918Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      672,
+      116,
+      961,
+      292
+    ],
+    "name": "NASIL SATIN ALIRIM? Görevliye Tabletten ürünü simak gösterin ve istediğiniz. ödemenizi",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      405,
+      468,
+      628,
+      555
+    ],
+    "name": "Sando Pafu",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      68,
+      713,
+      396,
+      892
+    ],
+    "name": "",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      369,
+      833,
+      519,
+      951
+    ],
+    "name": "Yüzey Temizleyici 2,5 L Asperox",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1179.jpg",
+    "bbox": [
+      371,
+      952,
+      531,
+      1063
+    ],
+    "name": "",
+    "code": "1714929",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:40:37.468Z"
   }
 ]
