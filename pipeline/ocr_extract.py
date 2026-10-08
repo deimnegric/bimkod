@@ -40,7 +40,7 @@ OCR_OUT = Path("pipeline/ocr_results.json")
 REVIEW_OUT = Path("pipeline/ocr_review.json")
 REVIEW_IMAGES_DIR = Path("review")  # kalıcı, admin sayfasının okuyacağı klasör
 
-CODE_RE = re.compile(r"\b\d{6,8}\b")         # 6-8 haneli bağımsız kod (format yıllar içinde değişmiş olabilir)
+CODE_RE = re.compile(r"\b\d{7}\b")         # BİM ürün kodu her zaman 7 haneli
 PRICE_RE = re.compile(r"\b(\d{1,4})\s?[t₺]\b", re.IGNORECASE)
 
 # OCR çıktısında isimden ayıklanacak marketing/gürültü kelimeleri
@@ -54,7 +54,7 @@ NOISE_RE = re.compile("|".join(NOISE_PATTERNS), re.IGNORECASE)
 # yine de orada kesiyoruz — ama artık ASIL filtre yazı boyutu.
 BULLET_RE = re.compile(r"[•*·»«]")
 # Kod bazen ismin/satırın başına sızıyor ("1641010 | o 164 Yuvarlak Cırt Bant...")
-LEADING_CODE_RE = re.compile(r"^\s*\d{6,8}\s*[|:\-–—]?\s*(o\s+\d+\s+)?", re.IGNORECASE)
+LEADING_CODE_RE = re.compile(r"^\s*\d{7}\s*[|:\-–—]?\s*(o\s+\d+\s+)?", re.IGNORECASE)
 
 TITLE_HEIGHT_RATIO = 0.5  # bir satır, çıpa (ilk) satırın bu oranından KÜÇÜKSE "detay" sayılır
 

@@ -155,6 +155,17 @@
     <button class="btn-primary" id="loadBtn">Bekleyen Ürünleri Yükle</button>
   </div>
 
+  <div class="panel" id="cropQueuePanel">
+    <h3 style="margin:0 0 8px; font-size:14px;">✂️ Manuel Kırpma Bekleyenler</h3>
+    <p class="sub" style="margin:0 0 10px;">
+      Gemini'nin "görsel yarım/kesik" dediği ürünler önce yeniden taramaya girer (bir sonraki tarama saatinde işlenir). Yine hatalı çıkanlar (2. kez) burada listelenir:
+      "Afişi Aç" dersen afiş aşağıdaki kırpma aracına ürün adı ve koduyla birlikte gelir, ürünün üstünü seçip "Bu Alanı Kırp" → "Ürünü Ekle" demen yeterli.
+    </p>
+    <div class="row"><button class="btn-primary" id="cropQueueLoadBtn">Listeyi Yükle</button></div>
+    <div id="cropQueueStatus" style="font-size:12px; color:var(--text-soft); margin:8px 0;"></div>
+    <div id="cropQueueList"></div>
+  </div>
+
   <div class="panel" id="manualPanel">
     <h3 style="margin:0 0 8px; font-size:14px;">Manuel Ürün Ekle</h3>
     <p class="sub" style="margin:0 0 10px;">YOLO'nun hiç yakalamadığı ürünler ya da kesimi bozuk çıkanlar için. Ürünün kendi görselini YA DA tüm afişi yükleyip aşağıdan fareyle doğru alanı kırpabilirsin.</p>
@@ -230,9 +241,12 @@
       <input type="number" id="geminiConc" value="3" min="1" max="10" style="max-width:70px;" title="Aynı anda kaç istek">
     </div>
     <label style="font-size:12px; display:block; margin:6px 0;"><input type="checkbox" id="geminiRemember" checked> Anahtarı bu tarayıcıda hatırla</label>
+    <label style="font-size:12px; display:block; margin:6px 0;"><input type="checkbox" id="geminiStrongOnly"> Hatalı isim taramasında sadece KESİN bozuk olanları işle (sembol içeren / çok kısa isimler)</label>
     <div class="row">
       <button class="btn-primary" id="geminiPendingBtn">Bekleyenleri Gemini ile oku + otomatik onayla</button>
       <button class="btn-primary" id="geminiFixBtn">Hatalı isimli canlı ürünleri düzelt</button>
+      <button class="btn-primary" id="geminiFullBtn">🔎 TÜM sistemi tara + kod ve isimleri düzelt</button>
+      <button class="btn-secondary" id="geminiFullResetBtn" title="Tam taramayı baştan başlat">İlerlemeyi sıfırla</button>
       <button class="btn-reject" id="geminiStopBtn" disabled>Durdur</button>
     </div>
     <div id="geminiLog" style="font-size:12px; color:var(--text-soft); margin-top:8px; white-space:pre-wrap; max-height:260px; overflow:auto;"></div>
@@ -321,7 +335,7 @@ let fastQueue = [];
 let fastIndex = 0;
 
 const PAGE_SIZE = 20;
-const CODE_RE = /\b\d{6,8}\b/;
+const CODE_RE = /\b\d{7}\b/; // BİM ürün kodu her zaman 7 haneli
 
 let reviewItems = [];   // ocr_review.json içeriği (bellekte)
 let shownCount = 0;
@@ -397,8 +411,20 @@ function withGhLock(fn, onQueued) {
 }
 
 // Türkçe baş harfleri büyüt: ilk harf + boşluktan sonraki her kelimenin ilk harfi
+// Başlık Düzeni: her kelimenin ilk harfi büyük, kalanı küçük; TV/LED gibi kısa kısaltmalar ve
+// ölçü birimleri (500 ml, 3 L, 250 g) korunur. Kesme işaretinden sonrası küçük kalır (Hanımeli'nin).
+const TC_UNITS = new Set(["g", "gr", "kg", "mg", "ml", "cl", "lt", "l", "cm", "mm", "m", "w", "v", "gb", "tb", "mah", "adet"]);
+const TC_SMALL = new Set(["ve", "ile", "için", "bir", "bu", "da", "de", "mi", "mı", "mu", "mü"]);
 function trTitleCase(s) {
-  return String(s || "").trim().replace(/(^|\s)(\S)/g, (m, sp, ch) => sp + ch.toLocaleUpperCase("tr"));
+  return String(s || "").trim().replace(/\s+/g, " ").replace(/\p{L}+/gu, (run, off, str) => {
+    const prev = off > 0 ? str[off - 1] : "";
+    const lower = run.toLocaleLowerCase("tr");
+    if (/\d/.test(prev)) return lower === "l" ? "L" : lower;                 // 500ml, 3L
+    if (prev === "'" || prev === "’") return lower;                          // Hanımeli'nin
+    if (TC_UNITS.has(lower) && /\d/.test(str.slice(Math.max(0, off - 3), off))) return lower === "l" ? "L" : lower;
+    if (run.length <= 3 && run === run.toLocaleUpperCase("tr") && /\p{Lu}/u.test(run) && !TC_SMALL.has(lower) && !TC_UNITS.has(lower)) return run; // TV, LED, USB
+    return lower.charAt(0).toLocaleUpperCase("tr") + lower.slice(1);
+  });
 }
 
 async function ghPutFile(path, contentStr, sha, message) {
@@ -676,13 +702,11 @@ const cropCanvas = document.getElementById("cropCanvas");
 const cropCtx = cropCanvas.getContext("2d");
 let cropSourceImg = null, cropRect = null, cropDragging = false, cropStart = null;
 let croppedBlob = null;
+let activeCropEntry = null; // manuel kırpma listesinden açılan kayıt
 
-document.getElementById("manualImageInput").addEventListener("change", (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+function loadCropFile(file, bbox) {
   croppedBlob = file; // varsayılan: hiç kırpılmamış haliyle kullan
   document.getElementById("cropPreviewWrap").classList.add("hidden");
-
   const img = new Image();
   img.onload = () => {
     cropSourceImg = img;
@@ -692,9 +716,20 @@ document.getElementById("manualImageInput").addEventListener("change", (e) => {
     cropCanvas.height = img.height * scale;
     cropCtx.drawImage(img, 0, 0, cropCanvas.width, cropCanvas.height);
     cropRect = null;
+    if (Array.isArray(bbox) && bbox.length === 4) { // tespit edilen (yarım) kutuyu başlangıç seçimi olarak çiz
+      const sx = cropCanvas.width / img.width, sy = cropCanvas.height / img.height;
+      cropRect = { x: bbox[0] * sx, y: bbox[1] * sy, w: (bbox[2] - bbox[0]) * sx, h: (bbox[3] - bbox[1]) * sy };
+      redrawCrop();
+    }
     document.getElementById("cropWrap").classList.remove("hidden");
   };
   img.src = URL.createObjectURL(file);
+}
+document.getElementById("manualImageInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  activeCropEntry = null;
+  loadCropFile(file);
 });
 
 function cropPointerPos(e) {
@@ -769,11 +804,21 @@ document.getElementById("manualAddBtn").addEventListener("click", async () => {
     const buf = await file.arrayBuffer();
     const imageBase64 = arrayBufferToBase64(buf);
 
-    await commitNewProduct({
-      code, name, price, confidence: null,
-      embedSource: objectUrl, imageBase64,
-      onProgress: (msg) => { statusEl.textContent = msg; },
-    });
+    if (activeCropEntry && activeCropEntry.embIndex != null) {
+      // Canlı üründe yarım görsel: aynı kaydın görselini/embedding'ini güncelle
+      await updateExistingProduct({
+        originalCode: activeCropEntry.oldCode, originalEntry: { embIndex: activeCropEntry.embIndex, code: activeCropEntry.oldCode, image: activeCropEntry.image },
+        code, name, price, imageBase64, embedSource: objectUrl,
+        onProgress: (msg) => { statusEl.textContent = msg; },
+      });
+    } else {
+      await commitNewProduct({
+        code, name, price, confidence: null,
+        embedSource: objectUrl, imageBase64,
+        onProgress: (msg) => { statusEl.textContent = msg; },
+      });
+    }
+    if (activeCropEntry) { await removeCropEntry(activeCropEntry).catch(() => {}); activeCropEntry = null; renderCropQueue(); }
 
     URL.revokeObjectURL(objectUrl);
     statusEl.textContent = "✅ Eklendi ve yayında! Formu temizleyebilirsin.";
@@ -788,6 +833,62 @@ document.getElementById("manualAddBtn").addEventListener("click", async () => {
     statusEl.textContent = "❌ Hata: " + err.message;
   }
 });
+
+
+// ==================== Manuel kırpma listesi ====================
+let cropQueue = [];
+async function loadCropQueue() {
+  const st = document.getElementById("cropQueueStatus");
+  st.textContent = "Yükleniyor…";
+  try {
+    const head = await ghHeadSha();
+    const f = await ghReadAt("pipeline/manual_crop_queue.json", head);
+    cropQueue = f ? JSON.parse(dec(f.buf)) : [];
+    renderCropQueue();
+  } catch (e) { st.textContent = "❌ " + e.message; }
+}
+function renderCropQueue() {
+  const st = document.getElementById("cropQueueStatus"), box = document.getElementById("cropQueueList");
+  const sorted = [...cropQueue].sort((a, b) => (b.seen || 1) - (a.seen || 1));
+  st.textContent = `${cropQueue.length} kayıt (${cropQueue.filter((x) => (x.seen || 1) >= 2).length} tanesi yeniden taramadan sonra da hatalı).`;
+  box.innerHTML = "";
+  sorted.slice(0, 50).forEach((e) => {
+    const row = document.createElement("div");
+    row.className = "card"; row.style.alignItems = "center";
+    row.innerHTML = `<div class="card-body"><b></b><div style="font-size:12px;color:var(--text-soft);"></div></div>
+      <div class="card-actions"><button class="btn-approve">Afişi Aç</button><button class="btn-secondary">Kaldır</button></div>`;
+    row.querySelector("b").textContent = `${e.name || "(isimsiz)"} · ${e.code || "kodsuz"}`;
+    row.querySelector(".card-body div").textContent = `${e.reason || ""} · ${e.kind === "live" ? "canlı ürün" : "bekleyen"} · ${(e.seen || 1) >= 2 ? "⚠️ yeniden taramadan sonra da hatalı" : "yeniden taramada (düzelebilir)"} · ${e.source_flyer || "afiş bilinmiyor"}`;
+    const [openBtn, rmBtn] = row.querySelectorAll("button");
+    openBtn.addEventListener("click", () => openCropEntry(e));
+    rmBtn.addEventListener("click", async () => { await removeCropEntry(e).catch((x) => alert(x.message)); renderCropQueue(); });
+    box.appendChild(row);
+  });
+}
+async function removeCropEntry(e) {
+  await withGhLock(() => commitWithRetry(async (head) => {
+    const f = await ghReadAt("pipeline/manual_crop_queue.json", head);
+    const list = (f ? JSON.parse(dec(f.buf)) : []).filter((x) => !(cropKey(x) === cropKey(e) || (e.embIndex != null && x.embIndex === e.embIndex)));
+    return { files: [{ path: "pipeline/manual_crop_queue.json", b64: textToB64(JSON.stringify(list, null, 2)) }], message: "Admin: manuel kırpma kaydı kapatıldı" };
+  }));
+  cropQueue = cropQueue.filter((x) => !(cropKey(x) === cropKey(e) || (e.embIndex != null && x.embIndex === e.embIndex)));
+}
+async function openCropEntry(e) {
+  const st = document.getElementById("manualStatus");
+  if (!e.source_flyer) { alert("Bu kaydın kaynak afişi bilinmiyor; ürünün fotoğrafını elle yükle."); return; }
+  try {
+    const r = await fetch(`${rawBase()}/${e.source_flyer}`);
+    if (!r.ok) throw new Error(`Afiş indirilemedi (${r.status}) — dosya repodan silinmiş olabilir.`);
+    const file = new File([await r.blob()], "afis.jpg", { type: "image/jpeg" });
+    activeCropEntry = e;
+    loadCropFile(file, e.bbox);
+    document.getElementById("manualCode").value = e.code || "";
+    document.getElementById("manualName").value = e.name || "";
+    st.textContent = `✂️ "${e.name || ""}" için afiş yüklendi — ürünün üstünü seç, "Bu Alanı Kırp", sonra "Ürünü Ekle".`;
+    document.getElementById("manualPanel").scrollIntoView({ behavior: "smooth" });
+  } catch (err) { alert(err.message); }
+}
+document.getElementById("cropQueueLoadBtn").addEventListener("click", loadCropQueue);
 
 async function appendCorrection(code, name) {
   let text = "code,name\n", sha = null;
@@ -983,6 +1084,27 @@ async function commitWithRetry(build, tries = 4) {
 const reviewKey = (x) => (x.review_image ? "r:" + x.review_image : "f:" + x.full_crop + "|" + x.source_flyer);
 const parseBbox = (b) => { if (Array.isArray(b)) return b; try { const v = JSON.parse(b); return Array.isArray(v) ? v : null; } catch { return null; } };
 
+// Manuel kırpma kuyruğu (pipeline/manual_crop_queue.json): yarım/okunamayan görseller.
+// İlk eklemede kaynak afiş yeniden tarama kuyruğuna da girer (bir sonraki tarama saatinde işlenir);
+// aynı ürün tekrar yarım çıkarsa (seen>=2) yalnızca manuel kırpma listesinde kalır.
+const cropKey = (e) => `${e.source_flyer || ""}|${e.code || e.name || ""}`;
+async function mergeCropEntries(head, entries) {
+  if (!entries.length) return { file: null, rescanIds: [] };
+  const cur = await ghReadAt("pipeline/manual_crop_queue.json", head);
+  const list = cur ? JSON.parse(dec(cur.buf)) : [];
+  const rescanIds = [];
+  for (const e of entries) {
+    const ex = list.find((x) => cropKey(x) === cropKey(e) || (e.embIndex != null && x.embIndex === e.embIndex));
+    if (ex) { ex.seen = (ex.seen || 1) + 1; Object.assign(ex, { name: e.name || ex.name, code: e.code || ex.code, reason: e.reason, ts: new Date().toISOString() }); }
+    else {
+      list.push({ ...e, seen: 1, ts: new Date().toISOString() });
+      const id = extractMsgId({ source_flyer: e.source_flyer });
+      if (id !== null) rescanIds.push(id);
+    }
+  }
+  return { file: { path: "pipeline/manual_crop_queue.json", b64: textToB64(JSON.stringify(list, null, 2)) }, rescanIds };
+}
+
 async function commitBatch(jobs, onProgress) {
   const approvals = jobs.filter((j) => j.kind === "approve");
   const rejects = jobs.filter((j) => j.kind === "reject");
@@ -1031,8 +1153,11 @@ async function commitBatch(jobs, onProgress) {
       files.push({ path: "data/products.json", b64: textToB64(JSON.stringify(products, null, 2)) });
       files.push({ path: "pipeline/catalog_source/corrections.csv", b64: textToB64(csv) });
     }
+    const cropEntries = rejects.map((j) => j.cropEntry).filter(Boolean);
+    const crop = await mergeCropEntries(head, cropEntries);
+    if (crop.file) files.push(crop.file);
     if (rejects.length) {
-      const ids = rejects.map((j) => extractMsgId(j.item)).filter((x) => x !== null);
+      const ids = [...rejects.map((j) => extractMsgId(j.item)), ...crop.rescanIds].filter((x) => x !== null);
       if (ids.length) {
         const rq = await ghReadAt("pipeline/rescan_queue.json", head);
         const existing = rq ? JSON.parse(dec(rq.buf)) : [];
@@ -1100,10 +1225,10 @@ function queueApprove(item, code, name) {
   updateBgStatus();
   bgRun();
 }
-function queueReject(item) {
+function queueReject(item, cropEntry) {
   item.__bg = true;
   removeFromFastQueue(item);
-  bgState.jobs.push({ kind: "reject", item });
+  bgState.jobs.push({ kind: "reject", item, cropEntry: cropEntry || null });
   updateBgStatus();
   bgRun();
 }
@@ -1242,14 +1367,17 @@ function gLog(msg) {
 }
 function gSetRunning(on) {
   gem.running = on; gem.stop = false;
-  el.geminiPendingBtn.disabled = on; el.geminiFixBtn.disabled = on; el.geminiStopBtn.disabled = !on;
+  el.geminiPendingBtn.disabled = on; el.geminiFixBtn.disabled = on; document.getElementById("geminiFullBtn").disabled = on; el.geminiStopBtn.disabled = !on;
 }
 el.geminiStopBtn.addEventListener("click", () => { gem.stop = true; gLog("⏹ Durduruluyor (süren istekler bitince)…"); });
 
 const GEMINI_PROMPT =
-  "Bu görsel, bir Türk market (BİM) haftalık afişinden kırpılmış TEK bir ürüne ait. " +
-  "Görselde okunan ürün adını (marka + ürün + varsa önemli özellik/boyut; Türkçe karakterleri doğru yaz, her kelimenin ilk harfi büyük) " +
-  "ve ürüne ait 6-8 haneli ürün kodunu çıkar. Kod yoksa null yaz. Fiyat görünüyorsa price alanına yaz, yoksa null. " +
+  "Bu görsel, bir Türk market (BİM) haftalık afişinden kırpılmış TEK bir ürüne ait. Şunları çıkar:\n" +
+  "- code: ürün kodu. BİM ürün kodu TAM 7 haneli bir rakam dizisidir (örn. 1711688, 1634577). 7 haneden farklı bir sayı kod DEĞİLDİR (fiyat, gramaj, tarih olabilir); emin değilsen null.\n" +
+  "- name: ürün adı, MARKA HARİÇ. Ürün cinsi + önemli özellik/boyut/miktar. Türkçe karakterleri doğru yaz, her kelimenin ilk harfi büyük. Örn: 'Figürlü Tarak', 'Sıvı Çamaşır Deterjanı 1500 ml'.\n" +
+  "- brand: markanın adı (örn. Naturelove, Pınar, Nokia). Yoksa null. (Marka sonradan ürün adının SONUNA eklenecek.)\n" +
+  "- price: fiyat görünüyorsa, yoksa null.\n" +
+  "- complete: ürün fotoğrafı bu görselde TAMAMEN görünüyor mu? Ürünün bir kısmı kesilmiş, yarım ya da görsel başka ürüne ait parçalar içeriyorsa false, tam görünüyorsa true.\n" +
   "Okunamayan ya da emin olmadığın alanı UYDURMA, null bırak. Sadece JSON döndür.";
 
 // Model kapatılmış/bulunamazsa: hesabın kullanabildiği en yeni "flash" modelini listeden seç.
@@ -1294,7 +1422,8 @@ async function geminiRead(imgB64, hint) {
     generationConfig: {
       temperature: 0, responseMimeType: "application/json",
       responseSchema: { type: "OBJECT", properties: {
-        code: { type: "STRING", nullable: true }, name: { type: "STRING", nullable: true }, price: { type: "STRING", nullable: true },
+        code: { type: "STRING", nullable: true }, name: { type: "STRING", nullable: true }, brand: { type: "STRING", nullable: true },
+        price: { type: "STRING", nullable: true }, complete: { type: "BOOLEAN", nullable: true },
       } },
     },
   };
@@ -1338,8 +1467,23 @@ async function geminiRead(imgB64, hint) {
 
 function cleanGem(r) {
   const code = String(r?.code ?? "").replace(/\D/g, "");
-  const name = String(r?.name ?? "").replace(/[|_~^<>{}\[\]\\=*]/g, " ").replace(/\s+/g, " ").trim();
-  return { code, name: name === "null" ? "" : trTitleCase(name), price: r?.price || null };
+  const clean = (t) => String(t ?? "").replace(/[|_~^<>{}\[\]\\=*]/g, " ").replace(/\s+/g, " ").trim();
+  let name = clean(r?.name); if (name === "null") name = "";
+  let brand = clean(r?.brand); if (brand === "null") brand = "";
+  let full = name;
+  // Marka ürün adının SONUNA eklenir (zaten içindeyse önce kaldırıp sona taşır)
+  if (name && brand) {
+    const fb = foldTr(brand);
+    const toks = name.split(" ");
+    const bt = foldTr(brand).split(" ").length;
+    const tail = foldTr(toks.slice(-bt).join(" "));
+    const head = foldTr(toks.slice(0, bt).join(" "));
+    if (tail === fb) full = name;
+    else if (head === fb) full = toks.slice(bt).concat(toks.slice(0, bt)).join(" ");
+    else if (!foldTr(name).split(" ").join(" ").includes(fb)) full = name + " " + brand;
+    else full = name; // marka ortada geçiyorsa dokunma
+  }
+  return { code, name: trTitleCase(full), brand, price: r?.price || null, complete: r?.complete !== false };
 }
 
 // Çöp/okunamamış isim sezgisi (hatalı isimleri bulmak ve Gemini çıktısını doğrulamak için)
@@ -1357,7 +1501,7 @@ function isSuspiciousName(name) {
   if (/(.)\1{3,}/.test(n)) return true;
   return false;
 }
-const validCode = (c) => /^\d{6,8}$/.test(String(c || ""));
+const validCode = (c) => /^\d{7}$/.test(String(c || ""));
 
 async function pool(list, n, fn) {
   let i = 0;
@@ -1385,7 +1529,7 @@ el.geminiPendingBtn.addEventListener("click", async () => {
   saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = ""; gErrSeen.clear();
   const todo = reviewItems.filter((x) => x.review_image && !x.__bg && !x.__gemTried);
   gLog(`${todo.length} bekleyen kayıt Gemini ile okunacak…`);
-  let ok = 0, manual = 0, err = 0, n = 0;
+  let ok = 0, manual = 0, err = 0, n = 0, incomplete = 0;
   try {
     await pool(todo, Number(el.geminiConc.value) || 3, async (item) => {
       while (bgState.jobs.length > 150 && !gem.stop) await sleep(2000); // arka plan kuyruğu şişmesin
@@ -1394,48 +1538,69 @@ el.geminiPendingBtn.addEventListener("click", async () => {
         const c = cleanGem(await geminiRead(b64, item.raw_ocr));
         if (!validCode(c.code)) { const g = guessCode(item.raw_ocr); if (validCode(g)) c.code = g; }
         item.__gemTried = true;
-        if (validCode(c.code) && c.name.length >= 4 && c.name.length <= 100 && !isSuspiciousName(c.name)) {
+        if (!c.complete) {
+          queueReject(item, { source_flyer: item.source_flyer, bbox: parseBbox(item.bbox), name: c.name || guessName(item), code: validCode(c.code) ? c.code : "", reason: "Görsel yarım/kesik", kind: "review" });
+          incomplete++;
+        } else if (validCode(c.code) && c.name.length >= 4 && c.name.length <= 100 && !isSuspiciousName(c.name)) {
           queueApprove(item, c.code, c.name); ok++;
         } else { item.__gem = c; manual++; }
       } catch (e) {
         if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else { err++; gErr(e, item.review_image); }
       }
-      if (++n % 25 === 0) gLog(`${n}/${todo.length} okundu · ${ok} otomatik onay kuyruğunda · ${manual} elle bakılacak · ${err} hata`);
+      if (++n % 25 === 0) gLog(`${n}/${todo.length} okundu · ${ok} otomatik onay kuyruğunda · ${incomplete} yarım görsel (yeniden tarama + manuel kırpma listesi) · ${manual} elle bakılacak · ${err} hata`);
     });
-    gLog(`✔ Bitti: ${n}/${todo.length} · ${ok} otomatik onaya alındı · ${manual} emin olunamadı (listede, Gemini önerisiyle dolu) · ${err} hata. Arka plan: ${bgState.jobs.length} sırada.`);
+    gLog(`✔ Bitti: ${n}/${todo.length} · ${ok} otomatik onaya alındı · ${incomplete} yarım görsel (yeniden taramaya + manuel kırpma listesine) · ${manual} emin olunamadı (listede, Gemini önerisiyle dolu) · ${err} hata. Arka plan: ${bgState.jobs.length} sırada.`);
   } catch (e) { gLog("❌ " + e.message); }
   gSetRunning(false); updateBulkPanel();
 });
 
 // ---- 2) Canlı ürünlerde hatalı isimleri bul, Gemini ile düzelt, toplu commit ----
-async function applyNameFixes(fixes) {
-  if (!fixes.length) return;
+async function applyNameFixes(fixes, cropEntries = []) {
+  if (!fixes.length && !cropEntries.length) return;
   await withGhLock(() => commitWithRetry(async (head) => {
-    const pj = await ghReadAt("data/products.json", head);
-    const products = JSON.parse(dec(pj.buf));
-    let csv = "code,name\n";
-    const cr = await ghReadAt("pipeline/catalog_source/corrections.csv", head);
-    if (cr) csv = dec(cr.buf);
+    const files = [];
     let changed = 0;
-    for (const f of fixes) {
-      const idx = products.findIndex((p) => sameEntry(p, f.p));
-      if (idx === -1) continue;
-      products[idx] = { ...products[idx], name: f.name, code: f.code };
-      changed++;
-      if (!csv.includes(`\n${f.code},`) && !csv.startsWith(`${f.code},`)) csv = csv.replace(/\n?$/, "") + `\n${f.code},${f.name.includes(",") ? `"${f.name}"` : f.name}\n`;
+    if (fixes.length) {
+      const pj = await ghReadAt("data/products.json", head);
+      const products = JSON.parse(dec(pj.buf));
+      let csv = "code,name\n";
+      const cr = await ghReadAt("pipeline/catalog_source/corrections.csv", head);
+      if (cr) csv = dec(cr.buf);
+      for (const f of fixes) {
+        const idx = products.findIndex((p) => sameEntry(p, f.p));
+        if (idx === -1) continue;
+        products[idx] = { ...products[idx], name: f.name, code: f.code };
+        changed++;
+        if (!csv.includes(`\n${f.code},`) && !csv.startsWith(`${f.code},`)) csv = csv.replace(/\n?$/, "") + `\n${f.code},${f.name.includes(",") ? `"${f.name}"` : f.name}\n`;
+      }
+      files.push({ path: "data/products.json", b64: textToB64(JSON.stringify(products, null, 2)) });
+      files.push({ path: "pipeline/catalog_source/corrections.csv", b64: textToB64(csv) });
     }
-    return {
-      files: [
-        { path: "data/products.json", b64: textToB64(JSON.stringify(products, null, 2)) },
-        { path: "pipeline/catalog_source/corrections.csv", b64: textToB64(csv) },
-      ],
-      message: `Admin: Gemini ile ${changed} hatalı ürün ismi düzeltildi`,
-    };
+    const crop = await mergeCropEntries(head, cropEntries);
+    if (crop.file) files.push(crop.file);
+    if (crop.rescanIds.length) {
+      const rq = await ghReadAt("pipeline/rescan_queue.json", head);
+      const existing = rq ? JSON.parse(dec(rq.buf)) : [];
+      files.push({ path: "pipeline/rescan_queue.json", b64: textToB64(JSON.stringify(Array.from(new Set([...existing, ...crop.rescanIds])))) });
+    }
+    return { files, message: `Admin: Gemini ile ${changed} ürün düzeltildi${cropEntries.length ? `, ${cropEntries.length} yarım görsel yeniden taramaya/manuel kırpmaya alındı` : ""}` };
   }));
   liveProducts = null;
 }
 
-el.geminiFixBtn.addEventListener("click", async () => {
+const FULL_KEY = "bimkod_fullscan_done_v1";
+const foldTr = (t) => String(t || "").toLocaleLowerCase("tr").replace(/ı/g, "i").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+function nameSimilarity(a, b) {
+  const A = new Set(foldTr(a).split(" ").filter(Boolean)), B = new Set(foldTr(b).split(" ").filter(Boolean));
+  if (!A.size || !B.size) return 0;
+  let inter = 0; A.forEach((t) => { if (B.has(t)) inter++; });
+  return inter / (A.size + B.size - inter);
+}
+function loadFullDone() { try { return new Set(JSON.parse(localStorage.getItem(FULL_KEY) || "[]")); } catch { return new Set(); } }
+function saveFullDone(set) { try { localStorage.setItem(FULL_KEY, JSON.stringify([...set])); } catch {} }
+
+// full=false: sadece isim şüpheli olanlar. full=true: TÜM ürünler (kod + isim), kaldığı yerden devam eder.
+async function runFix(full) {
   if (!el.token.value.trim()) { gLog("⚠️ Önce GitHub token gir."); return; }
   if (!el.geminiKey.value.trim()) { gLog("⚠️ Gemini API anahtarı gir."); return; }
   saveGeminiPrefs(); gSetRunning(true); el.geminiLog.textContent = ""; gErrSeen.clear();
@@ -1443,40 +1608,82 @@ el.geminiFixBtn.addEventListener("click", async () => {
     gLog("data/products.json okunuyor…");
     const { text } = await ghGetFile("data/products.json");
     const all = JSON.parse(text);
-    const bad = all.filter((p) => isSuspiciousName(p.name));
-    gLog(`${all.length} üründen ${bad.length} tanesinin ismi şüpheli. Gemini ile okunuyor (100'erlik gruplar halinde otomatik kaydedilir)…`);
-    let n = 0, fixed = 0, same = 0, skipped = 0, err = 0;
+    const strongOnly = document.getElementById("geminiStrongOnly").checked;
+    const isStrong = (n) => String(n || "").trim().length < 5 || /[|_~^<>{}\[\]\\=*@#€£§¢¦»«]/.test(n);
+    const doneSet = full ? loadFullDone() : new Set();
+    let bad;
+    if (full) {
+      const todo = all.filter((p) => p.embIndex != null && !doneSet.has(p.embIndex));
+      bad = [...todo.filter((p) => isSuspiciousName(p.name)), ...todo.filter((p) => !isSuspiciousName(p.name))]; // önce bozuk isimliler
+      gLog(`TAM TARAMA: ${all.length} ürün, ${all.length - todo.length} tanesi önceki çalışmalarda tamamlanmış, ${todo.length} tanesi taranacak. Kota biterse durur, tekrar basınca kaldığı yerden devam eder.`);
+    } else {
+      bad = all.filter((p) => isSuspiciousName(p.name) && (!strongOnly || isStrong(p.name)));
+      gLog(`${all.length} üründen ${bad.length} tanesinin ismi şüpheli. Gemini ile okunuyor (100'erlik gruplar halinde otomatik kaydedilir)…`);
+    }
+    let n = 0, fixed = 0, same = 0, skipped = 0, err = 0, codeFix = 0, incompl = 0;
+    let cropPending = [];
     let pending = [];
     let flushChain = Promise.resolve();
     const flush = () => {
       const chunk = pending; pending = [];
-      if (!chunk.length) return flushChain;
+      const cchunk = cropPending; cropPending = [];
+      if (!chunk.length && !cchunk.length) return flushChain;
       flushChain = flushChain.then(async () => {
-        try { await applyNameFixes(chunk); fixed += chunk.length; gLog(`💾 ${chunk.length} düzeltme yayına alındı (toplam ${fixed}).`); }
-        catch (e) { gLog("❌ Kaydedilemedi: " + e.message); }
+        try {
+          await applyNameFixes(chunk, cchunk.map((c) => c.entry)); fixed += chunk.length;
+          if (full) { chunk.forEach((f) => doneSet.add(f.p.embIndex)); cchunk.forEach((c) => doneSet.add(c.p.embIndex)); saveFullDone(doneSet); }
+          gLog(`💾 ${chunk.length} düzeltme yayına alındı (toplam ${fixed}).`);
+        } catch (e) { gLog("❌ Kaydedilemedi: " + e.message); }
       });
       return flushChain;
     };
     await pool(bad, Number(el.geminiConc.value) || 3, async (p) => {
       try {
+        const susp = isSuspiciousName(p.name);
         const b64 = await fetchB64(`${rawBase()}/${p.image}`);
-        const c = cleanGem(await geminiRead(b64, p.name));
-        if (c.name.length < 4 || c.name.length > 100 || isSuspiciousName(c.name)) { skipped++; }
-        else if (validCode(p.code) && validCode(c.code) && c.code !== p.code) { skipped++; gLog(`↷ Atlandı (kod uyuşmuyor ${p.code} ≠ ${c.code}): ${p.name}`); }
-        else if (c.name === p.name) same++;
+        const c = cleanGem(await geminiRead(b64, susp ? p.name : ""));
+        const nameOk = c.name.length >= 4 && c.name.length <= 100 && !isSuspiciousName(c.name);
+        if (!c.complete && p.embIndex != null) {
+          cropPending.push({ p, entry: { source_flyer: p.sourceFlyer || null, bbox: p.bbox || null, name: nameOk ? c.name : p.name, code: validCode(c.code) ? c.code : p.code, reason: "Görsel yarım/kesik", kind: "live", embIndex: p.embIndex, image: p.image, oldCode: p.code } });
+          incompl++;
+        }
+        const newCode = validCode(c.code) && c.code !== p.code ? c.code : null;
+        let newName = null;
+        if (nameOk) {
+          if (susp) { if (c.name !== p.name) newName = c.name; }
+          else if (full) {
+            const sim = nameSimilarity(c.name, p.name);
+            const fb = c.brand ? foldTr(c.brand) : "";
+            if (sim < 0.75) newName = c.name;                                        // belirgin fark
+            else if (c.name !== p.name && foldTr(c.name) === foldTr(p.name)) newName = c.name;   // sadece büyük/küçük harf düzeni
+            else if (fb && foldTr(c.name).endsWith(fb) && !foldTr(p.name).endsWith(fb)) newName = c.name; // marka sona
+          }
+        }
+        if (!newName && !newCode) {
+          if (!nameOk && susp) skipped++; else same++;
+          if (full && p.embIndex != null && c.complete) doneSet.add(p.embIndex);
+          if (cropPending.length >= 50) flush();
+        }
         else {
-          const code = validCode(p.code) ? p.code : (validCode(c.code) ? c.code : p.code);
-          pending.push({ p, name: c.name, code });
-          if (n < 40) gLog(`✏️ ${p.name}  →  ${c.name}`);
+          pending.push({ p, name: newName || p.name, code: newCode || p.code });
+          if (n < 60 || (full && fixed + pending.length < 80)) gLog(`✏️ ${p.name}  →  ${newName || "(isim aynı)"}${newCode ? `  [kod ${p.code} → ${newCode}]` : ""}`);
+          if (newCode) codeFix++;
           if (pending.length >= 100) flush();
         }
       } catch (e) { if (e.fatal) { gem.stop = true; gLog("❌ " + e.message); } else { err++; gErr(e, p.image); } }
-      if (++n % 25 === 0) gLog(`${n}/${bad.length} işlendi · ${skipped} atlandı · ${err} hata`);
+      if (++n % 25 === 0) { if (full) saveFullDone(doneSet); gLog(`${n}/${bad.length} işlendi · ${skipped} atlandı · ${err} hata`); }
     });
     await flush(); await flushChain;
-    gLog(`✔ Bitti: ${n}/${bad.length} · ${fixed} isim düzeltildi · ${same} zaten doğru · ${skipped} atlandı (emin olunamadı) · ${err} hata.`);
+    if (full) saveFullDone(doneSet);
+    gLog(`✔ Bitti: ${n}/${bad.length} · ${fixed} ürün düzeltildi (${codeFix} kod) · ${incompl} yarım görsel (yeniden tarama + manuel kırpma listesi) · ${same} zaten doğru · ${skipped} atlandı · ${err} hata.${full ? ` Toplam tamamlanan: ${doneSet.size}/${all.length}.` : ""}`);
   } catch (e) { gLog("❌ " + e.message); }
   gSetRunning(false);
+}
+el.geminiFixBtn.addEventListener("click", () => runFix(false));
+document.getElementById("geminiFullBtn").addEventListener("click", () => runFix(true));
+document.getElementById("geminiFullResetBtn").addEventListener("click", () => {
+  try { localStorage.removeItem(FULL_KEY); } catch {}
+  gLog("Tam tarama ilerlemesi sıfırlandı.");
 });
 
 

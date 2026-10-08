@@ -546,3 +546,10 @@ main{ padding:14px 16px 0; max-width:680px; margin:0 auto; }
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }
 }
+
+/* Görsel arama benzerlik rozeti */
+.sim-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#FFF4DC;color:#8A6A1F;margin-bottom:4px}
+.sim-chip.strong{background:#E3F3E6;color:#2F6B3C}
+.report-match{display:flex;gap:10px;align-items:center;margin:6px 0;padding:6px;border:1px solid var(--border,#E8E4DA);border-radius:8px;font-size:13px}
+.report-match img{width:48px;height:48px;object-fit:contain;border-radius:6px;background:#fff}
+.report-match span{color:#8A8578;font-size:12px}

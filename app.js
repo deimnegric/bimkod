@@ -215,6 +215,13 @@ function runTextSearch(query) {
 }
 
 // ---------- Görsel arama (CLIP embedding + cosine similarity) ----------
+// Sadece gerçekten benzer sonuçlar gösterilir. Arşivdeki 15 bin ürün üzerinde ölçüldü: alakasız
+// ürünlerin ortanca benzerliği ≈%55-65, farklı ama komşu ürünler en çok ≈%78-88 -> taban %75;
+// ayrıca en iyi sonuçtan 10 puandan fazla düşük olanlar elenir (liste şişmesin). %85+ "çok benzer".
+const VIS_MIN_SIM = 0.75;
+const VIS_STRONG_SIM = 0.85;
+const VIS_BAND = 0.10;
+const VIS_MAX_RESULTS = 40;
 async function runVisualSearch(imageDataUrl) {
   const embReady = ensureEmbeddings(); // paralel indir
   if (!clipExtractor) {
@@ -244,7 +251,8 @@ async function runVisualSearch(imageDataUrl) {
   }).filter(Boolean);
 
   scored.sort((a, b) => b.score - a.score);
-  return scored.slice(0, 100); // en benzer ilk 100 ürün
+  const floor = Math.max(VIS_MIN_SIM, (scored[0]?.score ?? 0) - VIS_BAND);
+  return scored.filter((r) => r.score >= floor).slice(0, VIS_MAX_RESULTS);
 }
 
 // ---------- Status bar ----------
@@ -317,8 +325,8 @@ function render() {
   el.resultsInfo.textContent = isDefaultBrowse
     ? `Tüm ürünler (${total})`
     : total
-      ? `${total} ürün bulundu`
-      : (isVisual ? "Benzer ürün bulunamadı" : "Sonuç bulunamadı");
+      ? (isVisual ? `${total} benzer ürün bulundu (%${Math.round(VIS_MIN_SIM * 100)}+ benzerlik)` : `${total} ürün bulundu`)
+      : (isVisual ? "Yeterince benzer (%75+) ürün bulunamadı — adıyla aramayı ya da \"Ürün Bildir\"i deneyin" : "Sonuç bulunamadı");
 
   el.resultsList.innerHTML = pageItems.map((p) => `
     <div class="result-row" data-code="${escapeHtml(p.code)}">
@@ -327,6 +335,7 @@ function render() {
         ${dateChip(p)}
       </div>
       <div class="result-content">
+        ${isVisual && p.score != null ? `<span class="sim-chip ${p.score >= VIS_STRONG_SIM ? "strong" : ""}">%${Math.round(p.score * 100)} benzer</span>` : ""}
         <div class="result-name">${isRecentlyAdded(p) ? '<span class="badge-new" style="position:static;display:inline-block;margin-right:6px;vertical-align:middle;">YENİ</span>' : ""}${isVisual ? escapeHtml(p.name) : highlightMatch(p.name, state.query)}</div>
         <div class="result-meta">
           <span class="result-code">${escapeHtml(p.code)}</span>
@@ -405,7 +414,7 @@ function handleImagePick(file) {
     try {
       state.results = await runVisualSearch(reader.result);
       render();
-      showToast(`${state.results.length} benzer ürün bulundu`);
+      showToast(state.results.length ? `${state.results.length} benzer ürün bulundu` : "Yeterince benzer ürün bulunamadı");
     } catch (err) {
       hideStatus();
       showToast("Görsel analiz edilemedi: " + err.message);
@@ -597,6 +606,12 @@ function showToast(msg) {
 // Firebase üzerinden gidiyor.
 const reportModal = document.getElementById("reportModal");
 const reportStatus = document.getElementById("reportStatus");
+let reportConfirmed = false;
+document.getElementById("reportImageInput").addEventListener("change", () => {
+  reportConfirmed = false;
+  document.getElementById("reportMatches").innerHTML = "";
+  document.getElementById("reportSubmitBtn").textContent = "Gönder";
+});
 
 document.getElementById("reportMissingBtn").addEventListener("click", () => {
   reportModal.hidden = false;
@@ -617,12 +632,35 @@ document.getElementById("reportSubmitBtn").addEventListener("click", async () =>
     return;
   }
 
-  reportStatus.textContent = "Gönderiliyor…";
   const submitBtn = document.getElementById("reportSubmitBtn");
+  const matchesBox = document.getElementById("reportMatches");
   submitBtn.disabled = true;
 
+  // 1) Önce görsel benzerlikle "bu ürün zaten var mı?" kontrolü (yalnızca %80+ eşleşmeler)
+  if (!reportConfirmed && EMBEDDINGS && clipExtractor) { // model+arşiv zaten yüklüyse (aynı oturumda görsel arama yapıldıysa) kontrol et; yoksa veri harcatma
+    reportStatus.textContent = "Benzer ürün var mı kontrol ediliyor…";
+    try {
+      const dataUrl = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file); });
+      const found = (await Promise.race([
+        runVisualSearch(dataUrl),
+        new Promise((_, rej) => setTimeout(() => rej(new Error("zaman aşımı")), 45000)),
+      ])).filter((r) => r.score >= VIS_STRONG_SIM).slice(0, 3);
+      if (found.length) {
+        matchesBox.innerHTML = "<p style='margin:8px 0 4px;font-weight:600;'>Bu ürünlerden biri olabilir mi?</p>" + found.map((p) =>
+          `<div class="report-match"><img src="${p.image}" alt=""><div><b>${escapeHtml(p.name)}</b><br><span>Kod: ${escapeHtml(p.code)} · %${Math.round(p.score * 100)} benzer</span></div></div>`).join("");
+        reportStatus.textContent = "Aradığınız bu değilse tekrar \"Yine de Gönder\"e basın.";
+        submitBtn.textContent = "Yine de Gönder";
+        reportConfirmed = true;
+        submitBtn.disabled = false;
+        return;
+      }
+    } catch { /* kontrol başarısız -> doğrudan gönder */ }
+  }
+  matchesBox.innerHTML = "";
+  reportStatus.textContent = "Gönderiliyor…";
+
   try {
-    const { submitProductReport } = await import("./firebase-config.js");
+    const { submitProductReport } = await import("./report-submit.js");
     await submitProductReport({ imageFile: file, name });
     reportStatus.textContent = "✅ Alındı, teşekkürler! Ekibimiz en kısa sürede inceleyip ekleyecek.";
     setTimeout(() => {
@@ -632,9 +670,11 @@ document.getElementById("reportSubmitBtn").addEventListener("click", async () =>
       document.getElementById("reportNameInput").value = "";
     }, 1900);
   } catch (err) {
-    reportStatus.textContent = "❌ Gönderilemedi: " + err.message;
+    const m = String(err.message || err);
+    reportStatus.textContent = "❌ Gönderilemedi: " + (/dynamically imported|Failed to fetch|import/i.test(m) ? "bağlantı kurulamadı (internetinizi ya da reklam engelleyicinizi kontrol edin)." : m);
   }
   submitBtn.disabled = false;
+  submitBtn.textContent = "Gönder"; reportConfirmed = false;
 });
 
 // ==================== Yasal Metinler (Gizlilik / KVKK-GDPR / Çerez) ====================

@@ -7,14 +7,14 @@
 //    aşımından sonra önbellek -> yavaş bağlantıda site yine hızlı açılır.
 //  - embeddings.bin: önbellek-öncelikli (URL'deki ?c=sayı değişince yenisi iner).
 //  - images/: önbellekten hemen göster, arkada güncelle (stale-while-revalidate).
-const CACHE_NAME = "bimkod-v5";
+const CACHE_NAME = "bimkod-v6";
 
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
-  "./firebase-config.js",
+  "./report-submit.js",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/logoheader.png",

@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Herkese açık "Ürün Bildir" formu: yalnızca yeni kayıt OLUŞTURABİLİR, boyut sınırlı.
+    // NOT: admin.html girişsiz çalıştığı için okuma/güncelleme/silme de açık bırakıldı.
+    // Daha güvenli hale getirmek için ileride admin'e Firebase Auth girişi eklenip
+    // aşağıdaki "if true" satırları "request.auth != null" yapılmalı.
+    match /pending_reports/{id} {
+      allow create: if request.resource.data.status == 'pending'
+        && (request.resource.data.name == null
+            || (request.resource.data.name is string && request.resource.data.name.size() < 300))
+        && (request.resource.data.imageData == null
+            || (request.resource.data.imageData is string && request.resource.data.imageData.size() < 950000));
+      allow read, update, delete: if true;
+    }
+  }
+}
