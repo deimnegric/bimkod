@@ -251257,5 +251257,22 @@
     "confidence": 0.9416736960411072,
     "addedAt": "2026-10-07T20:38:11.007Z",
     "approvedManually": true
+  },
+  {
+    "code": "1643647",
+    "name": "55 İnç Frameless Ultra HD Qled Google TV",
+    "price": null,
+    "image": "images/015927.jpg",
+    "embIndex": 15927,
+    "confidence": 0.9328574538230896,
+    "addedAt": "2026-09-23T06:15:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
+    "bbox": [
+      320,
+      625,
+      723,
+      1039
+    ],
+    "approvedManually": true
   }
 ]
