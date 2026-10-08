@@ -251237,5 +251237,22 @@
     "confidence": null,
     "addedAt": "2026-10-08T21:28:28.994Z",
     "approvedManually": true
+  },
+  {
+    "code": "1708407",
+    "name": "Kakaolu Süt 180 ml Yörükoğlu",
+    "price": null,
+    "image": "images/015930.jpg",
+    "embIndex": 15930,
+    "confidence": 0.9252625703811646,
+    "addedAt": "2026-08-24T06:48:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1137.jpg",
+    "bbox": [
+      387,
+      1446,
+      509,
+      1668
+    ],
+    "approvedManually": true
   }
 ]

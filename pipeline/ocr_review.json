@@ -5627,23 +5627,6 @@
     "review_image": "review/544ab68af30979d9.jpg"
   },
   {
-    "full_crop": "pipeline/crops_full/001042.jpg",
-    "source_flyer": "pipeline/raw_flyers/1137.jpg",
-    "flyer_date": "2026-08-24T06:48:33+00:00",
-    "bbox": [
-      387,
-      1446,
-      509,
-      1668
-    ],
-    "confidence": 0.9252625703811646,
-    "code": null,
-    "name": "Kakaolu Süt Yörükoğlu",
-    "price": null,
-    "raw_ocr": "Kakaolu Süt\nYörükoğlu\n180 ml",
-    "review_image": "review/14340bed461e4c81.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/001046.jpg",
     "source_flyer": "pipeline/raw_flyers/1137.jpg",
     "flyer_date": "2026-08-24T06:48:33+00:00",
