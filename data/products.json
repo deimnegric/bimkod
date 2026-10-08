@@ -251291,5 +251291,15 @@
       990
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1638304",
+    "name": "Yuvarlama Kulesi Gokidy",
+    "price": null,
+    "image": "images/015929.jpg",
+    "embIndex": 15929,
+    "confidence": null,
+    "addedAt": "2026-10-08T21:28:28.994Z",
+    "approvedManually": true
   }
 ]
