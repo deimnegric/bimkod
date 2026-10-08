@@ -148949,22 +148949,6 @@
     ]
   },
   {
-    "code": "1632196",
-    "name": "YAN i V Silikon Ürün Çeşitleri",
-    "price": null,
-    "image": "images/009519.jpg",
-    "embIndex": 9519,
-    "confidence": 0.6677908301353455,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
-    "bbox": [
-      385,
-      1083,
-      626,
-      1170
-    ]
-  },
-  {
     "code": "1635121",
     "name": "Cam Ayaklı 4 Olan i",
     "price": null,
