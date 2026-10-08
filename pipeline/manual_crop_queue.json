@@ -1,0 +1,17 @@
+[
+  {
+    "source_flyer": "pipeline/raw_flyers/1193.jpg",
+    "bbox": [
+      787,
+      607,
+      1030,
+      770
+    ],
+    "name": "43 İnç Frameless FHD Whale OS 10 Android Qled TV 43wf7500fq",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:39:08.072Z"
+  }
+]

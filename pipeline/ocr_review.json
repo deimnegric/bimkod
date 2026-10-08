@@ -34,23 +34,6 @@
     "review_image": "review/ad0b2658f6d1c8d1.jpg"
   },
   {
-    "full_crop": "pipeline/crops_full/000051.jpg",
-    "source_flyer": "pipeline/raw_flyers/1193.jpg",
-    "flyer_date": "2026-09-23T06:15:14+00:00",
-    "bbox": [
-      787,
-      607,
-      1030,
-      770
-    ],
-    "confidence": 0.5657119750976562,
-    "code": "437500",
-    "name": "43 İnç Frameless FHD Whale OS 10 - Android GleJd TV ŞE GE) bilgisi için OR kodu",
-    "price": null,
-    "raw_ocr": "43 İnç Frameless\nFHD Whale OS 10 -\nAndroid GleJd TV ŞE\n43WF7500F0 .&\nGE)\nbilgisi için\nOR kodu\n12.990.\nokutunuz.",
-    "review_image": "review/c5ead496cfdafd4a.jpg"
-  },
-  {
     "full_crop": "pipeline/crops_full/000052.jpg",
     "source_flyer": "pipeline/raw_flyers/1193.jpg",
     "flyer_date": "2026-09-23T06:15:14+00:00",
