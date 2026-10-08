@@ -148,5 +148,50 @@
     "kind": "review",
     "seen": 1,
     "ts": "2026-10-08T21:40:37.468Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      26,
+      1242,
+      205,
+      1358
+    ],
+    "name": "Dolu Dolu Karışık Kuruyemişli Sütlü Çikolata 80 g Ülker",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      50,
+      113,
+      342,
+      219
+    ],
+    "name": "Tasarım Termos Bardak Germ",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
+  },
+  {
+    "source_flyer": "pipeline/raw_flyers/1171.jpg",
+    "bbox": [
+      581,
+      193,
+      912,
+      535
+    ],
+    "name": "65 İnç 4k Ultra HD Qled Google TV 65dq40000",
+    "code": "",
+    "reason": "Görsel yarım/kesik",
+    "kind": "review",
+    "seen": 1,
+    "ts": "2026-10-08T21:41:18.233Z"
   }
 ]

@@ -251764,5 +251764,294 @@
       558
     ],
     "approvedManually": true
+  },
+  {
+    "code": "1702102",
+    "name": "İzmir Bombası 220 g Mixim",
+    "price": null,
+    "image": "images/015961.jpg",
+    "embIndex": 15961,
+    "confidence": 0.9393355846405029,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      429,
+      695,
+      555,
+      849
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715102",
+    "name": "7 Tohumlu Pirinç Patlağı 80 g Yayla",
+    "price": null,
+    "image": "images/015962.jpg",
+    "embIndex": 15962,
+    "confidence": 0.9425653219223022,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      640,
+      852,
+      777,
+      1049
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715013",
+    "name": "Çikolata Parçacıklı Kremalı Gofret 140 g Galbusera",
+    "price": null,
+    "image": "images/015963.jpg",
+    "embIndex": 15963,
+    "confidence": 0.9225520491600037,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      422,
+      1063,
+      616,
+      1235
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708710",
+    "name": "Marshmallow Yumuşak Şekerleme 250 g Bebeto",
+    "price": null,
+    "image": "images/015964.jpg",
+    "embIndex": 15964,
+    "confidence": 0.9215113520622253,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      233,
+      850,
+      390,
+      1059
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1708898",
+    "name": "Hindistan Cevizi Kaplamalı Bademli Top Gofret 40 g Raffaello",
+    "price": null,
+    "image": "images/015965.jpg",
+    "embIndex": 15965,
+    "confidence": 0.8864967226982117,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      229,
+      1064,
+      390,
+      1235
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1638133",
+    "name": "2 Lisanslı Puzzle Bir Arada",
+    "price": null,
+    "image": "images/015966.jpg",
+    "embIndex": 15966,
+    "confidence": 0.9281810522079468,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      249,
+      771,
+      535,
+      925
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1715137",
+    "name": "Dolu Dolu Çikolata Antep Fıstığı Fındık Badem Ülker",
+    "price": null,
+    "image": "images/015967.jpg",
+    "embIndex": 15967,
+    "confidence": 0.8681437373161316,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
+    "bbox": [
+      33,
+      1349,
+      213,
+      1438
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647289",
+    "name": "Puzzlelab İlk Renk Eşleştirme Yükselen Zeka",
+    "price": null,
+    "image": "images/015968.jpg",
+    "embIndex": 15968,
+    "confidence": 0.9281299114227295,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      47,
+      543,
+      282,
+      782
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1647448",
+    "name": "Pelüş Figürlü Anahtarlık Ve Çanta Aksesuarı Elena",
+    "price": null,
+    "image": "images/015969.jpg",
+    "embIndex": 15969,
+    "confidence": 0.9252180457115173,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      691,
+      925,
+      916,
+      1055
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1638219",
+    "name": "Rulo Satranç Oyunu 32x32 cm Redka",
+    "price": null,
+    "image": "images/015970.jpg",
+    "embIndex": 15970,
+    "confidence": 0.9103595018386841,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      31,
+      784,
+      247,
+      916
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1639080",
+    "name": "Oyuncak Bebek Çeşitleri Uçar Oyuncak",
+    "price": null,
+    "image": "images/015971.jpg",
+    "embIndex": 15971,
+    "confidence": 0.8873418569564819,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      740,
+      769,
+      912,
+      920
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646595",
+    "name": "Sesli Kitaplar Eolo",
+    "price": null,
+    "image": "images/015972.jpg",
+    "embIndex": 15972,
+    "confidence": 0.883688747882843,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
+    "bbox": [
+      461,
+      1224,
+      675,
+      1346
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646438",
+    "name": "Manikür Seti 5'i 1 Arada Naturelove",
+    "price": null,
+    "image": "images/015973.jpg",
+    "embIndex": 15973,
+    "confidence": 0.9295641183853149,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      26,
+      987,
+      328,
+      1175
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1639320",
+    "name": "Saç Düzleştirici PSC47 Polosmart",
+    "price": null,
+    "image": "images/015974.jpg",
+    "embIndex": 15974,
+    "confidence": 0.9295784831047058,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      233,
+      1190,
+      448,
+      1348
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646448",
+    "name": "Saç Sakal Düzeltme Tıraş Makinesi Psc115 Polosmart",
+    "price": null,
+    "image": "images/015975.jpg",
+    "embIndex": 15975,
+    "confidence": 0.9216180443763733,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      278,
+      790,
+      503,
+      976
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1644925",
+    "name": "Topuk Törpüsü Naturalove",
+    "price": null,
+    "image": "images/015976.jpg",
+    "embIndex": 15976,
+    "confidence": 0.9204687476158142,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      34,
+      1205,
+      228,
+      1341
+    ],
+    "approvedManually": true
+  },
+  {
+    "code": "1646449",
+    "name": "Kaş Düzeltme Cihazı Şarjlı Psc119 Polosmart",
+    "price": null,
+    "image": "images/015977.jpg",
+    "embIndex": 15977,
+    "confidence": 0.9145183563232422,
+    "addedAt": "2026-09-15T17:59:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1170.jpg",
+    "bbox": [
+      726,
+      994,
+      915,
+      1145
+    ],
+    "approvedManually": true
   }
 ]
