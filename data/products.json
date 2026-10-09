@@ -1,18 +1,18 @@
 [
   {
     "code": "1706571",
-    "name": "en Peluş",
+    "name": "Peluş Mikrofiber Bezi Mr.Green",
     "price": null,
     "image": "images/000000.jpg",
     "embIndex": 0,
-    "confidence": 0.793056070804596,
-    "addedAt": "2025-11-18T07:46:35+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/747.jpg",
+    "confidence": 0.943722128868103,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      528,
-      879,
-      699,
-      1018
+      357,
+      1073,
+      469,
+      1256
     ]
   },
   {
@@ -21,13 +21,13 @@
     "price": null,
     "image": "images/000001.jpg",
     "embIndex": 1,
-    "confidence": 0.9374025464057922,
+    "confidence": 0.9374024271965027,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      720,
+      721,
       1257,
-      824,
+      822,
       1433
     ]
   },
@@ -43,7 +43,7 @@
     "bbox": [
       780,
       969,
-      938,
+      937,
       1061
     ]
   },
@@ -53,7 +53,7 @@
     "price": null,
     "image": "images/000003.jpg",
     "embIndex": 3,
-    "confidence": 0.9280479550361633,
+    "confidence": 0.928047776222229,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
@@ -65,18 +65,18 @@
   },
   {
     "code": "1713222",
-    "name": "Vanilya ve Beyaz Çikolata Aromalı Çilekli Milkshake Sek 285 ml",
+    "name": "Duş Jeli Pereja 500 ml Li a J",
     "price": null,
     "image": "images/000004.jpg",
     "embIndex": 4,
-    "confidence": 0.9131538271903992,
-    "addedAt": "2025-12-09T15:23:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/773.jpg",
+    "confidence": 0.9247669577598572,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      834,
-      1414,
-      1068,
-      1569
+      683,
+      1063,
+      794,
+      1237
     ]
   },
   {
@@ -85,7 +85,7 @@
     "price": null,
     "image": "images/000005.jpg",
     "embIndex": 5,
-    "confidence": 0.9239109754562378,
+    "confidence": 0.9239108562469482,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
@@ -97,65 +97,65 @@
   },
   {
     "code": "1712573",
-    "name": "emi gi TozDeterjan pa Persil Sık Yıkananlar",
+    "name": "Toz Deterjan Persil Sık Yıkananlar 9 kg",
     "price": null,
     "image": "images/000006.jpg",
     "embIndex": 6,
-    "confidence": 0.8660324215888977,
-    "addedAt": "2026-06-21T06:38:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1044.jpg",
+    "confidence": 0.9202107191085815,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      33,
-      759,
-      177,
-      894
+      24,
+      560,
+      171,
+      823
     ]
   },
   {
     "code": "1704227",
-    "name": "Temizlik Bezi Seti",
+    "name": "Mikrofiber Temizlik Bezi Seti Mr.Green",
     "price": null,
     "image": "images/000007.jpg",
     "embIndex": 7,
-    "confidence": 0.9113873839378357,
-    "addedAt": "2026-05-31T09:17:19+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1010.jpg",
+    "confidence": 0.9116330146789551,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      729,
-      694,
-      833,
-      850
+      249,
+      1072,
+      353,
+      1248
     ]
   },
   {
     "code": "1709894",
-    "name": "Zeytinyağlı Sıvı Sabun © Dalan3L",
+    "name": "Sıvı Sabun Dalan3L",
     "price": null,
     "image": "images/000008.jpg",
     "embIndex": 8,
-    "confidence": 0.9250689744949341,
-    "addedAt": "2025-01-17T15:12:59+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/304.jpg",
+    "confidence": 0.9037972092628479,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      686,
-      839,
-      842,
-      973
+      281,
+      844,
+      366,
+      1046
     ]
   },
   {
     "code": "1714227",
-    "name": "Charmlı ı Tırnak Makası Naturalove il ı",
+    "name": "Charmlı Tırnak Makası | Naturalove",
     "price": null,
     "image": "images/000009.jpg",
     "embIndex": 9,
-    "confidence": 0.8987798690795898,
+    "confidence": 0.898780107498169,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      482,
+      481,
       1249,
-      597,
+      596,
       1429
     ]
   },
@@ -165,13 +165,13 @@
     "price": null,
     "image": "images/000010.jpg",
     "embIndex": 10,
-    "confidence": 0.8935346603393555,
+    "confidence": 0.893534779548645,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
       305,
       571,
-      419,
+      418,
       822
     ]
   },
@@ -197,7 +197,7 @@
     "price": null,
     "image": "images/000012.jpg",
     "embIndex": 12,
-    "confidence": 0.886198878288269,
+    "confidence": 0.8861989974975586,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
@@ -218,18 +218,18 @@
   },
   {
     "code": "1700260",
-    "name": "Lifli Si",
+    "name": "Banyo Lifi Red Oueen Lİ ğe",
     "price": null,
     "image": "images/000014.jpg",
     "embIndex": 14,
-    "confidence": 0.8704586029052734,
-    "addedAt": "2024-08-02T21:06:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/65.jpg",
+    "confidence": 0.8670638799667358,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      592,
-      991,
-      754,
-      1103
+      868,
+      800,
+      958,
+      970
     ]
   },
   {
@@ -238,7 +238,7 @@
     "price": null,
     "image": "images/000015.jpg",
     "embIndex": 15,
-    "confidence": 0.8635021448135376,
+    "confidence": 0.863502025604248,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
@@ -250,34 +250,34 @@
   },
   {
     "code": "1715017",
-    "name": "Ihlamur İnci 50g",
+    "name": "Kağıt Mendil Maylo 10lu ii",
     "price": null,
     "image": "images/000016.jpg",
     "embIndex": 16,
-    "confidence": 0.8864184021949768,
-    "addedAt": "2025-10-27T09:03:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/716.jpg",
+    "confidence": 0.8594757318496704,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      376,
-      604,
-      490,
-      816
+      631,
+      792,
+      731,
+      941
     ]
   },
   {
     "code": "1712745",
-    "name": "Diş Fırçası Banat 6240 Pro",
+    "name": "Diş Fırçası | Banat Pro 6240 i",
     "price": null,
     "image": "images/000017.jpg",
     "embIndex": 17,
-    "confidence": 0.9481678605079651,
-    "addedAt": "2025-09-14T07:05:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/651.jpg",
+    "confidence": 0.8550184369087219,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      604,
-      755,
-      722,
-      883
+      230,
+      1262,
+      337,
+      1434
     ]
   },
   {
@@ -302,7 +302,7 @@
     "price": null,
     "image": "images/000019.jpg",
     "embIndex": 19,
-    "confidence": 0.8741313219070435,
+    "confidence": 0.8741315007209778,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
@@ -338,7 +338,7 @@
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      674,
+      673,
       1069,
       841,
       1290
@@ -622,7 +622,7 @@
     "price": null,
     "image": "images/000039.jpg",
     "embIndex": 39,
-    "confidence": 0.9380573630332947,
+    "confidence": 0.9380574822425842,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
@@ -638,7 +638,7 @@
     "price": null,
     "image": "images/000040.jpg",
     "embIndex": 40,
-    "confidence": 0.9336601495742798,
+    "confidence": 0.933660089969635,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
@@ -730,18 +730,18 @@
   },
   {
     "code": "1711581",
-    "name": "Yerfıstığı Kaplamalı Fındık Kremalı Gofret Eti Canga 34g yar",
+    "name": "Yer Fıstıklı Kaplamalı Gofret Eti Canga 34g pej",
     "price": null,
     "image": "images/000046.jpg",
     "embIndex": 46,
-    "confidence": 0.9179200530052185,
-    "addedAt": "2025-03-25T18:31:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/391.jpg",
+    "confidence": 0.9154850840568542,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      31,
-      1119,
-      285,
-      1237
+      820,
+      1062,
+      959,
+      1242
     ]
   },
   {
@@ -750,30 +750,30 @@
     "price": null,
     "image": "images/000047.jpg",
     "embIndex": 47,
-    "confidence": 0.9348515272140503,
-    "addedAt": "2026-01-20T05:23:40+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/823.jpg",
+    "confidence": 0.9120998382568359,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      798,
-      607,
-      1010,
-      884
+      774,
+      1248,
+      990,
+      1440
     ]
   },
   {
     "code": "1708496",
-    "name": "Falım Sakız Meyve Serisi",
+    "name": "Şekersiz Sakız Çeşitleri Falım 5'li",
     "price": null,
     "image": "images/000048.jpg",
     "embIndex": 48,
-    "confidence": 0.8169257640838623,
-    "addedAt": "2025-11-06T09:34:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/727.jpg",
+    "confidence": 0.9093037247657776,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      828,
-      1381,
-      1040,
-      1567
+      753,
+      694,
+      962,
+      847
     ]
   },
   {
@@ -782,7 +782,7 @@
     "price": null,
     "image": "images/000049.jpg",
     "embIndex": 49,
-    "confidence": 0.9061503410339355,
+    "confidence": 0.906150221824646,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
@@ -798,14 +798,14 @@
     "price": null,
     "image": "images/000050.jpg",
     "embIndex": 50,
-    "confidence": 0.8537637591362,
-    "addedAt": "2024-10-05T16:00:35+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/153.jpg",
+    "confidence": 0.900881826877594,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      410,
-      937,
-      530,
-      1138
+      495,
+      566,
+      703,
+      686
     ]
   },
   {
@@ -814,7 +814,7 @@
     "price": null,
     "image": "images/000051.jpg",
     "embIndex": 51,
-    "confidence": 0.8976600170135498,
+    "confidence": 0.8976602554321289,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
@@ -826,18 +826,18 @@
   },
   {
     "code": "1708249",
-    "name": "Bütün Fındıklı Çikolata Kaplı 2g “ Dolgulu Gofret ya Ferrero Rocher (o",
+    "name": "Çikolata Kaplı Fındıklı Top Gofret Ferrero Rocher 37,55 g",
     "price": null,
     "image": "images/000052.jpg",
     "embIndex": 52,
-    "confidence": 0.8844695091247559,
-    "addedAt": "2024-09-30T20:26:30+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/142.jpg",
+    "confidence": 0.8930304050445557,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      661,
-      527,
-      836,
-      642
+      31,
+      1064,
+      213,
+      1230
     ]
   },
   {
@@ -874,34 +874,34 @@
   },
   {
     "code": "1637975",
-    "name": "Çerçeve Harita Puzzle",
+    "name": "N Çerçeve Harita Puzzle",
     "price": null,
     "image": "images/000055.jpg",
     "embIndex": 55,
-    "confidence": 0.951224684715271,
-    "addedAt": "2025-09-01T18:47:45+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/632.jpg",
+    "confidence": 0.9591254591941833,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      24,
-      1089,
-      408,
-      1240
+      27,
+      927,
+      294,
+      1062
     ]
   },
   {
     "code": "1642391",
-    "name": "Ahşap Araba Rafı",
+    "name": "PiCCOLO MONDİ Ahşap Araba Rafı",
     "price": null,
     "image": "images/000056.jpg",
     "embIndex": 56,
-    "confidence": 0.9061736464500427,
-    "addedAt": "2025-09-20T17:21:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/664.jpg",
+    "confidence": 0.9456692337989807,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      527,
-      604,
-      712,
-      815
+      297,
+      551,
+      501,
+      769
     ]
   },
   {
@@ -910,7 +910,7 @@
     "price": null,
     "image": "images/000057.jpg",
     "embIndex": 57,
-    "confidence": 0.9447118043899536,
+    "confidence": 0.9447119235992432,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
@@ -926,7 +926,7 @@
     "price": null,
     "image": "images/000058.jpg",
     "embIndex": 58,
-    "confidence": 0.9332551956176758,
+    "confidence": 0.9332552552223206,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
@@ -938,50 +938,50 @@
   },
   {
     "code": "1623419",
-    "name": "Animasyon 505 Balon Seti Ka pompası",
+    "name": "Animasyon Balon Seti",
     "price": null,
     "image": "images/000059.jpg",
     "embIndex": 59,
-    "confidence": 0.8778900504112244,
-    "addedAt": "2024-09-30T20:26:59+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/148.jpg",
+    "confidence": 0.9295176863670349,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      577,
-      147,
-      803,
-      331
+      33,
+      1228,
+      212,
+      1351
     ]
   },
   {
     "code": "1645469",
-    "name": "Sevimli Ördek ve Yavruları PE pe Gg",
+    "name": "Sevimli Ördek N is ve Yavruları des Dn",
     "price": null,
     "image": "images/000060.jpg",
     "embIndex": 60,
-    "confidence": 0.9500335454940796,
-    "addedAt": "2026-06-09T15:13:34+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1026.jpg",
+    "confidence": 0.9140467047691345,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      902,
-      925,
-      1136,
-      1100
+      493,
+      926,
+      692,
+      1061
     ]
   },
   {
     "code": "1624900",
-    "name": "orticolo Makas Seti 2'li (1! Bae",
+    "name": "ee 2 © Makas Seti NN Eğ",
     "price": null,
     "image": "images/000061.jpg",
     "embIndex": 61,
-    "confidence": 0.9203974008560181,
-    "addedAt": "2024-09-02T11:56:29+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/109.jpg",
+    "confidence": 0.9092820882797241,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      501,
-      1049,
-      734,
-      1233
+      250,
+      1228,
+      448,
+      1353
     ]
   },
   {
@@ -1002,18 +1002,18 @@
   },
   {
     "code": "1645201",
-    "name": "TwArkası Led Gizli) SEBE K Ki",
+    "name": "TV Arkası Led Aydımlatma",
     "price": null,
     "image": "images/000063.jpg",
     "embIndex": 63,
-    "confidence": 0.921379566192627,
-    "addedAt": "2026-05-21T07:15:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/996.jpg",
+    "confidence": 0.9506963491439819,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1171.jpg",
     "bbox": [
-      781,
-      1262,
-      1027,
-      1506
+      334,
+      1064,
+      605,
+      1346
     ]
   },
   {
@@ -1054,7 +1054,7 @@
     "price": null,
     "image": "images/000066.jpg",
     "embIndex": 66,
-    "confidence": 0.9436812400817871,
+    "confidence": 0.9436811208724976,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1171.jpg",
     "bbox": [
@@ -1066,18 +1066,18 @@
   },
   {
     "code": "1646205",
-    "name": "OMIR 01 Neo Cop Telefonu",
+    "name": "OMIX 01 Neo Cep Telefonu",
     "price": null,
     "image": "images/000067.jpg",
     "embIndex": 67,
-    "confidence": 0.9624160528182983,
-    "addedAt": "2026-03-10T11:49:05+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/888.jpg",
+    "confidence": 0.9405121803283691,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1171.jpg",
     "bbox": [
-      429,
-      753,
-      625,
-      1026
+      37,
+      833,
+      338,
+      1052
     ]
   },
   {
@@ -1086,14 +1086,14 @@
     "price": null,
     "image": "images/000068.jpg",
     "embIndex": 68,
-    "confidence": 0.8604530096054077,
-    "addedAt": "2026-01-17T16:13:10+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/818.jpg",
+    "confidence": 0.9330798387527466,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1171.jpg",
     "bbox": [
-      349,
-      644,
-      545,
-      916
+      342,
+      839,
+      597,
+      1033
     ]
   },
   {
@@ -1134,7 +1134,7 @@
     "price": null,
     "image": "images/000071.jpg",
     "embIndex": 71,
-    "confidence": 0.841084897518158,
+    "confidence": 0.8410850763320923,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1171.jpg",
     "bbox": [
@@ -1683,18 +1683,18 @@
   },
   {
     "code": "1622246",
-    "name": "Banyo Paspas Seti Cm",
+    "name": "Banyo Paspas Seti",
     "price": null,
     "image": "images/000106.jpg",
     "embIndex": 106,
-    "confidence": 0.8821464776992798,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/30.jpg",
+    "confidence": 0.9047152996063232,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      41,
-      581,
-      435,
-      780
+      547,
+      261,
+      862,
+      445
     ]
   },
   {
@@ -1735,30 +1735,30 @@
     "price": null,
     "image": "images/000109.jpg",
     "embIndex": 109,
-    "confidence": 0.905132532119751,
+    "confidence": 0.9051322340965271,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
       474,
       593,
-      643,
+      642,
       805
     ]
   },
   {
     "code": "1634980",
-    "name": "Fırfırlı Dikişsiz Bone . cl Kumaş",
+    "name": "Düz Dikişsiz Bone",
     "price": null,
     "image": "images/000110.jpg",
     "embIndex": 110,
-    "confidence": 0.8021380305290222,
-    "addedAt": "2024-09-18T14:51:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/126.jpg",
+    "confidence": 0.8719486594200134,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      613,
-      406,
-      815,
-      549
+      165,
+      601,
+      271,
+      798
     ]
   },
   {
@@ -1779,18 +1779,18 @@
   },
   {
     "code": "1641054",
-    "name": "e Neyi Hikaye Kitapları",
+    "name": "Yazma . 79 elma kokulu",
     "price": null,
     "image": "images/000112.jpg",
     "embIndex": 112,
-    "confidence": 0.6290434002876282,
+    "confidence": 0.9559841752052307,
     "addedAt": "2025-02-17T21:05:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/342.jpg",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      216,
-      1076,
-      458,
-      1245
+      278,
+      622,
+      461,
+      806
     ]
   },
   {
@@ -1847,14 +1847,14 @@
     "price": null,
     "image": "images/000116.jpg",
     "embIndex": 116,
-    "confidence": 0.8652109503746033,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
+    "confidence": 0.806097686290741,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      353,
-      1118,
-      476,
-      1232
+      3,
+      575,
+      150,
+      801
     ]
   },
   {
@@ -2236,18 +2236,18 @@
   },
   {
     "code": "1710303",
-    "name": "Çilekli Ouark Sek 140g",
+    "name": "Çilekli Ouark ' Orman Meyveli Sek140g ' , Yoğurt slm ' Yörükoğlu Mixo",
     "price": null,
     "image": "images/000141.jpg",
     "embIndex": 141,
-    "confidence": 0.893875241279602,
-    "addedAt": "2024-08-16T20:49:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/83.jpg",
+    "confidence": 0.8563007116317749,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      218,
-      252,
-      326,
-      425
+      603,
+      889,
+      900,
+      1067
     ]
   },
   {
@@ -2444,18 +2444,18 @@
   },
   {
     "code": "1633307",
-    "name": "MERT GG Mz Yazı Tahtası",
+    "name": "gı t EN DC Yazı Tahtası 1 633307",
     "price": null,
     "image": "images/000154.jpg",
     "embIndex": 154,
-    "confidence": 0.9299556016921997,
-    "addedAt": "2024-11-04T15:49:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/202.jpg",
+    "confidence": 0.9218654632568359,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      667,
-      245,
-      857,
-      359
+      521,
+      499,
+      674,
+      619
     ]
   },
   {
@@ -2879,7 +2879,7 @@
     "bbox": [
       609,
       1074,
-      797,
+      798,
       1239
     ]
   },
@@ -2925,7 +2925,7 @@
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      272,
+      273,
       496,
       359,
       618
@@ -2981,18 +2981,18 @@
   },
   {
     "code": "1708584",
-    "name": "AZUM Karışık Meyve Sulu Yumuşak Şeker Miniyum 804 g",
+    "name": "Karışık Meyve Sulu Yumuşak Şeker Tayaş Miniyum",
     "price": null,
     "image": "images/000188.jpg",
     "embIndex": 188,
-    "confidence": 0.9146897792816162,
-    "addedAt": "2025-02-27T14:36:21+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/356.jpg",
+    "confidence": 0.9394804835319519,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      300,
-      1068,
-      451,
-      1241
+      793,
+      902,
+      1025,
+      1071
     ]
   },
   {
@@ -3021,9 +3021,9 @@
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      719,
+      720,
       1088,
-      1034,
+      1035,
       1229
     ]
   },
@@ -3033,7 +3033,7 @@
     "price": null,
     "image": "images/000191.jpg",
     "embIndex": 191,
-    "confidence": 0.933394193649292,
+    "confidence": 0.9333943128585815,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
@@ -3049,11 +3049,11 @@
     "price": null,
     "image": "images/000192.jpg",
     "embIndex": 192,
-    "confidence": 0.9331302642822266,
+    "confidence": 0.9331305027008057,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      640,
+      641,
       894,
       781,
       1084
@@ -3077,17 +3077,17 @@
   },
   {
     "code": "1714671",
-    "name": "SOĞUK KAHVE VIP 250 ml d yade",
+    "name": "SOĞUK KAHVE VIP 250 mi 3 y Avr",
     "price": null,
     "image": "images/000194.jpg",
     "embIndex": 194,
-    "confidence": 0.9300224184989929,
+    "confidence": 0.9300225377082825,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      567,
+      568,
       143,
-      998,
+      999,
       563
     ]
   },
@@ -3125,17 +3125,17 @@
   },
   {
     "code": "1714986",
-    "name": "Kakao ve Bisküvi ; Parçacıklı Krema : Twix 200g",
+    "name": "Kakao ve Bisküvi : Parçacıklı Krema : Wwix200g",
     "price": null,
     "image": "images/000197.jpg",
     "embIndex": 197,
-    "confidence": 0.9121724367141724,
+    "confidence": 0.9121723771095276,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      834,
+      835,
       594,
-      1023,
+      1024,
       739
     ]
   },
@@ -3157,17 +3157,17 @@
   },
   {
     "code": "1714972",
-    "name": "Yer Fıstıklı Çikolatalı Bar Snickers Creamy",
+    "name": "Yer Fıstıklı Çikolatalı Bar Snickers Creamy © EB ye. A",
     "price": null,
     "image": "images/000199.jpg",
     "embIndex": 199,
-    "confidence": 0.907052755355835,
+    "confidence": 0.9070528745651245,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      456,
+      457,
       893,
-      629,
+      630,
       1085
     ]
   },
@@ -3193,7 +3193,7 @@
     "price": null,
     "image": "images/000201.jpg",
     "embIndex": 201,
-    "confidence": 0.8513872027397156,
+    "confidence": 0.8513872623443604,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
@@ -3205,18 +3205,18 @@
   },
   {
     "code": "1713782",
-    "name": "Kara Mürverli& Yaban Mersinli Shot",
-    "price": null,
+    "name": "şe” Kara Mürverli& MMS",
+    "price": "50",
     "image": "images/000202.jpg",
     "embIndex": 202,
-    "confidence": 0.939528226852417,
-    "addedAt": "2026-06-14T09:18:03+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1033.jpg",
+    "confidence": 0.9196523427963257,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      410,
-      936,
-      548,
-      1099
+      250,
+      1005,
+      507,
+      1119
     ]
   },
   {
@@ -3349,18 +3349,18 @@
   },
   {
     "code": "1709131",
-    "name": "Ğİ Lor Peyniri ei Aknazi kg",
+    "name": "Lor Peyniri Aknaz 1000 g Hiv aeg” İ",
     "price": null,
     "image": "images/000211.jpg",
     "embIndex": 211,
-    "confidence": 0.8562635183334351,
-    "addedAt": "2024-08-16T20:49:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/83.jpg",
+    "confidence": 0.9003936052322388,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      499,
-      654,
-      710,
-      801
+      566,
+      558,
+      777,
+      698
     ]
   },
   {
@@ -5542,13 +5542,13 @@
     "price": null,
     "image": "images/000350.jpg",
     "embIndex": 350,
-    "confidence": 0.8250656127929688,
+    "confidence": 0.8250658512115479,
     "addedAt": "2025-02-13T10:31:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
-      328,
+      329,
       917,
-      612,
+      613,
       1048
     ]
   },
@@ -6420,18 +6420,18 @@
   },
   {
     "code": "1706086",
-    "name": "Açık Büfe Hindi Sosis Pınar 430g",
+    "name": "Hindi Uzun Sosis Pınar-Açıkbüfe",
     "price": null,
     "image": "images/000406.jpg",
     "embIndex": 406,
-    "confidence": 0.9242923855781555,
-    "addedAt": "2024-12-28T20:36:29+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/276.jpg",
+    "confidence": 0.9436120986938477,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      70,
-      558,
-      176,
-      744
+      562,
+      493,
+      671,
+      672
     ]
   },
   {
@@ -7171,7 +7171,7 @@
     "price": null,
     "image": "images/000454.jpg",
     "embIndex": 454,
-    "confidence": 0.8698742389678955,
+    "confidence": 0.8698745369911194,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -7356,7 +7356,7 @@
     "price": null,
     "image": "images/000466.jpg",
     "embIndex": 466,
-    "confidence": 0.9148950576782227,
+    "confidence": 0.9148951768875122,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -7372,7 +7372,7 @@
     "price": null,
     "image": "images/000467.jpg",
     "embIndex": 467,
-    "confidence": 0.8753117322921753,
+    "confidence": 0.8753114938735962,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -7420,7 +7420,7 @@
     "price": null,
     "image": "images/000470.jpg",
     "embIndex": 470,
-    "confidence": 0.9436713457107544,
+    "confidence": 0.9436712265014648,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -7452,7 +7452,7 @@
     "price": null,
     "image": "images/000472.jpg",
     "embIndex": 472,
-    "confidence": 0.9269350171089172,
+    "confidence": 0.9269351959228516,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -7564,7 +7564,7 @@
     "price": null,
     "image": "images/000479.jpg",
     "embIndex": 479,
-    "confidence": 0.8242438435554504,
+    "confidence": 0.8242439031600952,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -7644,7 +7644,7 @@
     "price": null,
     "image": "images/000484.jpg",
     "embIndex": 484,
-    "confidence": 0.7643624544143677,
+    "confidence": 0.764362633228302,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -7724,7 +7724,7 @@
     "price": null,
     "image": "images/000489.jpg",
     "embIndex": 489,
-    "confidence": 0.6558102965354919,
+    "confidence": 0.6558101773262024,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -7845,7 +7845,7 @@
     "price": null,
     "image": "images/000497.jpg",
     "embIndex": 497,
-    "confidence": 0.7937647700309753,
+    "confidence": 0.7937650084495544,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -7941,7 +7941,7 @@
     "price": null,
     "image": "images/000503.jpg",
     "embIndex": 503,
-    "confidence": 0.763756513595581,
+    "confidence": 0.7637563347816467,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -8021,7 +8021,7 @@
     "price": null,
     "image": "images/000508.jpg",
     "embIndex": 508,
-    "confidence": 0.7018535733222961,
+    "confidence": 0.7018535137176514,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -8181,7 +8181,7 @@
     "price": null,
     "image": "images/000518.jpg",
     "embIndex": 518,
-    "confidence": 0.856067419052124,
+    "confidence": 0.8560672402381897,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -8213,7 +8213,7 @@
     "price": null,
     "image": "images/000520.jpg",
     "embIndex": 520,
-    "confidence": 0.877349853515625,
+    "confidence": 0.8773501515388489,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8357,7 +8357,7 @@
     "price": null,
     "image": "images/000529.jpg",
     "embIndex": 529,
-    "confidence": 0.8638805150985718,
+    "confidence": 0.8638801574707031,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8453,7 +8453,7 @@
     "price": null,
     "image": "images/000535.jpg",
     "embIndex": 535,
-    "confidence": 0.8756271600723267,
+    "confidence": 0.875627338886261,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8501,7 +8501,7 @@
     "price": null,
     "image": "images/000538.jpg",
     "embIndex": 538,
-    "confidence": 0.9096173644065857,
+    "confidence": 0.9096174836158752,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8517,7 +8517,7 @@
     "price": null,
     "image": "images/000539.jpg",
     "embIndex": 539,
-    "confidence": 0.8876489996910095,
+    "confidence": 0.8876491189002991,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8549,7 +8549,7 @@
     "price": null,
     "image": "images/000541.jpg",
     "embIndex": 541,
-    "confidence": 0.9546869397163391,
+    "confidence": 0.9546870589256287,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -8805,7 +8805,7 @@
     "price": null,
     "image": "images/000557.jpg",
     "embIndex": 557,
-    "confidence": 0.9266433715820312,
+    "confidence": 0.9266434907913208,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -8869,7 +8869,7 @@
     "price": null,
     "image": "images/000561.jpg",
     "embIndex": 561,
-    "confidence": 0.9442788362503052,
+    "confidence": 0.9442789554595947,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -8885,7 +8885,7 @@
     "price": null,
     "image": "images/000562.jpg",
     "embIndex": 562,
-    "confidence": 0.9279592633247375,
+    "confidence": 0.927959144115448,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -9454,7 +9454,7 @@
     "price": null,
     "image": "images/000598.jpg",
     "embIndex": 598,
-    "confidence": 0.8793272376060486,
+    "confidence": 0.8793269991874695,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -9639,13 +9639,13 @@
     "price": null,
     "image": "images/000610.jpg",
     "embIndex": 610,
-    "confidence": 0.8828635811805725,
+    "confidence": 0.8828634023666382,
     "addedAt": "2025-08-23T19:44:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      516,
+      515,
       1132,
-      679,
+      678,
       1287
     ]
   },
@@ -9667,18 +9667,18 @@
   },
   {
     "code": "1640397",
-    "name": "EVYE BORUSU",
+    "name": "LATTE Evye Borusu",
     "price": null,
     "image": "images/000612.jpg",
     "embIndex": 612,
-    "confidence": 0.6311085820198059,
-    "addedAt": "2025-03-18T17:51:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/388.jpg",
+    "confidence": 0.8456616401672363,
+    "addedAt": "2025-08-23T19:44:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      310,
-      1003,
-      497,
-      1116
+      319,
+      1294,
+      515,
+      1498
     ]
   },
   {
@@ -9817,7 +9817,7 @@
     "price": null,
     "image": "images/000622.jpg",
     "embIndex": 622,
-    "confidence": 0.640327513217926,
+    "confidence": 0.6403282880783081,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -10375,18 +10375,18 @@
   },
   {
     "code": "1620715",
-    "name": "Bi. ei cm e men",
+    "name": "Ütü Masası LL U eşe",
     "price": null,
     "image": "images/000658.jpg",
     "embIndex": 658,
-    "confidence": 0.876061737537384,
-    "addedAt": "2024-08-09T20:15:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/80.jpg",
+    "confidence": 0.9111694693565369,
+    "addedAt": "2026-06-04T11:50:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
-      0,
-      107,
-      397,
-      476
+      17,
+      1031,
+      181,
+      1243
     ]
   },
   {
@@ -10868,30 +10868,30 @@
     "price": null,
     "image": "images/000689.jpg",
     "embIndex": 689,
-    "confidence": 0.8415688276290894,
-    "addedAt": "2025-09-01T18:45:30+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/629.jpg",
+    "confidence": 0.9427661895751953,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      569,
-      130,
-      1020,
-      599
+      852,
+      1080,
+      1017,
+      1310
     ]
   },
   {
     "code": "1706996",
-    "name": "Yarım Yağlı Tost Peyniri 25 yaner Aknaz 1500 g",
+    "name": "Yarım Yağlı Tost Peyniri 399",
     "price": null,
     "image": "images/000690.jpg",
     "embIndex": 690,
-    "confidence": 0.9357303380966187,
-    "addedAt": "2024-07-29T06:12:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/16.jpg",
+    "confidence": 0.9408066272735596,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      562,
-      132,
-      849,
-      296
+      37,
+      538,
+      281,
+      705
     ]
   },
   {
@@ -10900,14 +10900,14 @@
     "price": null,
     "image": "images/000691.jpg",
     "embIndex": 691,
-    "confidence": 0.941615641117096,
-    "addedAt": "2024-07-29T06:12:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/16.jpg",
+    "confidence": 0.9389519691467285,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      593,
-      521,
-      836,
-      679
+      281,
+      559,
+      551,
+      703
     ]
   },
   {
@@ -10925,14 +10925,14 @@
     "price": null,
     "image": "images/000693.jpg",
     "embIndex": 693,
-    "confidence": 0.9213380813598633,
-    "addedAt": "2025-09-14T07:05:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/649.jpg",
+    "confidence": 0.9307036399841309,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      851,
-      667,
-      1041,
-      856
+      350,
+      1074,
+      493,
+      1303
     ]
   },
   {
@@ -10941,14 +10941,14 @@
     "price": null,
     "image": "images/000694.jpg",
     "embIndex": 694,
-    "confidence": 0.9230761528015137,
-    "addedAt": "2026-04-19T06:22:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/945.jpg",
+    "confidence": 0.9271920919418335,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      212,
-      648,
-      473,
-      775
+      192,
+      738,
+      424,
+      885
     ]
   },
   {
@@ -10957,7 +10957,7 @@
     "price": null,
     "image": "images/000695.jpg",
     "embIndex": 695,
-    "confidence": 0.9268736839294434,
+    "confidence": 0.9268737435340881,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
@@ -10969,18 +10969,18 @@
   },
   {
     "code": "1714193",
-    "name": "Mix&Go Buğday Aromalı Probiyotikli Yoğurt&. Çilek, Çiya ve Yulaflı Granola Activia 3x183g",
+    "name": "Mix&Go Buğday Aromalı Probiyotikli Yoğurt& Çilek, Çiya ve Yulaflı Granola b — Activia 3x183g",
     "price": null,
     "image": "images/000696.jpg",
     "embIndex": 696,
-    "confidence": 0.9140456318855286,
-    "addedAt": "2026-06-14T09:18:03+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1033.jpg",
+    "confidence": 0.9262700080871582,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      245,
-      1061,
-      388,
-      1237
+      196,
+      890,
+      499,
+      1060
     ]
   },
   {
@@ -11005,14 +11005,14 @@
     "price": null,
     "image": "images/000698.jpg",
     "embIndex": 698,
-    "confidence": 0.9196294546127319,
-    "addedAt": "2025-06-05T06:50:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/505.jpg",
+    "confidence": 0.9147829413414001,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      614,
-      1070,
-      720,
-      1237
+      832,
+      716,
+      1007,
+      874
     ]
   },
   {
@@ -11033,18 +11033,18 @@
   },
   {
     "code": "1710582",
-    "name": "Açık Büfe Hindi Salam Pınar 50g",
+    "name": "Hindi Salam Pınar 50g",
     "price": null,
     "image": "images/000700.jpg",
     "embIndex": 700,
-    "confidence": 0.9120725989341736,
-    "addedAt": "2024-12-28T20:36:29+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/276.jpg",
+    "confidence": 0.89944988489151,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      208,
-      566,
-      302,
-      748
+      894,
+      879,
+      1006,
+      1060
     ]
   },
   {
@@ -11053,13 +11053,13 @@
     "price": null,
     "image": "images/000701.jpg",
     "embIndex": 701,
-    "confidence": 0.8870313167572021,
+    "confidence": 0.8870311379432678,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
       772,
       541,
-      1006,
+      1005,
       702
     ]
   },
@@ -11085,19 +11085,19 @@
     "price": null,
     "image": "images/000703.jpg",
     "embIndex": 703,
-    "confidence": 0.8751755952835083,
+    "confidence": 0.8751752972602844,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
       646,
       749,
-      832,
+      831,
       879
     ]
   },
   {
     "code": "1714813",
-    "name": "i Orman Meyveli , Yoğurt Yörükoğlu Mixo",
+    "name": "i Orman Meyveli",
     "price": null,
     "image": "images/000704.jpg",
     "embIndex": 704,
@@ -11105,9 +11105,9 @@
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      716,
+      715,
       892,
-      899,
+      898,
       1063
     ]
   },
@@ -11117,13 +11117,13 @@
     "price": null,
     "image": "images/000705.jpg",
     "embIndex": 705,
-    "confidence": 0.5930852890014648,
+    "confidence": 0.5930852293968201,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      793,
+      792,
       1323,
-      983,
+      982,
       1441
     ]
   },
@@ -12547,13 +12547,13 @@
     "price": "6",
     "image": "images/000799.jpg",
     "embIndex": 799,
-    "confidence": 0.6339209675788879,
+    "confidence": 0.6339210867881775,
     "addedAt": "2026-07-28T16:52:18+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
       546,
       1226,
-      751,
+      750,
       1394
     ]
   },
@@ -12579,13 +12579,13 @@
     "price": null,
     "image": "images/000801.jpg",
     "embIndex": 801,
-    "confidence": 0.9198548197746277,
+    "confidence": 0.9198547601699829,
     "addedAt": "2026-07-28T16:52:18+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
       572,
       1007,
-      754,
+      753,
       1221
     ]
   },
@@ -12616,18 +12616,18 @@
   },
   {
     "code": "1639368",
-    "name": "Ke p ir",
+    "name": "Micro Kep",
     "price": null,
     "image": "images/000804.jpg",
     "embIndex": 804,
-    "confidence": 0.5295417308807373,
-    "addedAt": "2024-07-29T19:47:08+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/18.jpg",
+    "confidence": 0.8882135152816772,
+    "addedAt": "2026-07-28T16:52:18+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
-      227,
-      667,
-      397,
-      804
+      236,
+      807,
+      403,
+      994
     ]
   },
   {
@@ -12988,13 +12988,13 @@
     "price": null,
     "image": "images/000827.jpg",
     "embIndex": 827,
-    "confidence": 0.9050229787826538,
+    "confidence": 0.9050230383872986,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
       694,
       1064,
-      800,
+      801,
       1238
     ]
   },
@@ -13719,7 +13719,7 @@
     "price": null,
     "image": "images/000874.jpg",
     "embIndex": 874,
-    "confidence": 0.8571288585662842,
+    "confidence": 0.8571289777755737,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -13843,18 +13843,18 @@
   },
   {
     "code": "1622134",
-    "name": "Tek Fiyat Mutfak / Banyo İl T Ürünleri",
+    "name": "Kapu Pencere samponu vw TekFiyat Mutfak vi i 4 ve Banyo Ürünleri © Kürüm Pompa PN",
     "price": null,
     "image": "images/000882.jpg",
     "embIndex": 882,
-    "confidence": 0.837311327457428,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/28.jpg",
+    "confidence": 0.8928272128105164,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      236,
-      1139,
-      658,
-      1244
+      17,
+      1061,
+      467,
+      1239
     ]
   },
   {
@@ -15037,7 +15037,7 @@
     "price": null,
     "image": "images/000959.jpg",
     "embIndex": 959,
-    "confidence": 0.5324005484580994,
+    "confidence": 0.5324004292488098,
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
@@ -15373,7 +15373,7 @@
     "price": null,
     "image": "images/000980.jpg",
     "embIndex": 980,
-    "confidence": 0.9339642524719238,
+    "confidence": 0.9339643120765686,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -15417,18 +15417,18 @@
   },
   {
     "code": "1712290",
-    "name": "Limon Aromalı Buzlu tw - Şeftali Aromalı Buzlu Çay - Şeftali Aromalı Şekersiz Buzlu Çay - Gazlı İçecek Kola",
+    "name": "İçecek Çeşitleri Pepsi/Lipton 11",
     "price": null,
     "image": "images/000983.jpg",
     "embIndex": 983,
-    "confidence": 0.7760465145111084,
-    "addedAt": "2025-07-14T06:43:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/556.jpg",
+    "confidence": 0.921062171459198,
+    "addedAt": "2026-07-13T18:12:09+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
-      116,
-      112,
-      829,
-      480
+      105,
+      614,
+      417,
+      849
     ]
   },
   {
@@ -15437,7 +15437,7 @@
     "price": null,
     "image": "images/000984.jpg",
     "embIndex": 984,
-    "confidence": 0.9152950644493103,
+    "confidence": 0.9152950048446655,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -16644,18 +16644,18 @@
   },
   {
     "code": "1613151",
-    "name": "Zi Lisanslı Top",
+    "name": "Lisanslı Top",
     "price": null,
     "image": "images/001061.jpg",
     "embIndex": 1061,
-    "confidence": 0.5097605586051941,
-    "addedAt": "2024-11-04T15:49:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/202.jpg",
+    "confidence": 0.9507614374160767,
+    "addedAt": "2026-07-01T12:09:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
-      668,
-      534,
-      835,
-      735
+      542,
+      1048,
+      699,
+      1282
     ]
   },
   {
@@ -16664,7 +16664,7 @@
     "price": null,
     "image": "images/001062.jpg",
     "embIndex": 1062,
-    "confidence": 0.9480950236320496,
+    "confidence": 0.94809490442276,
     "addedAt": "2026-07-01T12:09:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
@@ -16728,46 +16728,46 @@
     "price": null,
     "image": "images/001066.jpg",
     "embIndex": 1066,
-    "confidence": 0.6561793088912964,
-    "addedAt": "2025-02-13T10:31:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/332.jpg",
+    "confidence": 0.9114932417869568,
+    "addedAt": "2026-07-01T12:09:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
-      418,
-      789,
-      653,
-      936
+      427,
+      615,
+      602,
+      839
     ]
   },
   {
     "code": "1641682",
-    "name": "PICLOLO MONDI Oyuncak Su Atıcısı",
+    "name": "PİCCOLO MONDİ Oyuncak Su de",
     "price": null,
     "image": "images/001067.jpg",
     "embIndex": 1067,
-    "confidence": 0.8967857956886292,
+    "confidence": 0.8967859745025635,
     "addedAt": "2026-07-01T12:09:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
-      389,
-      1236,
-      572,
-      1540
+      396,
+      1312,
+      566,
+      1534
     ]
   },
   {
     "code": "1630062",
-    "name": "Lisanslı Köpük Balon Beli",
+    "name": "a Bula Lisanslı Tekli Köpük Balon uğ",
     "price": null,
     "image": "images/001068.jpg",
     "embIndex": 1068,
-    "confidence": 0.8615366816520691,
-    "addedAt": "2025-05-03T05:56:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/453.jpg",
+    "confidence": 0.8913237452507019,
+    "addedAt": "2026-07-01T12:09:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
-      298,
-      965,
-      384,
-      1128
+      397,
+      1068,
+      523,
+      1293
     ]
   },
   {
@@ -16792,7 +16792,7 @@
     "price": null,
     "image": "images/001070.jpg",
     "embIndex": 1070,
-    "confidence": 0.467237651348114,
+    "confidence": 0.46723809838294983,
     "addedAt": "2026-07-01T12:09:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
@@ -16804,18 +16804,18 @@
   },
   {
     "code": "1637286",
-    "name": "göle Catchball Seti",
+    "name": "ri” PACIFIC Catchball Seti",
     "price": null,
     "image": "images/001071.jpg",
     "embIndex": 1071,
-    "confidence": 0.9134120345115662,
-    "addedAt": "2026-05-21T07:15:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1000.jpg",
+    "confidence": 0.8787404894828796,
+    "addedAt": "2026-07-01T12:09:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
-      526,
-      960,
-      631,
-      1155
+      564,
+      1279,
+      722,
+      1549
     ]
   },
   {
@@ -16909,17 +16909,17 @@
   },
   {
     "code": "1611560",
-    "name": "Piri Tabure",
+    "name": "Plastik rgi Tabure",
     "price": null,
     "image": "images/001078.jpg",
     "embIndex": 1078,
-    "confidence": 0.9026846885681152,
+    "confidence": 0.90268474817276,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
       580,
       114,
-      672,
+      673,
       322
     ]
   },
@@ -17581,18 +17581,18 @@
   },
   {
     "code": "1712079",
-    "name": "İtalyan Karameli",
+    "name": "İtalyan Karameli Aromalı Pastörize",
     "price": null,
     "image": "images/001120.jpg",
     "embIndex": 1120,
-    "confidence": 0.9055027961730957,
-    "addedAt": "2025-10-27T09:03:42+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/717.jpg",
+    "confidence": 0.9339718222618103,
+    "addedAt": "2026-08-11T15:34:51+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
-      825,
-      602,
-      1017,
-      822
+      36,
+      890,
+      193,
+      1077
     ]
   },
   {
@@ -18389,11 +18389,11 @@
     "price": null,
     "image": "images/001172.jpg",
     "embIndex": 1172,
-    "confidence": 0.9290472269058228,
+    "confidence": 0.9290473461151123,
     "addedAt": "2026-06-24T10:32:41+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1046.jpg",
     "bbox": [
-      624,
+      623,
       762,
       992,
       1043
@@ -18421,7 +18421,7 @@
     "price": null,
     "image": "images/001174.jpg",
     "embIndex": 1174,
-    "confidence": 0.4494032561779022,
+    "confidence": 0.4494035840034485,
     "addedAt": "2026-06-24T10:32:41+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1046.jpg",
     "bbox": [
@@ -19717,18 +19717,18 @@
   },
   {
     "code": "1700956",
-    "name": "Baldo Pirinç Efsane Baldo Pirinç 33 İh Ne MS gi",
+    "name": "Baldo Pirinç Efsane 5 kg",
     "price": null,
     "image": "images/001257.jpg",
     "embIndex": 1257,
-    "confidence": 0.8882306218147278,
-    "addedAt": "2025-03-31T12:03:42+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/400.jpg",
+    "confidence": 0.9049088358879089,
+    "addedAt": "2025-09-01T18:48:52+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
-      301,
-      263,
-      549,
-      486
+      34,
+      605,
+      291,
+      815
     ]
   },
   {
@@ -19769,7 +19769,7 @@
     "price": null,
     "image": "images/001260.jpg",
     "embIndex": 1260,
-    "confidence": 0.7033740878105164,
+    "confidence": 0.7033725380897522,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
@@ -19801,14 +19801,14 @@
     "price": null,
     "image": "images/001262.jpg",
     "embIndex": 1262,
-    "confidence": 0.9007962942123413,
-    "addedAt": "2024-09-02T11:55:10+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/104.jpg",
+    "confidence": 0.905109167098999,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      358,
-      652,
-      483,
-      784
+      199,
+      862,
+      333,
+      983
     ]
   },
   {
@@ -20642,7 +20642,7 @@
     "price": null,
     "image": "images/001315.jpg",
     "embIndex": 1315,
-    "confidence": 0.903615415096283,
+    "confidence": 0.9036152958869934,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -20823,18 +20823,18 @@
   },
   {
     "code": "1642824",
-    "name": "BAĞIRIC Termo Sırt Çantası b İ",
+    "name": "Termo Sırt Çantası",
     "price": null,
     "image": "images/001327.jpg",
     "embIndex": 1327,
-    "confidence": 0.9403558373451233,
-    "addedAt": "2025-05-13T20:17:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/464.jpg",
+    "confidence": 0.9210364818572998,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      581,
-      668,
-      824,
-      842
+      297,
+      1452,
+      611,
+      1650
     ]
   },
   {
@@ -20855,18 +20855,18 @@
   },
   {
     "code": "1642822",
-    "name": "NORTH\" PACIFIC Termos Çanta",
+    "name": "Termo İki Bölmeli Çanta mm ve",
     "price": null,
     "image": "images/001329.jpg",
     "embIndex": 1329,
-    "confidence": 0.902317464351654,
-    "addedAt": "2025-05-13T20:17:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/464.jpg",
+    "confidence": 0.9170079231262207,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      617,
-      485,
-      821,
-      668
+      23,
+      1433,
+      302,
+      1654
     ]
   },
   {
@@ -22015,7 +22015,7 @@
     "price": null,
     "image": "images/001404.jpg",
     "embIndex": 1404,
-    "confidence": 0.9341500997543335,
+    "confidence": 0.934150218963623,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -22047,7 +22047,7 @@
     "price": null,
     "image": "images/001406.jpg",
     "embIndex": 1406,
-    "confidence": 0.9063313007354736,
+    "confidence": 0.9063310623168945,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -22079,7 +22079,7 @@
     "price": null,
     "image": "images/001409.jpg",
     "embIndex": 1409,
-    "confidence": 0.8968714475631714,
+    "confidence": 0.8968712091445923,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -22095,7 +22095,7 @@
     "price": null,
     "image": "images/001410.jpg",
     "embIndex": 1410,
-    "confidence": 0.8961745500564575,
+    "confidence": 0.8961743712425232,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -22111,7 +22111,7 @@
     "price": null,
     "image": "images/001411.jpg",
     "embIndex": 1411,
-    "confidence": 0.88148432970047,
+    "confidence": 0.8814844489097595,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -22123,18 +22123,18 @@
   },
   {
     "code": "1631254",
-    "name": "LAV Defne Kapaklı Saklama Kabı",
+    "name": "LAV Defne Saklama Kabı -74 NX J",
     "price": null,
     "image": "images/001412.jpg",
     "embIndex": 1412,
-    "confidence": 0.9288960695266724,
-    "addedAt": "2025-02-07T10:29:19+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/325.jpg",
+    "confidence": 0.8789661526679993,
+    "addedAt": "2026-06-04T11:50:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
-      227,
-      1072,
-      376,
-      1237
+      468,
+      674,
+      578,
+      834
     ]
   },
   {
@@ -22152,7 +22152,7 @@
     "price": null,
     "image": "images/001414.jpg",
     "embIndex": 1414,
-    "confidence": 0.8687148690223694,
+    "confidence": 0.8687149882316589,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -23018,18 +23018,18 @@
   },
   {
     "code": "1637655",
-    "name": "ey we",
+    "name": "Köpük Atan Flüt",
     "price": null,
     "image": "images/001471.jpg",
     "embIndex": 1471,
-    "confidence": 0.9225754737854004,
-    "addedAt": "2025-03-31T12:04:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/407.jpg",
+    "confidence": 0.9689657688140869,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      46,
-      1018,
-      227,
-      1112
+      681,
+      648,
+      823,
+      752
     ]
   },
   {
@@ -23038,7 +23038,7 @@
     "price": null,
     "image": "images/001472.jpg",
     "embIndex": 1472,
-    "confidence": 0.9347878098487854,
+    "confidence": 0.9347875714302063,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23070,7 +23070,7 @@
     "price": null,
     "image": "images/001474.jpg",
     "embIndex": 1474,
-    "confidence": 0.9209583401679993,
+    "confidence": 0.9209581613540649,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23082,18 +23082,18 @@
   },
   {
     "code": "1635598",
-    "name": "Araçları Trafik Seti da Vw",
+    "name": "Şehir Araçları ; Trafik Seti szğ",
     "price": null,
     "image": "images/001475.jpg",
     "embIndex": 1475,
-    "confidence": 0.9134466648101807,
-    "addedAt": "2024-09-18T14:51:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/125.jpg",
+    "confidence": 0.9207584857940674,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      565,
-      469,
-      867,
-      609
+      332,
+      884,
+      500,
+      1003
     ]
   },
   {
@@ -23114,17 +23114,17 @@
   },
   {
     "code": "1639066",
-    "name": "Oyuncak yi Yol Seti reyi FivamA Gras 5 Em",
-    "price": "00",
+    "name": "Rİ rusu ama Gi",
+    "price": null,
     "image": "images/001477.jpg",
     "embIndex": 1477,
-    "confidence": 0.889451265335083,
-    "addedAt": "2024-10-11T19:41:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/172.jpg",
+    "confidence": 0.912615180015564,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      656,
-      729,
-      823,
+      517,
+      750,
+      662,
       883
     ]
   },
@@ -23150,7 +23150,7 @@
     "price": null,
     "image": "images/001479.jpg",
     "embIndex": 1479,
-    "confidence": 0.9031049013137817,
+    "confidence": 0.9031049609184265,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23162,18 +23162,18 @@
   },
   {
     "code": "1628779",
-    "name": "Trucks",
+    "name": "ia) Monster Trucks 1:70 Arabalar 4 < Farklı çeşitlerde",
     "price": null,
     "image": "images/001480.jpg",
     "embIndex": 1480,
-    "confidence": 0.6757748126983643,
-    "addedAt": "2025-02-17T21:05:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/342.jpg",
+    "confidence": 0.9017621278762817,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      579,
-      542,
-      841,
-      646
+      602,
+      1135,
+      824,
+      1251
     ]
   },
   {
@@ -23207,7 +23207,7 @@
     "price": null,
     "image": "images/001483.jpg",
     "embIndex": 1483,
-    "confidence": 0.8670030236244202,
+    "confidence": 0.8670032024383545,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23223,7 +23223,7 @@
     "price": null,
     "image": "images/001484.jpg",
     "embIndex": 1484,
-    "confidence": 0.8476834297180176,
+    "confidence": 0.8476835489273071,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23239,7 +23239,7 @@
     "price": null,
     "image": "images/001485.jpg",
     "embIndex": 1485,
-    "confidence": 0.7099699974060059,
+    "confidence": 0.7099702954292297,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23251,18 +23251,18 @@
   },
   {
     "code": "1634053",
-    "name": "PiCCOLO MONDİ Manyetik Eğitici Puzzle",
+    "name": "PICCOLO MONDİ , Manyetik Puzzle GE",
     "price": null,
     "image": "images/001486.jpg",
     "embIndex": 1486,
-    "confidence": 0.8903918862342834,
-    "addedAt": "2024-12-07T17:39:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/257.jpg",
+    "confidence": 0.4651634991168976,
+    "addedAt": "2026-05-22T07:36:06+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
-      59,
-      97,
-      316,
-      244
+      354,
+      634,
+      448,
+      758
     ]
   },
   {
@@ -23271,7 +23271,7 @@
     "price": null,
     "image": "images/001487.jpg",
     "embIndex": 1487,
-    "confidence": 0.4309726357460022,
+    "confidence": 0.4309714734554291,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -23411,18 +23411,18 @@
   },
   {
     "code": "1636590",
-    "name": "Penye Şal — di",
+    "name": "Şal a",
     "price": null,
     "image": "images/001496.jpg",
     "embIndex": 1496,
-    "confidence": 0.7798299193382263,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/9.jpg",
+    "confidence": 0.9350717067718506,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      553,
-      347,
-      767,
-      533
+      624,
+      586,
+      829,
+      700
     ]
   },
   {
@@ -27958,7 +27958,7 @@
     "bbox": [
       436,
       564,
-      574,
+      573,
       816
     ]
   },
@@ -28517,17 +28517,17 @@
   },
   {
     "code": "1630672",
-    "name": "razi",
+    "name": "ran",
     "price": null,
     "image": "images/001823.jpg",
     "embIndex": 1823,
-    "confidence": 0.8086922764778137,
+    "confidence": 0.808692455291748,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      356,
+      357,
       147,
-      551,
+      552,
       326
     ]
   },
@@ -28661,18 +28661,18 @@
   },
   {
     "code": "1636188",
-    "name": "Cam r Kesme Tablası D0t İva a",
+    "name": "Desenli Cam",
     "price": null,
     "image": "images/001832.jpg",
     "embIndex": 1832,
-    "confidence": 0.9044479131698608,
-    "addedAt": "2024-11-04T15:49:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/204.jpg",
+    "confidence": 0.902991533279419,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      375,
-      1088,
-      688,
-      1231
+      586,
+      1288,
+      824,
+      1472
     ]
   },
   {
@@ -28821,18 +28821,18 @@
   },
   {
     "code": "1633883",
-    "name": "Oyuncak Helikopter e Gb",
+    "name": "Müzikli Sesli EE",
     "price": null,
     "image": "images/001842.jpg",
     "embIndex": 1842,
-    "confidence": 0.9445710778236389,
-    "addedAt": "2024-11-16T12:20:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/223.jpg",
+    "confidence": 0.9227514863014221,
+    "addedAt": "2025-04-06T10:51:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      251,
-      787,
-      385,
-      948
+      319,
+      860,
+      535,
+      953
     ]
   },
   {
@@ -29966,18 +29966,18 @@
   },
   {
     "code": "1705213",
-    "name": "Sütlü Çikolata Kaplamalı Antep Fıstıklı Kremalı Gofret Nutymax 3x44g İn",
+    "name": "İs “ww ww Antep Fıstıklı",
     "price": null,
     "image": "images/001914.jpg",
     "embIndex": 1914,
-    "confidence": 0.4513145983219147,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/26.jpg",
+    "confidence": 0.8818414807319641,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      614,
-      441,
-      722,
-      653
+      624,
+      592,
+      839,
+      749
     ]
   },
   {
@@ -30087,18 +30087,18 @@
   },
   {
     "code": "1708665",
-    "name": "Milföy s0t Superfresh 1 kg",
+    "name": "Milföy Hamuru ) Superfresh 1 Kg",
     "price": null,
     "image": "images/001922.jpg",
     "embIndex": 1922,
-    "confidence": 0.7375375032424927,
-    "addedAt": "2024-09-02T11:55:10+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/104.jpg",
+    "confidence": 0.9097168445587158,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      681,
-      673,
-      902,
-      977
+      422,
+      499,
+      555,
+      664
     ]
   },
   {
@@ -30240,18 +30240,18 @@
   },
   {
     "code": "1646088",
-    "name": "Panasonic 4'lü Pil Çeşitleri",
+    "name": "Pil Çeşitleri ö ale",
     "price": null,
     "image": "images/001932.jpg",
     "embIndex": 1932,
-    "confidence": 0.9523552656173706,
-    "addedAt": "2026-04-13T10:28:28+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/944.jpg",
+    "confidence": 0.946525514125824,
+    "addedAt": "2026-09-23T06:15:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
     "bbox": [
-      262,
-      1110,
-      499,
-      1225
+      854,
+      1345,
+      1072,
+      1568
     ]
   },
   {
@@ -30621,7 +30621,7 @@
     "price": null,
     "image": "images/001956.jpg",
     "embIndex": 1956,
-    "confidence": 0.8939337134361267,
+    "confidence": 0.8939336538314819,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -30829,30 +30829,30 @@
     "price": null,
     "image": "images/001969.jpg",
     "embIndex": 1969,
-    "confidence": 0.7031518220901489,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/14.jpg",
+    "confidence": 0.9023392796516418,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      648,
-      295,
-      832,
-      654
+      50,
+      561,
+      268,
+      802
     ]
   },
   {
     "code": "1622135",
-    "name": "Vantuzlu Kaydırmaz Paspas yese GL",
+    "name": "Vantuzlu Banyo Kaydırmaz Paspas",
     "price": null,
     "image": "images/001970.jpg",
     "embIndex": 1970,
-    "confidence": 0.41498705744743347,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/28.jpg",
+    "confidence": 0.9571801424026489,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      454,
-      778,
-      614,
-      931
+      638,
+      441,
+      859,
+      565
     ]
   },
   {
@@ -31505,7 +31505,7 @@
     "price": null,
     "image": "images/002013.jpg",
     "embIndex": 2013,
-    "confidence": 0.8744131326675415,
+    "confidence": 0.8744131922721863,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -31597,18 +31597,18 @@
   },
   {
     "code": "1637743",
-    "name": "M.MSONETTE El Havlusu",
+    "name": "MAİSONENTE © OMAİSONETTE El Havlusu Yüz Havlusu",
     "price": null,
     "image": "images/002019.jpg",
     "embIndex": 2019,
-    "confidence": 0.8846408128738403,
-    "addedAt": "2026-10-05T19:43:25+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1218.jpg",
+    "confidence": 0.8789071440696716,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      519,
-      928,
-      774,
-      1055
+      355,
+      639,
+      545,
+      811
     ]
   },
   {
@@ -33024,7 +33024,7 @@
     "bbox": [
       23,
       769,
-      283,
+      284,
       904
     ]
   },
@@ -33094,17 +33094,17 @@
   },
   {
     "code": "1712690",
-    "name": "Yeni Ürün Pastörize Çilekli Süt o DostıL sit S0",
+    "name": "Çilekli Pastörize Süt Dost1ılL ww",
     "price": null,
     "image": "images/002113.jpg",
     "embIndex": 2113,
-    "confidence": 0.9182318449020386,
-    "addedAt": "2025-10-06T09:47:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/686.jpg",
+    "confidence": 0.937844455242157,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      696,
-      660,
-      828,
+      183,
+      695,
+      317,
       830
     ]
   },
@@ -33120,7 +33120,7 @@
     "bbox": [
       669,
       680,
-      805,
+      806,
       834
     ]
   },
@@ -33130,13 +33130,13 @@
     "price": null,
     "image": "images/002115.jpg",
     "embIndex": 2115,
-    "confidence": 0.9220641851425171,
+    "confidence": 0.922064483165741,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
       214,
       1115,
-      346,
+      347,
       1242
     ]
   },
@@ -33146,7 +33146,7 @@
     "price": null,
     "image": "images/002116.jpg",
     "embIndex": 2116,
-    "confidence": 0.9149003624916077,
+    "confidence": 0.9149004817008972,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
@@ -33174,18 +33174,18 @@
   },
   {
     "code": "1712006",
-    "name": "Dilimli Kokoreç Akşeker 200",
+    "name": "Dilimli Kuzu Kokoreç Akşeker 200 g",
     "price": null,
     "image": "images/002118.jpg",
     "embIndex": 2118,
-    "confidence": 0.934581458568573,
-    "addedAt": "2025-07-25T08:06:17+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/581.jpg",
+    "confidence": 0.9098802208900452,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      451,
-      501,
-      567,
-      672
+      313,
+      504,
+      420,
+      668
     ]
   },
   {
@@ -34015,18 +34015,18 @@
   },
   {
     "code": "1708267",
-    "name": "Karaorman Meyve Aromalı Sandviç Kek",
+    "name": "Karaorman Meyve Aromalı Çikolata Kaplı Kek Luppo 182g",
     "price": null,
     "image": "images/002171.jpg",
     "embIndex": 2171,
-    "confidence": 0.9567659497261047,
-    "addedAt": "2025-04-30T08:43:20+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/449.jpg",
+    "confidence": 0.93830806016922,
+    "addedAt": "2026-07-13T18:12:09+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
-      599,
-      347,
-      810,
-      507
+      685,
+      1110,
+      851,
+      1299
     ]
   },
   {
@@ -35232,18 +35232,18 @@
   },
   {
     "code": "1629996",
-    "name": "Mıknatıslı Alüminyum Mini Su Terazisi — Xx Si",
+    "name": "SGS” Mini Su Terazisi e",
     "price": null,
     "image": "images/002251.jpg",
     "embIndex": 2251,
-    "confidence": 0.9065006971359253,
-    "addedAt": "2024-08-02T08:55:19+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/58.jpg",
+    "confidence": 0.9370713233947754,
+    "addedAt": "2025-08-23T19:44:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      557,
-      1103,
-      724,
-      1227
+      515,
+      797,
+      688,
+      927
     ]
   },
   {
@@ -36708,18 +36708,18 @@
   },
   {
     "code": "1640435",
-    "name": "Pijama Takımı Kadın",
+    "name": "Düğmeli Pijama Takımı",
     "price": null,
     "image": "images/002346.jpg",
     "embIndex": 2346,
-    "confidence": 0.8194357752799988,
-    "addedAt": "2025-12-14T11:58:04+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/777.jpg",
+    "confidence": 0.9340613484382629,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      320,
-      970,
-      564,
-      1212
+      390,
+      1064,
+      572,
+      1241
     ]
   },
   {
@@ -36740,18 +36740,18 @@
   },
   {
     "code": "1627284",
-    "name": "M. BOTT! Namaz Elbisesi",
+    "name": "Namaz",
     "price": null,
     "image": "images/002348.jpg",
     "embIndex": 2348,
-    "confidence": 0.9314490556716919,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/9.jpg",
+    "confidence": 0.8851978182792664,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      578,
-      115,
-      856,
-      399
+      19,
+      102,
+      339,
+      367
     ]
   },
   {
@@ -37550,13 +37550,13 @@
     "price": null,
     "image": "images/002401.jpg",
     "embIndex": 2401,
-    "confidence": 0.9158856868743896,
+    "confidence": 0.9158858060836792,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
       264,
       368,
-      483,
+      482,
       549
     ]
   },
@@ -37834,18 +37834,18 @@
   },
   {
     "code": "1644827",
-    "name": "Pasta/Kek Borcam Taşıma Kabı",
+    "name": "Pasta/Kek Taşıma Kabı Timex Plastik",
     "price": null,
     "image": "images/002419.jpg",
     "embIndex": 2419,
-    "confidence": 0.9148017168045044,
-    "addedAt": "2026-02-08T16:22:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/847.jpg",
+    "confidence": 0.9159749746322632,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      822,
-      1268,
-      1054,
-      1565
+      31,
+      980,
+      379,
+      1197
     ]
   },
   {
@@ -39847,18 +39847,18 @@
   },
   {
     "code": "1701663",
-    "name": "Kefir Kefir s4 İçim1ıL",
+    "name": "Ja Orman",
     "price": null,
     "image": "images/002547.jpg",
     "embIndex": 2547,
-    "confidence": 0.4161713719367981,
-    "addedAt": "2024-08-02T21:06:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/66.jpg",
+    "confidence": 0.9073292016983032,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      705,
-      162,
-      855,
-      265
+      52,
+      859,
+      183,
+      992
     ]
   },
   {
@@ -40555,18 +40555,18 @@
   },
   {
     "code": "1636869",
-    "name": "Havlu Saç Bonesi",
+    "name": "Havlu Saç Bonesi ğ",
     "price": null,
     "image": "images/002593.jpg",
     "embIndex": 2593,
-    "confidence": 0.9400951266288757,
-    "addedAt": "2025-11-09T06:27:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/733.jpg",
+    "confidence": 0.9101170301437378,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      315,
-      925,
-      451,
-      1080
+      546,
+      656,
+      640,
+      815
     ]
   },
   {
@@ -44484,18 +44484,18 @@
   },
   {
     "code": "1626273",
-    "name": "n kimi yim © yakl Kek Tabağı Alun Rimli öy Detaylar",
+    "name": "e er <ü",
     "price": null,
     "image": "images/002850.jpg",
     "embIndex": 2850,
-    "confidence": 0.4098634123802185,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
+    "confidence": 0.927152693271637,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      411,
-      497,
-      686,
-      602
+      408,
+      944,
+      594,
+      1094
     ]
   },
   {
@@ -44516,18 +44516,18 @@
   },
   {
     "code": "1627083",
-    "name": "w,) © Ayaklı Kek Tabağı m g6t1 Pasta Servis Seti Ol öz a > (OZ",
+    "name": "Altın Rimli 6t1 Pasta Servis Seti i GEL) İ İ Cw i",
     "price": null,
     "image": "images/002852.jpg",
     "embIndex": 2852,
-    "confidence": 0.4252271056175232,
-    "addedAt": "2025-06-25T05:57:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/536.jpg",
+    "confidence": 0.9427428841590881,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      14,
-      791,
-      519,
-      991
+      203,
+      932,
+      413,
+      1094
     ]
   },
   {
@@ -44740,18 +44740,18 @@
   },
   {
     "code": "1643870",
-    "name": "Pasaport Kılıfı i",
+    "name": "Pasaport (oo Pasaport Kılıfı Kılıfı",
     "price": null,
     "image": "images/002866.jpg",
     "embIndex": 2866,
-    "confidence": 0.867186427116394,
-    "addedAt": "2026-05-12T07:49:31+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/984.jpg",
+    "confidence": 0.6545190215110779,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      431,
-      507,
-      553,
-      666
+      20,
+      494,
+      182,
+      627
     ]
   },
   {
@@ -44852,18 +44852,18 @@
   },
   {
     "code": "1708619",
-    "name": "Beyaz Sirke Yeni Kavaklıdere",
+    "name": "Beyaz Sirke Yeni Kavaklıdere ii baz",
     "price": null,
     "image": "images/002873.jpg",
     "embIndex": 2873,
-    "confidence": 0.8497598171234131,
-    "addedAt": "2025-01-06T10:40:02+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/284.jpg",
+    "confidence": 0.9072936773300171,
+    "addedAt": "2025-09-01T18:48:52+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
-      401,
-      919,
-      562,
-      1120
+      27,
+      1172,
+      217,
+      1369
     ]
   },
   {
@@ -46878,30 +46878,30 @@
     "price": null,
     "image": "images/003002.jpg",
     "embIndex": 3002,
-    "confidence": 0.9393336176872253,
-    "addedAt": "2025-06-11T20:47:52+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/512.jpg",
+    "confidence": 0.8969933986663818,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      184,
-      935,
-      355,
-      1117
+      38,
+      853,
+      153,
+      1032
     ]
   },
   {
     "code": "1613680",
-    "name": "Gömlek 199,10",
+    "name": "Kışlık Gömlek Erkek",
     "price": null,
     "image": "images/003003.jpg",
     "embIndex": 3003,
-    "confidence": 0.8636273741722107,
-    "addedAt": "2024-10-11T19:41:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/171.jpg",
+    "confidence": 0.9440727233886719,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      670,
-      697,
-      846,
-      861
+      24,
+      1029,
+      208,
+      1250
     ]
   },
   {
@@ -47676,18 +47676,18 @@
   },
   {
     "code": "1641529",
-    "name": "Hamur Kazıyıcı /Pizza Ruleti Çeşitleri v",
+    "name": "ii ii | Tek Fiyat",
     "price": null,
     "image": "images/003053.jpg",
     "embIndex": 3053,
-    "confidence": 0.8977766633033752,
-    "addedAt": "2025-02-13T10:31:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/331.jpg",
+    "confidence": 0.9072834253311157,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      210,
-      1090,
-      392,
-      1237
+      239,
+      744,
+      453,
+      922
     ]
   },
   {
@@ -47724,18 +47724,18 @@
   },
   {
     "code": "1635794",
-    "name": "Yuvarlak Pasta/Kek Taşıma Kabı",
+    "name": "Pasta /Kek | Taşıma Kabı",
     "price": null,
     "image": "images/003056.jpg",
     "embIndex": 3056,
-    "confidence": 0.9469534754753113,
-    "addedAt": "2025-04-06T10:51:57+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/410.jpg",
+    "confidence": 0.8050926327705383,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      337,
-      867,
-      561,
-      995
+      418,
+      559,
+      525,
+      734
     ]
   },
   {
@@ -48827,7 +48827,7 @@
     "price": null,
     "image": "images/003128.jpg",
     "embIndex": 3128,
-    "confidence": 0.9398027658462524,
+    "confidence": 0.939802885055542,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -48843,7 +48843,7 @@
     "price": null,
     "image": "images/003129.jpg",
     "embIndex": 3129,
-    "confidence": 0.9341201186180115,
+    "confidence": 0.934120237827301,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -48875,7 +48875,7 @@
     "price": null,
     "image": "images/003131.jpg",
     "embIndex": 3131,
-    "confidence": 0.9293529987335205,
+    "confidence": 0.9293532371520996,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -49067,13 +49067,13 @@
     "price": null,
     "image": "images/003143.jpg",
     "embIndex": 3143,
-    "confidence": 0.9072862267494202,
+    "confidence": 0.9072861671447754,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
       466,
       1021,
-      625,
+      624,
       1253
     ]
   },
@@ -49426,18 +49426,18 @@
   },
   {
     "code": "1640080",
-    "name": "Fakir GENEL TEMİZLEYİCİ",
+    "name": "Genel Temizleyici SOO ML",
     "price": null,
     "image": "images/003167.jpg",
     "embIndex": 3167,
-    "confidence": 0.9162375330924988,
-    "addedAt": "2025-05-27T13:33:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/486.jpg",
+    "confidence": 0.9553850889205933,
+    "addedAt": "2025-08-23T19:44:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      284,
-      1028,
-      407,
-      1134
+      717,
+      1282,
+      849,
+      1399
     ]
   },
   {
@@ -49478,13 +49478,13 @@
     "price": null,
     "image": "images/003170.jpg",
     "embIndex": 3170,
-    "confidence": 0.9270665645599365,
+    "confidence": 0.9270663261413574,
     "addedAt": "2025-08-23T19:44:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
       871,
       1166,
-      1003,
+      1002,
       1281
     ]
   },
@@ -49974,7 +49974,7 @@
     "price": null,
     "image": "images/003201.jpg",
     "embIndex": 3201,
-    "confidence": 0.8404186964035034,
+    "confidence": 0.8404187560081482,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -50111,7 +50111,7 @@
     "price": null,
     "image": "images/003210.jpg",
     "embIndex": 3210,
-    "confidence": 0.892147421836853,
+    "confidence": 0.8921473622322083,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -50127,7 +50127,7 @@
     "price": null,
     "image": "images/003211.jpg",
     "embIndex": 3211,
-    "confidence": 0.8867236375808716,
+    "confidence": 0.8867235779762268,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -52523,18 +52523,18 @@
   },
   {
     "code": "1642497",
-    "name": "Kot Şapka",
+    "name": "Kot Şapka Is",
     "price": null,
     "image": "images/003368.jpg",
     "embIndex": 3368,
-    "confidence": 0.8682746291160583,
-    "addedAt": "2025-06-17T05:27:11+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/525.jpg",
+    "confidence": 0.9111495018005371,
+    "addedAt": "2026-07-28T16:52:18+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
-      653,
-      722,
-      841,
-      882
+      802,
+      822,
+      978,
+      988
     ]
   },
   {
@@ -55985,13 +55985,13 @@
     "price": null,
     "image": "images/003592.jpg",
     "embIndex": 3592,
-    "confidence": 0.8874921798706055,
+    "confidence": 0.8874920606613159,
     "addedAt": "2025-02-13T10:31:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
       567,
       765,
-      829,
+      830,
       908
     ]
   },
@@ -56097,7 +56097,7 @@
     "price": null,
     "image": "images/003599.jpg",
     "embIndex": 3599,
-    "confidence": 0.9051400423049927,
+    "confidence": 0.9051401615142822,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -58070,18 +58070,18 @@
   },
   {
     "code": "1629226",
-    "name": "Çantalı Vakumlu Hurç L 79,0",
+    "name": "Çantalı 00 Vakumlu Hurç L",
     "price": null,
     "image": "images/003730.jpg",
     "embIndex": 3730,
-    "confidence": 0.9468260407447815,
-    "addedAt": "2024-08-02T21:06:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/68.jpg",
+    "confidence": 0.9381936192512512,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      633,
-      91,
-      865,
-      339
+      445,
+      839,
+      623,
+      1007
     ]
   },
   {
@@ -58799,18 +58799,18 @@
   },
   {
     "code": "1616888",
-    "name": "Altın Rimli İki Katlı Kurabiyelik",
+    "name": "Altın Rimli 2 Katlı Kurabiyelik",
     "price": null,
     "image": "images/003777.jpg",
     "embIndex": 3777,
-    "confidence": 0.5090357661247253,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/244.jpg",
+    "confidence": 0.8961479663848877,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      698,
-      488,
-      846,
-      591
+      600,
+      933,
+      801,
+      1088
     ]
   },
   {
@@ -59548,7 +59548,7 @@
     "price": null,
     "image": "images/003824.jpg",
     "embIndex": 3824,
-    "confidence": 0.9348966479301453,
+    "confidence": 0.9348965287208557,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
@@ -59592,7 +59592,7 @@
   },
   {
     "code": "1636809",
-    "name": "Işıklı Sesli Anahtarlık Vi diğ",
+    "name": "PICCOLO MONDİ Işıklı Sesli Anahtarlık Ci N bi TE Gi Da Gi",
     "price": null,
     "image": "images/003827.jpg",
     "embIndex": 3827,
@@ -59600,9 +59600,9 @@
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      730,
+      731,
       1043,
-      838,
+      839,
       1237
     ]
   },
@@ -59618,7 +59618,7 @@
     "bbox": [
       552,
       527,
-      684,
+      685,
       715
     ]
   },
@@ -59733,7 +59733,7 @@
     "price": null,
     "image": "images/003836.jpg",
     "embIndex": 3836,
-    "confidence": 0.8718805909156799,
+    "confidence": 0.8718806505203247,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -61098,18 +61098,18 @@
   },
   {
     "code": "1710038",
-    "name": "Patates Cipsi Çeşitleri umud Patito 135g İçi",
+    "name": "Patates Cipsi Patito 135 g",
     "price": null,
     "image": "images/003929.jpg",
     "embIndex": 3929,
-    "confidence": 0.8776367902755737,
-    "addedAt": "2024-12-21T11:50:21+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/269.jpg",
+    "confidence": 0.9048330783843994,
+    "addedAt": "2026-09-19T05:28:12+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      579,
-      1032,
-      866,
-      1231
+      800,
+      852,
+      974,
+      1056
     ]
   },
   {
@@ -63076,7 +63076,7 @@
     "price": null,
     "image": "images/004062.jpg",
     "embIndex": 4062,
-    "confidence": 0.9197131395339966,
+    "confidence": 0.9197132587432861,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -63428,17 +63428,17 @@
   },
   {
     "code": "1641987",
-    "name": "Klimalı Fit Bone",
+    "name": "Klimalı Fit Bone yn",
     "price": null,
     "image": "images/004087.jpg",
     "embIndex": 4087,
-    "confidence": 0.887852132320404,
+    "confidence": 0.8878519535064697,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      420,
+      419,
       837,
-      548,
+      547,
       1000
     ]
   },
@@ -63951,34 +63951,34 @@
   },
   {
     "code": "1635798",
-    "name": "pr aş mar glnçişmne sE z",
+    "name": "İpelesmer MANYETİK TUTUCU PBS128 8 348 dene Büretler Baza",
     "price": null,
     "image": "images/004121.jpg",
     "embIndex": 4121,
-    "confidence": 0.6484800577163696,
-    "addedAt": "2024-08-09T20:15:05+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/77.jpg",
+    "confidence": 0.8830755949020386,
+    "addedAt": "2025-02-13T10:31:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
-      270,
-      640,
-      446,
-      740
+      300,
+      769,
+      581,
+      891
     ]
   },
   {
     "code": "1639296",
-    "name": "DUVAR ŞARJI a YUSRA z",
+    "name": "DUVAR ŞARJI X2 USB A PBSI20 — Eğ",
     "price": null,
     "image": "images/004122.jpg",
     "embIndex": 4122,
-    "confidence": 0.6380470991134644,
-    "addedAt": "2024-08-09T20:15:05+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/77.jpg",
+    "confidence": 0.8025370836257935,
+    "addedAt": "2025-02-13T10:31:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
-      266,
-      773,
-      456,
-      885
+      9,
+      916,
+      363,
+      1045
     ]
   },
   {
@@ -64216,18 +64216,18 @@
   },
   {
     "code": "1636194",
-    "name": "Çelik Pastacılık “ Ürünleri Sora / e rm li Currırı Set",
+    "name": "PiRGE",
     "price": null,
     "image": "images/004138.jpg",
     "embIndex": 4138,
-    "confidence": 0.5104019045829773,
-    "addedAt": "2024-09-24T10:38:37+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/141.jpg",
+    "confidence": 0.9083199501037598,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      521,
-      627,
-      865,
-      806
+      23,
+      740,
+      247,
+      912
     ]
   },
   {
@@ -64912,18 +64912,18 @@
   },
   {
     "code": "1641519",
-    "name": "Fırçalı Sabunluk Seti Cg",
+    "name": "Fırçalı Sıvı Sabunluk",
     "price": null,
     "image": "images/004185.jpg",
     "embIndex": 4185,
-    "confidence": 0.9214361310005188,
-    "addedAt": "2025-02-07T10:29:18+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/321.jpg",
+    "confidence": 0.9531415104866028,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      623,
-      1094,
-      797,
-      1228
+      913,
+      944,
+      1125,
+      1221
     ]
   },
   {
@@ -65028,7 +65028,7 @@
     "price": null,
     "image": "images/004192.jpg",
     "embIndex": 4192,
-    "confidence": 0.8502162098884583,
+    "confidence": 0.850216269493103,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -65638,18 +65638,18 @@
   },
   {
     "code": "1641181",
-    "name": "Cotlan Gölletkon Bebek Flanel",
+    "name": "m. iL İ BebekFlanel Nevresim Seti",
     "price": null,
     "image": "images/004234.jpg",
     "embIndex": 4234,
-    "confidence": 0.8138340711593628,
-    "addedAt": "2025-01-17T15:13:25+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/310.jpg",
+    "confidence": 0.9335727095603943,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      275,
-      715,
-      651,
-      866
+      47,
+      368,
+      321,
+      513
     ]
   },
   {
@@ -67012,7 +67012,7 @@
     "price": null,
     "image": "images/004324.jpg",
     "embIndex": 4324,
-    "confidence": 0.8817093372344971,
+    "confidence": 0.8817093968391418,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -67092,14 +67092,14 @@
     "price": null,
     "image": "images/004329.jpg",
     "embIndex": 4329,
-    "confidence": 0.7328577041625977,
-    "addedAt": "2025-01-06T10:40:45+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/292.jpg",
+    "confidence": 0.6485301852226257,
+    "addedAt": "2025-02-17T21:05:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      170,
-      1066,
-      263,
-      1233
+      676,
+      826,
+      811,
+      1003
     ]
   },
   {
@@ -71954,7 +71954,7 @@
     "price": null,
     "image": "images/004653.jpg",
     "embIndex": 4653,
-    "confidence": 0.9137521982192993,
+    "confidence": 0.9137523174285889,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -71970,7 +71970,7 @@
     "price": null,
     "image": "images/004654.jpg",
     "embIndex": 4654,
-    "confidence": 0.908708393573761,
+    "confidence": 0.9087085723876953,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -71986,7 +71986,7 @@
     "price": null,
     "image": "images/004655.jpg",
     "embIndex": 4655,
-    "confidence": 0.7949885725975037,
+    "confidence": 0.7949883937835693,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -73381,34 +73381,34 @@
   },
   {
     "code": "1708395",
-    "name": "Kakao Kremalı Kruvasan 7 Days 65g ba",
+    "name": "Kakao Kremalı Kruvasan i 7 Days 65g",
     "price": null,
     "image": "images/004749.jpg",
     "embIndex": 4749,
-    "confidence": 0.8343629837036133,
-    "addedAt": "2024-11-04T15:47:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/196.jpg",
+    "confidence": 0.9219580888748169,
+    "addedAt": "2025-09-01T18:48:52+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
-      46,
-      617,
-      155,
-      778
+      632,
+      1391,
+      814,
+      1539
     ]
   },
   {
     "code": "1634154",
-    "name": "Ahşap Görünümlü Banyo Seti 28 ei",
+    "name": "Manas 5'li Banyo Seti",
     "price": null,
     "image": "images/004750.jpg",
     "embIndex": 4750,
-    "confidence": 0.9341583847999573,
-    "addedAt": "2024-10-25T19:19:28+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/195.jpg",
+    "confidence": 0.8527745604515076,
+    "addedAt": "2026-06-04T11:50:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
-      49,
-      950,
-      327,
-      1242
+      709,
+      1038,
+      834,
+      1235
     ]
   },
   {
@@ -73509,18 +73509,18 @@
   },
   {
     "code": "1629228",
-    "name": "ia ce: Rİ) Zi Vakumlu Hurç iL 25 nam",
+    "name": "Çantalı Vakumlu Hurç XXL 1 0 edi",
     "price": null,
     "image": "images/004757.jpg",
     "embIndex": 4757,
-    "confidence": 0.9214057922363281,
-    "addedAt": "2024-08-02T21:06:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/68.jpg",
+    "confidence": 0.9307165741920471,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      20,
-      97,
-      353,
-      356
+      46,
+      843,
+      249,
+      1003
     ]
   },
   {
@@ -73639,18 +73639,18 @@
   },
   {
     "code": "1639070",
-    "name": "Standlı",
+    "name": "Oyuncak",
     "price": null,
     "image": "images/004766.jpg",
     "embIndex": 4766,
-    "confidence": 0.87311190366745,
-    "addedAt": "2024-10-25T19:19:28+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/192.jpg",
+    "confidence": 0.9289318919181824,
+    "addedAt": "2025-04-06T10:51:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      380,
-      261,
-      549,
-      505
+      371,
+      483,
+      552,
+      657
     ]
   },
   {
@@ -77128,14 +77128,14 @@
     "price": null,
     "image": "images/004993.jpg",
     "embIndex": 4993,
-    "confidence": 0.7146893739700317,
-    "addedAt": "2024-09-18T14:51:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/126.jpg",
+    "confidence": 0.9163951873779297,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      512,
-      138,
-      825,
-      295
+      224,
+      1104,
+      353,
+      1231
     ]
   },
   {
@@ -77339,7 +77339,7 @@
     "price": null,
     "image": "images/005011.jpg",
     "embIndex": 5011,
-    "confidence": 0.8792872428894043,
+    "confidence": 0.87928706407547,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -77355,7 +77355,7 @@
     "price": null,
     "image": "images/005012.jpg",
     "embIndex": 5012,
-    "confidence": 0.8563263416290283,
+    "confidence": 0.8563262820243835,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -77371,7 +77371,7 @@
     "price": null,
     "image": "images/005013.jpg",
     "embIndex": 5013,
-    "confidence": 0.8489925861358643,
+    "confidence": 0.8489925265312195,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -77805,18 +77805,18 @@
   },
   {
     "code": "1625038",
-    "name": "Kaydırmaz Tabanlık",
+    "name": "Kaydırmaz mii Tabanlık",
     "price": null,
     "image": "images/005043.jpg",
     "embIndex": 5043,
-    "confidence": 0.9257827997207642,
-    "addedAt": "2024-09-02T11:56:29+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/110.jpg",
+    "confidence": 0.9186109304428101,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      594,
-      964,
-      829,
-      1112
+      58,
+      810,
+      248,
+      945
     ]
   },
   {
@@ -78344,18 +78344,18 @@
   },
   {
     "code": "1637918",
-    "name": "Karma desenlerde",
+    "name": "Koltuk Şalı",
     "price": null,
     "image": "images/005078.jpg",
     "embIndex": 5078,
-    "confidence": 0.6151281595230103,
-    "addedAt": "2024-08-29T13:15:36+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/98.jpg",
+    "confidence": 0.8268905878067017,
+    "addedAt": "2024-09-09T10:39:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
-      310,
-      866,
-      639,
-      1089
+      664,
+      223,
+      862,
+      379
     ]
   },
   {
@@ -78713,7 +78713,7 @@
     "price": null,
     "image": "images/005103.jpg",
     "embIndex": 5103,
-    "confidence": 0.9193464517593384,
+    "confidence": 0.9193463325500488,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78729,7 +78729,7 @@
     "price": null,
     "image": "images/005104.jpg",
     "embIndex": 5104,
-    "confidence": 0.9123201966285706,
+    "confidence": 0.912320077419281,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78745,7 +78745,7 @@
     "price": null,
     "image": "images/005105.jpg",
     "embIndex": 5105,
-    "confidence": 0.9093688726425171,
+    "confidence": 0.9093688130378723,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78761,7 +78761,7 @@
     "price": null,
     "image": "images/005106.jpg",
     "embIndex": 5106,
-    "confidence": 0.9091359376907349,
+    "confidence": 0.9091358184814453,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78777,7 +78777,7 @@
     "price": null,
     "image": "images/005107.jpg",
     "embIndex": 5107,
-    "confidence": 0.8928394913673401,
+    "confidence": 0.8928393721580505,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78793,7 +78793,7 @@
     "price": "75",
     "image": "images/005108.jpg",
     "embIndex": 5108,
-    "confidence": 0.8684110045433044,
+    "confidence": 0.8684108853340149,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78825,7 +78825,7 @@
     "price": null,
     "image": "images/005110.jpg",
     "embIndex": 5110,
-    "confidence": 0.7800149917602539,
+    "confidence": 0.7800148129463196,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -78907,7 +78907,7 @@
     "price": null,
     "image": "images/005116.jpg",
     "embIndex": 5116,
-    "confidence": 0.8905561566352844,
+    "confidence": 0.890556275844574,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -78989,7 +78989,7 @@
     "price": null,
     "image": "images/005122.jpg",
     "embIndex": 5122,
-    "confidence": 0.9319308996200562,
+    "confidence": 0.9319309592247009,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -79485,18 +79485,18 @@
   },
   {
     "code": "1639293",
-    "name": "fr RJ KABLOSU 16: £ vi 8 Lİ © Ni MZ ales MS",
+    "name": "O polasmart e VE ağ",
     "price": null,
     "image": "images/005155.jpg",
     "embIndex": 5155,
-    "confidence": 0.7353235483169556,
-    "addedAt": "2024-08-09T20:15:05+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/77.jpg",
+    "confidence": 0.8666160702705383,
+    "addedAt": "2025-02-13T10:31:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
-      434,
-      1116,
-      661,
-      1240
+      437,
+      1053,
+      575,
+      1244
     ]
   },
   {
@@ -79672,18 +79672,18 @@
   },
   {
     "code": "1629227",
-    "name": "Çantalı Vakumlu Hurç XL ga",
+    "name": "vakumlu Hurç XL İşbu",
     "price": null,
     "image": "images/005168.jpg",
     "embIndex": 5168,
-    "confidence": 0.9103268980979919,
-    "addedAt": "2024-08-02T21:06:58+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/68.jpg",
+    "confidence": 0.9249932169914246,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      351,
-      112,
-      621,
-      354
+      250,
+      844,
+      438,
+      1001
     ]
   },
   {
@@ -82402,14 +82402,14 @@
     "price": null,
     "image": "images/005355.jpg",
     "embIndex": 5355,
-    "confidence": 0.9229563474655151,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/30.jpg",
+    "confidence": 0.9206211566925049,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      64,
-      782,
-      348,
-      938
+      465,
+      436,
+      646,
+      557
     ]
   },
   {
@@ -83414,18 +83414,18 @@
   },
   {
     "code": "1647489",
-    "name": "en A TCL \"incedir ÇERTMI G) Zarı MAR asl",
+    "name": "TCOL 4K HDR APA",
     "price": null,
     "image": "images/005429.jpg",
     "embIndex": 5429,
-    "confidence": 0.940575361251831,
-    "addedAt": "2026-07-06T08:06:16+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1066.jpg",
+    "confidence": 0.9548081159591675,
+    "addedAt": "2026-09-21T06:43:21+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
-      21,
-      382,
-      348,
-      625
+      39,
+      122,
+      538,
+      480
     ]
   },
   {
@@ -83434,7 +83434,7 @@
     "price": null,
     "image": "images/005430.jpg",
     "embIndex": 5430,
-    "confidence": 0.9385353326797485,
+    "confidence": 0.938535213470459,
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
@@ -83488,7 +83488,7 @@
     "bbox": [
       492,
       1065,
-      649,
+      648,
       1239
     ]
   },
@@ -83514,13 +83514,13 @@
     "price": null,
     "image": "images/005435.jpg",
     "embIndex": 5435,
-    "confidence": 0.9167616963386536,
+    "confidence": 0.9167619347572327,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      706,
+      705,
       561,
-      823,
+      822,
       795
     ]
   },
@@ -83530,13 +83530,13 @@
     "price": null,
     "image": "images/005436.jpg",
     "embIndex": 5436,
-    "confidence": 0.9291139841079712,
+    "confidence": 0.9291139245033264,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      840,
+      839,
       572,
-      954,
+      953,
       793
     ]
   },
@@ -83658,7 +83658,7 @@
     "price": null,
     "image": "images/005444.jpg",
     "embIndex": 5444,
-    "confidence": 0.9069746136665344,
+    "confidence": 0.9069746732711792,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
@@ -83690,30 +83690,30 @@
     "price": null,
     "image": "images/005446.jpg",
     "embIndex": 5446,
-    "confidence": 0.9468957185745239,
+    "confidence": 0.9468955993652344,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
       505,
       547,
-      658,
+      657,
       767
     ]
   },
   {
     "code": "1638297",
-    "name": "Bulut Oyun Hamuru",
+    "name": "dük“ “ Vi o yl Bulut",
     "price": null,
     "image": "images/005447.jpg",
     "embIndex": 5447,
-    "confidence": 0.8683437705039978,
-    "addedAt": "2024-12-07T17:39:51+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/257.jpg",
+    "confidence": 0.9384111166000366,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      684,
-      958,
-      866,
-      1129
+      234,
+      1077,
+      454,
+      1217
     ]
   },
   {
@@ -83766,15 +83766,15 @@
   },
   {
     "code": "1631302",
-    "name": "Pratik Statik Yazı Tahtası ği kalem içerir | emi",
+    "name": "Pratik Statik Yazı Tahtası kalem içerir fear m)",
     "price": null,
     "image": "images/005453.jpg",
     "embIndex": 5453,
-    "confidence": 0.8703886270523071,
+    "confidence": 0.8703886866569519,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      526,
+      525,
       784,
       746,
       917
@@ -84518,18 +84518,18 @@
   },
   {
     "code": "1644556",
-    "name": "DAG SPORCU BÜSTİYER",
+    "name": "ia orcu Ta /M,UXL ye ii",
     "price": null,
     "image": "images/005500.jpg",
     "embIndex": 5500,
-    "confidence": 0.8965091109275818,
-    "addedAt": "2026-01-17T16:13:10+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/820.jpg",
+    "confidence": 0.9255463480949402,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      117,
-      133,
-      468,
-      615
+      205,
+      1067,
+      361,
+      1234
     ]
   },
   {
@@ -84550,17 +84550,17 @@
   },
   {
     "code": "1645061",
-    "name": "Valiz Etiketi (o ValizEtiketi",
+    "name": "Valiz Etiketi (o Valiz Etiketi",
     "price": null,
     "image": "images/005502.jpg",
     "embIndex": 5502,
-    "confidence": 0.538641631603241,
+    "confidence": 0.5386417508125305,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
       269,
       493,
-      456,
+      457,
       625
     ]
   },
@@ -84598,18 +84598,18 @@
   },
   {
     "code": "1712322",
-    "name": "Meyve Topu Çeşitleri Züber 80g",
+    "name": "Meyve Topu Züber 80g",
     "price": null,
     "image": "images/005505.jpg",
     "embIndex": 5505,
-    "confidence": 0.8744045495986938,
-    "addedAt": "2025-07-14T06:43:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/556.jpg",
+    "confidence": 0.9420901536941528,
+    "addedAt": "2026-09-07T07:21:48+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      21,
-      652,
-      210,
-      809
+      286,
+      759,
+      478,
+      889
     ]
   },
   {
@@ -85194,7 +85194,7 @@
     "price": null,
     "image": "images/005542.jpg",
     "embIndex": 5542,
-    "confidence": 0.8954811692237854,
+    "confidence": 0.895481288433075,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -85850,7 +85850,7 @@
     "price": null,
     "image": "images/005583.jpg",
     "embIndex": 5583,
-    "confidence": 0.8637591004371643,
+    "confidence": 0.8637589812278748,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -85866,7 +85866,7 @@
     "price": null,
     "image": "images/005584.jpg",
     "embIndex": 5584,
-    "confidence": 0.8975833058357239,
+    "confidence": 0.8975831866264343,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -85930,7 +85930,7 @@
     "price": null,
     "image": "images/005588.jpg",
     "embIndex": 5588,
-    "confidence": 0.7486622929573059,
+    "confidence": 0.7486618757247925,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -86010,7 +86010,7 @@
     "price": null,
     "image": "images/005593.jpg",
     "embIndex": 5593,
-    "confidence": 0.914317786693573,
+    "confidence": 0.9143174886703491,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -86106,7 +86106,7 @@
     "price": null,
     "image": "images/005599.jpg",
     "embIndex": 5599,
-    "confidence": 0.8774580955505371,
+    "confidence": 0.8774581551551819,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -87318,18 +87318,18 @@
   },
   {
     "code": "1712319",
-    "name": "Kahveli Sütlü İçecek",
+    "name": "Soğuk Kahve Nescafe Xpress 1L",
     "price": null,
     "image": "images/005675.jpg",
     "embIndex": 5675,
-    "confidence": 0.8858582377433777,
-    "addedAt": "2025-07-14T06:43:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/556.jpg",
+    "confidence": 0.8734753131866455,
+    "addedAt": "2026-07-13T18:12:09+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
-      365,
-      520,
-      508,
-      676
+      440,
+      852,
+      603,
+      1094
     ]
   },
   {
@@ -87414,17 +87414,17 @@
   },
   {
     "code": "1713696",
-    "name": "Lokmalık Antep Fıstıklı Adora 100 ml",
+    "name": "Lokmalık Antep Fıstıklı",
     "price": null,
     "image": "images/005681.jpg",
     "embIndex": 5681,
-    "confidence": 0.9424248337745667,
+    "confidence": 0.9424247145652771,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
       307,
       1311,
-      510,
+      509,
       1429
     ]
   },
@@ -87434,7 +87434,7 @@
     "price": null,
     "image": "images/005682.jpg",
     "embIndex": 5682,
-    "confidence": 0.9197347164154053,
+    "confidence": 0.9197348356246948,
     "addedAt": "2026-08-11T15:34:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1117.jpg",
     "bbox": [
@@ -88010,13 +88010,13 @@
     "price": null,
     "image": "images/005718.jpg",
     "embIndex": 5718,
-    "confidence": 0.9414913654327393,
+    "confidence": 0.9414912462234497,
     "addedAt": "2026-07-28T16:52:18+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
       775,
       580,
-      991,
+      990,
       796
     ]
   },
@@ -88038,18 +88038,18 @@
   },
   {
     "code": "1646487",
-    "name": "Boxer Erkek *MA,LAL",
-    "price": null,
+    "name": "Boxer Erkek",
+    "price": "8",
     "image": "images/005720.jpg",
     "embIndex": 5720,
     "confidence": 0.9260383248329163,
     "addedAt": "2026-07-28T16:52:18+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
-      778,
-      1170,
-      988,
-      1458
+      785,
+      1242,
+      979,
+      1452
     ]
   },
   {
@@ -88166,18 +88166,18 @@
   },
   {
     "code": "1713908",
-    "name": "Tam Yağlı Mihaliç Peyniri Peysan 250g",
+    "name": "Tam Yağlı Mihaliç Peyniri Peysan 250g üz",
     "price": null,
     "image": "images/005728.jpg",
     "embIndex": 5728,
-    "confidence": 0.9346147775650024,
-    "addedAt": "2026-09-07T07:21:48+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1155.jpg",
+    "confidence": 0.9079961776733398,
+    "addedAt": "2026-03-28T06:29:35+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      288,
-      789,
-      415,
-      999
+      559,
+      1065,
+      668,
+      1235
     ]
   },
   {
@@ -89466,7 +89466,7 @@
     "price": null,
     "image": "images/005810.jpg",
     "embIndex": 5810,
-    "confidence": 0.9344804883003235,
+    "confidence": 0.9344803690910339,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -89482,7 +89482,7 @@
     "price": null,
     "image": "images/005811.jpg",
     "embIndex": 5811,
-    "confidence": 0.8961129188537598,
+    "confidence": 0.8961127996444702,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -90058,7 +90058,7 @@
     "price": "2",
     "image": "images/005847.jpg",
     "embIndex": 5847,
-    "confidence": 0.5902832746505737,
+    "confidence": 0.5902820229530334,
     "addedAt": "2026-07-01T12:09:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
@@ -90906,7 +90906,7 @@
     "price": null,
     "image": "images/005900.jpg",
     "embIndex": 5900,
-    "confidence": 0.859519898891449,
+    "confidence": 0.8595199584960938,
     "addedAt": "2026-06-24T10:32:41+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1046.jpg",
     "bbox": [
@@ -90918,18 +90918,18 @@
   },
   {
     "code": "1646779",
-    "name": "OYUN BİLGİSAYARI GEFORCE RR ece KA dows 11 marş KE",
+    "name": "edi ABRA A7 V16.2.11 Si OYUN BİLGİSAYARI",
     "price": null,
     "image": "images/005901.jpg",
     "embIndex": 5901,
-    "confidence": 0.8888932466506958,
-    "addedAt": "2026-04-13T10:27:52+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/938.jpg",
+    "confidence": 0.8076654672622681,
+    "addedAt": "2026-06-24T10:32:41+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1046.jpg",
     "bbox": [
-      34,
-      232,
-      560,
-      426
+      21,
+      194,
+      381,
+      666
     ]
   },
   {
@@ -92126,7 +92126,7 @@
     "addedAt": "2026-06-09T15:13:34+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      411,
+      410,
       1200,
       723,
       1450
@@ -92858,7 +92858,7 @@
     "price": null,
     "image": "images/006024.jpg",
     "embIndex": 6024,
-    "confidence": 0.9218459129333496,
+    "confidence": 0.9218460321426392,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -94310,18 +94310,18 @@
   },
   {
     "code": "1714505",
-    "name": "Hijyenik Ped Natural Gece Kotex",
+    "name": "Hijyenik Ped Gece Kotex Natural cs FEN",
     "price": null,
     "image": "images/006116.jpg",
     "embIndex": 6116,
-    "confidence": 0.8523972034454346,
-    "addedAt": "2026-06-21T06:38:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1044.jpg",
+    "confidence": 0.9317728281021118,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      446,
-      915,
-      537,
-      1070
+      737,
+      799,
+      859,
+      948
     ]
   },
   {
@@ -99126,7 +99126,7 @@
   },
   {
     "code": "1713692",
-    "name": "s--. Muzlu&kKurabiyeli",
+    "name": "Muzlu&kKurabiyeli .; Bardak Milkshake ei Sek 285 ml",
     "price": null,
     "image": "images/006417.jpg",
     "embIndex": 6417,
@@ -99134,7 +99134,7 @@
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      38,
+      39,
       1009,
       226,
       1123
@@ -99958,18 +99958,18 @@
   },
   {
     "code": "1644493",
-    "name": "Ahşap-Boncuklu Manyetik Oyun",
+    "name": "K v “e Ahşap Manyetik Boncuk 5 nu",
     "price": null,
     "image": "images/006469.jpg",
     "embIndex": 6469,
-    "confidence": 0.9128391146659851,
-    "addedAt": "2026-03-15T13:15:43+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/899.jpg",
+    "confidence": 0.8707867860794067,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      166,
-      1058,
-      288,
-      1225
+      292,
+      933,
+      496,
+      1074
     ]
   },
   {
@@ -100538,7 +100538,7 @@
     "price": null,
     "image": "images/006505.jpg",
     "embIndex": 6505,
-    "confidence": 0.9039889574050903,
+    "confidence": 0.9039888381958008,
     "addedAt": "2025-08-23T19:44:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
@@ -100586,7 +100586,7 @@
     "price": null,
     "image": "images/006508.jpg",
     "embIndex": 6508,
-    "confidence": 0.8471475839614868,
+    "confidence": 0.8471473455429077,
     "addedAt": "2025-08-23T19:44:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
@@ -101526,18 +101526,18 @@
   },
   {
     "code": "1710904",
-    "name": "Helva",
+    "name": "Helva e Çeşitleri Kd Gesaş",
     "price": null,
     "image": "images/006567.jpg",
     "embIndex": 6567,
-    "confidence": 0.8965287804603577,
-    "addedAt": "2024-12-28T20:36:29+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/276.jpg",
+    "confidence": 0.9370964169502258,
+    "addedAt": "2025-09-01T18:48:52+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
-      50,
-      900,
-      242,
-      1023
+      813,
+      1384,
+      1039,
+      1544
     ]
   },
   {
@@ -101798,18 +101798,18 @@
   },
   {
     "code": "1643179",
-    "name": "ofu palu SANDO İKİLİ KATLANIR YATAKLI KOLTUK Zap",
+    "name": "Koltuk İsli: “1 Bem « Yatak hali em",
     "price": null,
     "image": "images/006584.jpg",
     "embIndex": 6584,
-    "confidence": 0.650646984577179,
-    "addedAt": "2025-07-16T07:07:19+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/558.jpg",
+    "confidence": 0.9103070497512817,
+    "addedAt": "2026-09-21T06:43:21+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
-      9,
-      97,
-      618,
-      330
+      392,
+      538,
+      734,
+      876
     ]
   },
   {
@@ -102342,18 +102342,18 @@
   },
   {
     "code": "1711236",
-    "name": "Fındık Kre",
+    "name": "Kakaolu Fındık Kreması Nutzilla 315 g TCA N | e",
     "price": null,
     "image": "images/006618.jpg",
     "embIndex": 6618,
-    "confidence": 0.8920512199401855,
-    "addedAt": "2025-02-13T10:30:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/326.jpg",
+    "confidence": 0.9170706868171692,
+    "addedAt": "2026-07-13T18:12:09+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
-      352,
-      519,
-      587,
-      666
+      842,
+      867,
+      1023,
+      1067
     ]
   },
   {
@@ -103030,18 +103030,18 @@
   },
   {
     "code": "1641625",
-    "name": "Kahve/ e Moka Pot ) : rn kullanım",
+    "name": "Kahve/ A alez pa N p” 3 > Kadtüpaı",
     "price": null,
     "image": "images/006661.jpg",
     "embIndex": 6661,
-    "confidence": 0.905973494052887,
-    "addedAt": "2026-01-25T08:11:08+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/829.jpg",
+    "confidence": 0.9012302756309509,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      23,
-      1413,
-      223,
-      1569
+      801,
+      601,
+      986,
+      770
     ]
   },
   {
@@ -103242,7 +103242,7 @@
     "price": null,
     "image": "images/006674.jpg",
     "embIndex": 6674,
-    "confidence": 0.917047917842865,
+    "confidence": 0.9170480370521545,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -106166,18 +106166,18 @@
   },
   {
     "code": "1642575",
-    "name": "ei) Çift Kişilik",
+    "name": "Çift Kişilik Battaniye",
     "price": null,
     "image": "images/006858.jpg",
     "embIndex": 6858,
-    "confidence": 0.9248814582824707,
-    "addedAt": "2025-12-06T06:22:54+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/767.jpg",
+    "confidence": 0.6060217618942261,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
-      300,
-      624,
-      624,
-      769
+      34,
+      719,
+      349,
+      834
     ]
   },
   {
@@ -107270,18 +107270,18 @@
   },
   {
     "code": "1633981",
-    "name": "Jakarlı © Koltuk Örtüsü peg cm (ız? Demlematik .— we",
+    "name": "Çamaşır . Yıkama Filesi",
     "price": null,
     "image": "images/006927.jpg",
     "embIndex": 6927,
-    "confidence": 0.8537968397140503,
-    "addedAt": "2024-08-02T08:55:18+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/56.jpg",
+    "confidence": 0.9346576929092407,
+    "addedAt": "2024-11-08T17:25:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
-      413,
-      891,
-      702,
-      1149
+      438,
+      805,
+      602,
+      922
     ]
   },
   {
@@ -109654,18 +109654,18 @@
   },
   {
     "code": "1615039",
-    "name": "Ütü Masası Kılıfı",
+    "name": "Ütü Masası Kılıfı ra",
     "price": null,
     "image": "images/007076.jpg",
     "embIndex": 7076,
-    "confidence": 0.6695868372917175,
-    "addedAt": "2024-10-20T06:12:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/185.jpg",
+    "confidence": 0.882191002368927,
+    "addedAt": "2026-06-04T11:50:04+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
-      531,
-      1014,
-      717,
-      1224
+      184,
+      1055,
+      281,
+      1247
     ]
   },
   {
@@ -110810,7 +110810,7 @@
     "price": null,
     "image": "images/007148.jpg",
     "embIndex": 7148,
-    "confidence": 0.9114696383476257,
+    "confidence": 0.9114697575569153,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -110826,7 +110826,7 @@
     "price": null,
     "image": "images/007149.jpg",
     "embIndex": 7149,
-    "confidence": 0.8846294283866882,
+    "confidence": 0.884629487991333,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -111024,7 +111024,7 @@
     "bbox": [
       622,
       1023,
-      845,
+      844,
       1252
     ]
   },
@@ -111094,18 +111094,18 @@
   },
   {
     "code": "1639344",
-    "name": "Farklı çeşitlerde",
+    "name": "Oyuncak i A Bebek N Gı",
     "price": null,
     "image": "images/007166.jpg",
     "embIndex": 7166,
-    "confidence": 0.9146476984024048,
-    "addedAt": "2024-11-30T14:31:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/247.jpg",
+    "confidence": 0.9170973896980286,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      274,
-      614,
-      548,
-      811
+      463,
+      1081,
+      627,
+      1218
     ]
   },
   {
@@ -111334,18 +111334,18 @@
   },
   {
     "code": "1640086",
-    "name": "Fakir CİLALI OTO",
+    "name": "Cilali Oto Şampuanı 1LT",
     "price": null,
     "image": "images/007181.jpg",
     "embIndex": 7181,
-    "confidence": 0.9303350448608398,
-    "addedAt": "2025-05-27T13:33:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/486.jpg",
+    "confidence": 0.9255600571632385,
+    "addedAt": "2025-08-23T19:44:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      25,
-      1013,
-      153,
-      1129
+      865,
+      938,
+      998,
+      1055
     ]
   },
   {
@@ -112154,7 +112154,7 @@
     "price": null,
     "image": "images/007232.jpg",
     "embIndex": 7232,
-    "confidence": 0.9278376698493958,
+    "confidence": 0.9278375506401062,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -121654,15 +121654,15 @@
   },
   {
     "code": "1637936",
-    "name": "Hobi Rattan Koltuk egg, PEŞİN era (Tax",
+    "name": "Hobi Rattan Koltuk PEŞİN TATIMA (5 tasi",
     "price": null,
     "image": "images/007826.jpg",
     "embIndex": 7826,
-    "confidence": 0.8539317846298218,
+    "confidence": 0.8539320230484009,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      58,
+      59,
       102,
       202,
       342
@@ -121814,18 +121814,18 @@
   },
   {
     "code": "1635791",
-    "name": "Powerbank",
+    "name": "ya AE ANE yatır",
     "price": null,
     "image": "images/007836.jpg",
     "embIndex": 7836,
-    "confidence": 0.8990672826766968,
-    "addedAt": "2025-08-23T19:44:57+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/626.jpg",
+    "confidence": 0.9156465530395508,
+    "addedAt": "2025-02-13T10:31:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/334.jpg",
     "bbox": [
-      58,
-      987,
-      239,
-      1149
+      591,
+      371,
+      823,
+      591
     ]
   },
   {
@@ -122458,7 +122458,7 @@
     "price": null,
     "image": "images/007876.jpg",
     "embIndex": 7876,
-    "confidence": 0.8387869596481323,
+    "confidence": 0.8387871384620667,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -126330,7 +126330,7 @@
     "price": null,
     "image": "images/008118.jpg",
     "embIndex": 8118,
-    "confidence": 0.8867228031158447,
+    "confidence": 0.8867227435112,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
@@ -127834,7 +127834,7 @@
     "price": null,
     "image": "images/008212.jpg",
     "embIndex": 8212,
-    "confidence": 0.48128363490104675,
+    "confidence": 0.48128384351730347,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -129626,7 +129626,7 @@
     "price": null,
     "image": "images/008324.jpg",
     "embIndex": 8324,
-    "confidence": 0.8490697741508484,
+    "confidence": 0.8490699529647827,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -131526,18 +131526,18 @@
   },
   {
     "code": "1638747",
-    "name": "Sürtmeli Büyük Teker Araba",
+    "name": "Işıklı Sesli",
     "price": null,
     "image": "images/008443.jpg",
     "embIndex": 8443,
-    "confidence": 0.8457326889038086,
-    "addedAt": "2024-12-14T12:21:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/266.jpg",
+    "confidence": 0.8757145404815674,
+    "addedAt": "2026-09-15T17:59:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
-      62,
-      509,
-      306,
-      630
+      29,
+      1081,
+      237,
+      1218
     ]
   },
   {
@@ -132378,7 +132378,7 @@
     "price": null,
     "image": "images/008496.jpg",
     "embIndex": 8496,
-    "confidence": 0.9253353476524353,
+    "confidence": 0.9253350496292114,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -135114,7 +135114,7 @@
     "price": null,
     "image": "images/008667.jpg",
     "embIndex": 8667,
-    "confidence": 0.924784779548645,
+    "confidence": 0.9247845411300659,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -135130,7 +135130,7 @@
     "price": null,
     "image": "images/008668.jpg",
     "embIndex": 8668,
-    "confidence": 0.9090840816497803,
+    "confidence": 0.9090840220451355,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -135146,7 +135146,7 @@
     "price": null,
     "image": "images/008669.jpg",
     "embIndex": 8669,
-    "confidence": 0.8770453333854675,
+    "confidence": 0.8770452737808228,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -135274,7 +135274,7 @@
     "price": null,
     "image": "images/008677.jpg",
     "embIndex": 8677,
-    "confidence": 0.6334035992622375,
+    "confidence": 0.6334038376808167,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -139110,18 +139110,18 @@
   },
   {
     "code": "1710337",
-    "name": "Çift Katlı Ovma Telli Bulaşık Bezi Ouickdish",
+    "name": "Ovma Telli Bulaşık Bezi Ouickdish",
     "price": null,
     "image": "images/008917.jpg",
     "embIndex": 8917,
-    "confidence": 0.9308895468711853,
-    "addedAt": "2024-10-05T16:00:35+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/152.jpg",
+    "confidence": 0.8985188603401184,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      465,
-      1147,
-      691,
-      1236
+      134,
+      1065,
+      239,
+      1248
     ]
   },
   {
@@ -140682,7 +140682,7 @@
     "price": null,
     "image": "images/009015.jpg",
     "embIndex": 9015,
-    "confidence": 0.9138312339782715,
+    "confidence": 0.9138311147689819,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -140746,7 +140746,7 @@
     "price": null,
     "image": "images/009019.jpg",
     "embIndex": 9019,
-    "confidence": 0.8764618635177612,
+    "confidence": 0.8764616847038269,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -148438,18 +148438,18 @@
   },
   {
     "code": "1645091",
-    "name": "Porselen Kahve Fincan Seti - 90 cc",
+    "name": "ye & Porselen",
     "price": null,
     "image": "images/009502.jpg",
     "embIndex": 9502,
-    "confidence": 0.9410743713378906,
-    "addedAt": "2025-12-27T08:51:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/794.jpg",
+    "confidence": 0.8761085271835327,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      648,
-      913,
-      834,
-      1105
+      63,
+      783,
+      340,
+      937
     ]
   },
   {
@@ -148506,7 +148506,7 @@
     "price": null,
     "image": "images/009506.jpg",
     "embIndex": 9506,
-    "confidence": 0.9124172329902649,
+    "confidence": 0.9124173521995544,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
@@ -148518,15 +148518,15 @@
   },
   {
     "code": "1648152",
-    "name": "Solingen e 5.. Meyve / Sebze ÜL iğ",
+    "name": "Soli, 3 ğ “.. Meyve / Sebze Li",
     "price": null,
     "image": "images/009507.jpg",
     "embIndex": 9507,
-    "confidence": 0.9051605463027954,
+    "confidence": 0.9051604270935059,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      282,
+      281,
       1112,
       529,
       1243
@@ -148598,18 +148598,18 @@
   },
   {
     "code": "1627735",
-    "name": "Kaydırmaz Şeffaf Raf Örtüsü",
+    "name": "Kaydırmaz Şeffaf Raf Örtüsü m",
     "price": null,
     "image": "images/009512.jpg",
     "embIndex": 9512,
-    "confidence": 0.8829699158668518,
-    "addedAt": "2026-02-16T16:47:33+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/861.jpg",
+    "confidence": 0.8055460453033447,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      474,
-      827,
-      643,
-      962
+      883,
+      1277,
+      1026,
+      1461
     ]
   },
   {
@@ -148682,46 +148682,46 @@
     "price": null,
     "image": "images/009517.jpg",
     "embIndex": 9517,
-    "confidence": 0.916593611240387,
+    "confidence": 0.9165937304496765,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
       29,
       1126,
-      321,
+      322,
       1283
     ]
   },
   {
     "code": "1644136",
-    "name": "Kapaklı Kelepçeli Kek Kalıbı Ji U",
+    "name": "Kelepçeli Kek Kalıbı",
     "price": null,
     "image": "images/009518.jpg",
     "embIndex": 9518,
-    "confidence": 0.873227059841156,
-    "addedAt": "2025-12-21T19:56:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/784.jpg",
+    "confidence": 0.9023069739341736,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      764,
-      1113,
-      878,
-      1329
+      818,
+      573,
+      997,
+      746
     ]
   },
   {
     "code": "1635121",
-    "name": "Cam Ayaklı 4 Olan i",
+    "name": "Cam Ayaklı Ci) Dondurma/Tatlı Kasesi",
     "price": null,
     "image": "images/009520.jpg",
     "embIndex": 9520,
-    "confidence": 0.936403751373291,
-    "addedAt": "2025-10-26T10:12:09+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/712.jpg",
+    "confidence": 0.8800176382064819,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      820,
-      807,
-      1042,
-      930
+      313,
+      1122,
+      547,
+      1286
     ]
   },
   {
@@ -148790,18 +148790,18 @@
   },
   {
     "code": "1644387",
-    "name": "Renkli Gravürlü Borosilikat Cam Sürahi .-ABL rey rise G5 taat “iğ",
+    "name": "Renkli Gravürlü Borosilikat Sürahi e i< Mar",
     "price": null,
     "image": "images/009525.jpg",
     "embIndex": 9525,
-    "confidence": 0.9617563486099243,
-    "addedAt": "2026-02-23T10:22:02+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/872.jpg",
+    "confidence": 0.9384968876838684,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      680,
-      487,
-      830,
-      682
+      58,
+      1115,
+      286,
+      1263
     ]
   },
   {
@@ -148822,18 +148822,18 @@
   },
   {
     "code": "1641715",
-    "name": "öd DECOLOVE",
+    "name": "DECOLOVE Cam Vazo Seti Lema se Sie",
     "price": null,
     "image": "images/009527.jpg",
     "embIndex": 9527,
-    "confidence": 0.9235110282897949,
-    "addedAt": "2025-04-12T20:39:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/425.jpg",
+    "confidence": 0.9190757870674133,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
-      214,
-      1063,
-      409,
-      1238
+      612,
+      1260,
+      765,
+      1468
     ]
   },
   {
@@ -149350,7 +149350,7 @@
   },
   {
     "code": "1714910",
-    "name": "Meyve Bar lek",
+    "name": "Meyve Bar 714910 Züber Kids 75g S Me Çilek yi şe): Muz",
     "price": null,
     "image": "images/009560.jpg",
     "embIndex": 9560,
@@ -150576,7 +150576,7 @@
     "bbox": [
       334,
       591,
-      597,
+      596,
       797
     ]
   },
@@ -151302,11 +151302,11 @@
   },
   {
     "code": "1646255",
-    "name": ",— Boyama Ve : Aktivite Kitapları « Farklı çeşitlerde",
+    "name": "Boyama Ve Aktivite Kitapları",
     "price": null,
     "image": "images/009682.jpg",
     "embIndex": 9682,
-    "confidence": 0.9024186134338379,
+    "confidence": 0.9024186730384827,
     "addedAt": "2026-07-01T12:09:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1062.jpg",
     "bbox": [
@@ -152710,7 +152710,7 @@
   },
   {
     "code": "1645606",
-    "name": "t 4 gi",
+    "name": "2 Bölmeli Kirli Sepeti 60 L Joseph Joseph",
     "price": null,
     "image": "images/009770.jpg",
     "embIndex": 9770,
@@ -153066,7 +153066,7 @@
     "price": null,
     "image": "images/009792.jpg",
     "embIndex": 9792,
-    "confidence": 0.9172543883323669,
+    "confidence": 0.9172542095184326,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -155690,7 +155690,7 @@
     "price": null,
     "image": "images/009956.jpg",
     "embIndex": 9956,
-    "confidence": 0.8969144821166992,
+    "confidence": 0.8969143629074097,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
@@ -158022,18 +158022,18 @@
   },
   {
     "code": "1641186",
-    "name": "zo Bebek Flanel Yastık Kılıfı -35x45 cm a, rAş“*xri",
+    "name": "Bebek Flanel Yastık Kılıfı - “ ii",
     "price": null,
     "image": "images/010102.jpg",
     "embIndex": 10102,
-    "confidence": 0.9522270560264587,
-    "addedAt": "2026-01-10T17:01:23+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/811.jpg",
+    "confidence": 0.8791010975837708,
+    "addedAt": "2024-11-30T14:31:22+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
-      330,
-      619,
-      503,
-      912
+      45,
+      521,
+      207,
+      642
     ]
   },
   {
@@ -159926,18 +159926,18 @@
   },
   {
     "code": "1712186",
-    "name": "Premium Oksijen 339",
+    "name": "Islak Cep Mendili ' Ivory 3x20'li",
     "price": null,
     "image": "images/010221.jpg",
     "embIndex": 10221,
-    "confidence": 0.9406468868255615,
-    "addedAt": "2026-01-12T16:50:14+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/817.jpg",
+    "confidence": 0.8641268610954285,
+    "addedAt": "2026-09-19T05:28:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      607,
-      489,
-      817,
-      686
+      521,
+      800,
+      636,
+      947
     ]
   },
   {
@@ -160938,7 +160938,7 @@
     "price": null,
     "image": "images/010284.jpg",
     "embIndex": 10284,
-    "confidence": 0.9641990661621094,
+    "confidence": 0.9641991853713989,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -160970,7 +160970,7 @@
     "price": null,
     "image": "images/010286.jpg",
     "embIndex": 10286,
-    "confidence": 0.7841271758079529,
+    "confidence": 0.7841268181800842,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -166330,7 +166330,7 @@
     "price": null,
     "image": "images/010621.jpg",
     "embIndex": 10621,
-    "confidence": 0.9350570440292358,
+    "confidence": 0.9350571632385254,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
@@ -166374,17 +166374,17 @@
   },
   {
     "code": "1635988",
-    "name": "ve Havuç Tavşan Yİ a",
+    "name": "Şapkalı Havuç Tavşan ad m",
     "price": null,
     "image": "images/010624.jpg",
     "embIndex": 10624,
-    "confidence": 0.9192102551460266,
+    "confidence": 0.9192101359367371,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
-      500,
+      501,
       328,
-      641,
+      642,
       518
     ]
   },
@@ -168458,13 +168458,13 @@
     "price": null,
     "image": "images/010754.jpg",
     "embIndex": 10754,
-    "confidence": 0.8790401220321655,
+    "confidence": 0.8790404200553894,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      504,
+      503,
       377,
-      616,
+      615,
       553
     ]
   },
@@ -171290,7 +171290,7 @@
     "price": null,
     "image": "images/010931.jpg",
     "embIndex": 10931,
-    "confidence": 0.902511477470398,
+    "confidence": 0.902511715888977,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -174426,7 +174426,7 @@
     "price": null,
     "image": "images/011127.jpg",
     "embIndex": 11127,
-    "confidence": 0.9426011443138123,
+    "confidence": 0.9426010251045227,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -175690,7 +175690,7 @@
     "price": null,
     "image": "images/011206.jpg",
     "embIndex": 11206,
-    "confidence": 0.901125431060791,
+    "confidence": 0.9011254906654358,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -178886,18 +178886,18 @@
   },
   {
     "code": "1641025",
-    "name": "cida Termometresi Pi e",
+    "name": "Gıda Termometresi",
     "price": null,
     "image": "images/011412.jpg",
     "embIndex": 11412,
-    "confidence": 0.8050086498260498,
-    "addedAt": "2024-09-24T10:38:37+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/139.jpg",
+    "confidence": 0.8594908118247986,
+    "addedAt": "2026-09-23T06:15:14+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
     "bbox": [
-      348,
-      826,
-      504,
-      1004
+      741,
+      1042,
+      1004,
+      1305
     ]
   },
   {
@@ -179130,7 +179130,7 @@
     "price": null,
     "image": "images/011428.jpg",
     "embIndex": 11428,
-    "confidence": 0.9071304202079773,
+    "confidence": 0.9071303606033325,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
@@ -179146,7 +179146,7 @@
     "price": null,
     "image": "images/011429.jpg",
     "embIndex": 11429,
-    "confidence": 0.8996540904045105,
+    "confidence": 0.8996540307998657,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
     "bbox": [
@@ -179162,7 +179162,7 @@
     "price": null,
     "image": "images/011430.jpg",
     "embIndex": 11430,
-    "confidence": 0.9273533225059509,
+    "confidence": 0.9273530840873718,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
@@ -179222,18 +179222,18 @@
   },
   {
     "code": "2874367",
-    "name": "Fırın Tepsi Seti GEÇE)",
+    "name": "borcam Fırın Tepsi Seti Bi I",
     "price": null,
     "image": "images/011434.jpg",
     "embIndex": 11434,
-    "confidence": 0.6336998343467712,
-    "addedAt": "2026-04-28T06:51:00+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/964.jpg",
+    "confidence": 0.9029994010925293,
+    "addedAt": "2026-09-22T08:04:13+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
-      294,
-      1518,
-      444,
-      1662
+      829,
+      1291,
+      968,
+      1471
     ]
   },
   {
@@ -179242,13 +179242,13 @@
     "price": null,
     "image": "images/011435.jpg",
     "embIndex": 11435,
-    "confidence": 0.8634404540061951,
+    "confidence": 0.8634403347969055,
     "addedAt": "2026-09-22T08:04:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1187.jpg",
     "bbox": [
       23,
       132,
-      949,
+      950,
       560
     ]
   },
@@ -179294,9 +179294,9 @@
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
-      739,
+      740,
       497,
-      961,
+      962,
       824
     ]
   },
@@ -179306,7 +179306,7 @@
     "price": null,
     "image": "images/011439.jpg",
     "embIndex": 11439,
-    "confidence": 0.9357446432113647,
+    "confidence": 0.9357445240020752,
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
@@ -179318,17 +179318,17 @@
   },
   {
     "code": "1648357",
-    "name": "a. j KADO YATAKLI KOŞE KOLTUK TAKIMI alm Sam",
+    "name": "a. z KADO YATAKLI KÖŞE KOLTUK TAKIMI aş Sam",
     "price": null,
     "image": "images/011440.jpg",
     "embIndex": 11440,
-    "confidence": 0.9351202845573425,
+    "confidence": 0.9351204037666321,
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
-      586,
+      587,
       821,
-      959,
+      960,
       1058
     ]
   },
@@ -179354,7 +179354,7 @@
     "price": null,
     "image": "images/011442.jpg",
     "embIndex": 11442,
-    "confidence": 0.8523650169372559,
+    "confidence": 0.8523651361465454,
     "addedAt": "2026-09-21T06:43:21+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
     "bbox": [
@@ -179418,13 +179418,13 @@
     "price": null,
     "image": "images/011446.jpg",
     "embIndex": 11446,
-    "confidence": 0.9157584309577942,
+    "confidence": 0.915758490562439,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
       569,
       559,
-      697,
+      696,
       792
     ]
   },
@@ -179478,7 +179478,7 @@
   },
   {
     "code": "1714730",
-    "name": "Ö PREMİUM BEBEK BEZİ AYLIK PAKET dO4a? m",
+    "name": "Z Bebek Bezi PREMİUM BEBEK BEZİ AYLIK PAKET 8008",
     "price": null,
     "image": "images/011450.jpg",
     "embIndex": 11450,
@@ -179486,9 +179486,9 @@
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      498,
+      497,
       156,
-      968,
+      967,
       542
     ]
   },
@@ -179530,7 +179530,7 @@
     "price": null,
     "image": "images/011453.jpg",
     "embIndex": 11453,
-    "confidence": 0.9088963270187378,
+    "confidence": 0.908896267414093,
     "addedAt": "2026-09-15T17:59:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1172.jpg",
     "bbox": [
@@ -180378,7 +180378,7 @@
     "price": null,
     "image": "images/011506.jpg",
     "embIndex": 11506,
-    "confidence": 0.9236052632331848,
+    "confidence": 0.9236053824424744,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
@@ -180400,7 +180400,7 @@
     "bbox": [
       463,
       493,
-      610,
+      611,
       628
     ]
   },
@@ -180410,13 +180410,13 @@
     "price": null,
     "image": "images/011508.jpg",
     "embIndex": 11508,
-    "confidence": 0.9133190512657166,
+    "confidence": 0.9133187532424927,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
       49,
       1069,
-      174,
+      175,
       1238
     ]
   },
@@ -180458,13 +180458,13 @@
     "price": null,
     "image": "images/011511.jpg",
     "embIndex": 11511,
-    "confidence": 0.7628704905509949,
+    "confidence": 0.7628703713417053,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
       180,
       498,
-      277,
+      278,
       621
     ]
   },
@@ -180474,7 +180474,7 @@
     "price": null,
     "image": "images/011512.jpg",
     "embIndex": 11512,
-    "confidence": 0.7201200723648071,
+    "confidence": 0.720120370388031,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
@@ -180490,7 +180490,7 @@
     "price": null,
     "image": "images/011513.jpg",
     "embIndex": 11513,
-    "confidence": 0.6244915127754211,
+    "confidence": 0.6244910955429077,
     "addedAt": "2026-09-09T20:04:28+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
     "bbox": [
@@ -180518,17 +180518,17 @@
   },
   {
     "code": "1714980",
-    "name": "KL) Burgu Kraker y © Ülker Çizi Bigbang",
+    "name": "VE Ülker Çizi Bigbang SULU, Burgu Kraker Yün) 70g",
     "price": null,
     "image": "images/011515.jpg",
     "embIndex": 11515,
-    "confidence": 0.8655353784561157,
+    "confidence": 0.865535318851471,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      473,
+      474,
       1128,
-      726,
+      727,
       1240
     ]
   },
@@ -182970,13 +182970,13 @@
     "price": null,
     "image": "images/011668.jpg",
     "embIndex": 11668,
-    "confidence": 0.9259275197982788,
+    "confidence": 0.9259276390075684,
     "addedAt": "2026-07-28T16:52:18+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1098.jpg",
     "bbox": [
       788,
       997,
-      975,
+      974,
       1206
     ]
   },
@@ -184266,7 +184266,7 @@
     "price": null,
     "image": "images/011749.jpg",
     "embIndex": 11749,
-    "confidence": 0.9338739514350891,
+    "confidence": 0.9338740706443787,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -184282,7 +184282,7 @@
     "price": null,
     "image": "images/011750.jpg",
     "embIndex": 11750,
-    "confidence": 0.9194211363792419,
+    "confidence": 0.9194210171699524,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -184298,7 +184298,7 @@
     "price": null,
     "image": "images/011751.jpg",
     "embIndex": 11751,
-    "confidence": 0.9089252948760986,
+    "confidence": 0.9089252352714539,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -184346,7 +184346,7 @@
     "price": null,
     "image": "images/011754.jpg",
     "embIndex": 11754,
-    "confidence": 0.8449764251708984,
+    "confidence": 0.8449762463569641,
     "addedAt": "2026-07-13T18:12:09+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1074.jpg",
     "bbox": [
@@ -185914,7 +185914,7 @@
     "price": null,
     "image": "images/011852.jpg",
     "embIndex": 11852,
-    "confidence": 0.8113558292388916,
+    "confidence": 0.8113563060760498,
     "addedAt": "2026-06-24T10:32:41+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1046.jpg",
     "bbox": [
@@ -187232,7 +187232,7 @@
     "bbox": [
       376,
       961,
-      592,
+      591,
       1191
     ]
   },
@@ -187818,7 +187818,7 @@
     "price": null,
     "image": "images/011971.jpg",
     "embIndex": 11971,
-    "confidence": 0.8833291530609131,
+    "confidence": 0.8833290934562683,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -187834,7 +187834,7 @@
     "price": null,
     "image": "images/011972.jpg",
     "embIndex": 11972,
-    "confidence": 0.8823335766792297,
+    "confidence": 0.8823336362838745,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -187850,7 +187850,7 @@
     "price": null,
     "image": "images/011973.jpg",
     "embIndex": 11973,
-    "confidence": 0.8808403015136719,
+    "confidence": 0.8808404207229614,
     "addedAt": "2026-06-04T11:50:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1015.jpg",
     "bbox": [
@@ -188314,7 +188314,7 @@
     "price": null,
     "image": "images/012002.jpg",
     "embIndex": 12002,
-    "confidence": 0.9574117064476013,
+    "confidence": 0.9574118256568909,
     "addedAt": "2026-05-22T07:36:06+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1004.jpg",
     "bbox": [
@@ -193866,13 +193866,13 @@
     "price": null,
     "image": "images/012349.jpg",
     "embIndex": 12349,
-    "confidence": 0.9361550211906433,
+    "confidence": 0.9361549019813538,
     "addedAt": "2026-03-28T06:29:35+00:00",
     "sourceFlyer": "pipeline/raw_flyers/914.jpg",
     "bbox": [
-      505,
+      506,
       682,
-      656,
+      657,
       842
     ]
   },
@@ -195590,15 +195590,15 @@
   },
   {
     "code": "1644162",
-    "name": "sG6s Temassız Faz >se",
+    "name": "Temas Faz #ser il",
     "price": null,
     "image": "images/012457.jpg",
     "embIndex": 12457,
-    "confidence": 0.9415411353111267,
+    "confidence": 0.9415410161018372,
     "addedAt": "2025-08-23T19:44:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/627.jpg",
     "bbox": [
-      569,
+      568,
       603,
       753,
       767
@@ -195622,7 +195622,7 @@
   },
   {
     "code": "1644160",
-    "name": "in Kaynak | Mall Makinası vurumu gl AT",
+    "name": "Kaynak | Mall",
     "price": null,
     "image": "images/012459.jpg",
     "embIndex": 12459,
@@ -195632,7 +195632,7 @@
     "bbox": [
       22,
       184,
-      601,
+      600,
       602
     ]
   },
@@ -197226,7 +197226,7 @@
     "price": null,
     "image": "images/012559.jpg",
     "embIndex": 12559,
-    "confidence": 0.8875584602355957,
+    "confidence": 0.8875584006309509,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -211258,7 +211258,7 @@
     "price": null,
     "image": "images/013436.jpg",
     "embIndex": 13436,
-    "confidence": 0.9049630165100098,
+    "confidence": 0.9049628973007202,
     "addedAt": "2025-09-01T18:48:52+00:00",
     "sourceFlyer": "pipeline/raw_flyers/638.jpg",
     "bbox": [
@@ -212570,7 +212570,7 @@
     "price": null,
     "image": "images/013518.jpg",
     "embIndex": 13518,
-    "confidence": 0.9265217185020447,
+    "confidence": 0.9265214800834656,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -212586,7 +212586,7 @@
     "price": null,
     "image": "images/013519.jpg",
     "embIndex": 13519,
-    "confidence": 0.9181019067764282,
+    "confidence": 0.9181020855903625,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -212602,7 +212602,7 @@
     "price": null,
     "image": "images/013520.jpg",
     "embIndex": 13520,
-    "confidence": 0.8699116110801697,
+    "confidence": 0.869911789894104,
     "addedAt": "2025-08-21T09:52:51+00:00",
     "sourceFlyer": "pipeline/raw_flyers/614.jpg",
     "bbox": [
@@ -226170,7 +226170,7 @@
     "price": null,
     "image": "images/014369.jpg",
     "embIndex": 14369,
-    "confidence": 0.9260547757148743,
+    "confidence": 0.9260548949241638,
     "addedAt": "2025-04-06T10:51:57+00:00",
     "sourceFlyer": "pipeline/raw_flyers/415.jpg",
     "bbox": [
@@ -230160,7 +230160,7 @@
     "bbox": [
       227,
       1128,
-      446,
+      445,
       1252
     ]
   },
@@ -230174,7 +230174,7 @@
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
-      226,
+      225,
       831,
       384,
       997
@@ -230202,13 +230202,13 @@
     "price": null,
     "image": "images/014621.jpg",
     "embIndex": 14621,
-    "confidence": 0.8730054497718811,
+    "confidence": 0.8730055093765259,
     "addedAt": "2025-02-17T21:05:04+00:00",
     "sourceFlyer": "pipeline/raw_flyers/345.jpg",
     "bbox": [
       667,
       704,
-      830,
+      829,
       804
     ]
   },
@@ -235034,7 +235034,7 @@
     "price": null,
     "image": "images/014923.jpg",
     "embIndex": 14923,
-    "confidence": 0.9275063872337341,
+    "confidence": 0.9275065064430237,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -235930,7 +235930,7 @@
     "price": null,
     "image": "images/014979.jpg",
     "embIndex": 14979,
-    "confidence": 0.9031428098678589,
+    "confidence": 0.9031428694725037,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -235962,7 +235962,7 @@
     "price": null,
     "image": "images/014981.jpg",
     "embIndex": 14981,
-    "confidence": 0.9006232023239136,
+    "confidence": 0.9006229043006897,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -235978,7 +235978,7 @@
     "price": null,
     "image": "images/014982.jpg",
     "embIndex": 14982,
-    "confidence": 0.8961854577064514,
+    "confidence": 0.896185576915741,
     "addedAt": "2024-11-30T14:31:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/243.jpg",
     "bbox": [
@@ -237130,7 +237130,7 @@
     "price": null,
     "image": "images/015054.jpg",
     "embIndex": 15054,
-    "confidence": 0.8886529803276062,
+    "confidence": 0.8886529207229614,
     "addedAt": "2024-11-08T17:25:22+00:00",
     "sourceFlyer": "pipeline/raw_flyers/219.jpg",
     "bbox": [
@@ -241562,7 +241562,7 @@
     "price": null,
     "image": "images/015331.jpg",
     "embIndex": 15331,
-    "confidence": 0.9323449730873108,
+    "confidence": 0.9323448538780212,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -241626,7 +241626,7 @@
     "price": null,
     "image": "images/015335.jpg",
     "embIndex": 15335,
-    "confidence": 0.7668185830116272,
+    "confidence": 0.7668184638023376,
     "addedAt": "2024-09-09T10:39:24+00:00",
     "sourceFlyer": "pipeline/raw_flyers/119.jpg",
     "bbox": [
@@ -243018,7 +243018,7 @@
     "price": null,
     "image": "images/015422.jpg",
     "embIndex": 15422,
-    "confidence": 0.9188475012779236,
+    "confidence": 0.9188476800918579,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/90.jpg",
     "bbox": [
@@ -243114,7 +243114,7 @@
     "price": null,
     "image": "images/015428.jpg",
     "embIndex": 15428,
-    "confidence": 0.9053389430046082,
+    "confidence": 0.9053388237953186,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -243130,7 +243130,7 @@
     "price": null,
     "image": "images/015429.jpg",
     "embIndex": 15429,
-    "confidence": 0.8882473707199097,
+    "confidence": 0.888247549533844,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/89.jpg",
     "bbox": [
@@ -243242,7 +243242,7 @@
     "price": null,
     "image": "images/015436.jpg",
     "embIndex": 15436,
-    "confidence": 0.9279724955558777,
+    "confidence": 0.9279723167419434,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -243258,7 +243258,7 @@
     "price": null,
     "image": "images/015437.jpg",
     "embIndex": 15437,
-    "confidence": 0.9064697623252869,
+    "confidence": 0.9064698815345764,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -243274,7 +243274,7 @@
     "price": null,
     "image": "images/015438.jpg",
     "embIndex": 15438,
-    "confidence": 0.8598634600639343,
+    "confidence": 0.8598635792732239,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -243290,7 +243290,7 @@
     "price": null,
     "image": "images/015439.jpg",
     "embIndex": 15439,
-    "confidence": 0.8212706446647644,
+    "confidence": 0.821270763874054,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -243322,7 +243322,7 @@
     "price": null,
     "image": "images/015441.jpg",
     "embIndex": 15441,
-    "confidence": 0.7800290584564209,
+    "confidence": 0.7800289392471313,
     "addedAt": "2024-08-23T12:34:32+00:00",
     "sourceFlyer": "pipeline/raw_flyers/87.jpg",
     "bbox": [
@@ -250945,14 +250945,14 @@
     "price": null,
     "image": "images/015928.jpg",
     "embIndex": 15928,
-    "confidence": 0.7786579728126526,
+    "confidence": 0.6807376742362976,
     "addedAt": "2026-09-23T06:15:14+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1193.jpg",
     "bbox": [
-      715,
-      608,
-      1041,
-      990
+      718,
+      769,
+      1033,
+      983
     ],
     "approvedManually": true
   },
@@ -251210,14 +251210,14 @@
     "price": null,
     "image": "images/015944.jpg",
     "embIndex": 15944,
-    "confidence": 0.9039689898490906,
-    "addedAt": "2026-09-22T08:04:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1188.jpg",
+    "confidence": 0.9370149970054626,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
     "bbox": [
-      479,
-      1254,
-      611,
-      1471
+      31,
+      1216,
+      398,
+      1433
     ],
     "approvedManually": true
   },
@@ -251346,11 +251346,11 @@
     "price": null,
     "image": "images/015952.jpg",
     "embIndex": 15952,
-    "confidence": 0.851936399936676,
+    "confidence": 0.8519359827041626,
     "addedAt": "2026-09-19T05:28:13+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1179.jpg",
     "bbox": [
-      595,
+      594,
       1255,
       709,
       1432
@@ -251601,14 +251601,14 @@
     "price": null,
     "image": "images/015967.jpg",
     "embIndex": 15967,
-    "confidence": 0.8681437373161316,
+    "confidence": 0.741435170173645,
     "addedAt": "2026-09-19T05:28:12+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1177.jpg",
     "bbox": [
-      33,
-      1349,
-      213,
-      1438
+      24,
+      1243,
+      207,
+      1414
     ],
     "approvedManually": true
   },
@@ -251958,13 +251958,13 @@
     "price": null,
     "image": "images/015988.jpg",
     "embIndex": 15988,
-    "confidence": 0.9251903295516968,
+    "confidence": 0.9251902103424072,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      262,
+      263,
       889,
-      444,
+      445,
       1087
     ],
     "approvedManually": true
@@ -251975,13 +251975,13 @@
     "price": null,
     "image": "images/015989.jpg",
     "embIndex": 15989,
-    "confidence": 0.9145268201828003,
+    "confidence": 0.9145267009735107,
     "addedAt": "2026-09-07T07:21:48+00:00",
     "sourceFlyer": "pipeline/raw_flyers/1156.jpg",
     "bbox": [
-      752,
+      753,
       751,
-      1026,
+      1028,
       894
     ],
     "approvedManually": true
@@ -252046,5 +252046,133 @@
     "confidence": null,
     "addedAt": "2026-10-08T23:14:12.129Z",
     "approvedManually": true
+  },
+  {
+    "code": "1629418",
+    "name": "img",
+    "price": null,
+    "image": "images/015994.jpg",
+    "embIndex": 15994,
+    "confidence": 0.49301159381866455,
+    "addedAt": "2024-08-23T12:34:32+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/87.jpg",
+    "bbox": [
+      615,
+      422,
+      833,
+      502
+    ]
+  },
+  {
+    "code": "1653307",
+    "name": "gz o |) Yazı Tahtası f â “yazı” Ni i",
+    "price": null,
+    "image": "images/015995.jpg",
+    "embIndex": 15995,
+    "confidence": 0.9163174629211426,
+    "addedAt": "2024-09-09T10:39:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/119.jpg",
+    "bbox": [
+      284,
+      780,
+      461,
+      889
+    ]
+  },
+  {
+    "code": "1613610",
+    "name": "Mandal Çeşitleri oy a",
+    "price": null,
+    "image": "images/015996.jpg",
+    "embIndex": 15996,
+    "confidence": 0.8979665040969849,
+    "addedAt": "2026-06-09T15:13:34+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1025.jpg",
+    "bbox": [
+      931,
+      1222,
+      1114,
+      1445
+    ]
+  },
+  {
+    "code": "3007600",
+    "name": "PROWARE eoowh e. Sıcak Hava yw Tabancası \"",
+    "price": null,
+    "image": "images/015997.jpg",
+    "embIndex": 15997,
+    "confidence": 0.9078773856163025,
+    "addedAt": "2025-08-23T19:44:57+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/627.jpg",
+    "bbox": [
+      571,
+      167,
+      1019,
+      567
+    ]
+  },
+  {
+    "code": "1647188",
+    "name": "Sırt Çantası Kadın",
+    "price": null,
+    "image": "images/015998.jpg",
+    "embIndex": 15998,
+    "confidence": 0.9398531913757324,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      698,
+      493,
+      816,
+      684
+    ]
+  },
+  {
+    "code": "1646602",
+    "name": "Boxer Erkek Çocuk",
+    "price": null,
+    "image": "images/015999.jpg",
+    "embIndex": 15999,
+    "confidence": 0.9355195164680481,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      663,
+      855,
+      794,
+      1036
+    ]
+  },
+  {
+    "code": "1646432",
+    "name": "Penti Pantolon Çorabı Kadın",
+    "price": null,
+    "image": "images/016000.jpg",
+    "embIndex": 16000,
+    "confidence": 0.9021733403205872,
+    "addedAt": "2026-09-09T20:04:28+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1157.jpg",
+    "bbox": [
+      417,
+      840,
+      524,
+      1032
+    ]
+  },
+  {
+    "code": "1648090",
+    "name": "CASIO. KOL SAATİ KADIN",
+    "price": null,
+    "image": "images/016001.jpg",
+    "embIndex": 16001,
+    "confidence": 0.8345898985862732,
+    "addedAt": "2026-09-21T06:43:21+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1184.jpg",
+    "bbox": [
+      21,
+      1207,
+      289,
+      1437
+    ]
   }
 ]
