@@ -3758,33 +3758,33 @@
   },
   {
     "code": "1647237",
-    "name": "ALTUS Buharlı Ütü",
+    "name": "ALTUS fl Buharlı Ütü",
     "price": null,
     "image": "images/000237.jpg",
     "embIndex": 237,
-    "confidence": 0.9157207012176514,
-    "addedAt": "2026-05-22T07:36:06+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1006.jpg",
+    "confidence": 0.9166158437728882,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      574,
-      1052,
-      834,
-      1244
+      774,
+      823,
+      1021,
+      1040
     ]
   },
   {
     "code": "1629159",
-    "name": "KUMTEL BEYAZ GAM SET ÜSTÜ OCAK",
+    "name": "rn Gi",
     "price": null,
     "image": "images/000238.jpg",
     "embIndex": 238,
-    "confidence": 0.9073302745819092,
-    "addedAt": "2024-08-29T13:15:37+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/100.jpg",
+    "confidence": 0.9041973948478699,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      542,
-      492,
-      871,
+      421,
+      592,
+      738,
       808
     ]
   },
@@ -30256,18 +30256,18 @@
   },
   {
     "code": "1642293",
-    "name": "Gece Lambası Dolunay Lİ) A",
+    "name": "Gren) Gece Lambası Baykuş ve Civciv g9",
     "price": null,
     "image": "images/001933.jpg",
     "embIndex": 1933,
-    "confidence": 0.9462018013000488,
-    "addedAt": "2026-04-13T10:28:28+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/944.jpg",
+    "confidence": 0.9391405582427979,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
     "bbox": [
-      528,
-      1122,
-      820,
-      1231
+      580,
+      1267,
+      810,
+      1484
     ]
   },
   {
@@ -32918,34 +32918,34 @@
   },
   {
     "code": "1642913",
-    "name": "Eğitici Masalcı Plak Çalar",
+    "name": "Type-C şarj kablosu",
     "price": null,
     "image": "images/002102.jpg",
     "embIndex": 2102,
-    "confidence": 0.9397604465484619,
-    "addedAt": "2025-10-12T08:35:26+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/693.jpg",
+    "confidence": 0.9360595345497131,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      52,
-      929,
-      376,
-      1184
+      547,
+      146,
+      1015,
+      565
     ]
   },
   {
     "code": "1615550",
-    "name": "İkea ez lal 99, z",
+    "name": "d SAMAN Mn war Ahşap | Mİ TakÇak",
     "price": null,
     "image": "images/002103.jpg",
     "embIndex": 2103,
-    "confidence": 0.9508615732192993,
-    "addedAt": "2024-07-29T06:05:15+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/8.jpg",
+    "confidence": 0.9509660005569458,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      420,
-      304,
-      602,
-      444
+      236,
+      806,
+      447,
+      980
     ]
   },
   {
@@ -37343,18 +37343,18 @@
   },
   {
     "code": "1607412",
-    "name": "ıp Aspiratör",
+    "name": "KUMTEL Sürgülü Aspiratör",
     "price": null,
     "image": "images/002387.jpg",
     "embIndex": 2387,
-    "confidence": 0.8528042435646057,
-    "addedAt": "2024-09-24T10:38:37+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/139.jpg",
+    "confidence": 0.9287410378456116,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      287,
-      667,
-      652,
-      787
+      730,
+      590,
+      1047,
+      816
     ]
   },
   {
@@ -44372,18 +44372,18 @@
   },
   {
     "code": "1645290",
-    "name": "Led Işıklı Ayna",
+    "name": "klı t NR far) e",
     "price": null,
     "image": "images/002843.jpg",
     "embIndex": 2843,
-    "confidence": 0.9342823028564453,
-    "addedAt": "2025-11-23T06:18:49+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/755.jpg",
+    "confidence": 0.8553629517555237,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      671,
-      853,
-      838,
-      1095
+      840,
+      1283,
+      1016,
+      1489
     ]
   },
   {
@@ -46666,18 +46666,18 @@
   },
   {
     "code": "1631096",
-    "name": "o'cco Bebek Fotoğraf Albümü",
-    "price": "00",
+    "name": "Bebek Fotoğraf Albümü",
+    "price": null,
     "image": "images/002989.jpg",
     "embIndex": 2989,
-    "confidence": 0.8672922849655151,
-    "addedAt": "2024-10-05T16:01:41+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/159.jpg",
+    "confidence": 0.9522259831428528,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
     "bbox": [
-      449,
-      1132,
-      700,
-      1234
+      821,
+      1060,
+      1048,
+      1256
     ]
   },
   {
@@ -58118,18 +58118,18 @@
   },
   {
     "code": "1631281",
-    "name": "N# © N İ Akıllı Şekiller",
+    "name": "Wed\" Akıllı £ Şekiller",
     "price": null,
     "image": "images/003733.jpg",
     "embIndex": 3733,
-    "confidence": 0.9451413750648499,
-    "addedAt": "2025-04-19T06:36:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/434.jpg",
+    "confidence": 0.9378847479820251,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      0,
-      704,
-      265,
-      820
+      461,
+      803,
+      628,
+      1021
     ]
   },
   {
@@ -72208,18 +72208,18 @@
   },
   {
     "code": "1635607",
-    "name": "Duyusal iii Oyuncak Tırtıl ii",
+    "name": "Duyusal Oyuncak Tırtıl “a",
     "price": null,
     "image": "images/004670.jpg",
     "embIndex": 4670,
-    "confidence": 0.9105666279792786,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/31.jpg",
+    "confidence": 0.9266002178192139,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      236,
-      755,
+      278,
+      1244,
       402,
-      853
+      1484
     ]
   },
   {
@@ -81378,18 +81378,18 @@
   },
   {
     "code": "1635653",
-    "name": "ul RA MV va ” Lisanslı Dikişli ZA. g6 Not Defteri 60 Yaprak",
+    "name": "bobyCs",
     "price": null,
     "image": "images/005286.jpg",
     "embIndex": 5286,
-    "confidence": 0.8662932515144348,
-    "addedAt": "2024-08-02T08:55:12+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/41.jpg",
+    "confidence": 0.9121063947677612,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
     "bbox": [
-      215,
-      948,
-      404,
-      1095
+      802,
+      1275,
+      1041,
+      1489
     ]
   },
   {
@@ -82350,18 +82350,18 @@
   },
   {
     "code": "1601802",
-    "name": "Max. Kapasitesi -35 kg Lb",
+    "name": "pilsan)",
     "price": null,
     "image": "images/005352.jpg",
     "embIndex": 5352,
-    "confidence": 0.9178867936134338,
-    "addedAt": "2024-08-02T08:55:07+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/31.jpg",
+    "confidence": 0.8874289989471436,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
     "bbox": [
-      48,
-      104,
-      288,
-      325
+      431,
+      1063,
+      677,
+      1233
     ]
   },
   {
@@ -86886,18 +86886,18 @@
   },
   {
     "code": "1647265",
-    "name": "arnica Karayel ET15200 | Islak & Kuru Elektrikli Süpürge",
+    "name": "arnlca Karayel Islak & Kuru Halı ve Koltuk Yıkama Makinesi Elektrikli Süpürge",
     "price": null,
     "image": "images/005648.jpg",
     "embIndex": 5648,
-    "confidence": 0.9525220394134521,
-    "addedAt": "2026-08-14T08:06:45+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1124.jpg",
+    "confidence": 0.5242103338241577,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      369,
-      501,
-      579,
-      843
+      43,
+      791,
+      783,
+      1051
     ]
   },
   {
@@ -89718,18 +89718,18 @@
   },
   {
     "code": "1645888",
-    "name": "emsan Bella Gusto Stand Mikser İnci Beyazı",
+    "name": "Bella Gusto Stand Mikser İnci Beyazı",
     "price": null,
     "image": "images/005826.jpg",
     "embIndex": 5826,
-    "confidence": 0.9093958139419556,
-    "addedAt": "2026-03-03T08:17:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/882.jpg",
+    "confidence": 0.8479930758476257,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      364,
-      500,
-      555,
-      729
+      69,
+      595,
+      438,
+      779
     ]
   },
   {
@@ -92182,18 +92182,18 @@
   },
   {
     "code": "1645227",
-    "name": "decofis Sisa Çalışma Sandalyesi “ Ayarlanabilir",
+    "name": "Oyuncak Müzikal Telefon",
     "price": null,
     "image": "images/005982.jpg",
     "embIndex": 5982,
-    "confidence": 0.9242990016937256,
-    "addedAt": "2026-06-09T15:11:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/1024.jpg",
+    "confidence": 0.9340885877609253,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      569,
-      861,
-      1134,
-      1080
+      55,
+      806,
+      222,
+      1010
     ]
   },
   {
@@ -102150,18 +102150,18 @@
   },
   {
     "code": "1645995",
-    "name": "Diş Fırçası Çeşitleri GET) SEBE: (lk EZEN uza İp oy mM",
+    "name": "Tata dor! dö",
     "price": null,
     "image": "images/006606.jpg",
     "embIndex": 6606,
-    "confidence": 0.9162294268608093,
-    "addedAt": "2026-02-08T16:22:24+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/851.jpg",
+    "confidence": 0.4549228549003601,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      727,
-      1195,
-      1048,
-      1405
+      70,
+      1061,
+      286,
+      1275
     ]
   },
   {
@@ -109286,50 +109286,50 @@
   },
   {
     "code": "1644636",
-    "name": "Şarjlı Diş Fırçası PSC74 , t EN",
+    "name": "ww Şarjlı Diş Fırçası i .., PSC111 eee e",
     "price": null,
     "image": "images/007053.jpg",
     "embIndex": 7053,
-    "confidence": 0.8608742952346802,
-    "addedAt": "2025-10-04T06:39:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/685.jpg",
+    "confidence": 0.8820555210113525,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      200,
-      1346,
-      329,
-      1561
+      475,
+      1281,
+      659,
+      1486
     ]
   },
   {
     "code": "1644637",
-    "name": "Şarjlı Diş Fırçası PSC75",
+    "name": "Şarjlı Diş Fırçası",
     "price": null,
     "image": "images/007054.jpg",
     "embIndex": 7054,
-    "confidence": 0.841231644153595,
-    "addedAt": "2025-10-04T06:39:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/685.jpg",
+    "confidence": 0.9321200847625732,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      342,
-      1347,
-      467,
-      1558
+      301,
+      1277,
+      470,
+      1489
     ]
   },
   {
     "code": "1644635",
-    "name": "Gö Şarjlı Döner Başlıklı Diş Fırçası PSC73",
+    "name": "Döner Başlıklı psci10 ÇALIN Şarjlı Diş Fırçası",
     "price": null,
     "image": "images/007055.jpg",
     "embIndex": 7055,
-    "confidence": 0.8346051573753357,
-    "addedAt": "2025-10-04T06:39:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/685.jpg",
+    "confidence": 0.911319375038147,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      49,
-      1343,
-      191,
-      1561
+      71,
+      1280,
+      303,
+      1478
     ]
   },
   {
@@ -120086,18 +120086,18 @@
   },
   {
     "code": "1642140",
-    "name": "ELİN v0 oo! so, EN Eğlenceli Halkalar 2“ Yuvarlanma Kulesi/“X EE",
+    "name": "g? Oyuncak Kule Çeşitleri Grit a",
     "price": null,
     "image": "images/007728.jpg",
     "embIndex": 7728,
-    "confidence": 0.8220860362052917,
-    "addedAt": "2025-04-19T06:36:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/433.jpg",
+    "confidence": 0.9264048337936401,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      559,
-      393,
-      841,
-      591
+      644,
+      785,
+      775,
+      1020
     ]
   },
   {
@@ -181814,18 +181814,18 @@
   },
   {
     "code": "1646315",
-    "name": "Halı ve Koltuk Yıkama Makinesi 43000 ml temiz su deposu",
+    "name": "aaa, Halı ve Koltuk Yıkama Makinesi",
     "price": null,
     "image": "images/011596.jpg",
     "embIndex": 11596,
-    "confidence": 0.8013836145401001,
-    "addedAt": "2026-03-03T08:17:56+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/882.jpg",
+    "confidence": 0.7420730590820312,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
     "bbox": [
-      20,
-      495,
-      189,
-      837
+      340,
+      816,
+      770,
+      1034
     ]
   },
   {
@@ -208838,18 +208838,18 @@
   },
   {
     "code": "1642956",
-    "name": "Pelüş Bez Sebek",
+    "name": "Pelüş Bez Bebek ze",
     "price": null,
     "image": "images/013285.jpg",
     "embIndex": 13285,
-    "confidence": 0.9353828430175781,
-    "addedAt": "2025-09-26T13:44:01+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/675.jpg",
+    "confidence": 0.9292001724243164,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      467,
-      675,
-      574,
-      867
+      98,
+      1015,
+      355,
+      1228
     ]
   },
   {
@@ -224918,18 +224918,18 @@
   },
   {
     "code": "1633366",
-    "name": "Aktiviteli İlk Adım Arabam",
+    "name": "Aktiviteli t İlk Adım Arabam —. 'g n i U",
     "price": null,
     "image": "images/014291.jpg",
     "embIndex": 14291,
-    "confidence": 0.9504966139793396,
-    "addedAt": "2025-04-19T06:36:13+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/434.jpg",
+    "confidence": 0.9396509528160095,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
     "bbox": [
-      168,
-      814,
-      302,
-      1043
+      560,
+      1022,
+      794,
+      1217
     ]
   },
   {
@@ -252173,6 +252173,262 @@
       1207,
       289,
       1437
+    ]
+  },
+  {
+    "code": "1647063",
+    "name": "Yüz Masaj rn Gi sa",
+    "price": null,
+    "image": "images/016002.jpg",
+    "embIndex": 16002,
+    "confidence": 0.884476363658905,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
+    "bbox": [
+      662,
+      1275,
+      846,
+      1486
+    ]
+  },
+  {
+    "code": "1647284",
+    "name": "ŞARJLI SÜPÜRGE / PHILIPS Zi",
+    "price": null,
+    "image": "images/016003.jpg",
+    "embIndex": 16003,
+    "confidence": 0.55608731508255,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
+    "bbox": [
+      48,
+      127,
+      1013,
+      584
+    ]
+  },
+  {
+    "code": "1645993",
+    "name": "en ni Diş Fırçası GR",
+    "price": null,
+    "image": "images/016004.jpg",
+    "embIndex": 16004,
+    "confidence": 0.633303701877594,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1222.jpg",
+    "bbox": [
+      60,
+      1056,
+      417,
+      1280
+    ]
+  },
+  {
+    "code": "1644529",
+    "name": "PiCCOLO MONDİ Sevimli Banyo Oyuncağı Ördek",
+    "price": null,
+    "image": "images/016005.jpg",
+    "embIndex": 16005,
+    "confidence": 0.9576231241226196,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      437,
+      582,
+      584,
+      780
+    ]
+  },
+  {
+    "code": "1647447",
+    "name": "ELENA ncak Pelüş Çeşitleri rma Gine",
+    "price": null,
+    "image": "images/016006.jpg",
+    "embIndex": 16006,
+    "confidence": 0.9568231105804443,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      814,
+      1004,
+      1039,
+      1248
+    ]
+  },
+  {
+    "code": "1645516",
+    "name": "bby ÇELİK | RENKLİ TERMOS",
+    "price": null,
+    "image": "images/016007.jpg",
+    "embIndex": 16007,
+    "confidence": 0.9555149078369141,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      70,
+      133,
+      543,
+      560
+    ]
+  },
+  {
+    "code": "1644536",
+    "name": "PiCCOLO MONDİ Oyuncak Kumandalı Bebek Arabası",
+    "price": null,
+    "image": "images/016008.jpg",
+    "embIndex": 16008,
+    "confidence": 0.9344040751457214,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      252,
+      583,
+      429,
+      792
+    ]
+  },
+  {
+    "code": "1644534",
+    "name": "PiCCOLO MONDİ Bas Bırak Sevimli Bebek Arabası",
+    "price": null,
+    "image": "images/016009.jpg",
+    "embIndex": 16009,
+    "confidence": 0.9300405979156494,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      48,
+      583,
+      231,
+      796
+    ]
+  },
+  {
+    "code": "1646507",
+    "name": "mes Potalı Yuvarlama Kulesi",
+    "price": null,
+    "image": "images/016010.jpg",
+    "embIndex": 16010,
+    "confidence": 0.9207022786140442,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      372,
+      1011,
+      536,
+      1222
+    ]
+  },
+  {
+    "code": "1639068",
+    "name": "Oyuncak Elektrik Süpürgesi mB/ a",
+    "price": null,
+    "image": "images/016011.jpg",
+    "embIndex": 16011,
+    "confidence": 0.9033200144767761,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      755,
+      1257,
+      1001,
+      1476
+    ]
+  },
+  {
+    "code": "1646053",
+    "name": "Baykuş Figürlü Bebek Uyku Cihazı",
+    "price": null,
+    "image": "images/016012.jpg",
+    "embIndex": 16012,
+    "confidence": 0.8951048254966736,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      81,
+      1244,
+      268,
+      1473
+    ]
+  },
+  {
+    "code": "1642312",
+    "name": "Fil Bebek Çıngırağı g",
+    "price": null,
+    "image": "images/016013.jpg",
+    "embIndex": 16013,
+    "confidence": 0.8928326368331909,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1221.jpg",
+    "bbox": [
+      615,
+      1243,
+      749,
+      1480
+    ]
+  },
+  {
+    "code": "1645753",
+    "name": "zG DECO Keçe Aktivite Kitabı zey b N O A 25",
+    "price": null,
+    "image": "images/016014.jpg",
+    "embIndex": 16014,
+    "confidence": 0.9512458443641663,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
+    "bbox": [
+      833,
+      605,
+      1054,
+      814
+    ]
+  },
+  {
+    "code": "1646587",
+    "name": "a MARTI ÇOCUK Kline 169“ Kuklalı Bacaklı 7",
+    "price": null,
+    "image": "images/016015.jpg",
+    "embIndex": 16015,
+    "confidence": 0.9485484957695007,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
+    "bbox": [
+      607,
+      816,
+      873,
+      1029
+    ]
+  },
+  {
+    "code": "1645131",
+    "name": "Dokun Hisset GELAR) j",
+    "price": null,
+    "image": "images/016016.jpg",
+    "embIndex": 16016,
+    "confidence": 0.9319562315940857,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
+    "bbox": [
+      72,
+      627,
+      284,
+      816
+    ]
+  },
+  {
+    "code": "1645418",
+    "name": "Coffee Cup Refresh Oyuncak",
+    "price": null,
+    "image": "images/016017.jpg",
+    "embIndex": 16017,
+    "confidence": 0.9108403325080872,
+    "addedAt": "2026-10-09T12:37:33+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1220.jpg",
+    "bbox": [
+      61,
+      841,
+      293,
+      1047
     ]
   }
 ]

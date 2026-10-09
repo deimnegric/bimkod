@@ -156245,5 +156245,464 @@
     "price": null,
     "raw_ocr": "",
     "review_image": "review/db3ee56ed6167d85.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      823,
+      1058,
+      1020,
+      1265
+    ],
+    "confidence": 0.9375321269035339,
+    "code": null,
+    "name": "Saç Düzleştirici Maşa 2si1 Arada en s9 hi",
+    "price": null,
+    "raw_ocr": "Saç Düzleştirici\nMaşa 2si1 Arada\nen\ns9 hi\n1645293",
+    "review_image": "review/f63c71c0b3e6998a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000003.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      630,
+      1067,
+      815,
+      1268
+    ],
+    "confidence": 0.9275373816490173,
+    "code": null,
+    "name": "Saç Düzleştirici (20) Gy)",
+    "price": null,
+    "raw_ocr": "Saç Düzleştirici (20)\nPBS810\nGy)\n375):\n— 1645310",
+    "review_image": "review/5d29390341f9e2c2.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      403,
+      1060,
+      622,
+      1271
+    ],
+    "confidence": 0.889616072177887,
+    "code": null,
+    "name": "Üflemeli Saç Düzleştirici",
+    "price": null,
+    "raw_ocr": "Üflemeli Saç Düzleştirici",
+    "review_image": "review/c3ec282e46f88e79.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      65,
+      128,
+      468,
+      580
+    ],
+    "confidence": 0.8171010613441467,
+    "code": null,
+    "name": "ŞARJLI SÜPÜRGE",
+    "price": null,
+    "raw_ocr": "ŞARJLI SÜPÜRGE /\nXC6452/10\n* PowerCyclone 11 teknolojisi ile güçlü emiş »\n* TriActive Akıllı LED Başlık\n(zemin tipini algılama ve optimize etme)\n» Uzun çalışma süresi: Eco modda 64 dk, —\nTurbo modda 20 dk €\n» Dijital ekran: Pil seviyesi ve mod göstergesi\n* 3 aşamalı filtreleme sistemi\n» Kompakt tasarım ve duvara montaj seçeneği\n* Şarj süresi: 6 saat\nGARANTİ\nPEŞİN FİYATINA 6 TAKSİT\n11.390:",
+    "review_image": "review/1899c476b8358d90.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      272,
+      1053,
+      389,
+      1151
+    ],
+    "confidence": 0.7364857196807861,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/f1b35937cd6cd6ab.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000017.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      665,
+      1272,
+      843,
+      1395
+    ],
+    "confidence": 0.6573688983917236,
+    "code": null,
+    "name": "Yüz Masaj Cg) cnm BE EB",
+    "price": null,
+    "raw_ocr": "Yüz Masaj Cg)\ncnm\nBE EB",
+    "review_image": "review/5ad084e020f6f435.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000018.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      293,
+      1157,
+      410,
+      1271
+    ],
+    "confidence": 0.65006422996521,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/2c06b5814aa6deec.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000020.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      178,
+      1140,
+      294,
+      1270
+    ],
+    "confidence": 0.6171181797981262,
+    "code": null,
+    "name": "gd.” ©: - v66sbor",
+    "price": null,
+    "raw_ocr": "gd.” ©:\n- v66sbor",
+    "review_image": "review/b956756cb18ca5da.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000023.jpg",
+    "source_flyer": "pipeline/raw_flyers/1222.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      843,
+      1343,
+      1015,
+      1484
+    ],
+    "confidence": 0.4752073884010315,
+    "code": "1645290",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/7e9627fee12fac51.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000029.jpg",
+    "source_flyer": "pipeline/raw_flyers/1221.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      416,
+      1242,
+      609,
+      1481
+    ],
+    "confidence": 0.9436389803886414,
+    "code": null,
+    "name": "Robota Dönüşen İş Aracı",
+    "price": null,
+    "raw_ocr": "a0 15”\nRobota Dönüşen İş Aracı\n*» Farklı çeşitlerde",
+    "review_image": "review/1adc9a531f5df8b3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000035.jpg",
+    "source_flyer": "pipeline/raw_flyers/1221.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      750,
+      582,
+      1002,
+      771
+    ],
+    "confidence": 0.9330533742904663,
+    "code": null,
+    "name": "PiCCOLO MONDİ Oyuncak N Pelüş Tavşanım GŞL) gg",
+    "price": null,
+    "raw_ocr": "PiCCOLO MONDİ\nOyuncak\nN Pelüş Tavşanım\nGŞL)\ngg",
+    "review_image": "review/91048a6b79b8f4b0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000036.jpg",
+    "source_flyer": "pipeline/raw_flyers/1221.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      599,
+      582,
+      742,
+      776
+    ],
+    "confidence": 0.9313416481018066,
+    "code": null,
+    "name": "PiCCOLO MONDİ Oyuncak Kurmalı nğ SN",
+    "price": null,
+    "raw_ocr": "PiCCOLO MONDİ\nOyuncak\nKurmalı nğ\n1631893\n0-0\nSN",
+    "review_image": "review/019fd3e657201508.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000042.jpg",
+    "source_flyer": "pipeline/raw_flyers/1221.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      786,
+      782,
+      996,
+      996
+    ],
+    "confidence": 0.910099983215332,
+    "code": "1633365",
+    "name": "gi)",
+    "price": null,
+    "raw_ocr": "gi)\n/ Yürüyüş\n/ Arkadaşım\n|\n| 1633365\nte Zr",
+    "review_image": "review/ea1de241d56a7b49.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000049.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      201,
+      1249,
+      420,
+      1486
+    ],
+    "confidence": 0.9394355416297913,
+    "code": null,
+    "name": "baby",
+    "price": "99",
+    "raw_ocr": "baby€*\nBebek Dekoratif\nKarma Ürünler\n-* Duvara Asılan Dekoratif Pano\nRAE “99 t\n* Bebek Ahşap Çerçeve Karakedi\n1640490\nm Ea\nm\nuae çi",
+    "review_image": "review/9474b82cfd4f404b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000051.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      856,
+      820,
+      1013,
+      1049
+    ],
+    "confidence": 0.9389296770095825,
+    "code": null,
+    "name": "Sİ ina Ap İlk Kitaplarım",
+    "price": null,
+    "raw_ocr": "Sİ ina Ap\nİlk Kitaplarım\n* -10,5x10,5 Cm\n* Farklı çeşitlerde\nag,\n1627202",
+    "review_image": "review/9ba6315ee0749f69.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000052.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      52,
+      145,
+      535,
+      579
+    ],
+    "confidence": 0.9369003772735596,
+    "code": null,
+    "name": "OPEKÇIK şarkı ses ve cümlesiyle 1 699",
+    "price": null,
+    "raw_ocr": "a Belma) PEŞİN FİYATINA le) TAKSİT\nOPEKÇIK\nşarkı ses ve cümlesiyle 1 699:\nalfabeyi, sayıları, renkleri ve ADET\nilk kelimeleri öğretir.",
+    "review_image": "review/122332debf18ffba.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000053.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      65,
+      1063,
+      232,
+      1280
+    ],
+    "confidence": 0.9329752326011658,
+    "code": null,
+    "name": "İĞ YÜKSELEN Zeka Agumino-Bebeğime İlk Hediyem beter Gren)",
+    "price": null,
+    "raw_ocr": "İĞ YÜKSELEN Zeka\nAgumino-Bebeğime\nİlk Hediyem\nbeter Gren)\n1647999\ngum e!",
+    "review_image": "review/68cbe3a5ad4a3384.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000055.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      683,
+      1042,
+      819,
+      1266
+    ],
+    "confidence": 0.9234928488731384,
+    "code": null,
+    "name": "BiYTOY İlk 100 Sözcük Zeka Kartları",
+    "price": null,
+    "raw_ocr": "“BiYTOY\nİlk 100 Sözcük\nZeka Kartları\n* 50 Kart 100 Görsel",
+    "review_image": "review/8500cdb4756659e7.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000056.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      608,
+      602,
+      833,
+      804
+    ],
+    "confidence": 0.9226903319358826,
+    "code": null,
+    "name": "A TEVNO Dokun Hisset Puzzle",
+    "price": null,
+    "raw_ocr": "A TEVNO\nDokun Hisset\nPuzzle\n* 12 Parça\ne»\nui vasi Lip ”\nvii",
+    "review_image": "review/c83b34ba1fdae963.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000058.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      436,
+      818,
+      598,
+      1036
+    ],
+    "confidence": 0.91202312707901,
+    "code": null,
+    "name": "Yaşa Göre Gelişim Eğitici Tablet all İzne",
+    "price": null,
+    "raw_ocr": "Yaşa Göre Gelişim\nEğitici Tablet\nall İzne\n1628802",
+    "review_image": "review/23aa9f72d2cc3330.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000060.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      549,
+      118,
+      1028,
+      583
+    ],
+    "confidence": 0.9032227396965027,
+    "code": null,
+    "name": "ir üç BOYUTLU Zİ, & | ni Mİ üç sorunu Li > 2 İl DİNOZORLAR DÜNYASI Pp“ 2 HAYVANLAR DÜNYASI 15 A",
+    "price": "0444",
+    "raw_ocr": "R g 0710\n& ir üç BOYUTLU Zİ, & | ni Mİ üç sorunu Li > 2\nİl DİNOZORLAR DÜNYASI Pp“ 2 HAYVANLAR DÜNYASI 15\n\"0444 t GR <> ai la “—\nA\n\"m >\n\"> HER SAYFADA",
+    "review_image": "review/76acc6e5fffa800b.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000061.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      414,
+      1233,
+      579,
+      1484
+    ],
+    "confidence": 0.9015884399414062,
+    "code": null,
+    "name": "Lisanslı Pilli Abajur",
+    "price": null,
+    "raw_ocr": "Lisanslı Pilli Abajur\n» Açma/Kapama anahtarı\n*3x1,5 V-AApil ile çalışır\n* Işik gücü 0,5 Watt\n* Pil dahil değildir\naj\nLam Gn\nbj\nz\n—i",
+    "review_image": "review/3fddf79606925fb2.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000062.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      431,
+      624,
+      597,
+      812
+    ],
+    "confidence": 0.897652268409729,
+    "code": null,
+    "name": "Tummy Time Aynalı Yumuşak Aktivite Oyuncağım",
+    "price": null,
+    "raw_ocr": "Tummy Time Aynalı\nYumuşak Aktivite\nOyuncağım\n1643641",
+    "review_image": "review/420ecd64d1c83db4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000063.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      30,
+      1293,
+      212,
+      1481
+    ],
+    "confidence": 0.8943081498146057,
+    "code": null,
+    "name": "Eğitici Buzdolabı Magnetleri STZTZ9T",
+    "price": null,
+    "raw_ocr": "Eğitici Buzdolabı\nMagnetleri\nSTZTZ9T",
+    "review_image": "review/3638bc3fa845ff85.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000064.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      233,
+      1063,
+      427,
+      1230
+    ],
+    "confidence": 0.8885458111763,
+    "code": null,
+    "name": "un Gen",
+    "price": null,
+    "raw_ocr": ". un Gen\njin (5 Oyun Havuzu",
+    "review_image": "review/58a2d0bc85593d3c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000066.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      295,
+      843,
+      435,
+      1041
+    ],
+    "confidence": 0.885666012763977,
+    "code": null,
+    "name": "Geveze Telefon rota Gn LTvSt9T",
+    "price": null,
+    "raw_ocr": "Geveze Telefon\nrota Gn\n749:\nLTvSt9T\n2, /(Ö",
+    "review_image": "review/412e539ef90901a3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000067.jpg",
+    "source_flyer": "pipeline/raw_flyers/1220.jpg",
+    "flyer_date": "2026-10-09T12:37:33+00:00",
+    "bbox": [
+      276,
+      629,
+      422,
+      839
+    ],
+    "confidence": 0.8685116171836853,
+    "code": null,
+    "name": "Aynalı Yumuşak Küpler",
+    "price": null,
+    "raw_ocr": "Aynalı Yumuşak\nKüpler",
+    "review_image": "review/cf22f9569c4104a0.jpg"
   }
 ]
