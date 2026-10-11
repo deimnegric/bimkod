@@ -158727,5 +158727,107 @@
     "price": null,
     "raw_ocr": "A3\nYağlı Süt\nİçim1L\n€PZZOZI",
     "review_image": "review/d1a9256d45d5fe47.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      548,
+      133,
+      1051,
+      578
+    ],
+    "confidence": 0.955392599105835,
+    "code": "1648464",
+    "name": "55 İNÇ FRAMELESS 4K UHD TIZEN OS SMART GLED TV © AX55GUPRL-T 081 7 Seki / AKumın | (ar)",
+    "price": null,
+    "raw_ocr": "55 İNÇ FRAMELESS\n4K UHD TIZEN\nOS SMART GLED TV\n© AX55GUPRL-T 081\n1648464\n7 Seki\n/ AKumın | (ar)\ni vE\nEp Tizen OS\n« \" Poweredby SAMSUNG\nStok Adedi: 4.000\nNETFLİX Gwue PE G5. |\nGal aba kse ökmen Zİ Bim GT wii sini",
+    "review_image": "review/766180dd2b08e637.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000003.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      388,
+      1052,
+      504,
+      1272
+    ],
+    "confidence": 0.9403344392776489,
+    "code": "1647502",
+    "name": "6'lı Tornavida Seti il",
+    "price": null,
+    "raw_ocr": "6'lı Tornavida\nSeti\nil\n1647502",
+    "review_image": "review/972a7cf92cc9f935.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000007.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      887,
+      832,
+      1020,
+      1046
+    ],
+    "confidence": 0.929652750492096,
+    "code": null,
+    "name": "Mini Kıl Testere N",
+    "price": null,
+    "raw_ocr": "Mini Kıl Testere\n150 mm\n4. 1647499\nN",
+    "review_image": "review/dda582f961e7cfb0.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000017.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      873,
+      587,
+      1032,
+      812
+    ],
+    "confidence": 0.9058906435966492,
+    "code": "1646853",
+    "name": "2 K Hızlı Yapıştırıcı",
+    "price": null,
+    "raw_ocr": "2 K Hızlı Yapıştırıcı\n200 mi\n1646853",
+    "review_image": "review/f12614630fbb5f2e.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000024.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      617,
+      1277,
+      707,
+      1467
+    ],
+    "confidence": 0.8071019053459167,
+    "code": "1647510",
+    "name": "5-K İşçi Eldiveni iğ k V",
+    "price": null,
+    "raw_ocr": "5-K İşçi\nEldiveni\n1647510\niğ\nk\nV",
+    "review_image": "review/6d83d56ec88f3a0a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000026.jpg",
+    "source_flyer": "pipeline/raw_flyers/1234.jpg",
+    "flyer_date": "2026-10-11T11:34:24+00:00",
+    "bbox": [
+      202,
+      1280,
+      298,
+      1467
+    ],
+    "confidence": 0.7199767827987671,
+    "code": null,
+    "name": "Dogalgaz Menfezi ği p",
+    "price": null,
+    "raw_ocr": "Dogalgaz\nMenfezi\nği\np",
+    "review_image": "review/4609093921c13327.jpg"
   }
 ]

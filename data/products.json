@@ -32973,18 +32973,18 @@
   },
   {
     "code": "1646553",
-    "name": "GLED DR GOOGLE TV 34,900",
+    "name": "Mp 65 İNÇ 4K OLED HDR GOOGLE TV 65T6ıc 36.900",
     "price": null,
     "image": "images/002105.jpg",
     "embIndex": 2105,
-    "confidence": 0.965630292892456,
-    "addedAt": "2026-03-29T09:55:22+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/918.jpg",
+    "confidence": 0.9431122541427612,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
     "bbox": [
-      35,
-      108,
-      459,
-      463
+      59,
+      142,
+      530,
+      543
     ]
   },
   {
@@ -35472,18 +35472,18 @@
   },
   {
     "code": "1645570",
-    "name": "m YAĞLAYICI! VE",
+    "name": "Yağlayacı Ve Pas Sökücü 150 ml",
     "price": null,
     "image": "images/002266.jpg",
     "embIndex": 2266,
-    "confidence": 0.8952548503875732,
-    "addedAt": "2026-03-10T11:49:05+00:00",
-    "sourceFlyer": "pipeline/raw_flyers/889.jpg",
+    "confidence": 0.9200423955917358,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
     "bbox": [
-      525,
-      115,
-      830,
-      468
+      721,
+      589,
+      869,
+      808
     ]
   },
   {
@@ -253586,6 +253586,310 @@
       1025,
       197,
       1236
+    ]
+  },
+  {
+    "code": "1645877",
+    "name": "Araç İçi Baskılı Bez Güneşlik",
+    "price": null,
+    "image": "images/016089.jpg",
+    "embIndex": 16089,
+    "confidence": 0.9544274806976318,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      387,
+      581,
+      549,
+      815
+    ]
+  },
+  {
+    "code": "1645873",
+    "name": "Bebek Arabası Bardak",
+    "price": null,
+    "image": "images/016090.jpg",
+    "embIndex": 16090,
+    "confidence": 0.9366109371185303,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      48,
+      584,
+      247,
+      813
+    ]
+  },
+  {
+    "code": "1647501",
+    "name": "Kontrol Kalemi",
+    "price": null,
+    "image": "images/016091.jpg",
+    "embIndex": 16091,
+    "confidence": 0.9321728944778442,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      215,
+      1057,
+      372,
+      1262
+    ]
+  },
+  {
+    "code": "1647503",
+    "name": "Çok Amaçlı Tonavida Set is di",
+    "price": null,
+    "image": "images/016092.jpg",
+    "embIndex": 16092,
+    "confidence": 0.930929958820343,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      544,
+      1058,
+      669,
+      1267
+    ]
+  },
+  {
+    "code": "1645876",
+    "name": "Araç İçi Baskılı Tablet Tutuculu Seyahat Tepsisi",
+    "price": null,
+    "image": "images/016093.jpg",
+    "embIndex": 16093,
+    "confidence": 0.928709864616394,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      248,
+      573,
+      391,
+      818
+    ]
+  },
+  {
+    "code": "1647670",
+    "name": "Bıts Tornavida Seti 28in1 İmam Ga)",
+    "price": null,
+    "image": "images/016094.jpg",
+    "embIndex": 16094,
+    "confidence": 0.9272946715354919,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      193,
+      837,
+      332,
+      1046
+    ]
+  },
+  {
+    "code": "1647505",
+    "name": "Sifreli Asma Kilit",
+    "price": null,
+    "image": "images/016095.jpg",
+    "embIndex": 16095,
+    "confidence": 0.9236236810684204,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      875,
+      1063,
+      1019,
+      1239
+    ]
+  },
+  {
+    "code": "1647508",
+    "name": "Kauçuklu Tokmak",
+    "price": null,
+    "image": "images/016096.jpg",
+    "embIndex": 16096,
+    "confidence": 0.9236183762550354,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      56,
+      831,
+      195,
+      1040
+    ]
+  },
+  {
+    "code": "1647511",
+    "name": "Kemer Dilici o 6 Uçlu e",
+    "price": null,
+    "image": "images/016097.jpg",
+    "embIndex": 16097,
+    "confidence": 0.9224118590354919,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      540,
+      901,
+      705,
+      1036
+    ]
+  },
+  {
+    "code": "1647498",
+    "name": "Çok İşlevli Testere Seti",
+    "price": null,
+    "image": "images/016098.jpg",
+    "embIndex": 16098,
+    "confidence": 0.9216547012329102,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      740,
+      837,
+      851,
+      1050
+    ]
+  },
+  {
+    "code": "1647500",
+    "name": "Düz Kontrol Kalemi",
+    "price": null,
+    "image": "images/016099.jpg",
+    "embIndex": 16099,
+    "confidence": 0.9142210483551025,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      78,
+      1054,
+      206,
+      1260
+    ]
+  },
+  {
+    "code": "1908005",
+    "name": "PRO El Feneri",
+    "price": null,
+    "image": "images/016100.jpg",
+    "embIndex": 16100,
+    "confidence": 0.9127703905105591,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      849,
+      1256,
+      1031,
+      1469
+    ]
+  },
+  {
+    "code": "1647504",
+    "name": "Kauçuk Saplı Spatula 80 mm A",
+    "price": null,
+    "image": "images/016101.jpg",
+    "embIndex": 16101,
+    "confidence": 0.9040629863739014,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      705,
+      1056,
+      842,
+      1266
+    ]
+  },
+  {
+    "code": "1647506",
+    "name": "Maket Bıçağı Eco Yedekli(10) yl",
+    "price": null,
+    "image": "images/016102.jpg",
+    "embIndex": 16102,
+    "confidence": 0.8950968980789185,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      355,
+      891,
+      534,
+      1030
+    ]
+  },
+  {
+    "code": "1647491",
+    "name": "Çift Taraflı Akrilik Silikon Bant 18 mm",
+    "price": null,
+    "image": "images/016103.jpg",
+    "embIndex": 16103,
+    "confidence": 0.8875840902328491,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      319,
+      1279,
+      465,
+      1467
+    ]
+  },
+  {
+    "code": "1645874",
+    "name": "Bebek Arabası Kanca",
+    "price": null,
+    "image": "images/016104.jpg",
+    "embIndex": 16104,
+    "confidence": 0.8870092630386353,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      553,
+      630,
+      717,
+      810
+    ]
+  },
+  {
+    "code": "1647671",
+    "name": "Kapı Tamponu 4'lü Xİ ii",
+    "price": null,
+    "image": "images/016105.jpg",
+    "embIndex": 16105,
+    "confidence": 0.8808310627937317,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      722,
+      1291,
+      845,
+      1454
+    ]
+  },
+  {
+    "code": "1647492",
+    "name": "Beyaz Sızdırmaz Bant 3.8x3.2m",
+    "price": null,
+    "image": "images/016106.jpg",
+    "embIndex": 16106,
+    "confidence": 0.8791658878326416,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      479,
+      1281,
+      606,
+      1468
+    ]
+  },
+  {
+    "code": "1647509",
+    "name": "ATEX GİRERİZ) Dogalgaz Menfezi",
+    "price": null,
+    "image": "images/016107.jpg",
+    "embIndex": 16107,
+    "confidence": 0.43109026551246643,
+    "addedAt": "2026-10-11T11:34:24+00:00",
+    "sourceFlyer": "pipeline/raw_flyers/1234.jpg",
+    "bbox": [
+      50,
+      1278,
+      293,
+      1462
     ]
   }
 ]
