@@ -158829,5 +158829,600 @@
     "price": null,
     "raw_ocr": "Dogalgaz\nMenfezi\nği\np",
     "review_image": "review/4609093921c13327.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000000.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      838,
+      309,
+      1020,
+      640
+    ],
+    "confidence": 0.9460063576698303,
+    "code": "1644357",
+    "name": "9 KG ÇAMAŞIR MAKİNES",
+    "price": null,
+    "raw_ocr": "9 KG ÇAMAŞIR\nMAKİNES\n* Progtam takibi « inverter motor\n» Çocuk kilidi » Taşma ernniyeti\n20.900:\ng\n1644357",
+    "review_image": "review/0ddc251066c50a85.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000001.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      56,
+      401,
+      332,
+      668
+    ],
+    "confidence": 0.9453096389770508,
+    "code": null,
+    "name": "KEY 330 STE eş iran (5, tasir",
+    "price": null,
+    "raw_ocr": "KEY 330 STE\neş iran (5, tasir\n19.900...",
+    "review_image": "review/da6bf743aaaff00f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000003.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      55,
+      1237,
+      397,
+      1475
+    ],
+    "confidence": 0.9270890951156616,
+    "code": null,
+    "name": "adere Çamaşır Makinesi , Dolabı",
+    "price": null,
+    "raw_ocr": "adere\nE yi 1648680\nÇamaşır Makinesi ,\nDolabı\n»* Renk: Mat Beyaz\n* Derinlik: -60 cm\n* Duvar Sabitleme Aparatı\nDahildir,\n» Demonte Olarak\nGönderilecektir.\nk\nat Gn",
+    "review_image": "review/c134d675a6d3af1d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000004.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      541,
+      306,
+      840,
+      500
+    ],
+    "confidence": 0.9205229878425598,
+    "code": "1643754",
+    "name": "8KG e mW ÇAMAŞIR MAKİNESİ Le",
+    "price": null,
+    "raw_ocr": "W 7\n8KG\ne mW ÇAMAŞIR\nMAKİNESİ\nLe\nN 19.900:\n1643754",
+    "review_image": "review/30e6ea159fdfcb68.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000005.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      260,
+      880,
+      447,
+      1238
+    ],
+    "confidence": 0.9187873005867004,
+    "code": null,
+    "name": "Hampton 3 Kapaklı Gardırop",
+    "price": null,
+    "raw_ocr": "Hampton\n3 Kapaklı Gardırop\n* Renk: Mat Beyaz\n»* Derinlik: -52 em\n* Demonte Olarak Gönderilecektir.\n1648678\na —",
+    "review_image": "review/8bc0616bbe3679a7.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000008.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      389,
+      680,
+      667,
+      871
+    ],
+    "confidence": 0.8993282318115234,
+    "code": null,
+    "name": "KEY 4014 BM vo . KD",
+    "price": null,
+    "raw_ocr": "KEY 4014 BM\n©\nvo\n2)\n. KD",
+    "review_image": "review/8550b8bd0e63a68c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000011.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      628,
+      879,
+      827,
+      1224
+    ],
+    "confidence": 0.8815137147903442,
+    "code": null,
+    "name": "adere 3 Kapaklı Gardırop",
+    "price": null,
+    "raw_ocr": "adere\n3 Kapaklı Gardırop\n» Renk: Beyaz\n* Demonte Olarak Gönderilecektir.\n1648684",
+    "review_image": "review/ed566510c56e924f.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000012.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      66,
+      669,
+      373,
+      875
+    ],
+    "confidence": 0.8814483284950256,
+    "code": "1639188",
+    "name": "4 PROGRAMLI BULAŞIK MAKİNESİ",
+    "price": null,
+    "raw_ocr": "4 PROGRAMLI BULAŞIK\nMAKİNESİ\n» Paslanmaz çetik gövde\n» Ayarlanabilir fincan rafları\nSu taşma emniyet sistemi\n« Tuz/Parlaticı uyan ayağı\nGEL\n17.900:\n1639188",
+    "review_image": "review/37b5c6ab4d648360.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000015.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      318,
+      387,
+      517,
+      677
+    ],
+    "confidence": 0.849212646484375,
+    "code": null,
+    "name": "7 KG ÇAMAŞIR MAKİNESİ",
+    "price": null,
+    "raw_ocr": "7 KG ÇAMAŞIR MAKİNESİ\n» Çötük kilidi « Taşma emniyeti » Dengesiz yük\nköntrolü « Hireerter evotor « Bulun seçeneği\n» Kolay yıkama programı\n1646770\n17.900:\n50",
+    "review_image": "review/14fed15dc466586d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000016.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      441,
+      882,
+      639,
+      1229
+    ],
+    "confidence": 0.816696047782898,
+    "code": null,
+    "name": "Çekmeceli Tv Sehpası",
+    "price": null,
+    "raw_ocr": "Çekmeceli\nTv Sehpası\n» Renk: Lake Beyaz\n* Derinlik: -40 cm\n* Demonte Olarak Gönderilecektir.\n(ma Ginesi",
+    "review_image": "review/25a68636c35a2af1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000017.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      814,
+      879,
+      1027,
+      1232
+    ],
+    "confidence": 0.712434709072113,
+    "code": "1648683",
+    "name": "4 Kapaklı Tek Çekmeceli Kahve Köşesi",
+    "price": null,
+    "raw_ocr": "4 Kapaklı\nTek Çekmeceli\nKahve Köşesi\n» Renk: Florida Meşe ve Beyaz\nDerinlik: -45 cm\n* Demonte Olarak Gönderilecektir.",
+    "review_image": "review/99a48516e69207de.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000018.jpg",
+    "source_flyer": "pipeline/raw_flyers/1238.jpg",
+    "flyer_date": "2026-10-16T13:43:32+00:00",
+    "bbox": [
+      834,
+      1038,
+      1025,
+      1226
+    ],
+    "confidence": 0.536791205406189,
+    "code": "1648683",
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/e200908569d18abb.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000026.jpg",
+    "source_flyer": "pipeline/raw_flyers/1237.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      758,
+      1163,
+      984,
+      1309
+    ],
+    "confidence": 0.9240522384643555,
+    "code": null,
+    "name": "Makarna Sos Çeşitleri Tukaş",
+    "price": null,
+    "raw_ocr": "© Makarna Sos\nÇeşitleri\nTukaş\n* Napoliten 360g\n* Arrabbiata 3609\n170981",
+    "review_image": "review/733d120db1b23548.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000031.jpg",
+    "source_flyer": "pipeline/raw_flyers/1237.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      872,
+      578,
+      1030,
+      863
+    ],
+    "confidence": 0.9113269448280334,
+    "code": null,
+    "name": "Tam Buğdaylı Tortilla Lavaş Söke 360g",
+    "price": null,
+    "raw_ocr": "Tam Buğdaylı\nTortilla Lavaş\nSöke 360g\n20cm\n1713059",
+    "review_image": "review/a4959b04dd5f3195.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000036.jpg",
+    "source_flyer": "pipeline/raw_flyers/1237.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      540,
+      1349,
+      759,
+      1473
+    ],
+    "confidence": 0.8971827030181885,
+    "code": "1706054",
+    "name": "4 Çiya Tohumu ( Aç-Kat fi Duru 10x8 g Nam",
+    "price": null,
+    "raw_ocr": "4 Çiya Tohumu\n( Aç-Kat fi Duru 10x8 g\nNam\n1706054",
+    "review_image": "review/c0859573df24d094.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000043.jpg",
+    "source_flyer": "pipeline/raw_flyers/1237.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      72,
+      1164,
+      280,
+      1236
+    ],
+    "confidence": 0.5931180119514465,
+    "code": null,
+    "name": "Cocopops “EKONOMİK Kakaolu BOY Hlliygs i Mısır Gevreği",
+    "price": null,
+    "raw_ocr": "Cocopops\n“EKONOMİK\nKakaolu\nBOY\nHlliygs i Mısır Gevreği\nj",
+    "review_image": "review/db38e635de9d91ac.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000046.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      23,
+      1133,
+      173,
+      1288
+    ],
+    "confidence": 0.9374692440032959,
+    "code": null,
+    "name": "Ayran Sek 200 ml masnlği",
+    "price": null,
+    "raw_ocr": "Ayran\nSek 200 ml\nmasnlği",
+    "review_image": "review/65aad2908ca2c6be.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000047.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      215,
+      754,
+      376,
+      951
+    ],
+    "confidence": 0.9358727931976318,
+    "code": null,
+    "name": "260,6 Yağlı Yoğurt Yörsan 3000 g",
+    "price": null,
+    "raw_ocr": "260,6 Yağlı Yoğurt\nYörsan 3000 g\n1714383",
+    "review_image": "review/fc05971cff6e2f6d.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000048.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      68,
+      570,
+      247,
+      753
+    ],
+    "confidence": 0.9355035424232483,
+    "code": null,
+    "name": "Kadayıf Topu Çeşitleri Künefito 350g",
+    "price": null,
+    "raw_ocr": "Kadayıf Topu Çeşitleri\nKünefito 350g\n* Peynirli * Fıstıklı",
+    "review_image": "review/5449137a80b8f46c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000049.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      23,
+      753,
+      199,
+      958
+    ],
+    "confidence": 0.9354349374771118,
+    "code": "1705789",
+    "name": "262,5 Yağlı Süt Pınar 1L Vs iz iz",
+    "price": null,
+    "raw_ocr": "262,5 Yağlı Süt\nPınar 1L\nVs\niz\n|\niz\n1705789,",
+    "review_image": "review/64c94af3dae1f1c7.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000050.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      876,
+      740,
+      1029,
+      952
+    ],
+    "confidence": 0.9346189498901367,
+    "code": null,
+    "name": "Yarım Yağlı Eritme Peyniri Binvezir 1000 g",
+    "price": null,
+    "raw_ocr": "Yarım Yağlı\nEritme Peyniri\nBinvezir 1000 g\n1709364",
+    "review_image": "review/00ae5a27db9f596a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000051.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      249,
+      570,
+      426,
+      749
+    ],
+    "confidence": 0.9344595670700073,
+    "code": null,
+    "name": "Acılı Soğan Halka Feast 450 g",
+    "price": null,
+    "raw_ocr": "Acılı Soğan Halka\nFeast 450 g",
+    "review_image": "review/98d6c335ff7d68a6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000056.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      386,
+      754,
+      546,
+      956
+    ],
+    "confidence": 0.9278846383094788,
+    "code": null,
+    "name": "3 Yağlı Yoğurt e İçim 3000 g",
+    "price": null,
+    "raw_ocr": "3 Yağlı Yoğurt\ne\nİçim 3000 g\n99:",
+    "review_image": "review/578ff25866bea196.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000057.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      678,
+      1275,
+      824,
+      1470
+    ],
+    "confidence": 0.9273192882537842,
+    "code": null,
+    "name": "Dana ' Frankfurter Sosis Özlem Et 250g",
+    "price": null,
+    "raw_ocr": "Dana '\nFrankfurter Sosis\nÖzlem Et 250g\n1715029\nm",
+    "review_image": "review/a1333d79931cd513.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000059.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      694,
+      754,
+      874,
+      947
+    ],
+    "confidence": 0.9234259128570557,
+    "code": null,
+    "name": "Tam Yağlı Taze Kaşar Peyniri | | Binvezir 1000g 2: ve N TÜBİTAK",
+    "price": null,
+    "raw_ocr": "Tam Yağlı Taze\nKaşar Peyniri | |\nBinvezir 1000g 2:\nve\n4 a\nN\nTÜBİTAK\n— 1\nl\nl",
+    "review_image": "review/2b2f26348266cdb6.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000060.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      46,
+      1303,
+      244,
+      1477
+    ],
+    "confidence": 0.9226696491241455,
+    "code": null,
+    "name": "Çıtır Tavuk Bonfile Chefista 320g",
+    "price": null,
+    "raw_ocr": "Çıtır Tavuk Bonfile\nChefista 320g\n1712482",
+    "review_image": "review/7635886f6b3921a1.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000067.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      545,
+      755,
+      688,
+      945
+    ],
+    "confidence": 0.8852567672729492,
+    "code": null,
+    "name": "Süzme Yoğurt Sek 400 g ie",
+    "price": null,
+    "raw_ocr": "Süzme Yoğurt\nSek 400 g\n79 50*\nie\n0426041",
+    "review_image": "review/0dbc18afa5c81c4c.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000068.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      567,
+      951,
+      835,
+      1128
+    ],
+    "confidence": 0.8162798881530762,
+    "code": null,
+    "name": "Yarım Yağlı Labne p Tava Peyniri İçim 3x180g S Aknaz 1000 g",
+    "price": null,
+    "raw_ocr": "Yarım Yağlı\nLabne\np Tava Peyniri\nİçim 3x180g\nS Aknaz 1000 g\n31229:\n1711579",
+    "review_image": "review/ca77f2b655ce9fcf.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000070.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      573,
+      953,
+      697,
+      1126
+    ],
+    "confidence": 0.7740962505340576,
+    "code": null,
+    "name": "Labne İçim 3x180 g 6LSTTZT",
+    "price": null,
+    "raw_ocr": "Labne\nİçim 3x180 g\n19.\n6LSTTZT",
+    "review_image": "review/2d5ed0d361696f44.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000071.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      696,
+      952,
+      832,
+      1127
+    ],
+    "confidence": 0.7484309673309326,
+    "code": null,
+    "name": "Yarım Yağlı ç Tava Peyniri S Aknaz 1000g",
+    "price": null,
+    "raw_ocr": "Yarım Yağlı\nç Tava Peyniri\nS Aknaz 1000g",
+    "review_image": "review/34895f898749bed3.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000072.jpg",
+    "source_flyer": "pipeline/raw_flyers/1236.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      613,
+      113,
+      972,
+      552
+    ],
+    "confidence": 0.4337169826030731,
+    "code": null,
+    "name": "",
+    "price": null,
+    "raw_ocr": "",
+    "review_image": "review/63406cf554238532.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000075.jpg",
+    "source_flyer": "pipeline/raw_flyers/1235.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      552,
+      125,
+      1015,
+      572
+    ],
+    "confidence": 0.951732873916626,
+    "code": null,
+    "name": "BÜTÜNİFINDIKLIİÇİKOLATA ka FINDIK$RÜYASI",
+    "price": null,
+    "raw_ocr": "BÜTÜNİFINDIKLIİÇİKOLATA\nka FINDIK$RÜYASI\n40'5",
+    "review_image": "review/a54fb7dd0130192a.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000084.jpg",
+    "source_flyer": "pipeline/raw_flyers/1235.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      216,
+      817,
+      362,
+      1013
+    ],
+    "confidence": 0.9265717267990112,
+    "code": null,
+    "name": "Sade Çekme Helva Miskos 240 g A",
+    "price": null,
+    "raw_ocr": "Sade Çekme Helva\nMiskos 240 g\n89:\nA.\n171528",
+    "review_image": "review/584dd3dc5b168dd4.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000087.jpg",
+    "source_flyer": "pipeline/raw_flyers/1235.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      456,
+      1272,
+      660,
+      1481
+    ],
+    "confidence": 0.9191243648529053,
+    "code": null,
+    "name": "Şekersiz Sakız Çeşitleri First Infinity 27 g",
+    "price": null,
+    "raw_ocr": "Şekersiz Sakız Çeşitleri\nFirst Infinity 27 g\n* Nane Aromalı\n» Yeşil Nane Aromalı\n1715248\n» Karpuz ve Şeftali\nerahdık\nvim 7 .",
+    "review_image": "review/d8594c2aa6c01891.jpg"
+  },
+  {
+    "full_crop": "pipeline/crops_full/000090.jpg",
+    "source_flyer": "pipeline/raw_flyers/1235.jpg",
+    "flyer_date": "2026-10-16T13:43:18+00:00",
+    "bbox": [
+      673,
+      1275,
+      844,
+      1479
+    ],
+    "confidence": 0.9068848490715027,
+    "code": null,
+    "name": "Bisküvi Parçacıklı Sütlü Çikolata Kaplamalı Karamelli Bisküvi Ülker Albeni 72 g Pi",
+    "price": null,
+    "raw_ocr": "Bisküvi Parçacıklı\nSütlü Çikolata\nKaplamalı Karamelli\nBisküvi\nÜlker Albeni 72 g\n28,”\nPi\n1714488",
+    "review_image": "review/a590ae6e152c29f1.jpg"
   }
 ]
